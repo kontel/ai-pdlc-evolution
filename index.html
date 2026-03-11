@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Driven Evolution of the Enterprise PDLC</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 240 10% 3.9%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --border: 240 5.9% 90%;
+      --ring: 240 5.9% 10%;
+      --radius: 0.5rem;
+      --primary: 240 5.9% 10%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 240 5.9% 10%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 240 5.9% 10%;
+      --destructive: 0 84.2% 60.2%;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: hsl(var(--foreground)); }
+    a:hover { opacity: 0.7; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: hsla(var(--background), 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; height: 56px;
+    }
+    .nav-logo { font-weight: 600; font-size: 0.875rem; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      display: block; padding: 0.375rem 0.75rem; font-size: 0.8125rem;
+      color: hsl(var(--muted-foreground)); text-decoration: none;
+      border-radius: var(--radius); transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: hsl(var(--foreground)); background: hsl(var(--accent)); opacity: 1;
+    }
+    .nav-mobile-toggle {
+      display: none; background: none; border: 1px solid hsl(var(--border));
+      border-radius: var(--radius); padding: 0.375rem 0.5rem; cursor: pointer;
+      color: hsl(var(--foreground));
+    }
+
+    /* Sections */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .narrow { max-width: 800px; }
+
+    /* Hero */
+    .hero { padding-top: 10rem; padding-bottom: 6rem; text-align: center; }
+    .hero-badge {
+      display: inline-block; padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 500;
+      border: 1px solid hsl(var(--border)); border-radius: 9999px;
+      color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem;
+    }
+    .hero .subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem); color: hsl(var(--muted-foreground));
+      max-width: 640px; margin: 0 auto 2rem; line-height: 1.5;
+    }
+    .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .hero-stat .label { font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-top: 0.25rem; }
+    .hero-stat .cite { font-size: 0.625rem; color: hsl(var(--muted-foreground)); margin-top: 0.125rem; font-style: italic; }
+
+    /* Section headings */
+    .section-header { margin-bottom: 3rem; }
+    .section-header .section-number {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); margin-bottom: 0.5rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.75rem;
+    }
+    .section-header p { color: hsl(var(--muted-foreground)); max-width: 640px; font-size: 1rem; }
+
+    /* Cards */
+    .card {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+      padding: 1.5rem; background: hsl(var(--card)); transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 1px 3px hsla(var(--foreground), 0.06); }
+    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.875rem; color: hsl(var(--muted-foreground)); line-height: 1.6; }
+
+    /* Grid layouts */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+    /* Pain point cards */
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .pain-card {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+      padding: 1.5rem; position: relative;
+    }
+    .pain-card .pain-number {
+      position: absolute; top: 1rem; right: 1rem; font-size: 2rem;
+      font-weight: 700; color: hsl(var(--muted)); line-height: 1;
+    }
+    .pain-card h3 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .pain-card p { font-size: 0.8125rem; color: hsl(var(--muted-foreground)); line-height: 1.6; }
+    .pain-card .metric {
+      display: inline-block; margin-top: 0.75rem; padding: 0.25rem 0.5rem;
+      font-size: 0.75rem; font-weight: 500; background: hsl(var(--secondary));
+      border-radius: calc(var(--radius) - 2px);
+    }
+
+    /* Callout */
+    .callout {
+      border: 1px solid hsl(var(--border)); border-left: 3px solid hsl(var(--foreground));
+      border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 2rem 0;
+      background: hsl(var(--secondary));
+    }
+    .callout .callout-title {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.5rem;
+    }
+    .callout p { font-size: 0.875rem; color: hsl(var(--muted-foreground)); line-height: 1.6; }
+
+    /* Capabilities table */
+    .cap-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .cap-table th {
+      text-align: left; padding: 0.75rem 1rem; font-weight: 600; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .cap-table td { padding: 0.875rem 1rem; border-bottom: 1px solid hsl(var(--border)); vertical-align: top; }
+    .cap-table tr:hover td { background: hsl(var(--secondary)); }
+    .cap-table .cap-name { font-weight: 600; color: hsl(var(--foreground)); }
+    .cap-table .cap-desc { color: hsl(var(--muted-foreground)); }
+
+    /* Tabs */
+    .tabs {
+      display: flex; gap: 0.25rem; border-bottom: 1px solid hsl(var(--border));
+      margin-bottom: 2rem; overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 0.625rem 1rem; font-size: 0.8125rem; font-weight: 500;
+      background: none; border: none; border-bottom: 2px solid transparent;
+      cursor: pointer; color: hsl(var(--muted-foreground)); white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover { color: hsl(var(--foreground)); }
+    .tab-btn.active { color: hsl(var(--foreground)); border-bottom-color: hsl(var(--foreground)); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Phase timeline */
+    .phase-timeline { position: relative; padding-left: 2rem; }
+    .phase-timeline::before {
+      content: ''; position: absolute; left: 0.5rem; top: 0.5rem; bottom: 0.5rem;
+      width: 1px; background: hsl(var(--border));
+    }
+    .phase-item { position: relative; padding-bottom: 2rem; }
+    .phase-item:last-child { padding-bottom: 0; }
+    .phase-item::before {
+      content: ''; position: absolute; left: -1.55rem; top: 0.45rem;
+      width: 0.625rem; height: 0.625rem; border-radius: 50%;
+      background: hsl(var(--foreground)); border: 2px solid hsl(var(--background)); z-index: 1;
+    }
+    .phase-item .phase-label {
+      font-size: 0.75rem; font-weight: 600; color: hsl(var(--muted-foreground));
+      text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.25rem;
+    }
+    .phase-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .phase-item p { font-size: 0.875rem; color: hsl(var(--muted-foreground)); line-height: 1.6; }
+
+    /* Compare table */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; margin-top: 1.5rem; }
+    .compare-table th {
+      text-align: left; padding: 0.625rem 0.75rem; font-weight: 600; font-size: 0.6875rem;
+      text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground));
+      border-bottom: 2px solid hsl(var(--border));
+    }
+    .compare-table td { padding: 0.625rem 0.75rem; border-bottom: 1px solid hsl(var(--border)); vertical-align: top; }
+    .compare-table .legacy { color: hsl(var(--muted-foreground)); }
+    .compare-table .augmented { font-weight: 500; }
+
+    /* Role cards */
+    .role-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+    .role-card { border: 1px solid hsl(var(--border)); border-radius: var(--radius); overflow: hidden; }
+    .role-card-header {
+      padding: 1rem 1.25rem; border-bottom: 1px solid hsl(var(--border));
+      background: hsl(var(--secondary)); font-weight: 600; font-size: 0.875rem;
+    }
+    .role-card-body { padding: 1.25rem; }
+    .role-card-body .role-row { display: flex; gap: 1rem; padding: 0.5rem 0; font-size: 0.8125rem; }
+    .role-card-body .role-row + .role-row { border-top: 1px solid hsl(var(--border)); }
+    .role-label {
+      font-weight: 500; min-width: 60px; font-size: 0.6875rem; text-transform: uppercase;
+      letter-spacing: 0.03em; color: hsl(var(--muted-foreground)); padding-top: 0.125rem;
+    }
+    .role-desc { color: hsl(var(--foreground)); line-height: 1.5; }
+
+    /* Roadmap */
+    .roadmap { display: flex; flex-direction: column; gap: 0; }
+    .roadmap-item {
+      display: grid; grid-template-columns: 140px 1fr;
+      border-bottom: 1px solid hsl(var(--border)); cursor: pointer; transition: background 0.15s;
+    }
+    .roadmap-item:hover { background: hsl(var(--secondary)); }
+    .roadmap-item:first-child { border-top: 1px solid hsl(var(--border)); }
+    .roadmap-left { padding: 1.25rem 1rem; border-right: 1px solid hsl(var(--border)); }
+    .roadmap-left .phase-num {
+      font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: hsl(var(--muted-foreground));
+    }
+    .roadmap-left .phase-time { font-size: 0.8125rem; font-weight: 600; margin-top: 0.125rem; }
+    .roadmap-right { padding: 1.25rem; }
+    .roadmap-right h4 {
+      font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .roadmap-right h4 .chevron {
+      transition: transform 0.2s; color: hsl(var(--muted-foreground)); font-size: 0.75rem;
+    }
+    .roadmap-item.open .chevron { transform: rotate(180deg); }
+    .roadmap-right .summary { font-size: 0.8125rem; color: hsl(var(--muted-foreground)); }
+    .roadmap-details {
+      display: none; margin-top: 0.75rem; padding-top: 0.75rem;
+      border-top: 1px solid hsl(var(--border));
+    }
+    .roadmap-item.open .roadmap-details { display: block; }
+    .roadmap-details .detail-section { margin-bottom: 0.75rem; }
+    .roadmap-details .detail-label {
+      font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); margin-bottom: 0.25rem;
+    }
+    .roadmap-details ul { list-style: none; padding: 0; }
+    .roadmap-details li {
+      font-size: 0.8125rem; color: hsl(var(--foreground));
+      padding: 0.1875rem 0 0.1875rem 1rem; position: relative;
+    }
+    .roadmap-details li::before {
+      content: ''; position: absolute; left: 0; top: 0.6em;
+      width: 4px; height: 4px; border-radius: 50%; background: hsl(var(--muted-foreground));
+    }
+
+    /* Risk cards */
+    .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+    .risk-card { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.5rem; }
+    .risk-card .risk-num {
+      font-size: 0.6875rem; font-weight: 600; color: hsl(var(--muted-foreground));
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.375rem;
+    }
+    .risk-card h3 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .risk-card p { font-size: 0.8125rem; color: hsl(var(--muted-foreground)); line-height: 1.6; }
+
+    /* Future state */
+    .future-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+    .future-card { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.5rem; }
+    .future-card h3 {
+      font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .future-card h3 .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: hsl(var(--foreground)); flex-shrink: 0;
+    }
+    .future-card p { font-size: 0.8125rem; color: hsl(var(--muted-foreground)); line-height: 1.6; }
+
+    /* Bottom line */
+    .bottom-line {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+      padding: 2rem; text-align: center; margin-top: 2rem; background: hsl(var(--secondary));
+    }
+    .bottom-line h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .bottom-line p {
+      font-size: 0.9375rem; color: hsl(var(--muted-foreground));
+      max-width: 600px; margin: 0 auto; line-height: 1.6;
+    }
+
+    /* Quote */
+    .quote-block {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+      padding: 1.5rem 2rem; margin-top: 2rem; position: relative;
+    }
+    .quote-block::before {
+      content: '\201C'; font-size: 3rem; line-height: 1; position: absolute;
+      top: 0.5rem; left: 1rem; color: hsl(var(--muted)); font-family: Georgia, serif;
+    }
+    .quote-block p {
+      font-size: 0.9375rem; font-style: italic;
+      color: hsl(var(--muted-foreground)); line-height: 1.6; padding-left: 1.5rem;
+    }
+    .quote-block .quote-source {
+      font-size: 0.75rem; font-style: normal; color: hsl(var(--muted-foreground));
+      margin-top: 0.75rem; padding-left: 1.5rem;
+    }
+    .quote-block .quote-source a { color: hsl(var(--muted-foreground)); text-decoration: underline; }
+
+    /* Sources */
+    .sources-list { list-style: none; padding: 0; }
+    .sources-list li {
+      padding: 0.5rem 0; font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .sources-list li:last-child { border-bottom: none; }
+    .sources-list .source-org { font-weight: 600; color: hsl(var(--foreground)); }
+    .sources-list a {
+      color: hsl(var(--muted-foreground)); text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .sources-list a:hover { color: hsl(var(--foreground)); }
+
+    .section-alt { background: hsl(var(--secondary)); }
+
+    footer {
+      padding: 2rem 1.5rem; border-top: 1px solid hsl(var(--border));
+      text-align: center; font-size: 0.75rem; color: hsl(var(--muted-foreground));
+    }
+
+    .progress-bar {
+      position: fixed; top: 56px; left: 0; height: 2px;
+      background: hsl(var(--foreground)); z-index: 51; transition: width 0.1s; width: 0%;
+    }
+
+    .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Diagram */
+    .diagram-wrapper {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+      overflow: hidden; margin-top: 1.5rem;
+    }
+    .diagram-bar { display: flex; height: 48px; }
+    .diagram-segment {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6875rem; font-weight: 500; color: hsl(var(--foreground));
+      position: relative; cursor: default; transition: opacity 0.15s;
+      border-right: 1px solid hsl(var(--background));
+    }
+    .diagram-segment:last-child { border-right: none; }
+    .diagram-bar:hover .diagram-segment:not(:hover) { opacity: 0.5; }
+    .diagram-legend {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem 1rem;
+      border-top: 1px solid hsl(var(--border)); font-size: 0.6875rem;
+      color: hsl(var(--muted-foreground));
+    }
+    .diagram-legend-item { display: flex; align-items: center; gap: 0.375rem; }
+    .diagram-legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+    .tooltip {
+      position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      background: hsl(var(--foreground)); color: hsl(var(--primary-foreground));
+      padding: 0.375rem 0.625rem; border-radius: calc(var(--radius) - 2px);
+      font-size: 0.6875rem; white-space: nowrap; pointer-events: none;
+      opacity: 0; transition: opacity 0.15s; z-index: 10;
+    }
+    .diagram-segment:hover .tooltip { opacity: 1; }
+
+    .market-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .market-badge {
+      padding: 0.375rem 0.75rem; font-size: 0.75rem; font-weight: 500;
+      border: 1px solid hsl(var(--border)); border-radius: 9999px;
+    }
+
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem; width: 36px; height: 36px;
+      border-radius: var(--radius); border: 1px solid hsl(var(--border));
+      background: hsl(var(--background)); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 0.875rem;
+      opacity: 0; transition: opacity 0.2s; z-index: 40;
+    }
+    .scroll-top.visible { opacity: 1; }
+
+    /* Task spectrum */
+    .task-spectrum { margin-top: 1.5rem; }
+    .task-row {
+      display: grid; grid-template-columns: 200px 1fr 100px;
+      border-bottom: 1px solid hsl(var(--border)); align-items: center;
+      padding: 0.625rem 0; font-size: 0.8125rem; gap: 1rem;
+    }
+    .task-row:first-child { border-top: 1px solid hsl(var(--border)); }
+    .task-row .task-name { font-weight: 500; }
+    .task-bar-container {
+      height: 24px; background: hsl(var(--secondary)); border-radius: 3px;
+      overflow: hidden; position: relative;
+    }
+    .task-bar {
+      height: 100%; border-radius: 3px; display: flex;
+      align-items: center; padding-left: 0.5rem;
+      font-size: 0.625rem; font-weight: 600; color: hsl(var(--foreground));
+      transition: width 0.6s ease;
+    }
+    .task-status {
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground)); text-align: right;
+    }
+
+    /* Harness diagram */
+    .harness-visual {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .harness-layer {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.25rem;
+    }
+    .harness-layer h4 {
+      font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.5rem;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .harness-layer p {
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground)); line-height: 1.5;
+    }
+    .harness-layer ul {
+      list-style: none; padding: 0; margin-top: 0.5rem;
+    }
+    .harness-layer li {
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      padding: 0.25rem 0 0.25rem 0.75rem; position: relative;
+    }
+    .harness-layer li::before {
+      content: ''; position: absolute; left: 0; top: 0.6em;
+      width: 4px; height: 4px; border-radius: 50; background: hsl(var(--muted-foreground));
+    }
+
+    /* Loop position cards */
+    .loop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+    .loop-card {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.25rem;
+    }
+    .loop-card.recommended { border-color: hsl(var(--foreground)); border-width: 2px; }
+    .loop-card h4 { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.375rem; }
+    .loop-card .loop-subtitle {
+      font-size: 0.6875rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.03em; color: hsl(var(--muted-foreground)); margin-bottom: 0.5rem;
+    }
+    .loop-card p { font-size: 0.8125rem; color: hsl(var(--muted-foreground)); line-height: 1.5; }
+    .loop-tag {
+      display: inline-block; padding: 0.125rem 0.5rem; font-size: 0.6875rem; font-weight: 600;
+      border: 1px solid hsl(var(--foreground)); border-radius: 9999px; margin-bottom: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .loop-grid, .harness-visual { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 56px; left: 0; right: 0; background: hsl(var(--background));
+        border-bottom: 1px solid hsl(var(--border)); padding: 0.5rem;
+      }
+      .nav-mobile-toggle { display: block; }
+      .roadmap-item { grid-template-columns: 1fr; }
+      .roadmap-left { border-right: none; border-bottom: 1px solid hsl(var(--border)); padding: 0.75rem 1rem; }
+      .cap-table { font-size: 0.75rem; }
+      .cap-table th, .cap-table td { padding: 0.5rem; }
+      .role-grid { grid-template-columns: 1fr; }
+      .task-row { grid-template-columns: 140px 1fr 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">AI PDLC Evolution</div>
+    <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#legacy">Legacy</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#evolution">Evolution</a></li>
+      <li><a href="#teams">Teams</a></li>
+      <li><a href="#discipline">Discipline</a></li>
+      <li><a href="#beyond-code">Beyond Code</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#risks">Risks</a></li>
+      <li><a href="#future">Future</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="container">
+    <span class="hero-badge">Research Synthesis &middot; March 2026</span>
+    <h1>AI-Driven Evolution of the<br>Enterprise PDLC</h1>
+    <p class="subtitle">From 2-week sprints &amp; quarterly planning to continuous, AI-augmented delivery. Based on research from McKinsey, Forrester, Thoughtworks, a16z, and practitioner sources.</p>
+    <div class="hero-stats fade-in">
+      <div class="hero-stat">
+        <div class="num">20-50%</div>
+        <div class="label">Developer productivity gain</div>
+        <div class="cite">McKinsey, Nov 2025</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">41%</div>
+        <div class="label">Code now AI-generated</div>
+        <div class="cite">Menlo Ventures, Dec 2025</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">$7.3B</div>
+        <div class="label">Enterprise AI coding spend (2025)</div>
+        <div class="cite">Menlo Ventures, Dec 2025</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">82%</div>
+        <div class="label">Developers using AI weekly</div>
+        <div class="cite">Menlo Ventures, Dec 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Executive Summary -->
+<section class="section-alt" id="summary">
+  <div class="container narrow fade-in">
+    <div class="section-header">
+      <div class="section-number">Executive Summary</div>
+      <h2>Augmenting Agile, Not Abandoning It</h2>
+      <p>AI tools are reshaping how enterprise teams plan, estimate, build, and deliver software. Forrester confirms that 95% of professionals still affirm agile's relevance&mdash;but the overhead must go.</p>
+    </div>
+    <div class="callout">
+      <div class="callout-title">Key Finding &mdash; <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work" target="_blank" style="text-decoration: underline; color: inherit;">McKinsey, Nov 2025</a></div>
+      <p>Top-performing organizations see shorter sprint cycles, smaller team sizes, and higher customer satisfaction&mdash;but only when they rethink team structures and processes around AI, not just bolt tools onto existing workflows. Individual productivity gains average 20&ndash;50%, yet company-wide improvements only reach 5&ndash;15% without structural change.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 1. Legacy Process -->
+<section id="legacy">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 1</div>
+      <h2>The Legacy Process: Where You Are Now</h2>
+      <p>The specific pain points in the current enterprise PDLC that AI can address.</p>
+    </div>
+    <div class="pain-grid fade-in">
+      <div class="pain-card">
+        <div class="pain-number">1.1</div>
+        <h3>Two-Week Sprint Ceremonies</h3>
+        <p>Planning, standups, refinement, review, and retrospective. Research suggests teams lose approximately 10% of sprint capacity to administrative overhead alone&mdash;estimation meetings, ticket grooming, status reporting.</p>
+        <span class="metric">~10% capacity lost &mdash; <a href="https://www.zenhub.com/blog-posts/the-7-best-ai-assisted-sprint-planning-tools-for-agile-teams-in-2025" target="_blank" style="text-decoration:underline">Zenhub</a></span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">1.2</div>
+        <h3>Traditional Estimation</h3>
+        <p>Planning poker consumes 2&ndash;4 hours per sprint. Teams underestimate complexity. AI tools have made historical velocity data unreliable&mdash;one Scrum.org practitioner reported their team went from typical velocity to over 150 points/sprint after adopting AI tools.</p>
+        <span class="metric">2&ndash;4 hrs/sprint &mdash; <a href="https://www.scrum.org/forum/scrum-forum/119270/how-approach-story-point-estimation-ai-dev-acceleration-tools" target="_blank" style="text-decoration:underline">Scrum.org</a></span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">1.3</div>
+        <h3>Quarterly Planning (PI Planning)</h3>
+        <p>SAFe PI Planning: 2-day events every 8&ndash;12 weeks, 50&ndash;125+ participants. Weeks of preparation. Manual dependency mapping, gut-feel forecasting, plans outdated before finalized.</p>
+        <span class="metric">2-day event, weeks of prep</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">1.4</div>
+        <h3>The Compounding Cost</h3>
+        <p>Organizations still in rigid quarterly cycles are growing slower than those with continuous planning. Nearly half of top-performing companies now integrate technology planning with business planning continuously&mdash;up from just 18% previously.</p>
+        <span class="metric">18% &rarr; ~50% continuous &mdash; <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/tech-forward/the-new-cio-mandate-strategy-speed-and-scaled-intelligence" target="_blank" style="text-decoration:underline">McKinsey Global Tech Agenda 2026</a></span>
+      </div>
+    </div>
+
+    <div class="diagram-wrapper fade-in" style="margin-top: 2rem;">
+      <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
+        Typical 2-Week Sprint Capacity Breakdown
+      </div>
+      <div class="diagram-bar">
+        <div class="diagram-segment" style="width: 3%; background: hsl(240 4.8% 88%);"><span class="tooltip">Sprint Planning: ~3%</span></div>
+        <div class="diagram-segment" style="width: 2.5%; background: hsl(240 4.8% 85%);"><span class="tooltip">Daily Standups: ~2.5%</span></div>
+        <div class="diagram-segment" style="width: 2.5%; background: hsl(240 4.8% 82%);"><span class="tooltip">Refinement/Grooming: ~2.5%</span></div>
+        <div class="diagram-segment" style="width: 1%; background: hsl(240 4.8% 79%);"><span class="tooltip">Sprint Review: ~1%</span></div>
+        <div class="diagram-segment" style="width: 1%; background: hsl(240 4.8% 76%);"><span class="tooltip">Retrospective: ~1%</span></div>
+        <div class="diagram-segment" style="width: 90%; background: hsl(var(--secondary));">
+          <span style="font-size: 0.75rem; color: hsl(var(--muted-foreground));">Actual Development Work ~90%</span>
+          <span class="tooltip">Remaining capacity: ~90%</span>
+        </div>
+      </div>
+      <div class="diagram-legend">
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 85%);"></div>Ceremony overhead (~10%)</div>
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(var(--secondary));"></div>Development capacity (~90%)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. AI Capabilities -->
+<section class="section-alt" id="capabilities">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 2</div>
+      <h2>AI Capabilities Driving the Transformation</h2>
+      <p>The specific capabilities available and which legacy processes each one can improve.</p>
+    </div>
+    <div class="card fade-in" style="overflow-x: auto;">
+      <table class="cap-table">
+        <thead>
+          <tr><th style="width: 22%;">Capability</th><th style="width: 38%;">What It Does</th><th style="width: 40%;">Impact on PDLC</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cap-name">AI Coding Assistants</td>
+            <td class="cap-desc">Generate code, tests, documentation; scaffold features; explain unfamiliar codebases</td>
+            <td>20&ndash;50% developer productivity gain on routine tasks; 41% of code now AI-generated <span style="font-size:0.7rem;color:hsl(var(--muted-foreground))">(McKinsey; Menlo Ventures)</span></td>
+          </tr>
+          <tr>
+            <td class="cap-name">Predictive Estimation</td>
+            <td class="cap-desc">Analyze historical Git data, task logs, and architectural diagrams to suggest estimates</td>
+            <td>Surfaces dependency risks proactively; reduces estimation meeting overhead</td>
+          </tr>
+          <tr>
+            <td class="cap-name">AI Backlog Management</td>
+            <td class="cap-desc">Auto-generate user stories from requirements; detect duplicates; prioritize by value</td>
+            <td>NLP-based quality improvement; reduces refinement overhead</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Agentic AI Workflows</td>
+            <td class="cap-desc">Autonomous task completion&mdash;bug fixes, test generation, CI/CD management</td>
+            <td>Routine dev tasks increasingly completable by agents <span style="font-size:0.7rem;color:hsl(var(--muted-foreground))">(NextAgile)</span></td>
+          </tr>
+          <tr>
+            <td class="cap-name">AI-Powered Planning</td>
+            <td class="cap-desc">Continuous capacity forecasting, rolling scenario planning, real-time risk flagging</td>
+            <td>Replaces static quarterly forecasts with weekly/monthly recalibration</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Intelligent Retrospectives</td>
+            <td class="cap-desc">Analyze collaboration patterns, bottleneck detection, sentiment analysis across sprints</td>
+            <td>Shifts retros from subjective feelings to evidence-based improvement</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="market-badges fade-in">
+      <span class="market-badge">$7.3B enterprise AI coding spend &mdash; Menlo Ventures</span>
+      <span class="market-badge">82% developers use AI weekly &mdash; Menlo Ventures</span>
+      <span class="market-badge">59% use 3+ tools in parallel &mdash; Menlo Ventures</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Evolution Map -->
+<section id="evolution">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 3</div>
+      <h2>The Evolution Map: Legacy &rarr; AI-Augmented</h2>
+      <p>Phase-by-phase outline of how each major PDLC component can evolve. Designed for incremental adoption.</p>
+    </div>
+
+    <div class="tabs fade-in" role="tablist">
+      <button class="tab-btn active" data-tab="sprint" role="tab">Sprint Planning</button>
+      <button class="tab-btn" data-tab="estimation" role="tab">Estimation</button>
+      <button class="tab-btn" data-tab="quarterly" role="tab">Quarterly Planning</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-sprint">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Phase 1 &middot; Months 1&ndash;3</div>
+          <h4>AI-Assisted Planning</h4>
+          <p>AI pre-populates sprint plans based on historical velocity, team capacity (accounting for PTO), and backlog priorities. The European Scrum AI Guide documents teams implementing systems that analyze the last 30 sprints to generate alerts on blocking potential and parallel clusters. Planning poker shrinks from hours to minutes with AI-provided baseline estimates.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 2 &middot; Months 3&ndash;6</div>
+          <h4>Hybrid Sprint/Kanban</h4>
+          <p>Maintain sprint cadence for human-led strategic work while running AI-suitable tasks (boilerplate, standard integrations, test generation) in a continuous Kanban flow. Real-time adaptive workflows let AI continuously monitor progress, flag bottlenecks, and recommend reallocation.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 3 &middot; Months 6&ndash;12</div>
+          <h4>Continuous Planning</h4>
+          <p>Sprint planning as a distinct ceremony largely dissolves. AI maintains real-time capacity, priority, and risk views. Planning meetings become short alignment checks (15&ndash;30 minutes). Team energy shifts from process mechanics to value-creation decisions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-estimation">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Phase 1 &middot; Months 1&ndash;3</div>
+          <h4>AI-Augmented Story Points</h4>
+          <p>AI analyzes past commits, pull requests, and issue resolution times to suggest story-point estimates. Teams validate, anchoring on data rather than guesswork. Teams begin separating "AI-suitable" from "AI-resistant" tasks&mdash;a project might see major time reduction on CRUD but none on UX design.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 2 &middot; Months 3&ndash;6</div>
+          <h4>Recalibrate or Abandon Points</h4>
+          <p>As AI shifts team velocity dramatically (some Scrum.org practitioners report 3&ndash;5x increases), historical baselines become meaningless. Two paths: recalibrate or shift to throughput-based metrics&mdash;items delivered per sprint and cycle time. The community increasingly recommends the latter.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 3 &middot; Months 6&ndash;12</div>
+          <h4>Outcome-Based Metrics</h4>
+          <p>Shift from output metrics (velocity, points) to outcome metrics (cycle time, lead time, deployment frequency, customer satisfaction). A three-tiered framework emerges: "Zero-Point" for fully AI-automated tasks, "Standard" for human-led work, and "Review &amp; Integration" for validating AI output.</p>
+        </div>
+      </div>
+
+      <table class="compare-table fade-in">
+        <thead>
+          <tr><th>Metric</th><th>Legacy Approach</th><th>AI-Augmented Approach</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Planning Time</td><td class="legacy">2&ndash;4 hours planning poker per sprint</td><td class="augmented">15&ndash;30 min validation of AI-suggested plan</td></tr>
+          <tr><td>Estimation Unit</td><td class="legacy">Story points (relative)</td><td class="augmented">Throughput + cycle time (empirical)</td></tr>
+          <tr><td>Velocity Baseline</td><td class="legacy">Average of last 3&ndash;4 sprints</td><td class="augmented">Continuously recalibrated by AI; split by task type</td></tr>
+          <tr><td>Forecasting</td><td class="legacy">Velocity &times; remaining points</td><td class="augmented">Monte Carlo simulation on throughput distribution</td></tr>
+          <tr><td>Success Measure</td><td class="legacy">Points completed</td><td class="augmented">Lead time, deployment frequency, customer outcomes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-panel" id="tab-quarterly">
+      <div class="callout" style="margin-top: 0; margin-bottom: 1.5rem;">
+        <div class="callout-title">Highest-Value Target</div>
+        <p>The multi-day quarterly planning event consumes enormous organizational energy. AI offers the most dramatic improvements here.</p>
+      </div>
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Phase 1 &middot; Quarter 1</div>
+          <h4>AI-Augmented PI Planning</h4>
+          <p>AI pre-builds dependency maps from source code, task histories, and architectural diagrams. Backlog items arrive pre-estimated, pre-prioritized, with AI-generated stories. The 2-day event compresses to 1 day. AI-powered capacity forecasting eliminates "confidence vote" guesswork.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 2 &middot; Quarters 2&ndash;3</div>
+          <h4>Monthly Strategy Syncs</h4>
+          <p>Replace the quarterly big-room event with monthly lightweight strategy syncs plus always-on AI monitoring. Rolling forecasts recalibrate weekly based on real delivery data. As McKinsey's research emphasizes: organizations developing strategies iteratively are growing faster than those planning in rigid quarterly cycles.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 3 &middot; Quarters 3&ndash;4</div>
+          <h4>Continuous Strategic Alignment</h4>
+          <p>The quarterly ceremony dissolves into continuous practice. AI dashboards show real-time feature-to-objective alignment. Risk assessment and cross-team dependency resolution are proactive. The formal event becomes an optional half-day "check and adjust."</p>
+        </div>
+      </div>
+
+      <div class="quote-block fade-in">
+        <p>Traditional quarterly planning doesn't make sense when you can test and validate an idea in a week. The teams succeeding are the ones with the best decision-making velocity.</p>
+        <div class="quote-source">&mdash; <a href="https://dev.to/" target="_blank">DEV Community</a>, Feb 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Team Structure -->
+<section class="section-alt" id="teams">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 4</div>
+      <h2>Team Structure Evolution</h2>
+      <p>AI changes roles, not just processes. McKinsey found that 70% of companies have not yet changed role definitions, creating friction as tools evolve.</p>
+    </div>
+
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 1rem;">The Emerging Pod Model</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 720px;">
+      The old 8&ndash;10 person teams are giving way to smaller, more autonomous "one-pizza pods" of 3&ndash;5 people with continuous planning, where engineers orchestrate AI agents rather than writing every line of code. <span style="font-size:0.7rem">(McKinsey, Nov 2025)</span>
+    </p>
+
+    <div class="role-grid fade-in">
+      <div class="role-card">
+        <div class="role-card-header">Engineering Manager</div>
+        <div class="role-card-body">
+          <div class="role-row"><span class="role-label">Before</span><span class="role-desc">Technical leadership + people management + sprint planning</span></div>
+          <div class="role-row"><span class="role-label">After</span><span class="role-desc">Splits into Code Architect (technical excellence) and Admin Manager (people ops)</span></div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-card-header">Developers</div>
+        <div class="role-card-body">
+          <div class="role-row"><span class="role-label">Before</span><span class="role-desc">Write code, unit tests, documentation</span></div>
+          <div class="role-row"><span class="role-label">After</span><span class="role-desc">AI-Augmented Engineers: orchestrate AI tools, review AI output, focus on novel business logic</span></div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-card-header">QA Engineer</div>
+        <div class="role-card-body">
+          <div class="role-row"><span class="role-label">Before</span><span class="role-desc">Manual/automated testing after dev</span></div>
+          <div class="role-row"><span class="role-label">After</span><span class="role-desc">QA with AI Validation: accounts for AI-generated code patterns and edge cases</span></div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-card-header">Product Manager</div>
+        <div class="role-card-body">
+          <div class="role-row"><span class="role-label">Before</span><span class="role-desc">Requirements, stakeholder management, PRDs</span></div>
+          <div class="role-row"><span class="role-label">After</span><span class="role-desc">Creates direct prototypes with AI; iterates specs with AI agents; less docs, more validation</span></div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-card-header">Scrum Master</div>
+        <div class="role-card-body">
+          <div class="role-row"><span class="role-label">Before</span><span class="role-desc">Ceremony facilitation, process tracking, reporting</span></div>
+          <div class="role-row"><span class="role-label">After</span><span class="role-desc">Strategic coach: AI handles admin; SM focuses on psychological safety, conflict resolution</span></div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-card-header">AI Integration Lead <span style="font-weight: 400; font-size: 0.75rem; color: hsl(var(--muted-foreground));">(New)</span></div>
+        <div class="role-card-body">
+          <div class="role-row"><span class="role-label">Before</span><span class="role-desc">N/A</span></div>
+          <div class="role-row"><span class="role-label">After</span><span class="role-desc">Per-pod role ensuring effective AI tool usage, quality standards, and prompt engineering practices</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-top: 2rem;" class="fade-in">
+      <div class="card">
+        <h3>Spec-Driven Development</h3>
+        <p>Investment shifts from writing code to writing precise specifications. <a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank" style="text-decoration:underline">GitHub released Spec Kit (Sep 2025)</a> for this approach. Product managers iterate specs with AI agents, engineers become architects and orchestrators. If AI output isn't right, you refine the spec and regenerate&mdash;iteration is low-cost.</p>
+      </div>
+      <div class="card">
+        <h3>Developer as Product Owner</h3>
+        <p>With coding capacity no longer the bottleneck, the constraint shifts to figuring out what to build. Developers increasingly make product judgment calls&mdash;what's worth building, what solves user problems, and what's just a technical flex. This requires user empathy and business understanding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Engineering Discipline -->
+<section id="discipline">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 5</div>
+      <h2>The Engineering Discipline: Harnesses, Loops, and Quality</h2>
+      <p>Practitioner research from <a href="https://martinfowler.com/articles/exploring-gen-ai.html" target="_blank" style="text-decoration:underline">Thoughtworks' "Exploring Gen AI" series</a> on martinfowler.com (Jan&ndash;Mar 2026) provides the critical framework for AI-augmented engineering.</p>
+    </div>
+
+    <!-- 5.1 Humans on the Loop -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem;">5.1 Humans "On the Loop", Not In or Out</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      <a href="https://martinfowler.com/articles/exploring-gen-ai/humans-and-agents-in-se-loops.html" target="_blank" style="text-decoration:underline">Kief Morris (Thoughtworks, Mar 2026)</a> introduces a framework for where humans belong in AI-augmented development. He distinguishes the "why loop" (what to build) from the "how loop" (mechanics of building), then identifies three positions:
+    </p>
+
+    <div class="loop-grid fade-in">
+      <div class="loop-card">
+        <h4>Outside the Loop</h4>
+        <div class="loop-subtitle">"Vibe Coding"</div>
+        <p>Humans define the outcome, agents handle everything else. Appealing because the "why loop" is what we care about. But in practice, agents produce messy codebases that spiral over time. Internal quality still matters because clean structure makes agents work faster.</p>
+      </div>
+      <div class="loop-card">
+        <h4>In the Loop</h4>
+        <div class="loop-subtitle">Line-by-line review</div>
+        <p>Developers inspect every line of AI output. The problem: humans become a bottleneck. Agents generate code faster than humans can review. This may explain why some productivity reports show mixed results&mdash;review time offsets generation speed.</p>
+      </div>
+      <div class="loop-card recommended">
+        <span class="loop-tag">Recommended</span>
+        <h4>On the Loop</h4>
+        <div class="loop-subtitle">Building the harness</div>
+        <p>Rather than inspecting individual output, engineers build and maintain the system that makes agents produce better output&mdash;the "harness." When output is unsatisfactory, improve the harness, not the individual artefact. This is the key insight: the job shifts from writing code to engineering the system that writes code.</p>
+      </div>
+    </div>
+
+    <div class="callout fade-in">
+      <div class="callout-title">The Agentic Flywheel</div>
+      <p>Morris describes directing agents to manage and improve the harness itself. Feed agents rich signals&mdash;test results, pipeline metrics, production data, user journey logs&mdash;and have them recommend harness improvements. Start reviewing recommendations interactively; as confidence grows, let high-scoring recommendations be auto-applied. This is how you get a self-improving development system.</p>
+    </div>
+
+    <!-- 5.2 Harness Engineering -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">5.2 Harness Engineering: The New Core Discipline</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      <a href="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" target="_blank" style="text-decoration:underline">Birgitta B&ouml;ckeler (Thoughtworks, Feb 2026)</a> coins "harness engineering" as the practice of building tooling and constraints that keep AI agents in check. The term comes from <a href="https://openai.com/index/harness-engineering/" target="_blank" style="text-decoration:underline">OpenAI's write-up</a> on using Codex to build a 1-million-line application with zero manually typed code&mdash;after 5 months of harness-building.
+    </p>
+
+    <div class="harness-visual fade-in">
+      <div class="harness-layer" style="background: hsl(var(--secondary));">
+        <h4>Context Engineering</h4>
+        <p>A continuously enhanced knowledge base in the codebase, plus agent access to dynamic context like observability data and browser navigation.</p>
+      </div>
+      <div class="harness-layer">
+        <h4>Architectural Constraints</h4>
+        <p>Monitored by LLM-based agents and deterministic custom linters and structural tests (like ArchUnit). Specific patterns, enforced boundaries, standardized structures.</p>
+      </div>
+      <div class="harness-layer" style="background: hsl(var(--secondary));">
+        <h4>"Garbage Collection" Agents</h4>
+        <p>Agents that run periodically to find inconsistencies in documentation or violations of architectural constraints, fighting entropy and decay.</p>
+      </div>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">Key Insight</div>
+      <p>B&ouml;ckeler envisions harnesses as the new service templates. Just as most organizations have two or three main tech stacks, teams will pick from a set of harnesses for common application topologies. Counterintuitively, increasing AI autonomy requires constraining the solution space&mdash;you give up "generate anything" flexibility to get reliability.</p>
+    </div>
+
+    <!-- 5.3 Context Engineering -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">5.3 Context Engineering: The New Skill</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      In a <a href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-for-agents.html" target="_blank" style="text-decoration:underline">companion piece (Feb 2026)</a>, B&ouml;ckeler maps how we configure what a coding agent sees. Her practical insights:
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Build context iteratively</h3>
+        <p>Don't front-load massive rules files. Models are powerful enough that what you needed to specify six months ago may no longer be necessary. Add guidance gradually and validate that each addition actually improves results.</p>
+      </div>
+      <div class="card">
+        <h3>Sharing is harder than it looks</h3>
+        <p>Context works much better within a team than between strangers. Different experience levels need different rules. Blindly copying configurations leads to contradictory instructions.</p>
+      </div>
+      <div class="card">
+        <h3>Beware the illusion of control</h3>
+        <p>Context engineering is not deterministic. People say "ensure it does X" but with LLMs, we must think in probabilities and choose the right level of human oversight for the job.</p>
+      </div>
+    </div>
+
+    <!-- 5.4 Internal Quality Problem -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">5.4 The Internal Quality Problem</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      <a href="https://martinfowler.com/articles/exploring-gen-ai/assessing-quality-when-coding-with-agent.html" target="_blank" style="text-decoration:underline">Erik Doernenburg (Thoughtworks, Jan 2026)</a> documents a case study implementing a GitLab integration using AI agents. His findings are a direct caution against over-trusting AI output:
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Subtle type-system degradation</h3>
+        <p>The agent declared all function parameters as non-optional when they should have been optional. When this caused errors, the agent's fix was inserting empty-string defaults everywhere&mdash;bypassing Swift's type safety. The correct fix was a single character change.</p>
+      </div>
+      <div class="card">
+        <h3>Unnecessary complexity</h3>
+        <p>The agent introduced a completely unnecessary cache, implemented complicated logic for a non-existent problem, and "forgot" to reuse existing functions, duplicating logic in multiple places.</p>
+      </div>
+      <div class="card">
+        <h3>Confabulation under pressure</h3>
+        <p>When the API required a separate call for user avatar data, the agent insisted the data was available in the main response, confusing documentation from multiple endpoints.</p>
+      </div>
+    </div>
+
+    <div class="quote-block fade-in" style="margin-top: 1.5rem;">
+      <p>The generated code worked. It implemented the functionality required. But it would've added completely unnecessary complexity and missed non-obvious functionality. Without careful oversight, agents seem to have a strong tendency to introduce technical debt.</p>
+      <div class="quote-source">&mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/assessing-quality-when-coding-with-agent.html" target="_blank">Erik Doernenburg, Thoughtworks</a>, Jan 2026</div>
+    </div>
+
+    <!-- 5.5 Synthesis -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">5.5 What This Means for Your PDLC</h3>
+    <table class="compare-table fade-in">
+      <thead>
+        <tr><th>Concept</th><th>From (Legacy)</th><th>To (AI-Augmented)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Engineer's role</td><td class="legacy">Writing code line by line</td><td class="augmented">On the loop: building harnesses, reviewing agent output, improving the system</td></tr>
+        <tr><td>Sprint backlog</td><td class="legacy">Feature tickets and bug fixes</td><td class="augmented">Mix of feature specs, harness improvements, context engineering, and agent quality gates</td></tr>
+        <tr><td>Definition of Done</td><td class="legacy">Tests pass, code reviewed</td><td class="augmented">Tests pass, architectural constraints verified, AI output reviewed for unnecessary complexity</td></tr>
+        <tr><td>Code review</td><td class="legacy">Line-by-line human review</td><td class="augmented">Pattern review: security, idiomatic usage, unnecessary complexity, semantic correctness</td></tr>
+        <tr><td>Platform engineering</td><td class="legacy">CI/CD pipelines, service templates</td><td class="augmented">CI/CD + agent harnesses, context configurations, deterministic linters</td></tr>
+        <tr><td>Technical debt</td><td class="legacy">Refactoring sprints</td><td class="augmented">Continuous "garbage collection" agents + harness constraints preventing accumulation</td></tr>
+        <tr><td>Quality assurance</td><td class="legacy">Trust human judgment, test coverage</td><td class="augmented">Probabilistic thinking: context engineering improves odds but never guarantees</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 6. Beyond Code -->
+<section class="section-alt" id="beyond-code">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 6</div>
+      <h2>Beyond Code: The Non-Coding Task Frontier</h2>
+      <p>In enterprise contexts, a typical user story involves far more than writing code. DevOps, tickets, research, SME conversations, manual service calls, compliance reviews&mdash;these "invisible" tasks often consume more time than coding itself. Here's how they're evolving.</p>
+    </div>
+
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem;">The AI-Suitability Spectrum for Enterprise Tasks</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 0.5rem; max-width: 720px;">Not all enterprise tasks respond equally to AI. The spectrum below maps common non-coding activities from most to least AI-suitable, based on current tooling maturity (2026).</p>
+
+    <div class="task-spectrum fade-in">
+      <div class="task-row" style="font-weight:600; font-size:0.6875rem; text-transform:uppercase; letter-spacing:0.05em; color:hsl(var(--muted-foreground)); border-bottom: 2px solid hsl(var(--border));">
+        <div>Task Category</div>
+        <div>AI Suitability (2026)</div>
+        <div style="text-align:right;">Status</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Test generation</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 90%; background: hsl(240 4.8% 85%);">90%</div></div>
+        <div class="task-status">AI-native</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">CI/CD config</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 82%; background: hsl(240 4.8% 85%);">82%</div></div>
+        <div class="task-status">AI-native</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Documentation</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 80%; background: hsl(240 4.8% 85%);">80%</div></div>
+        <div class="task-status">AI-native</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Ticket triage &amp; routing</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 75%; background: hsl(240 4.8% 88%);">75%</div></div>
+        <div class="task-status">Maturing</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Infra provisioning</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 70%; background: hsl(240 4.8% 88%);">70%</div></div>
+        <div class="task-status">Maturing</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Incident diagnosis</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 65%; background: hsl(240 4.8% 88%);">65%</div></div>
+        <div class="task-status">Maturing</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">API exploration</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 60%; background: hsl(240 4.8% 88%);">60%</div></div>
+        <div class="task-status">Maturing</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Change requests</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 50%; background: hsl(240 4.8% 91%);">50%</div></div>
+        <div class="task-status">Emerging</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Compliance review</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 40%; background: hsl(240 4.8% 91%);">40%</div></div>
+        <div class="task-status">Emerging</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Legacy system research</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 35%; background: hsl(240 4.8% 91%);">35%</div></div>
+        <div class="task-status">Emerging</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Cross-team coordination</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 20%; background: hsl(240 4.8% 94%);">20%</div></div>
+        <div class="task-status">AI-resistant</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">SME conversations</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 10%; background: hsl(240 4.8% 94%);">10%</div></div>
+        <div class="task-status">AI-resistant</div>
+      </div>
+      <div class="task-row">
+        <div class="task-name">Stakeholder negotiation</div>
+        <div class="task-bar-container"><div class="task-bar" style="width: 5%; background: hsl(240 4.8% 94%);">5%</div></div>
+        <div class="task-status">AI-resistant</div>
+      </div>
+    </div>
+    <p class="fade-in" style="font-size: 0.6875rem; color: hsl(var(--muted-foreground)); margin-top: 0.5rem; font-style: italic;">Suitability percentages are qualitative estimates based on current tooling maturity, not survey data. They represent the proportion of each task category that can be meaningfully AI-assisted today.</p>
+
+    <!-- Detailed breakdown by category -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">How Non-Coding Tasks Are Evolving</h3>
+
+    <div class="tabs fade-in" role="tablist">
+      <button class="tab-btn active" data-tab="devops" role="tab">DevOps & Infra</button>
+      <button class="tab-btn" data-tab="tickets" role="tab">Tickets & Change Mgmt</button>
+      <button class="tab-btn" data-tab="research" role="tab">Research & Discovery</button>
+      <button class="tab-btn" data-tab="coordination" role="tab">Coordination & SMEs</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-devops">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Today &middot; AI-Assisted</div>
+          <h4>Infrastructure as Code generation</h4>
+          <p>AI agents generate Terraform, CloudFormation, and Kubernetes configs from natural language descriptions. CI/CD pipelines are auto-configured based on project structure. Monitoring dashboards auto-generated from service topology. AWS announced dedicated DevOps agents at re:Invent 2025, and tools like Pulumi have integrated AI-driven infrastructure generation.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Near-term &middot; Agentic</div>
+          <h4>Self-healing infrastructure</h4>
+          <p>AIOps platforms detect anomalies and automatically trigger remediation runbooks. Incident diagnosis agents correlate logs, metrics, and traces to identify root causes before humans are paged. The goal is "ticketless operations"&mdash;problems detected and resolved before users notice.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Future &middot; Autonomous</div>
+          <h4>Continuous environment orchestration</h4>
+          <p>AI agents manage environment provisioning end-to-end: spin up preview environments per PR, auto-scale based on predicted load, decomission unused resources. The developer's role shifts from writing infra configs to defining intent and reviewing cost/performance tradeoffs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-tickets">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Today &middot; AI-Assisted</div>
+          <h4>Smart triage and auto-routing</h4>
+          <p>AI classifies incoming tickets by type, priority, and team. Duplicate detection prevents redundant work. ServiceNow, Jira, and similar platforms now embed AI for auto-categorization and suggested resolutions. Change request templates are auto-populated from code diffs.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Near-term &middot; Agentic</div>
+          <h4>End-to-end ticket lifecycle</h4>
+          <p>AI agents create tickets from failing tests or production alerts, link them to relevant code changes, suggest fix PRs, and auto-close when the fix is deployed and verified. Change Advisory Board (CAB) reviews get AI-generated risk assessments with blast-radius analysis.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Future &middot; Autonomous</div>
+          <h4>Ticketless operations</h4>
+          <p>For routine categories, the ticket is created, actioned, and resolved without human intervention. Humans are only pulled in for novel or high-risk changes. The ticket system becomes an audit log rather than a work queue.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-research">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Today &middot; AI-Assisted</div>
+          <h4>Codebase and API exploration</h4>
+          <p>AI agents can navigate unfamiliar codebases, explain architectural patterns, trace data flows, and summarize API documentation. Developers use AI to understand legacy systems in hours instead of weeks. MCP (Model Context Protocol) enables agents to directly query live services and databases for exploration.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Near-term &middot; Agentic</div>
+          <h4>Automated impact analysis</h4>
+          <p>Before starting a story, AI agents map the blast radius: which services are affected, what tests exist, what dependencies will break. They query service registries, read runbooks, and compile a "readiness brief" that replaces hours of manual research and exploration.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Future &middot; Autonomous</div>
+          <h4>Knowledge synthesis agents</h4>
+          <p>Always-on agents that maintain living documentation of system architecture, API contracts, and institutional knowledge. When a developer asks "how does payment processing work?", the agent synthesizes from code, docs, Slack history, and production telemetry&mdash;not from a stale wiki page.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-coordination">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Today &middot; AI-Assisted</div>
+          <h4>Meeting prep and follow-up</h4>
+          <p>AI generates meeting agendas from ticket context, produces structured summaries with action items, and drafts follow-up messages. Before an SME conversation, AI compiles relevant context: recent changes to the system, open questions from tickets, and suggested talking points.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Near-term &middot; Agentic</div>
+          <h4>Dependency negotiation support</h4>
+          <p>AI agents identify cross-team dependencies from code and ticket data, draft proposals for API contract changes, and facilitate asynchronous coordination. Multi-agent protocols (like the A2A framework launched by Linux Foundation, Jun 2025, with Adobe, Microsoft, SAP, ServiceNow) enable agent-to-agent capability discovery.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Remains &middot; AI-Resistant</div>
+          <h4>Trust-building and judgment calls</h4>
+          <p>The irreducibly human core: negotiating priorities with stakeholders, building trust with SMEs who hold tribal knowledge, navigating organizational politics, and making product judgment calls that require empathy and context that can't be captured in any prompt. AI can prepare you, but can't replace you in the room.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anatomy of an enterprise story -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">Anatomy of an Enterprise Story: Before &amp; After</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      A typical enterprise story touches many activities beyond coding. Here's how the time allocation shifts with AI augmentation:
+    </p>
+
+    <div class="diagram-wrapper fade-in">
+      <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
+        Story Time Allocation &mdash; Before AI
+      </div>
+      <div class="diagram-bar" style="height: 48px;">
+        <div class="diagram-segment" style="width: 15%; background: hsl(240 4.8% 92%);"><span style="font-size:0.6rem;">Research</span><span class="tooltip">Research &amp; exploration: 15%</span></div>
+        <div class="diagram-segment" style="width: 10%; background: hsl(240 4.8% 88%);"><span style="font-size:0.6rem;">Tickets</span><span class="tooltip">Ticket mgmt &amp; change requests: 10%</span></div>
+        <div class="diagram-segment" style="width: 10%; background: hsl(240 4.8% 84%);"><span style="font-size:0.6rem;">Coord</span><span class="tooltip">Cross-team coordination: 10%</span></div>
+        <div class="diagram-segment" style="width: 10%; background: hsl(240 4.8% 80%);"><span style="font-size:0.6rem;">DevOps</span><span class="tooltip">DevOps &amp; infra: 10%</span></div>
+        <div class="diagram-segment" style="width: 5%; background: hsl(240 4.8% 76%);"><span class="tooltip">Compliance: 5%</span></div>
+        <div class="diagram-segment" style="width: 10%; background: hsl(240 4.8% 73%);"><span style="font-size:0.6rem;">SME</span><span class="tooltip">SME conversations: 10%</span></div>
+        <div class="diagram-segment" style="width: 40%; background: hsl(var(--secondary));"><span style="font-size:0.75rem; color: hsl(var(--muted-foreground));">Coding 40%</span><span class="tooltip">Actual coding: 40%</span></div>
+      </div>
+    </div>
+
+    <div class="diagram-wrapper fade-in" style="margin-top: 0.5rem;">
+      <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
+        Story Time Allocation &mdash; With AI (projected)
+      </div>
+      <div class="diagram-bar" style="height: 48px;">
+        <div class="diagram-segment" style="width: 5%; background: hsl(240 4.8% 92%);"><span class="tooltip">Research (AI-assisted): 5%</span></div>
+        <div class="diagram-segment" style="width: 3%; background: hsl(240 4.8% 88%);"><span class="tooltip">Tickets (auto-managed): 3%</span></div>
+        <div class="diagram-segment" style="width: 8%; background: hsl(240 4.8% 84%);"><span style="font-size:0.6rem;">Coord</span><span class="tooltip">Coordination (still human): 8%</span></div>
+        <div class="diagram-segment" style="width: 3%; background: hsl(240 4.8% 80%);"><span class="tooltip">DevOps (AI-generated): 3%</span></div>
+        <div class="diagram-segment" style="width: 2%; background: hsl(240 4.8% 76%);"><span class="tooltip">Compliance (AI-assisted): 2%</span></div>
+        <div class="diagram-segment" style="width: 9%; background: hsl(240 4.8% 73%);"><span style="font-size:0.6rem;">SME</span><span class="tooltip">SME conversations (still human): 9%</span></div>
+        <div class="diagram-segment" style="width: 25%; background: hsl(var(--secondary));"><span style="font-size:0.7rem; color: hsl(var(--muted-foreground));">Coding 25%</span><span class="tooltip">Coding (AI-augmented): 25%</span></div>
+        <div class="diagram-segment" style="width: 15%; background: hsl(240 4.8% 70%);"><span style="font-size:0.6rem;">Review</span><span class="tooltip">AI output review: 15%</span></div>
+        <div class="diagram-segment" style="width: 15%; background: hsl(240 4.8% 67%);"><span style="font-size:0.6rem;">Harness</span><span class="tooltip">Harness engineering: 15%</span></div>
+        <div class="diagram-segment" style="width: 15%; background: hsl(240 4.8% 64%);"><span style="font-size:0.6rem;">Product</span><span class="tooltip">Product thinking: 15%</span></div>
+      </div>
+      <div class="diagram-legend">
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 88%);"></div>Shrinking (AI-automated)</div>
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 73%);"></div>Stable (human-essential)</div>
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 67%);"></div>New (AI-era activities)</div>
+      </div>
+    </div>
+    <p class="fade-in" style="font-size: 0.6875rem; color: hsl(var(--muted-foreground)); margin-top: 0.5rem; font-style: italic;">Time allocation estimates are illustrative projections based on practitioner patterns, not survey data.</p>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">The Implication</div>
+      <p>When organizations evaluate AI impact, they often measure only coding productivity. But coding is frequently less than half of a story's effort. The real productivity frontier is in the surrounding tasks: automated ticket lifecycle, AI-assisted research, agent-driven DevOps, and proactive dependency detection. Teams that only adopt coding assistants capture a fraction of the available improvement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Roadmap -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 7</div>
+      <h2>Phased Implementation Roadmap</h2>
+      <p>A practical 12-month roadmap. Iterate, learn, expand&mdash;with measurable wins early to justify broader adoption.</p>
+    </div>
+    <div class="roadmap fade-in">
+      <div class="roadmap-item" onclick="this.classList.toggle('open')">
+        <div class="roadmap-left">
+          <div class="phase-num">Phase 1</div>
+          <div class="phase-time">Months 1&ndash;2</div>
+        </div>
+        <div class="roadmap-right">
+          <h4>Instrument &amp; Baseline <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Deploy AI coding assistants; baseline current overhead.</div>
+          <div class="roadmap-details">
+            <div class="detail-section">
+              <div class="detail-label">Key Actions</div>
+              <ul>
+                <li>Deploy AI coding assistants to all developers</li>
+                <li>Begin tracking AI-suitable vs AI-resistant task categories</li>
+                <li>Measure current ceremony overhead across coding and non-coding tasks</li>
+              </ul>
+            </div>
+            <div class="detail-section">
+              <div class="detail-label">Expected Outcomes</div>
+              <ul>
+                <li>Baseline data for transformation</li>
+                <li>Individual productivity gains on routine coding tasks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item" onclick="this.classList.toggle('open')">
+        <div class="roadmap-left">
+          <div class="phase-num">Phase 2</div>
+          <div class="phase-time">Months 2&ndash;4</div>
+        </div>
+        <div class="roadmap-right">
+          <h4>Augment Ceremonies <span class="chevron">&#9662;</span></h4>
+          <div class="summary">AI-assisted estimation, backlog grooming, harness foundations.</div>
+          <div class="roadmap-details">
+            <div class="detail-section">
+              <div class="detail-label">Key Actions</div>
+              <ul>
+                <li>Introduce AI-assisted estimation and backlog grooming</li>
+                <li>AI-generated sprint analytics for retros</li>
+                <li>Begin building agent harness: CLAUDE.md/rules files, basic linters, architectural constraints</li>
+                <li>Pilot AI-assisted DevOps and ticket triage</li>
+              </ul>
+            </div>
+            <div class="detail-section">
+              <div class="detail-label">Expected Outcomes</div>
+              <ul>
+                <li>Reduced estimation time</li>
+                <li>Initial harness in version control</li>
+                <li>Data-driven retrospectives</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item" onclick="this.classList.toggle('open')">
+        <div class="roadmap-left">
+          <div class="phase-num">Phase 3</div>
+          <div class="phase-time">Months 4&ndash;6</div>
+        </div>
+        <div class="roadmap-right">
+          <h4>Hybrid Workflow <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Split sprint/Kanban streams; mature harness; shift metrics.</div>
+          <div class="roadmap-details">
+            <div class="detail-section">
+              <div class="detail-label">Key Actions</div>
+              <ul>
+                <li>Split work into sprint-cadenced (human-led) and Kanban-flow (AI-suitable) streams</li>
+                <li>Shift to throughput + cycle time metrics</li>
+                <li>Compress PI planning to 1 day</li>
+                <li>Mature harness with structural tests and context engineering</li>
+                <li>Extend AI to non-coding tasks: automated ticket lifecycle, infra provisioning</li>
+              </ul>
+            </div>
+            <div class="detail-section">
+              <div class="detail-label">Expected Outcomes</div>
+              <ul>
+                <li>Faster delivery of routine work (coding and non-coding)</li>
+                <li>Engineers shifting "on the loop"</li>
+                <li>Reduction in planning overhead</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item" onclick="this.classList.toggle('open')">
+        <div class="roadmap-left">
+          <div class="phase-num">Phase 4</div>
+          <div class="phase-time">Months 6&ndash;9</div>
+        </div>
+        <div class="roadmap-right">
+          <h4>Restructure Teams <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Pilot pod model; AI-specific quality gates; spec-driven dev.</div>
+          <div class="roadmap-details">
+            <div class="detail-section">
+              <div class="detail-label">Key Actions</div>
+              <ul>
+                <li>Pilot pod model (3&ndash;5 person pods)</li>
+                <li>Create Code Architect and AI Integration Lead roles</li>
+                <li>Invest in spec-driven development practices</li>
+                <li>Establish AI-specific quality gates in Definition of Done</li>
+              </ul>
+            </div>
+            <div class="detail-section">
+              <div class="detail-label">Expected Outcomes</div>
+              <ul>
+                <li>Smaller, faster teams with clearer ownership</li>
+                <li>Reduced AI-generated technical debt</li>
+                <li>Engineers shifting to orchestration and product thinking</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-item" onclick="this.classList.toggle('open')">
+        <div class="roadmap-left">
+          <div class="phase-num">Phase 5</div>
+          <div class="phase-time">Months 9&ndash;12</div>
+        </div>
+        <div class="roadmap-right">
+          <h4>Continuous Operations <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Agentic flywheel; garbage collection agents; outcome metrics.</div>
+          <div class="roadmap-details">
+            <div class="detail-section">
+              <div class="detail-label">Key Actions</div>
+              <ul>
+                <li>Replace quarterly planning with monthly strategy syncs + continuous AI monitoring</li>
+                <li>Rolling forecasts; real-time dependency management</li>
+                <li>Agentic flywheel for harness self-improvement</li>
+                <li>"Garbage collection" agents for ongoing codebase quality</li>
+                <li>Outcome-based metrics (lead time, deployment frequency, customer satisfaction)</li>
+              </ul>
+            </div>
+            <div class="detail-section">
+              <div class="detail-label">Expected Outcomes</div>
+              <ul>
+                <li>Quarterly ceremony eliminated or reduced to half-day</li>
+                <li>Continuous strategic alignment</li>
+                <li>Self-improving development system</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diagram-wrapper fade-in" style="margin-top: 2rem;">
+      <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
+        12-Month Transformation Timeline
+      </div>
+      <div class="diagram-bar" style="height: 56px;">
+        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 92%);"><span style="font-size: 0.625rem;">Baseline</span><span class="tooltip">Months 1&ndash;2: Instrument &amp; Baseline</span></div>
+        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 88%);"><span style="font-size: 0.625rem;">Augment</span><span class="tooltip">Months 2&ndash;4: Augment Ceremonies</span></div>
+        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 84%);"><span style="font-size: 0.625rem;">Hybrid</span><span class="tooltip">Months 4&ndash;6: Hybrid Workflow</span></div>
+        <div class="diagram-segment" style="width: 25%; background: hsl(240 4.8% 80%);"><span style="font-size: 0.625rem;">Restructure</span><span class="tooltip">Months 6&ndash;9: Restructure Teams</span></div>
+        <div class="diagram-segment" style="width: 25%; background: hsl(240 4.8% 76%);"><span style="font-size: 0.625rem;">Continuous</span><span class="tooltip">Months 9&ndash;12: Continuous Operations</span></div>
+      </div>
+      <div class="diagram-legend">
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 92%);"></div>Foundation</div>
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 84%);"></div>Process Change</div>
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 76%);"></div>Structural Change</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Risks -->
+<section class="section-alt" id="risks">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 8</div>
+      <h2>Risks and Anti-Patterns to Avoid</h2>
+      <p>Consistent failure modes that large enterprises encounter.</p>
+    </div>
+    <div class="risk-grid fade-in">
+      <div class="risk-card">
+        <div class="risk-num">Anti-Pattern 1</div>
+        <h3>Bolting AI Onto Broken Processes</h3>
+        <p>McKinsey's headline finding: individual gains are substantial, yet company-wide improvements average only 5&ndash;15% without structural change. Most organizations add AI to existing processes rather than rethinking how development works. <span style="font-size:0.7rem; font-style:italic;">(McKinsey, Nov 2025)</span></p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">Anti-Pattern 2</div>
+        <h3>Unrealistic Stakeholder Expectations</h3>
+        <p>AI acceleration is not uniform. A project might see major time reduction on CRUD but zero on UX design and stakeholder alignment. Overall timelines may improve moderately, not the dramatic percentage headlines suggest. Educating stakeholders is critical.</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">Anti-Pattern 3</div>
+        <h3>Over-Delegating to AI</h3>
+        <p>Some teams go too far&mdash;letting AI write user stories, create retro actions, and suggest sprint goals without human review. As Doernenburg's research shows, AI output can introduce subtle type-system degradation and unnecessary complexity that looks correct at first glance. <span style="font-size:0.7rem; font-style:italic;">(Doernenburg, Thoughtworks, Jan 2026)</span></p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">Anti-Pattern 4</div>
+        <h3>Ignoring Culture</h3>
+        <p>AI cannot fix a broken team culture. If a team avoids tough conversations or lacks psychological safety, AI just makes the dysfunction faster. Nearly a quarter of top performers cite change management as the core challenge. <span style="font-size:0.7rem; font-style:italic;">(McKinsey, Nov 2025)</span></p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">Anti-Pattern 5</div>
+        <h3>Pilot Purgatory</h3>
+        <p>IDC research found that 88% of AI POCs don't make the cut to widescale deployment&mdash;for every 33 POCs launched, only four graduated to production. The path forward requires clear business goals, sufficient data quality, and investment in AI-fluent talent. <span style="font-size:0.7rem; font-style:italic;">(<a href="https://www.cio.com/article/3850763/88-of-ai-pilots-fail-to-reach-production-but-thats-not-all-on-it.html" target="_blank" style="text-decoration:underline;color:inherit;">IDC/CIO.com</a>)</span></p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">Anti-Pattern 6</div>
+        <h3>Only Measuring Coding Productivity</h3>
+        <p>Organizations that evaluate AI impact only on coding tasks miss the bigger picture. When coding is less than half of a story's effort, gains from code generation alone don't translate to proportional project acceleration. Measure the full lifecycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Future State -->
+<section id="future">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 9</div>
+      <h2>The Future-State Vision</h2>
+      <p>What your PDLC could look like after transformation.</p>
+    </div>
+    <div class="future-grid fade-in">
+      <div class="future-card">
+        <h3><span class="dot"></span> Planning</h3>
+        <p>Continuous, AI-maintained strategic alignment with monthly lightweight syncs replacing quarterly big-room events. Rolling forecasts recalibrate weekly. Dependency management is proactive and automated.</p>
+      </div>
+      <div class="future-card">
+        <h3><span class="dot"></span> Team Structure</h3>
+        <p>Small pods of 3&ndash;5 people&mdash;a code architect, AI-augmented engineers, and a product-minded analyst&mdash;replacing traditional 8&ndash;10 person feature teams.</p>
+      </div>
+      <div class="future-card">
+        <h3><span class="dot"></span> Estimation</h3>
+        <p>Throughput and cycle-time metrics replace story points. AI provides probabilistic delivery forecasts based on real data. Estimation ceremonies are eliminated.</p>
+      </div>
+      <div class="future-card">
+        <h3><span class="dot"></span> Development</h3>
+        <p>Engineers work "on the loop"&mdash;building and refining agent harnesses (architectural constraints, custom linters, context configurations, structural tests). The agentic flywheel continuously improves the harness based on production data. "Garbage collection" agents fight entropy.</p>
+      </div>
+      <div class="future-card">
+        <h3><span class="dot"></span> Quality</h3>
+        <p>AI-specific quality gates: architectural conformance, type-safety verification, review for unnecessary complexity. Context engineering is a first-class team competency, version-controlled and reviewed in retrospectives. Probabilistic thinking replaces deterministic trust.</p>
+      </div>
+      <div class="future-card">
+        <h3><span class="dot"></span> Non-Coding Work</h3>
+        <p>DevOps, ticket management, and research are AI-automated. Change requests auto-generated from code diffs. Infrastructure self-provisions. The remaining human effort concentrates on SME relationships, stakeholder negotiation, and product judgment.</p>
+      </div>
+      <div class="future-card">
+        <h3><span class="dot"></span> Delivery</h3>
+        <p>Continuous delivery with AI-managed CI/CD, automated testing of AI-generated code, and real-time quality monitoring. The bottleneck shifts from coding capacity to product sense.</p>
+      </div>
+      <div class="future-card">
+        <h3><span class="dot"></span> Measurement</h3>
+        <p>Outcome-based metrics&mdash;customer satisfaction, time-to-value, lead time, deployment frequency&mdash;replace output metrics like velocity and points completed.</p>
+      </div>
+    </div>
+    <div class="bottom-line fade-in">
+      <h3>Bottom Line</h3>
+      <p>The organizations that will thrive are not the ones with the best AI tools&mdash;they're the ones that redesign their processes, roles, and culture around what AI makes possible. Rigor doesn't disappear with AI&mdash;it relocates. The engineer's job shifts from writing code to engineering the system that writes code. The technology is the catalyst; the transformation is organizational.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Sources -->
+<section class="section-alt" id="sources">
+  <div class="container narrow">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 10</div>
+      <h2>Sources &amp; Further Reading</h2>
+      <p>Research from 2025&ndash;2026. All links open in a new tab.</p>
+    </div>
+    <ul class="sources-list fade-in">
+      <li><span class="source-org">McKinsey</span> &mdash; <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work" target="_blank">Unlocking the Value of AI in Software Development</a> (Nov 2025)</li>
+      <li><span class="source-org">McKinsey</span> &mdash; <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/tech-forward/the-new-cio-mandate-strategy-speed-and-scaled-intelligence" target="_blank">The New CIO Mandate: Strategy, Speed, and Scaled Intelligence</a> (Global Tech Agenda 2026)</li>
+      <li><span class="source-org">PwC</span> &mdash; <a href="https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html" target="_blank">Midyear Update: 2025 AI Predictions</a></li>
+      <li><span class="source-org">Forrester</span> &mdash; <a href="https://www.forrester.com/blogs/amid-the-ai-hype-agile-still-remains-relevant-in-2025/" target="_blank">Amid the AI Hype, Agile Still Remains Relevant in 2025</a> (Jan 2025)</li>
+      <li><span class="source-org">Andreessen Horowitz</span> &mdash; <a href="https://a16z.com/how-enterprise-cios-are-building-and-buying-gen-ai/" target="_blank">How 100 Enterprise CIOs Are Building and Buying Gen AI in 2025</a> (Jun 2025)</li>
+      <li><span class="source-org">Menlo Ventures</span> &mdash; <a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/" target="_blank">2025: The State of Generative AI in the Enterprise</a> (Dec 2025)</li>
+      <li><span class="source-org">Bain &amp; Company</span> &mdash; <a href="https://www.bain.com/insights/the-future-of-financial-planning-is-autonomous/" target="_blank">The Future of Financial Planning Is Autonomous</a></li>
+      <li><span class="source-org">European Scrum Org</span> &mdash; <a href="https://www.yourscrumagile.com/blog/ai-agile-guide-2025/" target="_blank">AI Agile Guide 2025 v2.0</a></li>
+      <li><span class="source-org">NextAgile</span> &mdash; <a href="https://nextagile.ai/blogs/agile/future-of-enterprise-agility/" target="_blank">Future of Enterprise Agility 2026</a> (Dec 2025)</li>
+      <li><span class="source-org">Argos Infotech</span> &mdash; <a href="https://www.argosinfotech.com/2025/02/the-ai-augmented-software-team-how-our.html" target="_blank">The AI-Augmented Software Team: How Our Operating Model Changed in 2025</a> (Feb 2026)</li>
+      <li><span class="source-org">DEV Community</span> &mdash; <a href="https://dev.to/" target="_blank">How Agentic AI Is Transforming Development Teams</a> (Feb 2026)</li>
+      <li><span class="source-org">Hypergen</span> &mdash; <a href="https://www.hypergen.ai/blog/the-end-of-agile-introducing-spec-driven-development" target="_blank">The End of Agile? Introducing Spec Driven Development</a> (Feb 2026)</li>
+      <li><span class="source-org">Scrum.org</span> &mdash; <a href="https://www.scrum.org/forum/scrum-forum/119270/how-approach-story-point-estimation-ai-dev-acceleration-tools" target="_blank">How to Approach Story Point Estimation with AI Dev Acceleration Tools</a></li>
+      <li><span class="source-org">Kmino</span> &mdash; <a href="https://www.kmino.dev/blog/software-project-estimation-in-the-ai-era" target="_blank">Software Project Estimation in the AI Era</a> (Aug 2025)</li>
+      <li><span class="source-org">Zenhub</span> &mdash; <a href="https://www.zenhub.com/blog-posts/the-7-best-ai-assisted-sprint-planning-tools-for-agile-teams-in-2025" target="_blank">The Best AI-Assisted Sprint Planning Tools for Agile Teams</a> (2025)</li>
+      <li><span class="source-org">Kief Morris / Thoughtworks</span> &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/humans-and-agents-in-se-loops.html" target="_blank">Humans and Agents in Software Engineering Loops</a> (Mar 2026)</li>
+      <li><span class="source-org">Birgitta B&ouml;ckeler / Thoughtworks</span> &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" target="_blank">Harness Engineering</a> (Feb 2026)</li>
+      <li><span class="source-org">Birgitta B&ouml;ckeler / Thoughtworks</span> &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-for-agents.html" target="_blank">Context Engineering for Coding Agents</a> (Feb 2026)</li>
+      <li><span class="source-org">Erik Doernenburg / Thoughtworks</span> &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/assessing-quality-when-coding-with-agent.html" target="_blank">Assessing Internal Quality While Coding with an Agent</a> (Jan 2026)</li>
+      <li><span class="source-org">OpenAI</span> &mdash; <a href="https://openai.com/index/harness-engineering/" target="_blank">Harness Engineering: Leveraging Codex in an Agent-First World</a> (Feb 2026)</li>
+      <li><span class="source-org">GitHub</span> &mdash; <a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank">Spec-Driven Development with AI: Spec Kit</a> (Sep 2025)</li>
+      <li><span class="source-org">IDC / CIO.com</span> &mdash; <a href="https://www.cio.com/article/3850763/88-of-ai-pilots-fail-to-reach-production-but-thats-not-all-on-it.html" target="_blank">88% of AI Pilots Fail to Reach Production</a> (Mar 2025)</li>
+      <li><span class="source-org">Pulumi</span> &mdash; <a href="https://www.pulumi.com/blog/ai-predictions-2026-devops-guide/" target="_blank">AI Predictions for 2026: A DevOps Engineer's Guide</a></li>
+      <li><span class="source-org">Linux Foundation</span> &mdash; Agent-to-Agent (A2A) Protocol (Jun 2025) &mdash; Adobe, Microsoft, SAP, ServiceNow</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Research Synthesis &amp; Transformation Outline &middot; March 2026
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">&#8593;</button>
+
+<script>
+// Tabs - support multiple tab groups
+document.querySelectorAll('.tabs').forEach(tabGroup => {
+  tabGroup.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      const section = tabGroup.parentElement;
+      tabGroup.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      section.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+});
+
+// Scroll progress
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progressBar').style.width = (scrollTop / docHeight) * 100 + '%';
+  document.getElementById('scrollTop').classList.toggle('visible', scrollTop > 400);
+});
+
+// Fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Active nav tracking
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => { if (window.scrollY >= section.offsetTop - 100) current = section.getAttribute('id'); });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+});
+
+// Animate task bars on scroll
+const taskObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.task-bar').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0%';
+        requestAnimationFrame(() => { requestAnimationFrame(() => { bar.style.width = w; }); });
+      });
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.task-spectrum').forEach(el => taskObserver.observe(el));
+</script>
+</body>
+</html>
