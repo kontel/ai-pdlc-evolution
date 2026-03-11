@@ -1,3 +1,39 @@
+// Hero infographic: open/close fullscreen (grayscale inline, color in fullscreen)
+(function () {
+  const trigger = document.getElementById('heroInfographicTrigger');
+  const fullscreen = document.getElementById('infographicFullscreen');
+  const closeBtn = document.getElementById('infographicFullscreenClose');
+  const backdrop = document.getElementById('infographicFullscreenBackdrop');
+
+  function openFullscreen() {
+    if (!fullscreen) return;
+    fullscreen.hidden = false;
+    fullscreen.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+
+  function closeFullscreen() {
+    if (!fullscreen) return;
+    fullscreen.classList.remove('is-open');
+    document.body.style.overflow = '';
+    fullscreen.addEventListener('transitionend', function onEnd() {
+      fullscreen.removeEventListener('transitionend', onEnd);
+      fullscreen.hidden = true;
+    }, { once: true });
+  }
+
+  trigger?.addEventListener('click', openFullscreen);
+  closeBtn?.addEventListener('click', closeFullscreen);
+  backdrop?.addEventListener('click', closeFullscreen);
+  fullscreen?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeFullscreen();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && fullscreen?.classList.contains('is-open')) closeFullscreen();
+  });
+})();
+
 // Mobile nav toggle
 document.querySelector('.nav-mobile-toggle')?.addEventListener('click', () => {
   document.querySelector('.nav-links')?.classList.toggle('open');

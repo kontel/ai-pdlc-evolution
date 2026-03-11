@@ -61,6 +61,22 @@
   </div>
 </section>
 
+<!-- Hero infographic: inline grayscale, fullscreen color -->
+<div class="hero-infographic container fade-in">
+  <button type="button" class="hero-infographic-trigger" id="heroInfographicTrigger" aria-label="Open infographic full screen">
+    <img src="assets/detailed-infographics.png" alt="The AI-Augmented PDLC: A Structural Evolution of Enterprise Delivery" class="hero-infographic-img">
+    <span class="hero-infographic-hint">Click to view full screen</span>
+  </button>
+</div>
+
+<div class="infographic-fullscreen" id="infographicFullscreen" role="dialog" aria-modal="true" aria-label="Infographic full screen view" hidden>
+  <button type="button" class="infographic-fullscreen-close" id="infographicFullscreenClose" aria-label="Close">&#10005;</button>
+  <div class="infographic-fullscreen-backdrop" id="infographicFullscreenBackdrop"></div>
+  <div class="infographic-fullscreen-content">
+    <img src="assets/detailed-infographics.png" alt="The AI-Augmented PDLC: A Structural Evolution of Enterprise Delivery" class="infographic-fullscreen-img">
+  </div>
+</div>
+
 <!-- Executive Summary -->
 <section class="section-alt" id="summary">
   <div class="container narrow fade-in">
