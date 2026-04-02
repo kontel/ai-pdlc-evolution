@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI-Driven Evolution of the Enterprise PDLC</title>
+  <title>PDLC Futures Sketchpad — Incrementally Exploring How AI Transforms Product Delivery</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,19 +13,25 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">AI PDLC Evolution</div>
+    <div class="nav-logo">PDLC Futures Sketchpad</div>
     <button class="nav-mobile-toggle" aria-label="Toggle menu">&#9776;</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#legacy">Legacy</a></li>
       <li><a href="#capabilities">Capabilities</a></li>
       <li><a href="#evolution">Evolution</a></li>
       <li><a href="#teams">Teams</a></li>
-      <li><a href="#discipline">Discipline</a></li>
-      <li><a href="#beyond-code">Beyond Code</a></li>
+      <li><a href="#discipline">Discipline <span class="nav-new">updated</span></a></li>
+      <li><a href="#beyond-code">Non-Coding</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#roadmap">Adoption <span class="nav-new">new</span></a></li>
       <li><a href="#risks">Risks</a></li>
       <li><a href="#future">Future</a></li>
+      <li class="nav-sep" aria-hidden="true"></li>
+      <li><a href="#product-engineer">PE Role <span class="nav-new">new</span></a></li>
+      <li><a href="#agent-architecture">Agents <span class="nav-new">new</span></a></li>
       <li><a href="#sources">Sources</a></li>
+      <li><a href="#changelog">Changelog <span class="nav-new">new</span></a></li>
+      <li><a href="workspace.html">Workspace <span class="nav-new">new</span></a></li>
     </ul>
   </div>
 </nav>
@@ -33,9 +39,9 @@
 <!-- Hero -->
 <section class="hero" id="top">
   <div class="container">
-    <span class="hero-badge">Research Synthesis &middot; March 2026</span>
-    <h1>AI-Driven Evolution of the<br>Enterprise PDLC</h1>
-    <p class="subtitle">From 2-week sprints &amp; quarterly planning to continuous, AI-augmented delivery. Based on research from McKinsey, Forrester, Thoughtworks, a16z, and practitioner sources.</p>
+    <span class="hero-badge">Ideas Sketchpad &middot; Continuously Evolving &middot; March 2026</span>
+    <h1>PDLC Futures Sketchpad</h1>
+    <p class="subtitle">An evolving collection of perspectives on how AI transforms enterprise product delivery &mdash; from research synthesis to speculative ideas. Each section is a lens, not a blueprint.</p>
     <div class="hero-stats fade-in">
       <div class="hero-stat">
         <div class="num">20-50%</div>
@@ -444,7 +450,7 @@
     </div>
 
     <!-- 5.2 Harness Engineering -->
-    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">5.2 Harness Engineering: The New Core Discipline</h3>
+    <h3 id="harness-engineering" class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">5.2 Harness Engineering: The New Core Discipline <span class="nav-new">updated</span> <a href="#harness-engineering" class="anchor-link" title="Copy link to this section">&#128279;</a></h3>
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
       <a href="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" target="_blank" style="text-decoration:underline">Birgitta B&ouml;ckeler (Thoughtworks, Feb 2026)</a> coins "harness engineering" as the practice of building tooling and constraints that keep AI agents in check. The term comes from <a href="https://openai.com/index/harness-engineering/" target="_blank" style="text-decoration:underline">OpenAI's write-up</a> on using Codex to build a 1-million-line application with zero manually typed code&mdash;after 5 months of harness-building.
     </p>
@@ -467,6 +473,17 @@
     <div class="callout fade-in" style="margin-top: 1.5rem;">
       <div class="callout-title">Key Insight</div>
       <p>B&ouml;ckeler envisions harnesses as the new service templates. Just as most organizations have two or three main tech stacks, teams will pick from a set of harnesses for common application topologies. Counterintuitively, increasing AI autonomy requires constraining the solution space&mdash;you give up "generate anything" flexibility to get reliability.</p>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.25rem;">
+      <div class="callout-title">Research &mdash; <a href="https://arxiv.org/html/2603.05344v1" target="_blank" style="text-decoration: underline; color: inherit;">arXiv, Mar 2026</a></div>
+      <p>A March 2026 arXiv paper, <em>"Building AI Coding Agents for the Terminal: Scaffolding, Harness, Context Engineering, and Lessons Learned"</em>, formalises harness engineering as a three-layer discipline for terminal-based AI coding agents:</p>
+      <ul style="margin: 0.75rem 0 0.5rem 1.25rem; font-size: 0.875rem; line-height: 1.7; color: hsl(var(--muted-foreground));">
+        <li><strong>Input filtering</strong> &mdash; constraining what the agent sees (file scope, token budgets, retrieval strategies) to prevent hallucination from irrelevant context.</li>
+        <li><strong>Output validation</strong> &mdash; deterministic gates (type checks, linters, security scanners, test suites) that reject agent output before it reaches the codebase.</li>
+        <li><strong>Permission &amp; observability</strong> &mdash; audit trails, approval workflows, and real-time dashboards so humans can monitor agent behaviour without blocking it.</li>
+      </ul>
+      <p>The paper notes that OpenAI reportedly shipped an internal product with 1&nbsp;M+ lines of code and zero manually written lines using Codex under strict harness constraints&mdash;reinforcing B&ouml;ckeler's thesis that harness investment is a prerequisite, not a luxury. Emerging guides from <a href="https://www.nxcode.io/resources/news/harness-engineering-complete-guide-ai-agent-codex-2026" target="_blank" style="text-decoration:underline">NxCode (2026)</a> and <a href="https://eric.mann.blog/the-agentic-harness-problem-why-ai-agents-need-better-guardrails-than-code-reviews/" target="_blank" style="text-decoration:underline">Eric Mann</a> further argue that traditional code reviews alone are insufficient&mdash;agents need purpose-built guardrails that operate at a structural level.</p>
     </div>
 
     <!-- 5.3 Context Engineering -->
@@ -514,8 +531,81 @@
       <div class="quote-source">&mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/assessing-quality-when-coding-with-agent.html" target="_blank">Erik Doernenburg, Thoughtworks</a>, Jan 2026</div>
     </div>
 
-    <!-- 5.5 Synthesis -->
-    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">5.5 What This Means for Your PDLC</h3>
+    <!-- 5.5 Comprehension Debt -->
+    <h3 id="comprehension-debt" class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">5.5 Comprehension Debt: The Hidden Cost Beyond Technical Debt <span class="nav-new">new</span> <a href="#comprehension-debt" class="anchor-link" title="Copy link to this section">&#128279;</a></h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      <a href="https://addyosmani.com/blog/comprehension-debt/" target="_blank" style="text-decoration:underline">Addy Osmani (Mar 2026)</a> names a risk distinct from traditional technical debt: <strong>comprehension debt</strong>&mdash;the growing gap between how much code exists in a system and how much of it any human genuinely understands. Unlike tech debt, it accumulates invisibly; the codebase appears healthy while understanding quietly erodes underneath.
+    </p>
+
+    <div class="quote-block fade-in">
+      <p>A junior engineer can now generate code faster than a senior engineer can critically audit it. When AI-generated code is running in healthcare systems, financial infrastructure, and government services, &ldquo;the AI wrote it and we didn&rsquo;t fully review it&rdquo; will not hold up in a post-incident report.</p>
+      <div class="quote-source">&mdash; <a href="https://addyosmani.com/blog/comprehension-debt/" target="_blank">Addy Osmani</a>, Mar 2026</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
+      <div class="card">
+        <h3>The Speed Asymmetry Problem</h3>
+        <p>AI generates code faster than humans can evaluate it, breaking historical review dynamics. An Anthropic study of 52 engineers found the AI-assisted group scored 17% lower on comprehension quizzes (50% vs. 67%), with the largest declines in debugging performance.</p>
+        <span class="metric">17% lower comprehension &mdash; <a href="https://addyosmani.com/blog/comprehension-debt/" target="_blank" style="text-decoration:underline">Anthropic study</a></span>
+      </div>
+      <div class="card">
+        <h3>The Measurement Gap</h3>
+        <p>Velocity metrics, DORA metrics, and code coverage all remain &ldquo;immaculate&rdquo; while comprehension deficits accumulate invisibly. Teams feel productive but are building on foundations they cannot reason about. Developers using passive delegation (&ldquo;just make it work&rdquo;) scored below 40% on comprehension tests.</p>
+        <span class="metric">Below 40% for passive delegation</span>
+      </div>
+      <div class="card">
+        <h3>Why Common Defences Fall Short</h3>
+        <p>Osmani argues that leaning on tests cannot catch unspecified behaviours; detailed-enough specs become the program itself (a waterfall fallacy); and code review volume overwhelms reviewers&mdash;surface cleanliness triggers false merge confidence.</p>
+        <span class="metric">&ldquo;The comprehension work IS the job&rdquo;</span>
+      </div>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.75rem 0 0.75rem;">The Empirical Evidence</h4>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      A large-scale empirical study by <a href="https://arxiv.org/html/2603.28592v1" target="_blank" style="text-decoration:underline">Liu et al. (arXiv, Mar 2026)</a> analysed 304,362 verified AI-authored commits across 6,275 GitHub repositories, providing the first large-scale evidence of AI-generated technical debt survival in production:
+    </p>
+
+    <div class="diagram-wrapper fade-in">
+      <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
+        AI-Generated Code: Issue Breakdown &amp; Survival Rates
+      </div>
+      <table class="compare-table" style="margin: 0;">
+        <thead>
+          <tr><th>Issue Type</th><th>Share of Issues</th><th>Survival at HEAD</th><th>Risk Level</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Code Smells</td><td>89.1%</td><td>22.7%</td><td class="legacy">Cumulative drag</td></tr>
+          <tr><td>Runtime Bugs</td><td>5.8%</td><td>30.3%</td><td class="legacy">Production incidents</td></tr>
+          <tr><td>Security Issues</td><td>5.1%</td><td style="font-weight: 700; color: hsl(0 60% 50%);">41.1%</td><td class="legacy">Critical exposure</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
+      <div class="card">
+        <h3>484,606 issues found</h3>
+        <p>Affecting 61.2% of the repositories studied. Cumulative surviving issues grew from hundreds in early 2025 to over 110,000 by February 2026. AI fixes more code smells than it introduces (449K fixed vs. 431K introduced)&mdash;but introduces nearly <strong>twice as many security issues</strong> as it fixes.</p>
+        <span class="metric">37.25 surviving issues per 100 AI commits &mdash; <a href="https://arxiv.org/html/2603.28592v1" target="_blank" style="text-decoration:underline">Liu et al.</a></span>
+      </div>
+      <div class="card">
+        <h3>The 90-Day Degradation Curve</h3>
+        <p>Research from <a href="https://blog.exceeds.ai/comparative-ai-code-quality-governance/" target="_blank" style="text-decoration:underline">Exceeds AI (Feb 2026)</a> tracking AI-augmented teams over 90 days found rework rates rising 30&ndash;41%, incident rates per PR climbing to 35%, and code complexity growing 4.9&times;. AI-generated code shows 1.7&times; more issues than human-authored code overall.</p>
+        <span class="metric">4.9&times; complexity growth at 90 days</span>
+      </div>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.25rem;">
+      <div class="callout-title">The &ldquo;Vibe, Then Verify&rdquo; Response &mdash; <a href="https://www.sonarsource.com/blog/how-ai-is-redefining-technical-debt" target="_blank" style="text-decoration: underline; color: inherit;">Sonar, Feb 2026</a></div>
+      <p>Sonar's developer survey (88% of developers report at least one negative AI impact on tech debt) proposes a dual-mode discipline: <strong>Vibe</strong>&mdash;grant developers freedom to experiment boldly with AI; <strong>Verify</strong>&mdash;enforce accountability through deterministic, rules-based validation (static analysis, architectural linters, security scanners). The shift is not less AI, but better harnesses around it. Notably, developers spend 23&ndash;25% of their work week on toil regardless of AI usage&mdash;the toil simply changes shape, from writing boilerplate to reviewing and correcting AI output.</p>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1rem;">
+      <div class="callout-title">The 18-Month Collapse Pattern &mdash; <a href="https://www.codebridge.tech/articles/the-hidden-costs-of-ai-generated-software-why-it-works-isnt-enough" target="_blank" style="text-decoration: underline; color: inherit;">Codebridge, Feb 2026</a></div>
+      <p>Without governance, AI-augmented projects follow a predictable arc: <strong>Months 1&ndash;3</strong>, visible feature acceleration; <strong>Months 4&ndash;9</strong>, velocity plateaus, integration delays emerge; <strong>Months 10&ndash;15</strong>, review and debug time becomes the bottleneck; <strong>Months 16&ndash;18</strong>, delivery cycles stall entirely. By year two, maintenance costs reach 4&times; traditional levels. Gartner projects 40% of AI-augmented coding projects will face cancellation by 2027.</p>
+    </div>
+
+    <!-- 5.6 Synthesis -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">5.6 What This Means for Your PDLC</h3>
     <table class="compare-table fade-in">
       <thead>
         <tr><th>Concept</th><th>From (Legacy)</th><th>To (AI-Augmented)</th></tr>
@@ -948,6 +1038,92 @@
       <p>A realistic enterprise pattern is to pilot multiple paths at once: one stream-aligned team adopts AI in delivery, one product trio uses AI for discovery, one platform team builds shared guardrails, and one regulated area keeps more ceremony while selectively automating lower-risk work. The goal is not uniformity; it is learning where each model fits.</p>
     </div>
 
+    <!-- 7.3 The Adoption Mindset: Intent Over Tooling -->
+    <h3 id="adoption-mindset" class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">7.3 The Adoption Mindset: Intent Over Tooling <span class="nav-new">new</span> <a href="#adoption-mindset" class="anchor-link" title="Copy link to this section">&#128279;</a></h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      The biggest adoption barrier is not picking the right tool&mdash;it is shifting from tool-centric to intent-centric thinking. Product teams face a continuum of AI tools: from simple chat interfaces (ChatGPT, Gemini) through lifecycle-specific platforms (Linear AI, Productboard AI, Dovetail) to sophisticated code-based agents (Claude Code, Copilot, Cursor). <a href="https://hbr.org/2026/02/to-drive-ai-adoption-build-your-teams-product-management-skills" target="_blank" style="text-decoration:underline">HBR&rsquo;s research at Google (Feb 2026)</a> found that adoption fails not because people can&rsquo;t write prompts, but because they can&rsquo;t see how AI fits their real workflows. The fix is treating AI adoption as a product management problem, not a training problem.
+    </p>
+
+    <div class="quote-block fade-in">
+      <p>People are using AI to come up with product roadmaps, and they still have their crappy roadmaps. They&rsquo;re just doing them faster.</p>
+      <div class="quote-source">&mdash; <a href="https://airfocus.com/blog/ai-product-management-marty-cagan/" target="_blank">Marty Cagan</a>, on why tool-first adoption accelerates bad decisions</div>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.75rem 0 0.75rem;">The AI Tool Continuum: Matched to Jobs, Not Roles</h4>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      Rather than asking &ldquo;which AI tool should we buy?&rdquo;, apply <a href="https://medium.com/@mikeboysen/ai-strategy-a-practical-framework-using-jobs-to-be-done-jtbd-5e86f3fa7528" target="_blank" style="text-decoration:underline">Jobs-to-be-Done thinking (Boysen)</a>: &ldquo;What job is our team trying to get done, and where are we struggling?&rdquo; The tool continuum maps naturally to the four product risks already outlined in Section 8:
+    </p>
+
+    <div class="diagram-wrapper fade-in">
+      <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
+        AI Tool Continuum &mdash; Matched to Product Risk &amp; Job-to-be-Done
+      </div>
+      <table class="compare-table" style="margin: 0;">
+        <thead>
+          <tr><th>Tool Tier</th><th>Examples</th><th>Primary Risk Addressed</th><th>Job-to-be-Done</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-weight: 600;">Chat &amp; Inquiry</td><td>ChatGPT, Gemini, Claude.ai</td><td>Value Risk</td><td>Explore problem space, synthesise research, challenge assumptions, draft hypotheses</td></tr>
+          <tr><td style="font-weight: 600;">Lifecycle Platforms</td><td>Linear AI, Productboard AI, Dovetail, Notion AI</td><td>Usability &amp; Value Risk</td><td>Analyse user feedback, prioritise backlog, write specs, surface patterns across interviews</td></tr>
+          <tr><td style="font-weight: 600;">Design &amp; Prototyping</td><td>Figma AI, v0, Lovable, Bolt</td><td>Usability Risk</td><td>Rapid prototyping, design exploration, concept testing with real users before code</td></tr>
+          <tr><td style="font-weight: 600;">Code Agents</td><td>Claude Code, Copilot, Cursor, Windsurf</td><td>Feasibility Risk</td><td>Build, test, and ship&mdash;turn validated specs into production code with harnesses</td></tr>
+          <tr><td style="font-weight: 600;">Ops &amp; Analytics</td><td>Grafana AI, PagerDuty AI, Amplitude AI</td><td>Viability Risk</td><td>Monitor production, detect anomalies, measure business outcomes, compliance checks</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
+      <div class="card">
+        <h3>The Training Paradox</h3>
+        <p>85% of leaders invest in AI tools, but only 2% invest in talent development (<a href="https://www.productboard.com/blog/training-product-managers-in-the-ai-era/" target="_blank" style="text-decoration:underline">Productboard</a>). 61% of employees have spent fewer than 5 hours learning about AI (<a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank" style="text-decoration:underline">HBR/Slack survey</a>). The gap is not tool availability&mdash;it is fluency.</p>
+        <span class="metric">85% tool investment vs. 2% talent investment</span>
+      </div>
+      <div class="card">
+        <h3>Literacy vs. Fluency</h3>
+        <p>AI literacy is knowing how tools work. AI fluency is knowing <em>when and how</em> to use them inside real workflows (<a href="https://www.productboard.com/blog/ai-skills-product-managers-need/" target="_blank" style="text-decoration:underline">Productboard</a>). PMs don&rsquo;t need to code, but must understand intent specification, data infrastructure, and how to evaluate AI output against the four product risks.</p>
+        <span class="metric">Fluency &gt; literacy for adoption</span>
+      </div>
+      <div class="card">
+        <h3>The Messy Middle</h3>
+        <p>69% of product teams are stuck between early experimentation and embedded adoption. Only 6.1% have made AI a core strategic capability. The top blocker: 47% cite limited integration into existing tools; 43% cite lack of enablement (<a href="https://www.productledalliance.com/the-ai-adoption-curve-in-product-teams/" target="_blank" style="text-decoration:underline">Product-Led Alliance</a>).</p>
+        <span class="metric">69% stuck in the &ldquo;messy middle&rdquo;</span>
+      </div>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.75rem 0 0.75rem;">Four Principles for Intent-Driven Adoption</h4>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
+      Synthesised from <a href="https://hbr.org/2026/02/to-drive-ai-adoption-build-your-teams-product-management-skills" target="_blank" style="text-decoration:underline">HBR/Google (Feb 2026)</a>, <a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank" style="text-decoration:underline">HBR (Nov 2025)</a>, and <a href="https://airfocus.com/blog/ai-product-management-marty-cagan/" target="_blank" style="text-decoration:underline">Cagan&rsquo;s four-risk lens</a>:
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>1 &mdash; Start with the Risk, Not the Tool</h3>
+        <p>Ask: &ldquo;Which product risk is killing us right now?&rdquo; If value is uncertain, invest in chat-based research and rapid prototyping. If feasibility is the bottleneck, bring in code agents. If usability is weak, use AI design tools. The tool follows the risk, not the other way around.</p>
+      </div>
+      <div class="card">
+        <h3>2 &mdash; Demos Beat Training</h3>
+        <p>HBR&rsquo;s Google research found that the most effective change management tool is <strong>leaders modelling AI use in real work</strong>&mdash;not prescriptive training decks. Show the PM lead using Claude to draft a spec; show the designer using v0 to prototype. Legitimise experimentation by doing it visibly.</p>
+      </div>
+      <div class="card">
+        <h3>3 &mdash; Distinguish Functional and Emotional Jobs</h3>
+        <p>Teams &ldquo;hire&rdquo; AI for functional jobs (data analysis, feedback synthesis, test generation) but also for emotional jobs: reducing frustration with boilerplate, building confidence in decisions, avoiding burnout from repetitive work. Address both or adoption stalls.</p>
+      </div>
+      <div class="card">
+        <h3>4 &mdash; Measure Outcomes, Not Adoption %</h3>
+        <p>The goal is not &ldquo;80% of PMs using AI daily.&rdquo; It is: fewer missed value risks, faster time-to-validated-hypothesis, higher proportion of work addressing real user problems. Adoption percentage is an input metric; reduced product risk is the outcome metric.</p>
+      </div>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.25rem;">
+      <div class="callout-title">The Maturity Progression &mdash; <a href="https://sema4.ai/blog/ai-maturity-model-2026/" target="_blank" style="text-decoration: underline; color: inherit;">Sema4.ai, 2026</a></div>
+      <p>Most organisations progress through five stages: <strong>Ad Hoc</strong> (uncoordinated experiments) &rarr; <strong>Opportunistic</strong> (isolated successes) &rarr; <strong>Systematic</strong> (central AI roadmap) &rarr; <strong>Integrated</strong> (business users building agents) &rarr; <strong>Optimised</strong> (autonomous operations with continuous learning). 95% of AI initiatives stall before reaching production. The jump from Opportunistic to Systematic&mdash;where intent replaces experimentation&mdash;is the hardest transition for product teams, and is exactly where the four-risk lens provides the missing structure.</p>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1rem;">
+      <div class="callout-title">The People Problem &mdash; <a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank" style="text-decoration: underline; color: inherit;">HBR, Nov 2025</a></div>
+      <p>70% of AI project challenges stem from people and process issues, not technology (BCG). Programmers are 16&ndash;18% less likely to share AI access with teammates (resource hoarding). Junior employees with AI tools outperform experienced staff, causing hierarchy disruption. One professional services firm achieved a 22% productivity increase only after <em>simultaneously</em> redesigning competency models, compensation, workflows, and governance&mdash;not by adding tools alone.</p>
+    </div>
+
     <div class="diagram-wrapper fade-in" style="margin-top: 2rem;">
       <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
         12-Month Transformation Timeline
@@ -1096,11 +1272,1031 @@
   </div>
 </section>
 
-<!-- 10. Sources -->
+<!-- 10. Product Engineer as Lifecycle Orchestrator -->
+<section id="product-engineer">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 10 &mdash; Speculative Idea</div>
+      <h2>The Product Engineer: Human Orchestrator of the Full Lifecycle</h2>
+      <p>A forward-looking model in which one generalist — empowered by a coordinated ensemble of AI agents and skills — owns the entire product development lifecycle end-to-end. Not a PM, not an engineer, not a designer. A new kind of role.</p>
+    </div>
+
+    <!-- Scope note -->
+    <div class="callout fade-in" style="border-left-color: hsl(var(--muted-foreground));">
+      <div class="callout-title">Scope &amp; Applicability</div>
+      <p>This model is most suited to a specific subset of product development: continuous, customer-facing digital products where discovery, design, engineering, and delivery can be tightly integrated under one person&rsquo;s direction. It is not a universal template &mdash; highly regulated domains, hardware-adjacent products, large platform teams, and deeply embedded systems each require different human-to-agent balances and different escalation gates. What <em>does</em> generalise is the skills taxonomy: the 13 agent domains and their associated skills are broadly reusable across other PDLC variants and role configurations. A traditional product trio (PM, designer, engineer) could allocate these agent clusters across three people; an enterprise platform team could extend them with additional compliance and ops clusters. The taxonomy is the durable building block; the single-orchestrator model is one specific configuration of it.</p>
+    </div>
+
+    <!-- Practitioner Perspectives: external validation of the concept -->
+    <div class="callout fade-in" style="border-left-color: hsl(215 90% 55%);">
+      <div class="callout-title">Practitioner Perspectives &mdash; Independent Convergence</div>
+      <p>In a March 2026 conversation, Stripe co-founder John Collison and Sierra AI founder (former Salesforce &amp; Twitter CTO) Bret Taylor independently arrived at the same description. Taylor explicitly named the emerging role <strong>&ldquo;product engineer&rdquo;</strong> &mdash; someone who combines product taste, direct customer understanding, and infrastructure-level technical capability: <em>&ldquo;The most valuable person in this new world is someone who can reason deeply about what to build and can actually build it &mdash; without a lot of hand-holding in between.&rdquo;</em> Collison framed the same pattern in terms of leverage: the AI productivity gains do not accrue to people who use tools faster, but to those who make better decisions about what to build and for whom. The generalist with taste and context is the leverage point &mdash; not tool proficiency. Both observed that this person is rare today because the combination (strategic judgment + customer empathy + technical depth) was never required in a single role. AI agents make that combination achievable for the first time.</p>
+    </div>
+
+    <!-- 10.1 The Concept -->
+    <div class="callout fade-in">
+      <div class="callout-title">The Central Idea</div>
+      <p>The old world required a tribe of specialists: PM, UX researcher, designer, frontend engineer, backend engineer, QA, DevOps, data analyst, growth marketer, legal reviewer, technical writer. Each owned a slice. Hand-offs were the main source of waste and lost context. The new world: one person, with an agent ensemble, covers the entire lifecycle. Not because they are expert in all of it — but because the agents carry the specialist depth, and the human carries the judgment, direction, and context that threads it all together.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem;" class="fade-in">
+      <div class="card">
+        <h3>Direction</h3>
+        <p>Setting strategic context that all 13 agent clusters use as a compass. What matters, what doesn&rsquo;t, and why. The human defines intent; agents execute across the lifecycle.</p>
+      </div>
+      <div class="card">
+        <h3>Prioritization</h3>
+        <p>Deciding the sequence across all active agent clusters. The only true resource constraint is the Product Engineer&rsquo;s attention and judgment. Agents surface options; humans choose.</p>
+      </div>
+      <div class="card">
+        <h3>Judgment</h3>
+        <p>Resolving escalations where data is ambiguous, ethical or political dimensions exist, or stakes exceed agent confidence. The escalation queue is the primary human interface to the system.</p>
+      </div>
+      <div class="card">
+        <h3>Relationship</h3>
+        <p>Human-to-human: customers, executives, regulators, partners. The face and voice the system cannot be. Trust-building and high-stakes negotiation remain irreducibly human.</p>
+      </div>
+      <div class="card">
+        <h3>System Building</h3>
+        <p>Improving the agent harness itself. Every escalation gets an RCA: why couldn&rsquo;t the agent decide? What skill or data was missing? This is the compounding investment that increases autonomy over time.</p>
+      </div>
+    </div>
+
+    <!-- 10.2 The Evolved Product Spec -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">10.2 The Evolved Product Spec</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      The traditional PRD is a long document written for humans, handed off to a design team, then handed off again to engineering. In this model it is replaced by an <strong>Agent-Ready Spec</strong> &mdash; a structured, living artifact primarily consumed by agents, with a working code prototype as its centrepiece. The spec and the prototype evolve together in the same feedback loop.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>1 &mdash; Problem Brief</h3>
+        <p>One paragraph, written by the PE. What problem are we solving, for whom, at what severity, and why now. This is the strategic anchor everything else derives from. Agents use it to weight their confidence scoring and surface relevant signals.</p>
+      </div>
+      <div class="card">
+        <h3>2 &mdash; Job-to-be-Done + Success Metric</h3>
+        <p>Structured: <em>When [situation], I want to [motivation], so I can [outcome].</em> Paired with a single measurable success metric &mdash; baseline and target &mdash; that agents will monitor post-ship. If no metric can be defined, the item is blocked from moving forward.</p>
+      </div>
+      <div class="card">
+        <h3>3 &mdash; Living Prototype</h3>
+        <p>A working code prototype deployed to a preview URL. Generated by the Design Agent from the user flow spec using the product&rsquo;s actual component library. This IS the design artifact &mdash; there is no Figma step. PE reviews it in the browser, leaves structured feedback, and the agent iterates. The prototype URL is embedded in the spec and updated on each revision.</p>
+      </div>
+      <div class="card">
+        <h3>4 &mdash; Risk Matrix</h3>
+        <p>Agent-maintained, PE-reviewed. Four rows (Value, Usability, Feasibility, Viability), each with a confidence score (0&ndash;100%), supporting evidence links, and a list of open assumptions ranked by risk. Items cannot move to &ldquo;ready to build&rdquo; until all four domains cross their confidence threshold.</p>
+      </div>
+      <div class="card">
+        <h3>5 &mdash; Acceptance Criteria</h3>
+        <p>Structured Given/When/Then format. Agents generate these from the user flow and prototype; PE approves. They map directly to test cases the Quality Agent generates &mdash; no manual translation. Out-of-scope items are listed explicitly to prevent agent over-implementation.</p>
+      </div>
+      <div class="card">
+        <h3>6 &mdash; Agent Context Notes</h3>
+        <p>Short, PE-written notes that provide strategic context agents cannot infer from the spec alone. Examples: &ldquo;compliance angle is the wedge, not productivity&rdquo;, &ldquo;enterprise buyers care about audit trails more than power users&rdquo;, &ldquo;acceptable to sacrifice mobile experience in v1.&rdquo; Agents treat these as high-weight constraints on all decisions they make for this item.</p>
+      </div>
+    </div>
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">Why This Format Matters</div>
+      <p>The spec is not a document for humans to read &mdash; it is an instruction set for agents to execute and a checkpoint surface for the PE to review. Every field is structured enough for agents to parse and act on, but short enough for a human to read in under 5 minutes. The prototype replaces the wireframe, the hi-fi mockup, and the &ldquo;design review&rdquo; ceremony in one artifact. The risk matrix replaces the weekly status meeting. The acceptance criteria replace the &ldquo;definition of done&rdquo; negotiation. The spec is the contract between the PE and the ensemble.</p>
+    </div>
+    <div class="callout fade-in" style="margin-top: 1rem; border-left-color: hsl(215 90% 55%);">
+      <div class="callout-title">Intent Outlasts Code</div>
+      <p>Bret Taylor observed that the <em>intent document</em> &mdash; the written rationale for why something was built &mdash; has a longer productive lifespan than the implementation itself. Code gets refactored, rewritten, or replaced within months; the strategic intent remains interpretable for years and is what new engineers (human or agent) need most. This directly motivates the Agent-Ready Spec&rsquo;s design: it is structured around the &ldquo;why&rdquo; &mdash; the Problem Brief, the JTBD, the Agent Context Notes &mdash; rather than the &ldquo;how.&rdquo; When agents load context to make implementation decisions, they are reading intent, not implementation specifications. The intent file is durable; the code it produced is replaceable.</p>
+    </div>
+
+    <!-- 10.3 Skills Taxonomy by Product Risk Domain -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">10.3 Skills Taxonomy by Product Risk Domain</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      The four product risks are the most durable organizing principle for the skills taxonomy. Regardless of which lifecycle phase an agent operates in, every skill ultimately reduces uncertainty in one (or more) of these four domains. This view is the building block for other team configurations &mdash; a classic product trio, a platform team, or a regulated enterprise delivery team can each draw from this taxonomy and allocate skills to whichever humans and agents fit their structure.
+    </p>
+
+    <div class="tabs fade-in" role="tablist">
+      <button class="tab-btn active" data-tab="pr-value" role="tab">Value</button>
+      <button class="tab-btn" data-tab="pr-usability" role="tab">Usability</button>
+      <button class="tab-btn" data-tab="pr-feasibility" role="tab">Feasibility</button>
+      <button class="tab-btn" data-tab="pr-viability" role="tab">Viability</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-pr-value">
+      <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
+        <div class="callout-title">Value Risk &mdash; Is this worth building?</div>
+        <p>Skills that answer whether customers actually want the outcome, whether they would pay for it, and whether a measured outcome exists that would confirm success. Without these, delivery speed is irrelevant.</p>
+      </div>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">signal_aggregation</td><td class="cap-desc">Continuously monitors all inbound signal sources to surface unmet needs before they are explicitly requested</td><td>Intercom, Zendesk, Gong, FullStory, Klue, G2</td></tr>
+            <tr><td class="cap-name">interview_synthesis</td><td class="cap-desc">Processes user and customer interview transcripts into structured jobs-to-be-done, pain intensity scores, and mental models</td><td>Dovetail, Otter, Notion, Gong</td></tr>
+            <tr><td class="cap-name">jtbd_mapping</td><td class="cap-desc">Maps a proposed feature to an explicit job-to-be-done; identifies the switch trigger and competing alternatives</td><td>LLM + research corpus + JTBD framework</td></tr>
+            <tr><td class="cap-name">outcome_mapping</td><td class="cap-desc">Maps a feature to a measurable business or user outcome; flags items where no outcome can be defined (a critical stop signal)</td><td>Amplitude, Mixpanel, Looker, LLM reasoning</td></tr>
+            <tr><td class="cap-name">assumption_registry</td><td class="cap-desc">Extracts and ranks leap-of-faith assumptions per backlog item; surfaces which assumptions need validation before investment</td><td>Internal KB + LLM reasoning over specs</td></tr>
+            <tr><td class="cap-name">experiment_design</td><td class="cap-desc">Designs A/B tests, fake-door tests, and concierge experiments with hypothesis, sample size, metric, and success criteria</td><td>Statsig, LaunchDarkly, Optimizely</td></tr>
+            <tr><td class="cap-name">experiment_analysis</td><td class="cap-desc">Interprets test results with statistical rigor; recommends ship / iterate / kill with confidence interval and practical significance</td><td>Statistics engine, Statsig, Bayesian libs</td></tr>
+            <tr><td class="cap-name">willingness_to_pay_scan</td><td class="cap-desc">Estimates willingness to pay from win/loss data, pricing research, and comparable market benchmarks</td><td>Gong (win/loss transcripts), PricingIntelligence, survey data</td></tr>
+            <tr><td class="cap-name">competitive_scan</td><td class="cap-desc">Monitors competitors for feature releases relevant to backlog items; surfaces pricing and positioning shifts</td><td>Klue, G2, web search, changelog trackers</td></tr>
+            <tr><td class="cap-name">market_sizing</td><td class="cap-desc">Produces TAM/SAM/SOM estimate for an opportunity with sourced data and confidence range</td><td>Market data APIs, industry reports, web search</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pr-usability">
+      <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
+        <div class="callout-title">Usability Risk &mdash; Can users figure out how to use it?</div>
+        <p>Skills that ensure users can successfully complete the intended task without training, frustration, or support. In this model, the primary prototype artifact is working code deployed to a preview URL — not a Figma mockup. This collapses the design-to-feedback loop from days to minutes and eliminates the translation loss between design intent and implementation.</p>
+      </div>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">user_flow_generation</td><td class="cap-desc">Drafts happy path plus edge cases from a problem spec; outputs structured flow as Mermaid diagram and narrated walkthrough consumed by the prototype generator</td><td>Mermaid, LLM reasoning</td></tr>
+            <tr><td class="cap-name">code_prototype_generation</td><td class="cap-desc">Generates a working, deployable prototype directly from the user flow spec using the product&rsquo;s actual design system and component library — no Figma step required</td><td>Claude Code, Cursor, v0, shadcn/ui, Tailwind, Radix UI, Vercel preview</td></tr>
+            <tr><td class="cap-name">design_system_compliance</td><td class="cap-desc">Lints generated prototype code against the design token and component library; flags deviations at the code level, not the mockup level</td><td>Storybook, ESLint design-system rules, design token linting, Chromatic</td></tr>
+            <tr><td class="cap-name">cognitive_load_scoring</td><td class="cap-desc">Scores a proposed flow on number of decisions, steps, memory load, and context switches; compares to acceptable threshold</td><td>Heuristics KB + LLM reasoning over the user flow</td></tr>
+            <tr><td class="cap-name">pattern_matching</td><td class="cap-desc">Finds established UX patterns for novel interaction problems; surfaces precedents and anti-patterns; outputs pattern reference + suggested implementation</td><td>Mobbin, Nielsen/Norman KB, internal pattern library</td></tr>
+            <tr><td class="cap-name">accessibility_audit</td><td class="cap-desc">WCAG 2.1 AA compliance check on the running prototype and shipped UI; reports violations with severity, affected user group, and code-level remediation</td><td>Axe-core, Pa11y CLI, browser devtools audit, Playwright accessibility assertions</td></tr>
+            <tr><td class="cap-name">session_replay_analysis</td><td class="cap-desc">Analyses session recordings for friction, rage clicks, and drop-off patterns on related existing flows; informs next prototype iteration</td><td>FullStory, PostHog, Hotjar</td></tr>
+            <tr><td class="cap-name">usability_test_script</td><td class="cap-desc">Writes test script for the deployed prototype, deploys it to participants, and synthesises results into findings with severity ranking and suggested prototype changes</td><td>Maze (prototype URL), UserTesting, Lookback</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pr-feasibility">
+      <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
+        <div class="callout-title">Feasibility Risk &mdash; Can we actually build and operate this?</div>
+        <p>Skills that surface implementation complexity, system constraints, dependency risks, and operational requirements before significant investment. Feasibility risk has a compounding property: discovering it late is exponentially more expensive than discovering it early.</p>
+      </div>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">codebase_complexity_scan</td><td class="cap-desc">Maps affected modules, coupling hotspots, tech debt concentration, and change frequency risk for a proposed change</td><td>AST analysis, git history, SonarQube, CodeScene</td></tr>
+            <tr><td class="cap-name">api_capability_map</td><td class="cap-desc">Discovers what internal and external APIs can and cannot support the proposed feature; surfaces missing capabilities</td><td>OpenAPI specs, existing API registry, developer docs</td></tr>
+            <tr><td class="cap-name">system_design_draft</td><td class="cap-desc">Proposes architecture for a feature with component diagram, data flow, trade-off summary, and open questions</td><td>LLM + codebase context + architecture decision records</td></tr>
+            <tr><td class="cap-name">data_model_design</td><td class="cap-desc">Proposes schema changes and migration strategy; validates backward compatibility and rollback feasibility</td><td>DB schema introspection + migration framework + LLM</td></tr>
+            <tr><td class="cap-name">dependency_impact</td><td class="cap-desc">Maps all systems that would be affected by a change; identifies blast radius and failure cascade risks</td><td>Dependency graph tools, service registry, call graphs</td></tr>
+            <tr><td class="cap-name">effort_estimator</td><td class="cap-desc">Produces probabilistic effort range (p50/p85) based on similar past tasks, codebase complexity score, and team velocity</td><td>Linear/Jira history, velocity data, complexity score</td></tr>
+            <tr><td class="cap-name">spike_spec</td><td class="cap-desc">Generates a time-boxed technical spike task to resolve a high-uncertainty feasibility question with explicit output criteria</td><td>LLM + codebase context + similar spike templates</td></tr>
+            <tr><td class="cap-name">infra_scalability_check</td><td class="cap-desc">Stress-tests a proposed feature against current infrastructure limits; estimates incremental infra cost at target scale</td><td>Cloud metrics APIs, load test tooling, cost calculators</td></tr>
+            <tr><td class="cap-name">security_review</td><td class="cap-desc">Scans proposed design and generated code for OWASP top 10, auth/authz gaps, and sensitive data exposure risks</td><td>OWASP KB, Snyk, Semgrep, Bandit</td></tr>
+            <tr><td class="cap-name">test_coverage_audit</td><td class="cap-desc">Reports current test coverage in modules to be changed; auto-creates coverage improvement tasks as prerequisites</td><td>Coverage reporters, CI data, test inventory</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pr-viability">
+      <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
+        <div class="callout-title">Viability Risk &mdash; Does this work for the business?</div>
+        <p>Skills that ensure the solution is financially sustainable, legally permissible, and operationally supportable. In regulated enterprise contexts, viability checks are often the last to be done and the most expensive to fail. AI can accelerate this work, but also makes it more important, not less.</p>
+      </div>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">revenue_impact_model</td><td class="cap-desc">Projects ARR/MRR delta from shipping a feature: expansion, churn reduction, new logo effect, with confidence range</td><td>Stripe, ChartMogul, financial model templates</td></tr>
+            <tr><td class="cap-name">cost_projection</td><td class="cap-desc">Estimates build cost plus ongoing infrastructure and support cost; outputs net ROI projection at 12 and 24 months</td><td>Cloud cost APIs, HR cost data, support ticket volume data</td></tr>
+            <tr><td class="cap-name">legal_compliance_check</td><td class="cap-desc">Flags GDPR, HIPAA, SOC2, CCPA, IP, and accessibility law concerns; surfaces the specific clause, risk level, and remediation path</td><td>Legal KB, policy docs, compliance checklists, LLM</td></tr>
+            <tr><td class="cap-name">pricing_strategy_eval</td><td class="cap-desc">Checks whether a new feature fits or disrupts existing pricing tiers; models packaging scenarios and customer segment impact</td><td>Pricing docs, CRM segment data, revenue modelling</td></tr>
+            <tr><td class="cap-name">vendor_risk_scan</td><td class="cap-desc">Identifies third-party vendors or APIs critical to feature delivery; assesses SLA risk, switching cost, and concentration risk</td><td>Vendor contracts, SLA docs, dependency registry</td></tr>
+            <tr><td class="cap-name">stakeholder_impact_map</td><td class="cap-desc">Identifies which internal stakeholders (CS, Sales, Legal, Finance, Security) need to be looped in and at which decision gate</td><td>Org chart, RACI templates, project history</td></tr>
+            <tr><td class="cap-name">support_burden_estimate</td><td class="cap-desc">Predicts inbound support volume for a new feature based on similar past launches and feature complexity score</td><td>Zendesk history, feature complexity score, LLM</td></tr>
+            <tr><td class="cap-name">capacity_model</td><td class="cap-desc">Models sustained human capacity needed to maintain a new surface over 12 months; flags under-resourcing risk</td><td>Team velocity data, roadmap scope, headcount model</td></tr>
+            <tr><td class="cap-name">go_to_market_readiness</td><td class="cap-desc">Checks whether sales enablement, pricing, docs, and customer comms are ready before a feature is released to customers</td><td>CRM readiness checklist, release gate template</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">Cross-Risk Skills</div>
+      <p>Some skills serve multiple risk domains simultaneously. <strong>Observability and analytics</strong> measure all four risks post-ship (did users adopt it, can they use it, does it perform, is it profitable?). <strong>Documentation</strong> reduces feasibility risk (engineers can understand and maintain it) and usability risk (users can learn it). <strong>Experiment design</strong> spans value and usability. The cleanest way to think about it: the four-risk model tells you <em>what questions</em> need to be answered; the skills taxonomy tells you <em>which capabilities</em> answer them; and the agent ensemble tells you <em>how those capabilities are organised and run</em> across the lifecycle.</p>
+    </div>
+
+    <!-- 10.4 The Agent Ensemble -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">10.4 The Full Lifecycle Agent Ensemble</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      Thirteen domain agents run in parallel across all active backlog items. An Orchestrator Agent routes work, aggregates confidence scores, detects cross-domain conflicts, and queues escalations for the human. The skill set completeness of each agent is the primary lever on overall system autonomy.
+    </p>
+
+    <div class="diagram-wrapper fade-in" style="margin-bottom: 2rem;">
+      <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
+        GIDE — Genetic Interactive Development Environment
+      </div>
+      <div style="padding: 1.25rem; font-size: 0.8125rem; font-family: monospace; color: hsl(var(--muted-foreground)); line-height: 1.8;">
+        PRODUCT ENGINEER (Human Orchestrator)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORCHESTRATOR AGENT<br>
+        &nbsp;&nbsp;&nbsp;(routing &middot; confidence scoring &middot; escalation queue)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+        &nbsp;&nbsp;┌──────┬─────────┬──────────┬──────────┬──────────┬──────┐<br>
+        &nbsp;Discovery&nbsp;&nbsp;Design&nbsp;&nbsp;Engineering&nbsp;&nbsp;Quality&nbsp;&nbsp;Observability&nbsp;&nbsp;GTM<br>
+        &nbsp;&amp; Research&nbsp;&nbsp;&amp; UX&nbsp;&nbsp;&nbsp;&amp; Delivery&nbsp;&nbsp;&amp; Release&nbsp;&amp; Growth&nbsp;&nbsp;&amp; Business
+      </div>
+    </div>
+
+    <div class="tabs fade-in" role="tablist">
+      <button class="tab-btn active" data-tab="pe-discovery" role="tab">Discovery &amp; Research</button>
+      <button class="tab-btn" data-tab="pe-design" role="tab">Design &amp; UX</button>
+      <button class="tab-btn" data-tab="pe-engineering" role="tab">Engineering</button>
+      <button class="tab-btn" data-tab="pe-quality" role="tab">Quality &amp; Release</button>
+      <button class="tab-btn" data-tab="pe-observability" role="tab">Observability &amp; Growth</button>
+      <button class="tab-btn" data-tab="pe-gtm" role="tab">GTM, Business &amp; Customer</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-pe-discovery">
+      <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Continuously monitors the environment for signals, synthesizes research, and raises backlog items with structured evidence. Covers agents 1 (Sensing &amp; Discovery) and 2 (Research &amp; Validation).</p>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">signal_aggregation</td><td class="cap-desc">Ingests support tickets, NPS verbatims, session replays, sales call transcripts, competitor changelogs &mdash; surfaces patterns and rising themes</td><td>Intercom, Zendesk, Gong, FullStory, Klue</td></tr>
+            <tr><td class="cap-name">problem_clustering</td><td class="cap-desc">Groups signals into coherent problem statements weighted by frequency and severity; auto-creates structured backlog items</td><td>LLM clustering over tagged signal corpus</td></tr>
+            <tr><td class="cap-name">opportunity_scoring</td><td class="cap-desc">Scores emerging opportunities against current product strategy and outstanding risks</td><td>Strategy context doc + LLM reasoning</td></tr>
+            <tr><td class="cap-name">interview_synthesis</td><td class="cap-desc">Processes interview transcripts &rarr; extracts jobs-to-be-done, pain intensity scores, mental models</td><td>Dovetail, Otter, Notion</td></tr>
+            <tr><td class="cap-name">experiment_design</td><td class="cap-desc">Designs A/B tests, fake-door tests, concierge tests &mdash; with hypothesis, metrics, sample size, and success criteria</td><td>Statsig, LaunchDarkly</td></tr>
+            <tr><td class="cap-name">experiment_analysis</td><td class="cap-desc">Interprets test results, calculates statistical significance, recommends ship / iterate / kill decision with rationale</td><td>Statistics engine, Statsig</td></tr>
+            <tr><td class="cap-name">assumption_registry</td><td class="cap-desc">Maintains a live list of unvalidated assumptions per backlog item, ranked by risk; flags items where leap-of-faith assumptions are too high to ship</td><td>Internal KB + LLM reasoning</td></tr>
+            <tr><td class="cap-name">competitive_deep_dive</td><td class="cap-desc">Full feature, pricing, and positioning analysis for a specific competitor or market category</td><td>Klue, G2, web search</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top: 1rem;">
+        <div class="callout-title">Escalation Triggers</div>
+        <p>No measurable outcome can be defined for a backlog item &middot; Conflicting user signals with no clear resolution &middot; Assumption rank too high with no validation path &middot; Market signals conflict with user signals</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pe-design">
+      <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Translates validated problems into usable, accessible interfaces. The primary design artifact is a working code prototype deployed to a preview URL — not a static mockup. This eliminates the Figma → engineering translation step and makes the feedback loop immediate. The design system lives in code (design tokens, component library, linting rules), not in a separate design tool.</p>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">user_flow_generation</td><td class="cap-desc">Drafts happy path + edge cases from a problem spec; outputs structured flow as Mermaid diagram consumed directly by code_prototype_generation</td><td>Mermaid, LLM reasoning</td></tr>
+            <tr><td class="cap-name">code_prototype_generation</td><td class="cap-desc">Generates a working, deployable prototype from the user flow using the product&rsquo;s actual component library; deployed to a preview URL linked from the spec</td><td>Claude Code, Cursor, v0, shadcn/ui, Tailwind, Radix UI, Vercel preview</td></tr>
+            <tr><td class="cap-name">design_system_compliance</td><td class="cap-desc">Lints prototype code against design tokens and component library rules; flags deviations at the code level with suggested compliant alternatives</td><td>Storybook, ESLint component rules, design token linting, Chromatic</td></tr>
+            <tr><td class="cap-name">cognitive_load_scoring</td><td class="cap-desc">Scores the flow on decisions, steps, memory load, and context switches; compares against the product&rsquo;s baseline and acceptable threshold</td><td>Heuristics KB + LLM reasoning over flow</td></tr>
+            <tr><td class="cap-name">pattern_matching</td><td class="cap-desc">Finds established UX patterns for novel interaction problems; outputs pattern reference + suggested component implementation</td><td>Mobbin, Nielsen KB, internal pattern library</td></tr>
+            <tr><td class="cap-name">accessibility_audit</td><td class="cap-desc">WCAG 2.1 AA check on the running prototype and shipped UI; reports violations at the code level with line references and remediation</td><td>Axe-core, Pa11y CLI, Playwright accessibility assertions, browser devtools</td></tr>
+            <tr><td class="cap-name">usability_test_script</td><td class="cap-desc">Writes test script against the deployed prototype URL, distributes to participants, synthesises results into findings with severity ranking and next-iteration changes</td><td>Maze (preview URL), UserTesting, Lookback</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top: 1rem;">
+        <div class="callout-title">Escalation Triggers</div>
+        <p>Novel interaction with no established pattern and high cognitive load score &middot; Brand or visual identity decisions requiring strategic alignment &middot; Usability test shows deep mental model mismatch requiring full flow rethink &middot; Accessibility violation in a regulated context that cannot be auto-remediated</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pe-engineering">
+      <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Translates what to build into how to build it safely, then builds it. Covers agents 4 (Technical Design) and 5 (Implementation).</p>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">codebase_scan</td><td class="cap-desc">Maps affected modules, tech debt hotspots, and coupling risks for a proposed change before implementation begins</td><td>AST analysis, git history, SonarQube</td></tr>
+            <tr><td class="cap-name">system_design_draft</td><td class="cap-desc">Proposes architecture for a feature: components, data flow, API contracts, trade-off summary</td><td>LLM + codebase context</td></tr>
+            <tr><td class="cap-name">api_design</td><td class="cap-desc">Drafts REST or GraphQL API spec for a new surface, conforming to existing API conventions</td><td>OpenAPI, internal API style guide</td></tr>
+            <tr><td class="cap-name">data_model_design</td><td class="cap-desc">Proposes schema changes and migration strategy; checks for backward compatibility</td><td>DB schema + migration framework + LLM</td></tr>
+            <tr><td class="cap-name">security_review</td><td class="cap-desc">Scans proposed design and generated code for OWASP top 10, auth/authz gaps, and sensitive data exposure</td><td>OWASP KB, Snyk, security linting</td></tr>
+            <tr><td class="cap-name">effort_estimator</td><td class="cap-desc">Produces probabilistic effort range (p50/p85) based on similar past tasks and current codebase complexity</td><td>Linear/Jira history, velocity data</td></tr>
+            <tr><td class="cap-name">feature_implementation</td><td class="cap-desc">Generates code for a well-scoped task from a spec plus codebase context; creates tests alongside</td><td>Claude Code, Cursor, Copilot</td></tr>
+            <tr><td class="cap-name">code_review</td><td class="cap-desc">Reviews PRs for correctness, security, idiomatic style, unnecessary complexity, and pattern conformance</td><td>GitHub, LLM code review</td></tr>
+            <tr><td class="cap-name">debugging</td><td class="cap-desc">Given an error and execution context, isolates root cause and proposes a targeted fix</td><td>Error logs, trace data, LLM</td></tr>
+            <tr><td class="cap-name">spike_spec</td><td class="cap-desc">Generates a time-boxed technical spike task to resolve a high-uncertainty design question</td><td>LLM + codebase context</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top: 1rem;">
+        <div class="callout-title">Escalation Triggers</div>
+        <p>Architectural decisions with major long-term consequences &middot; Two valid approaches with fundamentally different trade-offs &middot; Security findings above severity threshold &middot; Implementation diverges significantly from spec mid-build</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pe-quality">
+      <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Ensures what ships actually works and gets there safely. Covers agents 6 (Quality), 7 (Documentation), and 8 (Release &amp; Deployment).</p>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">test_generation</td><td class="cap-desc">Writes unit, integration, and end-to-end tests for new and changed code; flags coverage gaps</td><td>Jest, Playwright, Pytest, coverage tools</td></tr>
+            <tr><td class="cap-name">regression_scan</td><td class="cap-desc">Runs the regression suite on every change; surfaces failures with root cause context and affected surface</td><td>CI/CD, test runner, LLM triage</td></tr>
+            <tr><td class="cap-name">performance_test</td><td class="cap-desc">Load tests new endpoints or changed surfaces; compares p95/p99 latency against baselines</td><td>k6, Locust</td></tr>
+            <tr><td class="cap-name">changelog_generation</td><td class="cap-desc">Writes user-facing changelog entry and internal release notes from PR history and commit log</td><td>Git history, LLM</td></tr>
+            <tr><td class="cap-name">user_facing_docs</td><td class="cap-desc">Writes help centre articles from feature specs and user flows; keeps docs in sync with shipped code</td><td>Gitbook, Notion, Intercom Articles</td></tr>
+            <tr><td class="cap-name">feature_flag_management</td><td class="cap-desc">Sets up, manages, and eventually cleans up feature flags for gradual rollouts</td><td>LaunchDarkly, Statsig</td></tr>
+            <tr><td class="cap-name">rollout_strategy</td><td class="cap-desc">Designs phased rollout plan: percentage of users, cohorts, regions, time-gating based on risk level</td><td>Feature flag tool + risk assessment</td></tr>
+            <tr><td class="cap-name">rollback_trigger</td><td class="cap-desc">Detects post-deploy anomaly, evaluates severity against thresholds, initiates rollback if warranted</td><td>Observability tools, alerting, CI/CD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top: 1rem;">
+        <div class="callout-title">Escalation Triggers</div>
+        <p>P0 incidents requiring customer or executive communication &middot; Rollback decisions above a user impact threshold &middot; Release go/no-go for features affecting regulated data &middot; Bug root cause unclear after automated diagnosis</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pe-observability">
+      <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Watches what is happening in production and measures whether what shipped is working. Covers agents 9 (Observability) and 10 (Growth &amp; Analytics).</p>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">anomaly_detection</td><td class="cap-desc">Monitors key metrics continuously; flags deviations post-release and in steady state with severity classification</td><td>Datadog, Grafana, Sentry</td></tr>
+            <tr><td class="cap-name">error_triage</td><td class="cap-desc">Groups and prioritises new errors by frequency and user impact; surfaces probable root cause for each cluster</td><td>Sentry, Datadog</td></tr>
+            <tr><td class="cap-name">post_incident_report</td><td class="cap-desc">After a resolved incident, generates a full PIR with timeline, root cause, contributing factors, and preventive actions</td><td>LLM + incident data + timeline</td></tr>
+            <tr><td class="cap-name">feature_adoption_analysis</td><td class="cap-desc">Tracks the adoption curve of newly shipped features; detects stall patterns and surfaces behavioural friction points</td><td>Amplitude, Mixpanel</td></tr>
+            <tr><td class="cap-name">funnel_analysis</td><td class="cap-desc">Identifies conversion drop-off points across key user journeys; recommends hypotheses for improvement</td><td>Analytics + LLM interpretation</td></tr>
+            <tr><td class="cap-name">retention_analysis</td><td class="cap-desc">Tracks retention curves and surfacing early signals of churn risk by segment, plan, and cohort</td><td>Analytics + CRM</td></tr>
+            <tr><td class="cap-name">insight_generation</td><td class="cap-desc">Synthesises analytics data into a weekly narrative of what is improving, degrading, and unexplained</td><td>LLM over data exports + dashboards</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top: 1rem;">
+        <div class="callout-title">Escalation Triggers</div>
+        <p>Metrics diverge from expectations and automated root cause analysis is inconclusive &middot; Strategic interpretation of growth patterns with major roadmap implications &middot; P0 incidents requiring human incident commander</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pe-gtm">
+      <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Gets the right thing in front of the right people, ensures business sustainability, and closes the loop with customers. Covers agents 11 (Go-to-Market), 12 (Business &amp; Viability), and 13 (Customer Feedback Loop).</p>
+      <div class="card" style="overflow-x: auto;">
+        <table class="cap-table">
+          <thead><tr><th style="width:22%">Skill</th><th style="width:38%">What it does</th><th style="width:40%">Tools / Integrations</th></tr></thead>
+          <tbody>
+            <tr><td class="cap-name">launch_plan</td><td class="cap-desc">Drafts full launch plan: target audiences, timing, channels, messaging hierarchy, internal readiness checklist</td><td>LLM + strategy context + calendar</td></tr>
+            <tr><td class="cap-name">marketing_copy</td><td class="cap-desc">Writes in-app messaging, email campaigns, and landing page copy aligned to brand guidelines and positioning</td><td>LLM + brand guidelines</td></tr>
+            <tr><td class="cap-name">sales_enablement</td><td class="cap-desc">Produces battlecards, one-pagers, and demo scripts for new or changed features</td><td>LLM + product specs + CRM context</td></tr>
+            <tr><td class="cap-name">revenue_impact_model</td><td class="cap-desc">Projects ARR/MRR impact of a feature; models churn reduction, expansion, and new logo effects</td><td>Stripe, ChartMogul, financial models</td></tr>
+            <tr><td class="cap-name">cost_model</td><td class="cap-desc">Estimates build cost plus ongoing run cost for a proposed feature; outputs ROI projection at 12 and 24 months</td><td>Cloud APIs, headcount models</td></tr>
+            <tr><td class="cap-name">legal_compliance_check</td><td class="cap-desc">Flags GDPR, HIPAA, SOC2, and IP concerns in a proposed feature; surfaces the specific clause and risk level</td><td>Legal KB, policy docs, LLM</td></tr>
+            <tr><td class="cap-name">nps_synthesis</td><td class="cap-desc">Processes NPS verbatims and extracts product signals, theme clusters, and sentiment trends over time</td><td>Delighted, Medallia</td></tr>
+            <tr><td class="cap-name">support_ticket_analysis</td><td class="cap-desc">Clusters incoming support tickets, maps them to product areas, and detects rising issue categories before they become crises</td><td>Zendesk, Intercom</td></tr>
+            <tr><td class="cap-name">churn_signal_detection</td><td class="cap-desc">Identifies behavioural signals preceding churn at the account and user level; triggers early intervention flag</td><td>CRM + product analytics</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top: 1rem;">
+        <div class="callout-title">Escalation Triggers</div>
+        <p>Negative ROI projection on a high-priority item &middot; Legal ambiguity requiring external counsel &middot; Pricing changes above revenue impact threshold &middot; High-profile customer churn requiring executive involvement</p>
+      </div>
+    </div>
+
+    <!-- 10.5 Escalation → RCA Flywheel -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">10.5 The Escalation &rarr; RCA Flywheel</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 760px;">
+      Every escalation is a signal, not just a decision. After resolution, an RCA identifies whether a new skill, tool integration, or policy entry would prevent the same class of escalation from recurring. This is the primary mechanism by which agent autonomy compounds over time.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Missing Skill</h3>
+        <p>The agent lacked a capability to resolve the question autonomously. Action: design and build a new skill with the required tool integration. Example: no willingness-to-pay scan meant every pricing question escalated.</p>
+      </div>
+      <div class="card">
+        <h3>Missing Data / Integration</h3>
+        <p>The skill existed but could not access the data it needed. Action: add the tool integration or data pipeline. Example: the compliance agent had no access to the current legal knowledge base.</p>
+      </div>
+      <div class="card">
+        <h3>Missing Policy or Heuristic</h3>
+        <p>The agent had data but no decision rule. Action: encode the resolved decision as a policy in the agent&rsquo;s knowledge base. Example: which rollout percentage triggers automatic rollback.</p>
+      </div>
+      <div class="card">
+        <h3>Permanent Human Gate</h3>
+        <p>The decision genuinely requires human values, political judgment, or external authority. Action: record as a permanent gate &mdash; agents pre-package all context but humans always decide. Example: any pricing change above X% ARR impact.</p>
+      </div>
+    </div>
+
+    <!-- 10.6 Review Framework -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">10.6 The Product Engineer&rsquo;s Review Practice</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      The PE&rsquo;s day is primarily structured review, not execution. With 13 agent clusters generating artifacts continuously across a live backlog, the review system must be rigorous: review everything at the wrong depth and the PE becomes a bottleneck; review too little and critical decisions get made without adequate judgment. The framework has three components: what to review, when it surfaces, and how to give feedback agents can act on.
+    </p>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.75rem;">What to Review &mdash; Three Tiers</h4>
+    <div class="card fade-in" style="overflow-x: auto; margin-bottom: 1.5rem;">
+      <table class="cap-table">
+        <thead>
+          <tr><th style="width:20%">Tier</th><th style="width:30%">Artifact Types</th><th style="width:28%">Review Depth</th><th style="width:22%">Time Budget</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cap-name">Tier 1 &mdash; Deep</td>
+            <td class="cap-desc">Strategic opportunity assessments &middot; Pre-ship readiness gates &middot; Escalations &middot; Revenue / legal / security findings &middot; Agent Context Notes (spec)</td>
+            <td>Full judgment required. Read, question, decide, write rationale.</td>
+            <td>20&ndash;40 min per artifact</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Tier 2 &mdash; Spot Check</td>
+            <td class="cap-desc">Prototype walkthroughs &middot; Risk matrix confidence scores &middot; Technical design trade-off summaries &middot; Analytics insight narratives &middot; Experiment result summaries</td>
+            <td>Pattern recognition. Is something surprising or wrong? If no, approve quickly. If yes, escalate to Tier 1.</td>
+            <td>5&ndash;10 min per artifact</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Tier 3 &mdash; Scan</td>
+            <td class="cap-desc">Generated copy and docs (for external content) &middot; Changelog entries &middot; Release communication drafts &middot; Test coverage reports &middot; Deployment readiness checklists</td>
+            <td>Scan for obvious errors or tone issues. Approve or flag for Tier 2.</td>
+            <td>1&ndash;2 min per artifact</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Skip</td>
+            <td class="cap-desc">Individual test outputs &middot; Lint and code style results &middot; Infra provisioning details &middot; Ticket routing and classification &middot; Agent-to-agent handoffs within a domain</td>
+            <td>Agents handle entirely. PE only sees these if an agent escalates an anomaly.</td>
+            <td>0 min</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.75rem;">When Artifacts Surface</h4>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Immediate (real-time)</h3>
+        <p>P0/P1 incidents &middot; Legal or security findings above severity threshold &middot; Any escalation tagged <em>decision_authority</em> or <em>ethical</em> &middot; Rollback decisions above user impact threshold</p>
+      </div>
+      <div class="card">
+        <h3>Morning Queue (daily)</h3>
+        <p>All escalations from the previous 24 hours, packaged with full context &middot; Items that crossed readiness threshold overnight &middot; Cross-agent conflicts the Orchestrator could not resolve autonomously</p>
+      </div>
+      <div class="card">
+        <h3>Weekly Digest</h3>
+        <p>Confidence score movements across the backlog &middot; Emerging signal patterns from discovery agents &middot; Skills and RCA report &middot; Agent autonomy trend (escalations per cycle, by type)</p>
+      </div>
+      <div class="card">
+        <h3>Explicit Gate</h3>
+        <p>Pre-ship readiness review (all four risk domains at threshold) &middot; Significant spec changes requested by agents &middot; New prototype revision deployed and ready for walkthrough</p>
+      </div>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 1.5rem;">How to Give Feedback Agents Can Act On</h4>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 760px;">
+      Feedback is the primary interface between the PE and the agent ensemble. Vague feedback produces vague iteration. Structured feedback becomes knowledge base entries that improve future agent decisions on similar artifacts.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Prototype feedback</h3>
+        <p>Walk through the preview URL as a user. For each issue: note the specific step, what felt wrong, and the <em>why</em> behind it (mental model mismatch, missing context, too many steps, etc.). Avoid prescribing the solution &mdash; diagnose the problem. The agent proposes the fix and iterates. Good: <em>&ldquo;Step 3 assumes the user already knows what a workflow template is. First-time users have no context.&rdquo;</em> Not useful: <em>&ldquo;Make this clearer.&rdquo;</em></p>
+      </div>
+      <div class="card">
+        <h3>Risk matrix feedback</h3>
+        <p>Review confidence scores and flag any domain where the score feels overconfident given the evidence. Provide the counter-signal: a customer quote, a known constraint, a market observation. The agent updates the evidence base and recalculates. The PE&rsquo;s subjective signal is a first-class input &mdash; it often surfaces context the agent cannot discover from data alone.</p>
+      </div>
+      <div class="card">
+        <h3>Escalation resolution</h3>
+        <p>Always include: (1) the decision, (2) the reason in 2&ndash;3 sentences, and (3) a generalisation &mdash; <em>&ldquo;in similar cases where X, prefer Y because Z.&rdquo;</em> The generalisation is what prevents the same escalation type from recurring. It becomes a policy entry in the agent&rsquo;s knowledge base. Without it, the escalation was resolved but not learned from.</p>
+      </div>
+      <div class="card">
+        <h3>Spec context notes</h3>
+        <p>Write these when agents are making reasonable decisions that are nonetheless wrong for strategic reasons not visible in the data. Be explicit and brief. <em>&ldquo;Prioritise enterprise compliance angle over self-serve UX in every trade-off for this item.&rdquo;</em> These notes carry more weight than any signal the agents can discover autonomously. Update them when strategy changes.</p>
+      </div>
+    </div>
+
+    <!-- 10.7 Evolved Product Evaluation -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">10.7 How Product Evaluation Evolves</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      When prototypes are generated in minutes and deployed instantly, and when agents can monitor production behaviour continuously, the episodic &ldquo;run a usability test&rdquo; or &ldquo;launch an A/B test&rdquo; model gives way to something more continuous and more granular.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>From Periodic Usability Tests to Continuous Usability Monitoring</h3>
+        <p>Session replay analysis, accessibility audits, and cognitive load scoring run on every prototype revision and every production deploy &mdash; not as one-off research events. Issues are surfaced continuously. The usability test becomes a targeted tool for confirming a hypothesis about a specific interaction, not a general health check.</p>
+      </div>
+      <div class="card">
+        <h3>From A/B Tests to Continuous Multivariate Evaluation</h3>
+        <p>Because generating a code variant takes minutes, the experiment surface expands dramatically. Instead of testing one variable against one control, agents can run structured variant sets across multiple dimensions simultaneously. Statistical significance is monitored in real time; losing variants are retired automatically. The PE&rsquo;s role shifts from &ldquo;design the test&rdquo; to &ldquo;define what winning means.&rdquo;</p>
+      </div>
+      <div class="card">
+        <h3>From Heuristic Review to Automated Heuristic Scoring</h3>
+        <p>UX heuristics (Nielsen&rsquo;s 10, WCAG, cognitive load frameworks) are applied automatically to every prototype and shipped surface. The PE reviews the <em>exceptions</em> &mdash; cases where the heuristic score is poor but the strategic rationale for the trade-off might still hold. This inverts the default: good design is the baseline expectation, not the review outcome.</p>
+      </div>
+      <div class="card">
+        <h3>From Post-Launch Measurement to Pre-Launch Confidence</h3>
+        <p>The risk matrix replaces the post-launch retrospective as the primary evaluation moment. By the time a feature ships, all four risk domains must have reached their confidence threshold &mdash; meaning evaluation happened during development, not after. Post-launch monitoring confirms or refines the confidence scores; it is no longer the primary source of truth about whether something worked.</p>
+      </div>
+    </div>
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">The Compounding Effect</div>
+      <p>As agents accumulate evidence across experiments, prototypes, session replays, and production signals, their confidence scoring becomes better calibrated over time. Early in the system&rsquo;s life, the PE will need to challenge scores frequently. Over time, the agent&rsquo;s confidence scores become reliable enough that the PE can trust Tier 2 spot checks to catch real surprises rather than needing Tier 1 deep reviews on every item. This is the second compounding flywheel, alongside the escalation &rarr; RCA loop.</p>
+    </div>
+
+    <!-- 10.8 Day in the Life -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">10.8 A Day in the Life &mdash; 2027</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      Maya is a Product Engineer at a B2B SaaS company with 40k business users. She is the only person on her product. The agents ran overnight. Her day centres on the escalation queue, artifact review, and direction-setting &mdash; not execution.
+    </p>
+
+    <div class="phase-timeline fade-in">
+      <div class="phase-item">
+        <div class="phase-label">7:45 AM &mdash; Morning Brief</div>
+        <h4>Agent overnight digest</h4>
+        <p>The Orchestrator surfaces a Morning Brief: 3 items reached readiness overnight (all 13 domain agents at confidence threshold), 2 escalations awaiting resolution, 1 item stalled for 3 days. Maya approves 2 items to sprint, overrides the third with a written context note after reviewing the Usability Agent&rsquo;s prototype and session replay analysis. The override triggers a PostHog event to track adoption risk post-ship. Total time: 12 minutes.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-label">8:15 AM &mdash; Escalation Queue</div>
+        <h4>Two decisions only Maya can make</h4>
+        <p><strong>Escalation 1 &mdash; Legal:</strong> The Viability Agent flagged potential GDPR Article 22 applicability for a new AI suggestions feature. Confidence blocked at 34%. Maya adds context notes and marks it pending the Thursday legal call &mdash; the agent pre-packages everything legal needs to decide. <strong>Escalation 2 &mdash; Ambiguity:</strong> The Value Agent surfaced three conflicting research hypotheses for a manager dashboard feature and cannot proceed. Maya reads the supporting interview quotes, picks a direction, writes a one-paragraph problem statement, and returns it. The agent resumes. She files an RCA: manager dashboard items need upfront outcome framing at intake.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-label">9:30 AM &mdash; Strategic Hour</div>
+        <h4>Promoting signals to backlog</h4>
+        <p>The Signal Aggregation skill clustered a pattern across 3 enterprise customers in 30 days: &ldquo;audit trail&rdquo; appeared in support tickets, NPS verbatims, and a sales call transcript. A draft backlog item was auto-created with a 61% Value confidence score (signal strong, willingness-to-pay unknown). Maya reviews the clustering rationale, confirms it fits a compliance-forward roadmap theme, and promotes it to active grooming. She writes a two-sentence context note: compliance is the wedge, not productivity. All 13 agents begin parallel grooming.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-label">11:00 AM &mdash; Artifact Review</div>
+        <h4>Technical design and quality gating</h4>
+        <p>The Technical Design Agent completed a spike for the AI suggestions feature. Maya reads the summary: two viable architecture patterns, p50 estimate of 9 days, p85 of 18 days, medium tech debt risk in the legacy permission model. The Quality Agent auto-created a prerequisite test coverage task (current coverage: 64%, below the 80% threshold). Maya approves the architecture direction, marks the test task as a hard prerequisite. 8 minutes of her time.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-label">1:30 PM &mdash; Cross-Agent Conflict</div>
+        <h4>Value vs. Feasibility triage</h4>
+        <p>The Orchestrator flagged a conflict on the onboarding templates feature: the Value Agent rated it high priority (top retention risk signal), the Technical Design Agent returned a 3-week minimum estimate requiring a templating engine rewrite. The Orchestrator auto-generated two options. Maya picks the simplified version (static templates, 5 days) and ships it as a deliberate signal-gathering step. She notes this class of conflict has appeared three times this quarter &mdash; the tech debt backlog for the templating engine moves up.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-label">3:00 PM &mdash; Skills Review</div>
+        <h4>Quarterly harness investment &mdash; 30 minutes today</h4>
+        <p>The RCA log shows that 5 of the last 8 Value Agent escalations were caused by missing willingness-to-pay data. There is no pricing intelligence integration in the current skill set. Maya approves a new <code>willingness_to_pay_scan</code> skill: PricingIntelligence API plus Gong win/loss transcripts. She drafts the skill spec and routes it. This should eliminate an entire class of escalation from the next cycle.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-label">4:30 PM &mdash; Human Presence</div>
+        <h4>The things only Maya can do</h4>
+        <p>Three messages requiring direct human presence: a VP of Sales asking about timeline on the audit trail feature (Maya sets realistic expectations based on current confidence scores), a CS manager flagging a usability complaint the agents have not yet seen (Maya routes it to the session replay analysis queue), and a 15-minute call with an engineer about the permission model &mdash; the kind of human-to-human context transfer that still matters for trust and alignment.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-label">5:15 PM &mdash; Day Close</div>
+        <h4>End-of-day summary</h4>
+        <p>Orchestrator summary: 3 items moved to sprint, 1 escalation resolved, 2 new backlog items auto-created by agents, 1 skill approved for development, 7 confidence scores improved, average backlog readiness up 3 points. Maya sets one priority note for overnight: the audit trail feature is now strategically top-3. The agents keep working while she sleeps.</p>
+      </div>
+    </div>
+
+    <!-- 10.9 Role Transformation -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">10.9 What This Changes About the Role</h3>
+    <table class="compare-table fade-in">
+      <thead>
+        <tr><th>Old Specialist Tribe</th><th>Product Engineer (Augmented)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="legacy">PM writes specs &rarr; hands off to design &rarr; hands off to engineering</td><td class="augmented">One person with full lifecycle context; agents handle depth, human handles coherence</td></tr>
+        <tr><td class="legacy">UX researcher runs interviews over weeks; synthesises manually</td><td class="augmented">Human directs research strategy; Research Agent synthesises hours after fieldwork</td></tr>
+        <tr><td class="legacy">Engineers estimate effort in planning meetings</td><td class="augmented">Technical Design Agent provides probabilistic estimates; human reviews trade-offs</td></tr>
+        <tr><td class="legacy">QA team executes regression manually or maintains fragile test suites</td><td class="augmented">Quality Agent generates and runs tests; human reviews for coverage gaps and novel risk</td></tr>
+        <tr><td class="legacy">DevOps team manages deployments; releases are events</td><td class="augmented">Release Agent handles rollout, monitoring, and rollback; human approves high-stakes gates only</td></tr>
+        <tr><td class="legacy">Data analyst produces weekly reports; insights are lagging</td><td class="augmented">Observability Agent monitors continuously; weekly narrative synthesised automatically</td></tr>
+        <tr><td class="legacy">Marketing writes launch copy; Sales asks for battlecards; PM coordinates</td><td class="augmented">GTM Agent drafts all materials from the same product spec; human reviews tone and strategic positioning</td></tr>
+        <tr><td class="legacy">Knowledge decays in wikis; onboarding takes months</td><td class="augmented">Documentation Agent keeps docs in sync with code; decision log is auto-maintained</td></tr>
+        <tr><td class="legacy">Quarterly roadmap; strategic alignment by committee</td><td class="augmented">Continuously evolving confidence-ranked backlog; strategic direction set in writing, executed by agents</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">Process, Not Just Person</div>
+      <p>John Collison argued that the majority of AI productivity gains are realised at the <em>process level</em>, not the individual level &mdash; and that organisations capture an order of magnitude more value when they redesign workflows around AI than when they layer tools onto existing ones. The Product Engineer model is precisely this: it is not a person using better tools within the same process; it is a fundamentally restructured process where the bottleneck has moved from execution capacity to judgment quality. The measure of success is not how fast the PE works &mdash; it is how much the agent ensemble can handle without human input, and how precisely the human&rsquo;s judgment improves the system when it <em>is</em> applied. This framing also inverts the traditional metrics: the PE is not measured by output volume but by the compound quality of the decisions that route through them.</p>
+    </div>
+
+    <div class="bottom-line fade-in" style="margin-top: 2rem;">
+      <h3>The Core Shift</h3>
+      <p>The Product Engineer&rsquo;s primary competencies become: systems thinking across the full lifecycle, epistemic judgment about when to trust agent outputs, written communication as the primary interface to the agent ensemble, product taste at the artifact review layer, and the discipline to treat every escalation as a system improvement opportunity rather than just a decision to make. The technology is a scaffold; the transformation is a new profession.</p>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem; border-left-color: hsl(215 90% 55%);">
+      <div class="callout-title">See It in Action &mdash; Design Prototype</div>
+      <p>What does the Product Engineer&rsquo;s daily workspace actually look like? The <a href="workspace.html" style="text-decoration: underline; text-underline-offset: 2px; color: inherit; font-weight: 600;">Agentic Workspace prototype &rarr;</a> shows a mid-PDLC scenario: a new Smart Alerts capability mid-engineering sprint, with agents running, one blocked, two escalations open, and a prioritized artifact review queue for Maya Chen to process. It is a design concept exploring how the review-first, queue-driven interface could work in practice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Agent Architecture Deep Dive -->
+<section class="section-alt" id="agent-architecture">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">Section 11 &mdash; Speculative Idea</div>
+      <h2>Agent Architecture Deep Dive: Skills, Cycles &amp; Shared Memory</h2>
+      <p>How the current definition of an agent &mdash; LLM + memory + planning + skills + loops &mdash; evolves to support the Product Engineer model. And how a shared, evolving knowledge base across all agents becomes the system&rsquo;s compounding asset.</p>
+    </div>
+
+    <!-- 11.1 What an Agent Is -->
+
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem;">11.1 The Agent Definition, Unpacked</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      The canonical definition of an AI agent is: a reasoning model (LLM) with persistent memory, planning and reflection capability, a set of callable tools/skills, and a loop that lets it observe results and iterate. Each of these five components needs to evolve significantly for the product engineering model to work at the fidelity described in Section 10.
+    </p>
+
+    <div class="harness-visual fade-in" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+      <div class="harness-layer">
+        <h4>LLM Core</h4>
+        <p>The reasoning engine. Interprets domain signals, plans skill invocation sequences, evaluates evidence quality, and generates structured outputs (confidence scores, escalation packages, spec updates).</p>
+        <ul>
+          <li>Domain-specialized system prompt</li>
+          <li>Structured output schema per artifact type</li>
+          <li>Calibrated uncertainty expression</li>
+          <li>Cross-agent communication format</li>
+        </ul>
+      </div>
+      <div class="harness-layer" style="background: hsl(var(--secondary));">
+        <h4>Memory (multi-layer)</h4>
+        <p>Not a single context window. Four distinct layers, each with different scope and durability.</p>
+        <ul>
+          <li>Working: current task + recent outputs</li>
+          <li>Episodic: agent&rsquo;s own past items and outcomes</li>
+          <li>Semantic: shared product/org knowledge base</li>
+          <li>Procedural: skill definitions + execution patterns</li>
+        </ul>
+      </div>
+      <div class="harness-layer">
+        <h4>Planning &amp; Reflection</h4>
+        <p>The meta-cognitive layer. Decides which skills to invoke in what order, evaluates whether outputs are good enough, and determines when to escalate vs. iterate.</p>
+        <ul>
+          <li>Confidence gap analysis: what would raise my score?</li>
+          <li>Skill sequencing: what to invoke next?</li>
+          <li>Self-evaluation: is this output trustworthy?</li>
+          <li>Stuck detection: N iterations, no improvement → escalate</li>
+        </ul>
+      </div>
+      <div class="harness-layer" style="background: hsl(var(--secondary));">
+        <h4>Skills &amp; Tools</h4>
+        <p>Domain-specific callable capabilities that extend the LLM beyond reasoning into action &mdash; fetching real data, running analysis, generating artifacts, triggering deployments.</p>
+        <ul>
+          <li>Each skill = a parameterized capability with defined inputs/outputs</li>
+          <li>Skills compose: output of one becomes input of another</li>
+          <li>Skills connect to external systems via tool integrations</li>
+          <li>Skill completeness = agent autonomy ceiling</li>
+        </ul>
+      </div>
+      <div class="harness-layer">
+        <h4>Loops</h4>
+        <p>The iteration mechanism. Each agent runs in domain-specific cycles driven by confidence thresholds, not task completion.</p>
+        <ul>
+          <li>Observe: read current item state + memory</li>
+          <li>Plan: identify highest-value next skill to invoke</li>
+          <li>Act: execute skill, update working memory</li>
+          <li>Reflect: did confidence improve? What&rsquo;s the next gap?</li>
+          <li>Gate: if threshold met → surface to PE; if stuck → escalate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">The Key Evolution</div>
+      <p>The version of this definition that supports the product engineering model differs from the 2024 single-agent paradigm in three ways: (1) memory is multi-layer and persistent, not just in-context; (2) loops are confidence-threshold-driven, not task-completion-driven; (3) agents operate as an ensemble sharing a semantic memory layer &mdash; they are not isolated. These three differences are what make autonomous, continuous backlog grooming possible rather than just task execution.</p>
+    </div>
+
+    <!-- 11.2 Skills and Agent Cycles -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 2.5rem;">11.2 Skills Augmenting Agent Cycles</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      Skills do not fire once and stop. They are invoked at specific points within each agent&rsquo;s cycle, their outputs feed planning decisions, and results accumulate in memory to inform future cycles. Below are the representative cycles for six key agents, showing exactly which skills are invoked at each step and what memory is read or written.
+    </p>
+
+    <div class="tabs fade-in" role="tablist">
+      <button class="tab-btn active" data-tab="cyc-discovery" role="tab">Discovery</button>
+      <button class="tab-btn" data-tab="cyc-research" role="tab">Research &amp; Validation</button>
+      <button class="tab-btn" data-tab="cyc-design" role="tab">Design &amp; Prototype</button>
+      <button class="tab-btn" data-tab="cyc-engineering" role="tab">Engineering</button>
+      <button class="tab-btn" data-tab="cyc-quality" role="tab">Quality &amp; Release</button>
+      <button class="tab-btn" data-tab="cyc-orchestrator" role="tab">Orchestrator</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-cyc-discovery">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Step 1 &mdash; Sense</div>
+          <h4>Continuous signal ingestion</h4>
+          <p>Skills invoked: <code>signal_aggregation</code> (runs on a scheduled trigger, pulling from Intercom, Zendesk, Gong, FullStory, Klue). Outputs: tagged signal stream written to working memory. Memory read: product KB for existing problem areas to check for signal reinforcement vs. novel patterns. Memory written: signal stream appended to episodic memory with timestamp and source weights.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 2 &mdash; Cluster</div>
+          <h4>Pattern formation</h4>
+          <p>Skill invoked: <code>problem_clustering</code>. LLM reasoning over current signal stream + historical clusters from episodic memory. Planning question: <em>&ldquo;Do new signals reinforce an existing cluster or constitute a new one?&rdquo;</em> Memory read: episodic (past clusters and their outcomes &mdash; did items created from them prove valuable?). Reflection: clusters with high historical false-positive rate are down-weighted.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 3 &mdash; Score</div>
+          <h4>Opportunity ranking</h4>
+          <p>Skill invoked: <code>opportunity_scoring</code>. Memory read: product KB (current strategy, active roadmap themes, prior experiment results in this problem area). Output: scored opportunity with confidence, supporting signal count, and strategic fit score. Reflection: <em>&ldquo;Is my confidence in this opportunity high enough to draft a backlog item, or do I need more signal?&rdquo;</em> If score below threshold, agent continues monitoring without creating an item.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 4 &mdash; Draft</div>
+          <h4>Backlog item creation</h4>
+          <p>Skill invoked: <code>intake_structuring</code>. Uses the opportunity score + clustered signals to auto-populate the Agent-Ready Spec template: problem brief, initial JTBD hypothesis, risk matrix (all four domains at initial low confidence), empty prototype slot, and assumption registry seeded from the signal evidence. Memory written: new item ID added to episodic memory with creation context. Orchestrator notified: item enters active grooming queue.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 5 &mdash; Monitor &amp; Reflect</div>
+          <h4>Continuous reinforcement loop</h4>
+          <p>No new skills invoked. Agent watches for new signals that would update the item&rsquo;s evidence base. Planning question: <em>&ldquo;Has anything materially changed since I last scored this opportunity?&rdquo;</em> If a new signal cluster contradicts the original, the agent triggers a re-score. Reflection cycle: after item is shipped and outcome data is available, agent reads the outcome against its original prediction and writes calibration update to episodic memory &mdash; improving future scoring accuracy.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-cyc-research">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Step 1 &mdash; Receive &amp; Assess</div>
+          <h4>Assumption triage</h4>
+          <p>Triggered when an item enters active grooming. Memory read: product KB for any prior research in this problem area (past interview syntheses, experiment results, competitive data). Skill invoked: <code>assumption_registry</code> (seeds the registry from the problem brief and signals). Planning question: <em>&ldquo;Which assumptions have the highest risk × uncertainty product? Which skill can most efficiently reduce them?&rdquo;</em> Outputs a ranked skill invocation plan for this item.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 2 &mdash; Validate</div>
+          <h4>Evidence gathering loop</h4>
+          <p>Agent works through the ranked assumption list. For each high-priority assumption, invokes the matching skill: <code>interview_synthesis</code> (if prior interviews exist), <code>experiment_design</code> (if a test needs to be created), <code>competitive_deep_dive</code> (if market evidence is needed), <code>market_sizing</code> (if opportunity scale is unknown). Each skill output is evaluated: does this raise or lower my Value confidence score? Evidence is appended to the risk matrix and assumption registry is updated. Loop continues until either the confidence threshold is reached or the agent detects it is stuck.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 3 &mdash; Experiment</div>
+          <h4>Active validation</h4>
+          <p>If passive evidence (existing interviews, competitive data) cannot raise confidence to threshold, the agent invokes <code>experiment_design</code> to create a validation experiment (fake-door, concierge, or prototype test). Experiment spec is written to the item. After experiment runs (triggered externally or by the Design Agent deploying a prototype), <code>experiment_analysis</code> is invoked. Memory written: experiment results added to product KB under the relevant problem area &mdash; future items in the same area benefit from this evidence.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 4 &mdash; Stuck Detection &amp; Escalation</div>
+          <h4>Knowing when to stop iterating</h4>
+          <p>Reflection trigger: if Value confidence has not improved by more than N points after M skill invocations, the agent packages an escalation. Package includes: current confidence score, assumption registry with open items highlighted, evidence gathered so far, and three possible resolutions (with trade-offs). Memory written: escalation type logged to episodic memory. After PE resolves, the rationale is written to the product KB as a policy entry: <em>&ldquo;For items in [problem class], [decision] because [rationale].&rdquo;</em></p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 5 &mdash; Continuous Monitoring</div>
+          <h4>Post-ship validation loop</h4>
+          <p>After the item ships, Research Agent re-activates. Skill invoked: <code>experiment_analysis</code> against post-ship product analytics data. Does the observed outcome match the predicted outcome that justified building this? Memory written: prediction vs. outcome delta written to episodic memory and product KB. This closes the learning loop and improves future Value confidence calibration across all items in this problem area.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-cyc-design">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Step 1 &mdash; Receive</div>
+          <h4>Spec intake and context loading</h4>
+          <p>Triggered when Value confidence reaches threshold and item enters design phase. Memory read: product KB (design system tokens, component library API, existing patterns for this problem area, prior usability findings for similar flows). Working memory loaded with: problem brief, JTBD, success metric, cognitive load threshold for this product area. Planning question: <em>&ldquo;Are there prior flows for this type of feature I should adapt rather than generate from scratch?&rdquo;</em></p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 2 &mdash; Flow &amp; Score</div>
+          <h4>Structure before pixels</h4>
+          <p>Skill invoked: <code>user_flow_generation</code> (produces Mermaid diagram + narrated walkthrough). Immediately followed by: <code>cognitive_load_scoring</code> (scores the draft flow against threshold). <code>pattern_matching</code> (checks whether each step has an established UX pattern). Reflection: <em>&ldquo;Is the cognitive load score acceptable? Are any steps pattern-less and high-risk?&rdquo;</em> If score too high, agent revises the flow structure before generating the prototype &mdash; fixing logic, not pixels.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 3 &mdash; Generate &amp; Validate</div>
+          <h4>Code prototype loop</h4>
+          <p>Skill invoked: <code>code_prototype_generation</code> (generates working code against the approved flow, using actual component library and design tokens). Immediately followed by: <code>design_system_compliance</code> (lints prototype code against component rules), <code>accessibility_audit</code> (runs Axe-core against deployed preview). Any violations are addressed autonomously if they have clear fixes. Prototype is deployed to a preview URL and written into the spec. Memory written: prototype version history added to item&rsquo;s episodic memory.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 4 &mdash; Surface &amp; Iterate</div>
+          <h4>PE review loop</h4>
+          <p>Orchestrator surfaces the prototype to PE as a Tier 2 spot check. PE reviews the preview URL and provides structured feedback. Design Agent receives feedback, maps each point to a specific flow step or component, and invokes <code>code_prototype_generation</code> again with the feedback as high-weight context. Cognitive load and compliance checks re-run on each iteration. Memory written: each feedback item + agent resolution logged to product KB under design patterns &mdash; building a growing library of <em>&ldquo;PE preferred this over that for these reasons.&rdquo;</em></p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 5 &mdash; Usability Verification</div>
+          <h4>Participant validation</h4>
+          <p>Once PE approves the prototype, skill invoked: <code>usability_test_script</code> (creates test against the preview URL, distributes to participants via Maze, synthesises results). If findings surface mental model mismatches, agent returns to Step 2 (flow revision). If findings are within acceptable severity range, Usability confidence score is updated and item advances. Memory written: usability findings written to product KB under the relevant user segment and flow type &mdash; all future items targeting the same segment start with this knowledge.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-cyc-engineering">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Step 1 &mdash; Receive &amp; Scan</div>
+          <h4>Blast radius assessment</h4>
+          <p>Triggered when design is approved. Memory read: product KB (architecture decision records, prior spikes in this area, known tech debt hotspots). Skills invoked in parallel: <code>codebase_complexity_scan</code> (maps affected modules, coupling risk), <code>dependency_impact</code> (maps downstream service effects), <code>api_capability_map</code> (identifies gaps between what the design requires and what current APIs provide). Planning question: <em>&ldquo;What is the highest-uncertainty technical question? Does it need a spike before design?&rdquo;</em></p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 2 &mdash; Design &amp; Estimate</div>
+          <h4>Architecture proposal</h4>
+          <p>Skills invoked: <code>system_design_draft</code> (proposes approach with trade-off summary), <code>api_design</code> (drafts API spec if new surface), <code>data_model_design</code> (proposes schema changes), <code>effort_estimator</code> (p50/p85 based on complexity score + velocity history). <code>security_review</code> runs against the proposed design. Reflection: <em>&ldquo;Are there two valid architectural approaches with materially different trade-offs? If yes, package both and escalate for PE direction.&rdquo;</em> Memory written: ADR draft added to product KB for this item.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 3 &mdash; Implement in Tasks</div>
+          <h4>Decomposition and execution loop</h4>
+          <p>Planning: agent decomposes approved design into implementation tasks ordered by dependency. For each task: <code>feature_implementation</code> invoked (generates code from spec + codebase context). After each task: <code>code_review</code> invoked (checks correctness, security, unnecessary complexity, pattern conformance). Violations are addressed autonomously. Memory read: product KB for coding conventions, prior similar implementations, and security policies. This loop runs until all tasks are complete or a blocker is found.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 4 &mdash; Debug &amp; Refine</div>
+          <h4>Error resolution loop</h4>
+          <p>When tests fail or code review flags a pattern violation: <code>debugging</code> invoked (error + context → root cause → targeted fix). Agent attempts autonomous resolution for issues within its competence boundary. Reflection: <em>&ldquo;Is this the same root cause class as a previous issue on this item or in this codebase area?&rdquo;</em> Memory read: episodic (prior debugging sessions in this module). If the same issue class has recurred N times, agent writes it to the product KB as a known anti-pattern for this codebase area.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 5 &mdash; Handoff &amp; Document</div>
+          <h4>Knowledge capture</h4>
+          <p>When implementation is complete: <code>api_docs_generation</code> invoked (generates OpenAPI docs from code). ADR is finalised with the chosen approach and rationale. Memory written: implementation decisions, patterns used, and any novel solutions added to product KB. Feasibility confidence score updated. Quality Agent triggered. Engineering Agent enters monitoring mode: watches for post-ship issues in the modules it touched, invoking <code>debugging</code> if new errors are attributed to those modules.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-cyc-quality">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Step 1 &mdash; Triggered</div>
+          <h4>Coverage baseline</h4>
+          <p>Triggered by Engineering Agent task completion signal. Memory read: product KB (quality thresholds for this product area, prior test patterns for similar features, known flaky test signatures to avoid). Skill invoked: <code>test_coverage_audit</code> (reports current coverage in changed modules, identifies gaps). Planning: <em>&ldquo;Which coverage gaps are most likely to hide defects in this specific change?&rdquo;</em> Generates prioritised test generation plan rather than exhaustive coverage for its own sake.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 2 &mdash; Generate &amp; Run</div>
+          <h4>Test creation loop</h4>
+          <p>Skill invoked: <code>test_generation</code> for each gap in the priority plan (unit, integration, and e2e coverage). Tests are generated from: the acceptance criteria in the spec, the user flow (for e2e scenarios), and edge cases surfaced by the security review. <code>regression_scan</code> runs the full suite. Any failures trigger the Engineering Agent&rsquo;s debug loop. Reflection: <em>&ldquo;Are my generated tests actually testing the right thing, or are they testing the implementation rather than the behaviour?&rdquo;</em></p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 3 &mdash; Non-Functional Checks</div>
+          <h4>Performance and security</h4>
+          <p>Skills invoked in parallel: <code>performance_test</code> (load test new endpoints against baseline), <code>security_scan</code> (dynamic scan of changed surfaces). Any finding above threshold goes to Engineering Agent for remediation. Performance regressions above threshold trigger a Tier 2 spot check for PE: <em>&ldquo;We can ship with this regression if you approve the trade-off, or hold while Engineering Agent investigates.&rdquo;</em> Memory written: performance baseline for this surface updated in product KB.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 4 &mdash; Release Preparation</div>
+          <h4>Ship readiness</h4>
+          <p>Skills invoked: <code>feature_flag_management</code> (creates flag for phased rollout), <code>rollout_strategy</code> (designs % rollout plan based on risk level from all four confidence scores), <code>changelog_generation</code> (writes release notes from PR history and spec). <code>user_facing_docs</code> invoked if the feature has customer-facing documentation implications. Release checklist generated. Memory written: rollout strategy written to product KB so future similar items start from this template.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Step 5 &mdash; Post-Ship Monitoring</div>
+          <h4>Continuous verification loop</h4>
+          <p>After ship: <code>rollback_trigger</code> monitors the feature flag cohort for anomalies. Observability Agent is notified to watch specific metrics for this feature. If anomaly detected within the rollout window, Quality Agent evaluates severity and either expands rollout (all metrics green), holds expansion (ambiguous signals), or triggers rollback (clear regression). Memory written: rollout outcome written to product KB &mdash; improving rollout strategy recommendations for future items with similar risk profiles.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-cyc-orchestrator">
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Continuous &mdash; Route &amp; Track</div>
+          <h4>The meta-loop</h4>
+          <p>The Orchestrator runs a continuous loop across all active items, not a sequential cycle. Every N minutes: reads the state of all items (confidence scores, which domain agents are active, which are stuck). Detects items that have changed state and routes work to the appropriate domain agent. Aggregates confidence scores into a per-item readiness score. No skills of its own are invoked; it reads agent outputs and makes routing decisions based on rules and LLM reasoning over item state.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Continuous &mdash; Conflict Detection</div>
+          <h4>Cross-domain disagreement resolution</h4>
+          <p>Monitors for cross-agent conflicts: Value score high + Feasibility score low, Usability approved + Accessibility audit failing, Design approved + Security review blocking. When detected: Orchestrator generates a conflict summary with both agent positions, the specific disagreement, and the options for resolution. Routes to PE as a cross-domain conflict escalation (different from a domain escalation &mdash; this requires a trade-off judgment across domains, not just domain expertise). Memory read: product KB for prior similar conflicts and how they were resolved.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Continuous &mdash; Escalation Queue</div>
+          <h4>PE interface management</h4>
+          <p>Receives escalation signals from all domain agents. De-duplicates (if two agents escalate the same root issue), prioritises by urgency and impact, and packages each escalation with: agent identity, type, current confidence, what the agent tried, what information would resolve it, and suggested options. Morning queue assembled from previous 24h escalations. Real-time alerts for immediate-tier escalations. Memory read: product KB for context relevant to each escalation. Memory written: after PE resolves, Orchestrator writes the resolution and generalisation back to product KB as a policy entry.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Continuous &mdash; KB Maintenance</div>
+          <h4>Knowledge base stewardship</h4>
+          <p>Orchestrator is responsible for the health of the shared product KB. Runs periodic consistency checks: Are any policies contradicting each other? Are any KB entries based on experiments that have since been superseded? Are any design patterns in the KB deprecated by a newer component in the design system? Flags inconsistencies to PE via the weekly digest. Memory written: KB entries updated, deprecated, or merged. This is the &ldquo;garbage collection agent&rdquo; equivalent for the knowledge layer, not just the codebase.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11.3 The Shared Memory Architecture -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">11.3 The Shared Memory Architecture</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      The most underappreciated part of the model. Each agent has its own working and episodic memory, but all agents within a product share a semantic memory layer &mdash; the Product Knowledge Base. And products within an organisation share a higher layer &mdash; the Org Knowledge Base. These shared layers are what make the system smarter over time, not just faster.
+    </p>
+
+    <div style="display: flex; flex-direction: column; gap: 0.625rem;" class="fade-in">
+      <div style="border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.25rem; background: hsl(240 4.8% 97%);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="font-size: 0.875rem; font-weight: 600;">Working Memory</span>
+          <span style="font-size: 0.6875rem; color: hsl(var(--muted-foreground)); text-transform: uppercase; letter-spacing: 0.05em;">Per agent · Per task · Ephemeral</span>
+        </div>
+        <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin: 0;">Current backlog item spec, recent tool outputs, active reasoning chain, in-flight skill results. Cleared when the task cycle completes. Equivalent to the context window of an individual agent session. Nothing here persists.</p>
+      </div>
+      <div style="border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.25rem; background: hsl(240 4.8% 94%);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="font-size: 0.875rem; font-weight: 600;">Episodic Memory</span>
+          <span style="font-size: 0.6875rem; color: hsl(var(--muted-foreground)); text-transform: uppercase; letter-spacing: 0.05em;">Per agent · Persistent · Domain-scoped</span>
+        </div>
+        <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin: 0;">History of past items this specific agent processed: what skills were invoked, what confidence scores were achieved, what escalations were raised and how they resolved, and crucially &mdash; what its predictions were and whether they proved accurate post-ship. This is what enables per-agent calibration improvement over time. The Value Agent gets better at scoring because it has a record of being right or wrong.</p>
+      </div>
+      <div style="border: 2px solid hsl(var(--foreground)); border-radius: var(--radius); padding: 1.25rem; background: hsl(240 4.8% 91%);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="font-size: 0.875rem; font-weight: 600;">Product Knowledge Base &mdash; Shared Semantic Memory</span>
+          <span style="font-size: 0.6875rem; color: hsl(var(--muted-foreground)); text-transform: uppercase; letter-spacing: 0.05em;">All agents · Persistent · Product-scoped</span>
+        </div>
+        <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 0.75rem;">The living intelligence of the product itself. All agents read from and write to this layer. It compounds over time as every decision, experiment, usability finding, and escalation resolution adds structured knowledge.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; font-size: 0.75rem;">
+          <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+            <div style="font-weight: 600; margin-bottom: 0.25rem;">Customer &amp; Market</div>
+            <div style="color: hsl(var(--muted-foreground));">Personas, JTBD map, experiment outcomes, interview synthesis, competitive intelligence</div>
+          </div>
+          <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+            <div style="font-weight: 600; margin-bottom: 0.25rem;">Design &amp; UX</div>
+            <div style="color: hsl(var(--muted-foreground));">Pattern library, usability findings by segment, cognitive load baselines, PE design preferences</div>
+          </div>
+          <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+            <div style="font-weight: 600; margin-bottom: 0.25rem;">Engineering</div>
+            <div style="color: hsl(var(--muted-foreground));">ADRs, known anti-patterns, module complexity history, performance baselines, tech debt registry</div>
+          </div>
+          <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+            <div style="font-weight: 600; margin-bottom: 0.25rem;">Decisions &amp; Policies</div>
+            <div style="color: hsl(var(--muted-foreground));">Escalation resolutions + generalisations, trade-off precedents, permanent human gates</div>
+          </div>
+          <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+            <div style="font-weight: 600; margin-bottom: 0.25rem;">Strategy</div>
+            <div style="color: hsl(var(--muted-foreground));">Current roadmap themes, PE context notes, priority signals, what has been tried and abandoned</div>
+          </div>
+          <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+            <div style="font-weight: 600; margin-bottom: 0.25rem;">Business</div>
+            <div style="color: hsl(var(--muted-foreground));">Revenue impact predictions vs. actuals, pricing decisions, legal policies, vendor risk registry</div>
+          </div>
+        </div>
+      </div>
+      <div style="border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.25rem; background: hsl(240 4.8% 88%);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="font-size: 0.875rem; font-weight: 600;">Org Knowledge Base &mdash; Cross-Product Semantic Memory</span>
+          <span style="font-size: 0.6875rem; color: hsl(var(--muted-foreground)); text-transform: uppercase; letter-spacing: 0.05em;">All products · Persistent · Org-scoped</span>
+        </div>
+        <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin: 0;">Patterns and learnings that apply across products. Shared design system, org-wide compliance and legal constraints, engineering standards and platform conventions, cross-product market intelligence, and generalised policies from escalations that have been promoted to org-level rules. Individual product KBs contribute to this layer when a learning is assessed as cross-product relevant. New product engineers &mdash; human or agent &mdash; can bootstrap from this layer rather than starting from zero.</p>
+      </div>
+      <div style="border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1.25rem; background: hsl(240 4.8% 85%);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="font-size: 0.875rem; font-weight: 600;">Procedural Memory &mdash; The Skill Definitions Themselves</span>
+          <span style="font-size: 0.6875rem; color: hsl(var(--muted-foreground)); text-transform: uppercase; letter-spacing: 0.05em;">System-level · Updated via skills development</span>
+        </div>
+        <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin: 0;">The skill library: parameterized capability definitions, tool integrations, execution patterns, and composition rules. This layer evolves via the RCA → new skill development loop. It is the only memory layer that requires engineering work to update (all others are written by agents at runtime). Over time, procedural memory becomes the organisation&rsquo;s primary product development IP &mdash; the distillation of everything learned into reusable capabilities.</p>
+      </div>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem; border-left-color: hsl(25 95% 55%);">
+      <div class="callout-title">Real-World Skill Taxonomy &mdash; Lessons from Building Claude Code</div>
+      <p>Anthropic&rsquo;s own experience building and deploying skills for Claude Code provides concrete evidence for the skill architecture described above. After cataloguing all internal skills, <a href="https://x.com/trq212/status/2033949937936085378" target="_blank">Thariq Shafi (Anthropic) identified nine recurring categories</a> that production skills cluster into:</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.5rem; font-size: 0.75rem; margin: 0.75rem 0;">
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">1. Library &amp; API Reference</div>
+          <div style="color: hsl(var(--muted-foreground));">How to correctly use a library, CLI, or SDK &mdash; including reference snippets and a gotchas list that pushes the agent beyond its default behaviour.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">2. Product Verification</div>
+          <div style="color: hsl(var(--muted-foreground));">How to test or verify that code is working &mdash; paired with tools like Playwright, video recording of output, and programmatic assertions at each step.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">3. Data Fetching &amp; Analysis</div>
+          <div style="color: hsl(var(--muted-foreground));">Connecting to data and monitoring stacks &mdash; credentials, dashboard IDs, common query patterns, and analysis workflows.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">4. Business Process &amp; Team Automation</div>
+          <div style="color: hsl(var(--muted-foreground));">Automating repetitive workflows into one command &mdash; standup aggregators, ticket creation, weekly recaps stored in log files.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">5. Code Scaffolding &amp; Templates</div>
+          <div style="color: hsl(var(--muted-foreground));">Generating framework boilerplate for a specific function &mdash; combining instructions with scripts for services, migrations, and pre-configured settings.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">6. Code Quality &amp; Review</div>
+          <div style="color: hsl(var(--muted-foreground));">Enforcing code quality inside an org &mdash; deterministic scripts, style enforcement, and adversarial review processes.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">7. CI/CD &amp; Deployment</div>
+          <div style="color: hsl(var(--muted-foreground));">Fetching, pushing, and deploying code &mdash; PR monitoring, service deployment with rollout strategies, and conflict resolution.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">8. Runbooks</div>
+          <div style="color: hsl(var(--muted-foreground));">Taking a symptom, walking through a multi-tool investigation, and producing a structured report &mdash; mapping symptoms to tools for debugging.</div>
+        </div>
+        <div style="background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px); padding: 0.625rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">9. Infrastructure Operations</div>
+          <div style="color: hsl(var(--muted-foreground));">Routine maintenance and operational procedures &mdash; orphan resource cleanup, dependency management, and cost investigation.</div>
+        </div>
+      </div>
+      <p style="margin-top: 0.75rem;">The most actionable design insights from Anthropic&rsquo;s experience: <strong>the highest-signal content in any skill is the Gotchas section</strong> &mdash; updated from real failure points, not generic advice. <strong>Don&rsquo;t state the obvious</strong> &mdash; focus on information that pushes the agent out of its default behaviour. Use <strong>progressive disclosure via the file system</strong>: tell the agent what files exist and let it read them at appropriate times rather than loading everything upfront. <strong>Store helper scripts and libraries</strong> so the agent spends its turns on composition rather than rebuilding boilerplate. And critically: <strong>the description field is not a summary &mdash; it&rsquo;s a trigger condition</strong> that determines when the skill activates. These lessons from a production-scale skill system directly validate the procedural memory architecture above: skills are living, composable, filesystem-native assets that compound organisational capability &mdash; not static prompts.</p>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.5rem; border-left-color: hsl(215 90% 55%);">
+      <div class="callout-title">The Repository Is the Memory &mdash; A Practitioner Insight</div>
+      <p>Bret Taylor noted that the most effective agent knowledge base he encountered in practice was not a vector database or a purpose-built retrieval system &mdash; it was a directory of well-organised markdown files committed to a repository alongside the code. The rationale is concrete: a repo of markdown files is <strong>version-controlled</strong> (the KB has a history that agents and humans can traverse), <strong>diffable</strong> (changes are reviewable like code), <strong>human-readable</strong> (the PE can edit it directly without tooling), and <strong>natively loadable</strong> into the agent&rsquo;s context window without a retrieval step. The sophistication lies in <em>what is written and how it is organised</em> &mdash; not in the retrieval mechanism. This is the implementation model for the Product KB and Org KB described above. Taylor also noted this resolves what he sees as a fundamental limitation of MCP (Model Context Protocol): rather than defining a protocol for agents to query data sources on demand, the more robust approach is to pre-load comprehensive structured context so agents have everything they need before they begin reasoning &mdash; not just what they think to ask for. The missing context problem is worse than the too-much-context problem.</p>
+    </div>
+
+    <!-- 11.4 KB as Compounding Asset -->
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2.5rem;">11.4 The Shared KB as a Compounding Organisational Asset</h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
+      The shared KB is the mechanism by which the system gets smarter over time, not just faster. Each agent interaction either reads from the KB (starting from accumulated intelligence) or writes to it (contributing new intelligence). The density and quality of the KB directly determines agent autonomy &mdash; a richer KB means more situations are covered by existing policies, patterns, and evidence, leaving fewer gaps that require escalation.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Every Experiment Is Preserved</h3>
+        <p>Not just the outcome (&ldquo;we shipped it&rdquo;) but the full learning: hypothesis, methodology, result, and what it tells us about this customer segment or problem area. Future items in the same area begin with this evidence rather than starting from zero. Over time, the KB accumulates a rich map of what has been tried, what worked, and at what confidence level.</p>
+      </div>
+      <div class="card">
+        <h3>Every Escalation Becomes a Policy</h3>
+        <p>Each resolution contributes a generalisation. After enough resolutions in a domain, entire classes of decisions that once required human judgment can be handled autonomously. The rate of novel escalations declines. The PE&rsquo;s attention migrates from resolving known-class decisions to handling genuinely new situations &mdash; which is where human judgment is actually irreplaceable.</p>
+      </div>
+      <div class="card">
+        <h3>Every Design Decision Is Preserved</h3>
+        <p>PE feedback on prototypes, trade-off directions, preferred patterns &mdash; all written back to the KB as design preferences and precedents. The Design Agent does not ask the same question twice. Future prototypes start closer to the PE&rsquo;s aesthetic and strategic preferences without requiring a new review cycle for already-resolved questions.</p>
+      </div>
+      <div class="card">
+        <h3>Onboarding Collapses</h3>
+        <p>A new Product Engineer (human or agent) joining this system reads the product KB and immediately has access to: every strategic decision made, every customer insight gathered, every technical trade-off resolved, every design preference established. Months of onboarding becomes hours. The institutional knowledge is no longer in people&rsquo;s heads &mdash; it is in the KB.</p>
+      </div>
+      <div class="card">
+        <h3>Cross-Product Learning</h3>
+        <p>When a pattern is discovered in one product &mdash; a pricing structure that reduces churn, a flow that reduces cognitive load, a codebase pattern that reduces tech debt accumulation &mdash; and it is assessed as cross-product relevant, it is promoted to the Org KB. Every subsequent product agent ensemble starts with this knowledge. The organisation&rsquo;s product development capability compounds across products, not just within them.</p>
+      </div>
+      <div class="card">
+        <h3>The KB Is a First-Class Product</h3>
+        <p>The KB is not a side effect of building products &mdash; it is itself an organisational asset requiring active stewardship. The Orchestrator runs KB consistency checks. The PE reviews KB health in the weekly digest. RCAs produce KB improvements, not just resolved decisions. Maintaining KB quality is as important as maintaining code quality. A degraded KB degrades agent autonomy just as technical debt degrades engineering velocity.</p>
+      </div>
+      <div class="card">
+        <h3>The Harness Is a Product Surface</h3>
+        <p>Bret Taylor argued that the most strategically important product surface for enterprise software companies over the next decade will not be their user interface &mdash; it will be their <em>agent harness</em>: the structured context, KB, and skill definitions that determine how effectively AI agents can operate within the platform. Companies that invest in harness quality (documentation density, KB completeness, skill breadth, context richness) will dramatically outperform those that treat agent access as an API feature. This reframes the shared KB from an internal tool to a competitive asset. How well an organisation has codified its knowledge &mdash; decisions, patterns, customer insights, policies &mdash; directly determines how capable its agent ensemble can become.</p>
+      </div>
+    </div>
+
+    <div class="bottom-line fade-in" style="margin-top: 2rem;">
+      <h3>The Architecture in One Sentence</h3>
+      <p>Domain-specialized agents with confidence-driven loops invoke parameterized skills against real tooling, read from and write to a shared layered knowledge base, and surface only the residual judgment gaps to a human Product Engineer &mdash; creating a system where autonomy, accuracy, and institutional intelligence all compound continuously over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 12. Sources -->
 <section class="section-alt" id="sources">
   <div class="container narrow">
     <div class="section-header fade-in">
-      <div class="section-number">Section 10</div>
+      <div class="section-number">Section 12</div>
       <h2>Sources &amp; Further Reading</h2>
       <p>Research from 2025&ndash;2026. All links open in a new tab.</p>
     </div>
@@ -1131,13 +2327,62 @@
       <li><span class="source-org">IDC / CIO.com</span> &mdash; <a href="https://www.cio.com/article/3850763/88-of-ai-pilots-fail-to-reach-production-but-thats-not-all-on-it.html" target="_blank">88% of AI Pilots Fail to Reach Production</a> (Mar 2025)</li>
       <li><span class="source-org">Pulumi</span> &mdash; <a href="https://www.pulumi.com/blog/ai-predictions-2026-devops-guide/" target="_blank">AI Predictions for 2026: A DevOps Engineer's Guide</a></li>
       <li><span class="source-org">Linux Foundation</span> &mdash; Agent-to-Agent (A2A) Protocol (Jun 2025) &mdash; Adobe, Microsoft, SAP, ServiceNow</li>
+      <li><span class="source-org">Anthropic / Thariq Shafi</span> &mdash; <a href="https://x.com/trq212/status/2033949937936085378" target="_blank">Lessons from Building Claude Code: How We Use Skills</a> &mdash; Nine skill categories, best practices for skill design (gotchas, progressive disclosure, trigger descriptions), and practical patterns from production-scale agent skill deployment (Mar 2026)</li>
+      <li><span class="source-org">Anthropic</span> &mdash; <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank">Equipping Agents for the Real World with Agent Skills</a> &mdash; Skills as composable, portable instruction folders with progressive disclosure architecture</li>
+      <li><span class="source-org">Collison &amp; Taylor</span> &mdash; John Collison (Stripe) &amp; Bret Taylor (Sierra AI) &mdash; Interview on the future of AI, the product engineer role, agent harnesses, and context-over-protocol (March 2026)</li>
+      <li><span class="source-org">Addy Osmani</span> &mdash; <a href="https://addyosmani.com/blog/comprehension-debt/" target="_blank">Comprehension Debt: The Hidden Cost of AI Generated Code</a> (Mar 2026)</li>
+      <li><span class="source-org">Liu et al. / arXiv</span> &mdash; <a href="https://arxiv.org/html/2603.28592v1" target="_blank">Debt Behind the AI Boom: A Large-Scale Empirical Study of AI-Generated Code in the Wild</a> (Mar 2026)</li>
+      <li><span class="source-org">arXiv</span> &mdash; <a href="https://arxiv.org/html/2603.05344v1" target="_blank">Building AI Coding Agents for the Terminal: Scaffolding, Harness, Context Engineering, and Lessons Learned</a> (Mar 2026)</li>
+      <li><span class="source-org">Sonar</span> &mdash; <a href="https://www.sonarsource.com/blog/how-ai-is-redefining-technical-debt" target="_blank">The Great Toil Shift: How AI is Redefining Technical Debt</a> (Feb 2026)</li>
+      <li><span class="source-org">Exceeds AI</span> &mdash; <a href="https://blog.exceeds.ai/comparative-ai-code-quality-governance/" target="_blank">AI Code Quality Governance: 2026 Comparative Analysis</a> (Feb 2026)</li>
+      <li><span class="source-org">Codebridge</span> &mdash; <a href="https://www.codebridge.tech/articles/the-hidden-costs-of-ai-generated-software-why-it-works-isnt-enough" target="_blank">The Hidden Costs of AI-Generated Code in 2026</a> (Feb 2026)</li>
+      <li><span class="source-org">NxCode</span> &mdash; <a href="https://www.nxcode.io/resources/news/harness-engineering-complete-guide-ai-agent-codex-2026" target="_blank">Harness Engineering: The Complete Guide for AI Agent Development</a> (2026)</li>
+      <li><span class="source-org">HBR / Google</span> &mdash; <a href="https://hbr.org/2026/02/to-drive-ai-adoption-build-your-teams-product-management-skills" target="_blank">To Drive AI Adoption, Build Your Team&rsquo;s Product Management Skills</a> (Feb 2026)</li>
+      <li><span class="source-org">HBR</span> &mdash; <a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank">Overcoming the Organizational Barriers to AI Adoption</a> (Nov 2025)</li>
+      <li><span class="source-org">Marty Cagan / Airfocus</span> &mdash; <a href="https://airfocus.com/blog/ai-product-management-marty-cagan/" target="_blank">5 Ways AI Will Impact Product Management</a> (Aug 2025)</li>
+      <li><span class="source-org">Product-Led Alliance</span> &mdash; <a href="https://www.productledalliance.com/the-ai-adoption-curve-in-product-teams/" target="_blank">The AI Adoption Curve in Product Teams</a></li>
+      <li><span class="source-org">Productboard</span> &mdash; <a href="https://www.productboard.com/blog/ai-skills-product-managers-need/" target="_blank">AI Skills Product Managers Need</a></li>
+      <li><span class="source-org">Sema4.ai</span> &mdash; <a href="https://sema4.ai/blog/ai-maturity-model-2026/" target="_blank">Master the AI Maturity Model for 2026</a></li>
+      <li><span class="source-org">Mike Boysen</span> &mdash; <a href="https://medium.com/@mikeboysen/ai-strategy-a-practical-framework-using-jobs-to-be-done-jtbd-5e86f3fa7528" target="_blank">AI Strategy: A Practical Framework Using Jobs-to-be-Done</a></li>
     </ul>
+  </div>
+</section>
+
+<!-- Changelog -->
+<section id="changelog">
+  <div class="container narrow">
+    <div class="section-header fade-in">
+      <div class="section-number">Changelog</div>
+      <h2>What Changed</h2>
+      <p>A reverse-chronological record of substantive additions and updates.</p>
+    </div>
+    <div class="fade-in" style="font-size: 0.875rem; line-height: 1.8;">
+
+      <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">2 April 2026</h4>
+      <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Section 5.2</strong> &mdash; <em>Harness Engineering</em> &mdash; Added March 2026 arXiv paper formalising harness engineering as a three-layer discipline (input filtering, output validation, permission &amp; observability). Added NxCode and Eric Mann references on purpose-built guardrails for agents.</li>
+        <li><strong>Section 5.5</strong> &mdash; <em>Comprehension Debt</em> (new) &mdash; New subsection on Addy Osmani&rsquo;s concept of comprehension debt: the gap between code volume and human understanding. Includes Anthropic study data (17% lower comprehension), Liu et al. empirical study (304K commits, 41.1% security issue survival rate), Exceeds AI 90-day degradation curve (4.9&times; complexity growth), Sonar&rsquo;s &ldquo;Vibe, Then Verify&rdquo; framework, and Codebridge&rsquo;s 18-month collapse pattern.</li>
+        <li><strong>Section 7.3</strong> &mdash; <em>The Adoption Mindset: Intent Over Tooling</em> (new) &mdash; New subsection on intent-driven AI adoption for product teams. AI tool continuum mapped to product risks and jobs-to-be-done. Four principles for adoption (start with the risk, demos beat training, functional &amp; emotional jobs, outcome metrics). Data from HBR/Google, Product-Led Alliance (69% stuck in &ldquo;messy middle&rdquo;), Productboard (85% tool vs. 2% talent investment), and Sema4.ai maturity model.</li>
+        <li><strong>Section 12</strong> &mdash; <em>Sources</em> &mdash; Added 14 new source references across comprehension debt, harness engineering, and adoption research.</li>
+        <li><strong>Navigation</strong> &mdash; Added &ldquo;updated&rdquo; and &ldquo;new&rdquo; badges to Discipline, Adoption, and Changelog nav items.</li>
+      </ul>
+
+      <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">March 2026</h4>
+      <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Sections 10&ndash;11</strong> &mdash; <em>Product Engineer Role &amp; Agent Architecture Deep Dive</em> &mdash; Added speculative sections on the Product Engineer as human orchestrator, agent ensemble model, shared memory architecture, and the escalation&ndash;RCA flywheel.</li>
+        <li><strong>Hero infographic</strong> &mdash; Added full-screen infographic with grayscale inline / colour fullscreen toggle.</li>
+        <li><strong>Workspace prototype</strong> &mdash; Added <code>workspace.html</code> with agentic workspace concept (smart alerts, pulse analytics).</li>
+        <li><strong>Sections 1&ndash;9</strong> &mdash; Initial research synthesis covering legacy PDLC pain points, AI capabilities, evolution map, team structures, engineering discipline, non-coding tasks, phased roadmap, risks, and future-state vision.</li>
+      </ul>
+
+    </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    Research Synthesis &amp; Transformation Outline &middot; March 2026
+    Research Synthesis &amp; Transformation Outline &middot; March 2026 &middot;
+    <a href="workspace.html" style="text-decoration: underline; text-underline-offset: 2px;">Agentic Workspace prototype &#8594;</a>
   </div>
 </footer>
 

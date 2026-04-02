@@ -108,3 +108,15 @@ const taskObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 document.querySelectorAll('.task-spectrum').forEach(el => taskObserver.observe(el));
+
+// Anchor copy-link buttons
+document.querySelectorAll('.anchor-link').forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const url = window.location.origin + window.location.pathname + this.getAttribute('href');
+    navigator.clipboard.writeText(url).then(() => {
+      this.classList.add('anchor-link-copied');
+      setTimeout(() => this.classList.remove('anchor-link-copied'), 1400);
+    });
+  });
+});
