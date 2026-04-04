@@ -11,38 +11,149 @@
 
 <div class="progress-bar" id="progressBar"></div>
 
-<nav>
+<nav aria-label="Primary">
   <div class="nav-inner">
-    <div class="nav-logo">PDLC Futures Sketchpad</div>
-    <button class="nav-mobile-toggle" aria-label="Toggle menu">&#9776;</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#legacy">Legacy</a></li>
-      <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#evolution">Evolution</a></li>
-      <li><a href="#teams">Teams</a></li>
-      <li><a href="#discipline">Discipline <span class="nav-new">updated</span></a></li>
-      <li><a href="#beyond-code">Non-Coding</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#roadmap">Adoption <span class="nav-new">new</span></a></li>
-      <li><a href="#risks">Risks</a></li>
-      <li><a href="#future">Future</a></li>
-      <li class="nav-sep" aria-hidden="true"></li>
-      <li><a href="#product-engineer">PE Role <span class="nav-new">new</span></a></li>
-      <li><a href="#agent-architecture">Agents <span class="nav-new">new</span></a></li>
-      <li><a href="#sources">Sources</a></li>
-      <li><a href="#changelog">Changelog <span class="nav-new">new</span></a></li>
-      <li><a href="workspace.html">Workspace <span class="nav-new">new</span></a></li>
+    <a href="#top" class="nav-logo">PDLC Futures Sketchpad</a>
+    <div class="nav-actions">
+      <button type="button" class="nav-sections-btn" id="sectionNavToggle" aria-expanded="false" aria-controls="sectionNavPanel" aria-haspopup="true">
+        <span class="nav-sections-btn-label">Sections</span>
+        <span class="nav-sections-btn-chevron" aria-hidden="true"></span>
+      </button>
+      <a href="workspace.html" class="nav-workspace-link">Workspace <span class="nav-freshness nav-freshness--weeks" title="Added March 2026">~2 wks</span></a>
+    </div>
+  </div>
+  <div class="section-nav-backdrop" id="sectionNavBackdrop" hidden aria-hidden="true"></div>
+  <div class="section-nav-panel" id="sectionNavPanel" role="dialog" aria-label="Page sections" aria-modal="true" hidden>
+    <div class="section-nav-panel-header">
+      <div>
+        <div class="section-nav-panel-title">Jump to section</div>
+        <p class="section-nav-panel-sub">Last substantive edits (not line-by-line freshness).</p>
+      </div>
+      <button type="button" class="section-nav-close" id="sectionNavClose" aria-label="Close section menu">&#10005;</button>
+    </div>
+    <div class="section-nav-legend">
+      <span><span class="nav-freshness-dot nav-freshness-dot--recent"></span> Recent</span>
+      <span><span class="nav-freshness-dot nav-freshness-dot--weeks"></span> ~2 weeks</span>
+      <span><span class="nav-freshness-dot nav-freshness-dot--stable"></span> Earlier</span>
+    </div>
+    <ul class="section-nav-list" id="sectionNavList">
+      <li><a href="#summary" data-section-id="summary"><span class="section-nav-text">Executive summary</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#legacy" data-section-id="legacy"><span class="section-nav-text">Legacy process</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#capabilities" data-section-id="capabilities"><span class="section-nav-text">AI capabilities</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#evolution" data-section-id="evolution"><span class="section-nav-text">Evolution map</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#teams" data-section-id="teams"><span class="section-nav-text">Teams &amp; structures</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#discipline" data-section-id="discipline"><span class="section-nav-text">Engineering discipline</span><span class="nav-freshness nav-freshness--recent" title="Harness &amp; comprehension debt (Apr 2026)">Recent</span></a></li>
+      <li><a href="#beyond-code" data-section-id="beyond-code"><span class="section-nav-text">Beyond coding</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#roadmap" data-section-id="roadmap"><span class="section-nav-text">Roadmap &amp; adoption</span><span class="nav-freshness nav-freshness--recent" title="Adoption mindset subsection (Apr 2026)">Recent</span></a></li>
+      <li><a href="#risks" data-section-id="risks"><span class="section-nav-text">Risks</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#future" data-section-id="future"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--stable" title="Baseline synthesis">Earlier</span></a></li>
+      <li><a href="#product-engineer" data-section-id="product-engineer"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--weeks" title="Major section added March 2026">~2 wks</span></a></li>
+      <li><a href="#agent-architecture" data-section-id="agent-architecture"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--weeks" title="Major section added March 2026">~2 wks</span></a></li>
+      <li><a href="#sources" data-section-id="sources"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent" title="Expanded Apr 2026">Recent</span></a></li>
+      <li><a href="#changelog" data-section-id="changelog"><span class="section-nav-text">Changelog</span><span class="nav-freshness nav-freshness--recent" title="Updated with each release">Recent</span></a></li>
     </ul>
   </div>
 </nav>
 
-<!-- Hero -->
+<!-- Hero: title, subtitles, section map (first screen) -->
 <section class="hero" id="top">
   <div class="container">
     <span class="hero-badge">Ideas Sketchpad &middot; Continuously Evolving &middot; March 2026</span>
     <h1>PDLC Futures Sketchpad</h1>
-    <p class="subtitle">An evolving collection of perspectives on how AI transforms enterprise product delivery &mdash; from research synthesis to speculative ideas. Each section is a lens, not a blueprint.</p>
-    <div class="hero-stats fade-in">
+    <p class="subtitle">An evolving collection of perspectives on how AI transforms enterprise product delivery &mdash; from research synthesis to speculative ideas.</p>
+    <p class="hero-subline">Each section is a lens, not a blueprint.</p>
+
+    <div class="hero-section-map fade-in">
+      <div class="section-map-intro">
+        <span class="section-map-kicker">Sketchpad map</span>
+        <h2 class="section-map-title">Fourteen lenses in one page</h2>
+        <p class="section-map-lead">Each block is a section below&mdash;title, two-word flavor, click to jump. Read in order or hop by interest.</p>
+      </div>
+      <div class="section-map-grid" id="sectionMap" role="navigation" aria-label="All sections">
+      <a href="#summary" class="section-tile" data-section-id="summary">
+        <span class="section-tile-num">01</span>
+        <span class="section-tile-name">Executive summary</span>
+        <span class="section-tile-flavor">Thesis &amp; context</span>
+      </a>
+      <a href="#legacy" class="section-tile" data-section-id="legacy">
+        <span class="section-tile-num">02</span>
+        <span class="section-tile-name">Legacy PDLC</span>
+        <span class="section-tile-flavor">Pain points today</span>
+      </a>
+      <a href="#capabilities" class="section-tile" data-section-id="capabilities">
+        <span class="section-tile-num">03</span>
+        <span class="section-tile-name">AI capabilities</span>
+        <span class="section-tile-flavor">What tools unlock</span>
+      </a>
+      <a href="#evolution" class="section-tile" data-section-id="evolution">
+        <span class="section-tile-num">04</span>
+        <span class="section-tile-name">Evolution map</span>
+        <span class="section-tile-flavor">Workflows shift</span>
+      </a>
+      <a href="#teams" class="section-tile" data-section-id="teams">
+        <span class="section-tile-num">05</span>
+        <span class="section-tile-name">Teams &amp; structures</span>
+        <span class="section-tile-flavor">Roles &amp; topology</span>
+      </a>
+      <a href="#discipline" class="section-tile" data-section-id="discipline">
+        <span class="section-tile-num">06</span>
+        <span class="section-tile-name">Engineering discipline</span>
+        <span class="section-tile-flavor">Harness &amp; debt</span>
+      </a>
+      <a href="#beyond-code" class="section-tile" data-section-id="beyond-code">
+        <span class="section-tile-num">07</span>
+        <span class="section-tile-name">Beyond coding</span>
+        <span class="section-tile-flavor">Ops, PM, research</span>
+      </a>
+      <a href="#roadmap" class="section-tile" data-section-id="roadmap">
+        <span class="section-tile-num">08</span>
+        <span class="section-tile-name">Roadmap &amp; adoption</span>
+        <span class="section-tile-flavor">Phases &amp; intent</span>
+      </a>
+      <a href="#risks" class="section-tile" data-section-id="risks">
+        <span class="section-tile-num">09</span>
+        <span class="section-tile-name">Four risks</span>
+        <span class="section-tile-flavor">Product lens</span>
+      </a>
+      <a href="#future" class="section-tile" data-section-id="future">
+        <span class="section-tile-num">10</span>
+        <span class="section-tile-name">Future vision</span>
+        <span class="section-tile-flavor">Compound gains</span>
+      </a>
+      <a href="#product-engineer" class="section-tile" data-section-id="product-engineer">
+        <span class="section-tile-num">11</span>
+        <span class="section-tile-name">Product engineer</span>
+        <span class="section-tile-flavor">Human orchestrator</span>
+      </a>
+      <a href="#agent-architecture" class="section-tile" data-section-id="agent-architecture">
+        <span class="section-tile-num">12</span>
+        <span class="section-tile-name">Agent architecture</span>
+        <span class="section-tile-flavor">Ensemble &amp; memory</span>
+      </a>
+      <a href="#sources" class="section-tile" data-section-id="sources">
+        <span class="section-tile-num">13</span>
+        <span class="section-tile-name">Sources</span>
+        <span class="section-tile-flavor">References</span>
+      </a>
+      <a href="#changelog" class="section-tile" data-section-id="changelog">
+        <span class="section-tile-num">14</span>
+        <span class="section-tile-name">Changelog</span>
+        <span class="section-tile-flavor">What changed</span>
+      </a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- Metrics + infographic (below the fold) -->
+<section class="hero-below fade-in" aria-labelledby="hero-metrics-heading">
+  <div class="container">
+    <header class="hero-below-block">
+      <span class="section-map-kicker">Research snapshot</span>
+      <h2 class="hero-below-title" id="hero-metrics-heading">Signals from the field</h2>
+      <p class="hero-below-lead">Benchmarks from the sources referenced throughout the sketchpad.</p>
+    </header>
+    <div class="hero-stats">
       <div class="hero-stat">
         <div class="num">20-50%</div>
         <div class="label">Developer productivity gain</div>
@@ -64,16 +175,22 @@
         <div class="cite">Menlo Ventures, Dec 2025</div>
       </div>
     </div>
+
+    <div class="hero-below-sep" aria-hidden="true"></div>
+
+    <header class="hero-below-block hero-below-block--infographic">
+      <span class="section-map-kicker">Structural view</span>
+      <h2 class="hero-below-title" id="hero-infographic-heading">The AI-Augmented PDLC</h2>
+      <p class="hero-below-lead">A structural evolution of enterprise delivery&mdash;full diagram opens in a lightbox.</p>
+    </header>
+    <div class="hero-infographic">
+      <button type="button" class="hero-infographic-trigger" id="heroInfographicTrigger" aria-labelledby="hero-infographic-heading">
+        <img src="assets/detailed-infographics.png" alt="The AI-Augmented PDLC: A Structural Evolution of Enterprise Delivery" class="hero-infographic-img">
+        <span class="hero-infographic-hint">Click to view full screen</span>
+      </button>
+    </div>
   </div>
 </section>
-
-<!-- Hero infographic: inline grayscale, fullscreen color -->
-<div class="hero-infographic container fade-in">
-  <button type="button" class="hero-infographic-trigger" id="heroInfographicTrigger" aria-label="Open infographic full screen">
-    <img src="assets/detailed-infographics.png" alt="The AI-Augmented PDLC: A Structural Evolution of Enterprise Delivery" class="hero-infographic-img">
-    <span class="hero-infographic-hint">Click to view full screen</span>
-  </button>
-</div>
 
 <div class="infographic-fullscreen" id="infographicFullscreen" role="dialog" aria-modal="true" aria-label="Infographic full screen view" hidden>
   <button type="button" class="infographic-fullscreen-close" id="infographicFullscreenClose" aria-label="Close">&#10005;</button>
@@ -2357,6 +2474,11 @@
       <p>A reverse-chronological record of substantive additions and updates.</p>
     </div>
     <div class="fade-in" style="font-size: 0.875rem; line-height: 1.8;">
+
+      <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">4 April 2026</h4>
+      <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Navigation</strong> &mdash; Replaced the long horizontal nav with a single <strong>Sections</strong> control that opens a scrollable list of all sections, each tagged with last substantive edit recency (recent, ~2 weeks, or earlier).</li>
+      </ul>
 
       <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">2 April 2026</h4>
       <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">

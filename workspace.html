@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic Workspace — Smart Alerts · Pulse Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Workspace chrome ───────────────────────────────── */
+    .ws-page { background: hsl(var(--secondary)); min-height: 100vh; }
+
+    .ws-topbar {
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0.75rem 1.5rem;
+      margin-top: 56px;
+    }
+    .ws-topbar-row1 {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.625rem;
+    }
+    .ws-feature-context { display: flex; align-items: baseline; gap: 0.75rem; }
+    .ws-product-name {
+      font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: hsl(var(--muted-foreground));
+      padding: 0.125rem 0.5rem; border: 1px solid hsl(var(--border));
+      border-radius: 3px;
+    }
+    .ws-feature-name {
+      font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .ws-feature-desc {
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+    }
+    .ws-meta-right {
+      display: flex; align-items: center; gap: 1rem;
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+    }
+    .ws-synced { display: flex; align-items: center; gap: 0.25rem; }
+    .ws-synced-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: hsl(120 50% 45%); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* PDLC stage bar */
+    .pdlc-row {
+      display: flex; align-items: center; gap: 0; overflow-x: auto;
+    }
+    .pdlc-stage {
+      display: flex; align-items: center; gap: 0.375rem;
+      font-size: 0.6875rem; padding: 0.25rem 0.875rem 0.25rem 0.625rem;
+      color: hsl(var(--muted-foreground)); white-space: nowrap;
+      position: relative;
+    }
+    .pdlc-stage.done { color: hsl(var(--foreground)); }
+    .pdlc-stage.active {
+      color: hsl(var(--foreground)); font-weight: 700;
+      background: hsl(var(--foreground)); color: hsl(var(--primary-foreground));
+      border-radius: 3px;
+    }
+    .pdlc-tick {
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 1.5px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.5rem; font-weight: 700; flex-shrink: 0;
+    }
+    .pdlc-stage.done .pdlc-tick { background: hsl(var(--foreground)); border-color: hsl(var(--foreground)); color: hsl(var(--primary-foreground)); }
+    .pdlc-stage.active .pdlc-tick { background: hsl(var(--primary-foreground)); border-color: hsl(var(--primary-foreground)); color: hsl(var(--foreground)); }
+    .pdlc-sep { color: hsl(var(--border)); font-size: 0.625rem; padding: 0 0.125rem; }
+    .pdlc-sprint-badge {
+      margin-left: auto; flex-shrink: 0;
+      font-size: 0.6875rem; font-weight: 500;
+      padding: 0.25rem 0.625rem;
+      border: 1px solid hsl(var(--border)); border-radius: 9999px;
+      color: hsl(var(--muted-foreground));
+    }
+    .pdlc-sprint-badge span { font-weight: 700; color: hsl(var(--foreground)); }
+
+    /* Summary strip */
+    .ws-summary-strip {
+      display: flex; align-items: center; gap: 0;
+      border-top: 1px solid hsl(var(--border));
+      margin-top: 0.625rem; padding-top: 0.625rem;
+    }
+    .ws-stat {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 1.5rem 0 0; margin-right: 1.5rem;
+      border-right: 1px solid hsl(var(--border));
+    }
+    .ws-stat:last-child { border-right: none; }
+    .ws-stat-num {
+      font-size: 1.375rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1;
+    }
+    .ws-stat-num.warn { color: hsl(0 60% 50%); }
+    .ws-stat-label {
+      font-size: 0.5625rem; color: hsl(var(--muted-foreground));
+      text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.125rem;
+    }
+
+    /* ── Three-column layout ────────────────────────────── */
+    .ws-layout {
+      display: grid;
+      grid-template-columns: 252px 1fr 288px;
+      gap: 1rem;
+      padding: 1rem 1.5rem 4rem;
+      max-width: 1440px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* ── Panel shell ────────────────────────────────────── */
+    .ws-panel {
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .ws-panel-hdr {
+      padding: 0.625rem 1rem;
+      border-bottom: 1px solid hsl(var(--border));
+      font-size: 0.625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      display: flex; align-items: center; justify-content: space-between;
+      color: hsl(var(--muted-foreground));
+    }
+    .ws-count-pill {
+      padding: 0.125rem 0.5rem; font-size: 0.6rem; font-weight: 700;
+      border-radius: 9999px; background: hsl(var(--secondary));
+      border: 1px solid hsl(var(--border)); color: hsl(var(--muted-foreground));
+    }
+    .ws-count-pill.urgent { background: hsl(0 60% 95%); border-color: hsl(0 60% 80%); color: hsl(0 55% 45%); }
+
+    /* ── LEFT: Agent roster ─────────────────────────────── */
+    .agent-item {
+      display: flex; align-items: flex-start; gap: 0.625rem;
+      padding: 0.625rem 0.875rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .agent-item:last-child { border-bottom: none; }
+    .agent-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 0.3rem;
+    }
+    .agent-dot.active    { background: hsl(var(--foreground)); }
+    .agent-dot.complete  { background: transparent; border: 1.5px solid hsl(var(--foreground)); }
+    .agent-dot.standby   { background: transparent; border: 1.5px solid hsl(240 5% 72%); }
+    .agent-dot.blocked   { background: hsl(0 62% 52%); }
+    .agent-dot.monitoring{ background: transparent; border: 1.5px solid hsl(var(--foreground)); box-shadow: 0 0 0 2px hsla(var(--foreground),0.12); }
+    .agent-main { flex: 1; min-width: 0; }
+    .agent-name { font-size: 0.8125rem; font-weight: 600; }
+    .agent-sub  {
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground)); margin-top: 0.125rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .agent-status-text { }
+    .agent-score-wrap { display: flex; align-items: center; gap: 0.375rem; margin-top: 0.3rem; }
+    .agent-score-bar {
+      flex: 1; height: 3px; background: hsl(var(--secondary)); border-radius: 2px; overflow: hidden;
+    }
+    .agent-score-fill { height: 100%; background: hsl(var(--foreground)); border-radius: 2px; }
+    .agent-score-num { font-size: 0.625rem; color: hsl(var(--muted-foreground)); min-width: 26px; text-align: right; }
+    .agent-badge-blocked {
+      display: inline-block; font-size: 0.5625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      padding: 0.1em 0.4em; border-radius: 3px;
+      background: hsl(0 60% 95%); color: hsl(0 55% 45%);
+      border: 1px solid hsl(0 55% 80%); margin-left: 0.125rem;
+    }
+    .agent-badge-new {
+      display: inline-block; font-size: 0.5625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      padding: 0.1em 0.4em; border-radius: 3px;
+      background: hsl(215 90% 92%); color: hsl(215 80% 40%);
+      border: 1px solid hsl(215 80% 78%); margin-left: 0.125rem;
+    }
+
+    /* Readiness section at bottom of agent panel */
+    .readiness-block {
+      padding: 0.875rem; border-top: 1px solid hsl(var(--border));
+      background: hsl(var(--secondary));
+    }
+    .readiness-label-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.375rem;
+    }
+    .readiness-title {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; color: hsl(var(--muted-foreground));
+    }
+    .readiness-num {
+      font-size: 1.375rem; font-weight: 700; letter-spacing: -0.03em;
+    }
+    .readiness-bar-wrap {
+      height: 6px; background: hsl(var(--border)); border-radius: 3px; overflow: hidden;
+    }
+    .readiness-bar-fill {
+      height: 100%; width: 61%; background: hsl(var(--foreground)); border-radius: 3px;
+    }
+    .readiness-note {
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground)); margin-top: 0.375rem;
+    }
+
+    /* Confidence sub-section */
+    .conf-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 0.875rem;
+      border-bottom: 1px solid hsl(var(--border));
+      font-size: 0.75rem;
+    }
+    .conf-item:last-child { border-bottom: none; }
+    .conf-dim { flex: 1; color: hsl(var(--muted-foreground)); }
+    .conf-bar-wrap { width: 44px; height: 3px; background: hsl(var(--secondary)); border-radius: 2px; overflow: hidden; }
+    .conf-bar-fill { height: 100%; background: hsl(var(--foreground)); border-radius: 2px; }
+    .conf-val { font-weight: 600; min-width: 28px; text-align: right; font-size: 0.75rem; }
+    .conf-delta { font-size: 0.625rem; color: hsl(120 45% 42%); }
+
+    /* ── CENTER: Artifact review queue ─────────────────── */
+    .queue-intro {
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid hsl(var(--border));
+      background: hsl(var(--secondary));
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      line-height: 1.5;
+    }
+    .queue-intro strong { color: hsl(var(--foreground)); }
+
+    .tier-separator {
+      padding: 0.375rem 1rem;
+      border-bottom: 1px solid hsl(var(--border));
+      background: hsl(var(--secondary));
+      font-size: 0.5625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: hsl(var(--muted-foreground));
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .tier-badge {
+      padding: 0.125rem 0.375rem;
+      border-radius: 3px; font-size: 0.5rem; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .tier-badge.t1 { background: hsl(var(--foreground)); color: hsl(var(--primary-foreground)); }
+    .tier-badge.t2 { background: hsl(240 4.8% 28%); color: hsl(0 0% 96%); }
+    .tier-badge.t3 { background: hsl(240 4.8% 82%); color: hsl(var(--foreground)); }
+
+    /* Artifact card */
+    .artifact-card {
+      border-bottom: 1px solid hsl(var(--border));
+      transition: background 0.12s;
+    }
+    .artifact-card:last-child { border-bottom: none; }
+    .artifact-card-top {
+      padding: 1rem;
+      cursor: pointer;
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .artifact-card:hover .artifact-card-top { background: hsl(var(--secondary)); }
+    .artifact-card.expanded .artifact-card-top { background: hsl(var(--secondary)); }
+
+    .artifact-num {
+      font-size: 0.625rem; font-weight: 700; color: hsl(var(--muted-foreground));
+      min-width: 18px; padding-top: 0.125rem;
+    }
+    .artifact-main { flex: 1; min-width: 0; }
+    .artifact-title { font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+    .artifact-meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+    }
+    .artifact-agent-name { font-weight: 500; color: hsl(var(--foreground)); }
+    .artifact-tag {
+      padding: 0.1rem 0.375rem; border: 1px solid hsl(var(--border));
+      border-radius: 3px; font-size: 0.5625rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .artifact-tag.blocking { border-color: hsl(0 55% 72%); color: hsl(0 55% 42%); background: hsl(0 60% 97%); }
+    .artifact-tag.conflict { border-color: hsl(38 80% 60%); color: hsl(38 70% 38%); background: hsl(38 80% 96%); }
+    .artifact-chevron {
+      font-size: 0.625rem; color: hsl(var(--muted-foreground));
+      padding: 0.25rem; transition: transform 0.2s; flex-shrink: 0;
+    }
+    .artifact-card.expanded .artifact-chevron { transform: rotate(180deg); }
+
+    /* Expanded detail */
+    .artifact-detail {
+      display: none;
+      border-top: 1px solid hsl(var(--border));
+      padding: 1rem;
+      background: hsl(var(--secondary));
+    }
+    .artifact-card.expanded .artifact-detail { display: block; }
+    .artifact-lead {
+      font-size: 0.875rem; color: hsl(var(--muted-foreground));
+      line-height: 1.65; margin-bottom: 1rem;
+    }
+    .artifact-lead strong { color: hsl(var(--foreground)); }
+    .artifact-finding-block {
+      background: hsl(var(--background)); border: 1px solid hsl(var(--border));
+      border-radius: var(--radius); padding: 0.75rem; margin-bottom: 0.75rem;
+    }
+    .artifact-finding-lbl {
+      font-size: 0.5625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: hsl(var(--muted-foreground)); margin-bottom: 0.375rem;
+    }
+    .artifact-finding-body {
+      font-size: 0.8125rem; color: hsl(var(--foreground)); line-height: 1.55;
+    }
+    .artifact-option-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem;
+    }
+    .artifact-option {
+      background: hsl(var(--background)); border: 1px solid hsl(var(--border));
+      border-radius: var(--radius); padding: 0.75rem;
+    }
+    .artifact-option-label {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 0.375rem; color: hsl(var(--muted-foreground));
+    }
+    .artifact-option h4 { font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .artifact-option p { font-size: 0.75rem; color: hsl(var(--muted-foreground)); line-height: 1.5; }
+    .artifact-option .pros-cons { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.375rem; }
+    .artifact-option .pro, .artifact-option .con {
+      font-size: 0.6875rem; padding-left: 0.875rem; position: relative;
+    }
+    .artifact-option .pro::before { content: '+'; position: absolute; left: 0; color: hsl(120 45% 40%); font-weight: 700; }
+    .artifact-option .con::before { content: '−'; position: absolute; left: 0; color: hsl(0 55% 50%); font-weight: 700; }
+    .artifact-agent-rec {
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+      border-left: 2px solid hsl(var(--border));
+      padding-left: 0.75rem; margin-bottom: 0.875rem; font-style: italic;
+    }
+    .artifact-agent-rec strong { color: hsl(var(--foreground)); font-style: normal; }
+    .artifact-data-rows { margin-bottom: 0.875rem; }
+    .artifact-data-row {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      padding: 0.3rem 0; border-bottom: 1px solid hsl(var(--border));
+      font-size: 0.8125rem;
+    }
+    .artifact-data-row:last-child { border-bottom: none; }
+    .adr-lbl { min-width: 110px; font-size: 0.6875rem; color: hsl(var(--muted-foreground)); font-weight: 500; }
+    .adr-val { color: hsl(var(--foreground)); }
+    .artifact-quote {
+      background: hsl(var(--background)); border: 1px solid hsl(var(--border));
+      border-radius: var(--radius); padding: 0.75rem;
+      font-size: 0.8125rem; font-style: italic; color: hsl(var(--muted-foreground));
+      margin-bottom: 0.875rem; position: relative;
+    }
+    .artifact-quote::before {
+      content: '\201C'; font-size: 1.75rem; line-height: 1;
+      position: absolute; top: 0.25rem; left: 0.625rem;
+      color: hsl(var(--muted)); font-family: Georgia, serif;
+    }
+    .artifact-quote p { padding-left: 1.25rem; }
+    .artifact-quote .quote-attr { font-size: 0.6875rem; font-style: normal; color: hsl(var(--muted-foreground)); padding-left: 1.25rem; margin-top: 0.375rem; }
+
+    /* Action buttons row */
+    .artifact-actions {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.875rem;
+    }
+    .btn {
+      padding: 0.375rem 0.875rem; font-size: 0.75rem; font-weight: 500;
+      border-radius: var(--radius); cursor: pointer;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .btn-primary { background: hsl(var(--foreground)); color: hsl(var(--primary-foreground)); border: 1px solid hsl(var(--foreground)); }
+    .btn-primary:hover { opacity: 0.82; }
+    .btn-secondary { background: hsl(var(--background)); color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); }
+    .btn-secondary:hover { background: hsl(var(--secondary)); }
+    .btn-ghost { background: none; color: hsl(var(--muted-foreground)); border: 1px solid transparent; }
+    .btn-ghost:hover { background: hsl(var(--secondary)); color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+
+    /* Empty / done state */
+    .queue-done-state {
+      padding: 2rem 1rem; text-align: center;
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+    }
+
+    /* ── RIGHT: Escalations + activity ─────────────────── */
+    .escalation-item {
+      padding: 0.875rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .escalation-item:last-child { border-bottom: none; }
+    .escalation-type-row {
+      display: flex; align-items: center; gap: 0.375rem;
+      font-size: 0.5625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.25rem;
+    }
+    .esc-dot { width: 5px; height: 5px; border-radius: 50%; background: hsl(0 62% 52%); flex-shrink: 0; }
+    .esc-dot.warn { background: hsl(38 75% 48%); }
+    .escalation-title { font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .escalation-body { font-size: 0.75rem; color: hsl(var(--muted-foreground)); line-height: 1.55; }
+    .escalation-from { font-size: 0.625rem; color: hsl(var(--muted-foreground)); margin-top: 0.375rem; }
+    .escalation-from span { font-weight: 600; color: hsl(var(--foreground)); }
+    .escalation-actions { display: flex; gap: 0.375rem; margin-top: 0.5rem; }
+
+    /* Activity feed */
+    .activity-item {
+      display: flex; gap: 0.5rem; align-items: flex-start;
+      padding: 0.5rem 0.875rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-time {
+      font-size: 0.5625rem; color: hsl(var(--muted-foreground));
+      white-space: nowrap; min-width: 32px; padding-top: 0.125rem;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .activity-text {
+      font-size: 0.75rem; color: hsl(var(--muted-foreground)); line-height: 1.5;
+    }
+    .activity-text strong { color: hsl(var(--foreground)); font-weight: 600; }
+
+    /* ── Concept annotation ──────────────────────────────── */
+    .annotation-section { padding: 3rem 1.5rem 0; }
+    .annotation-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem; max-width: 1440px; margin: 0 auto;
+    }
+    .annotation-card {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+      padding: 1.25rem; background: hsl(var(--background));
+    }
+    .annotation-card h3 {
+      font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .annotation-card h3 .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: hsl(var(--foreground)); flex-shrink: 0;
+    }
+    .annotation-card p { font-size: 0.8125rem; color: hsl(var(--muted-foreground)); line-height: 1.65; }
+
+    /* ── Concept intro ───────────────────────────────────── */
+    .concept-intro-section {
+      padding: 5rem 1.5rem 2rem;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .concept-intro-inner { max-width: 900px; margin: 0 auto; }
+    .concept-scenario-card {
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+      overflow: hidden; margin-top: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .scenario-cell {
+      padding: 1rem 1.25rem;
+      border-right: 1px solid hsl(var(--border));
+    }
+    .scenario-cell:last-child { border-right: none; }
+    .scenario-cell-lbl {
+      font-size: 0.5625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: hsl(var(--muted-foreground)); margin-bottom: 0.375rem;
+    }
+    .scenario-cell-val { font-size: 0.875rem; font-weight: 600; }
+    .scenario-cell-sub { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-top: 0.125rem; }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .ws-layout {
+        grid-template-columns: 240px 1fr;
+        grid-template-rows: auto auto;
+      }
+      .ws-right-col { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    }
+    @media (max-width: 768px) {
+      .ws-layout { grid-template-columns: 1fr; padding: 0.75rem; }
+      .ws-right-col { grid-template-columns: 1fr; }
+      .pdlc-row { flex-wrap: wrap; gap: 0.25rem; }
+      .ws-summary-strip { gap: 1rem; flex-wrap: wrap; }
+      .artifact-option-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ws-page">
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">PDLC Futures Sketchpad</div>
+    <button class="nav-mobile-toggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">&#8592; Back to Writeup</a></li>
+      <li><a href="#concept" class="active">Workspace Concept</a></li>
+      <li><a href="#workspace">Live Workspace</a></li>
+      <li><a href="#design-notes">Design Notes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Concept intro ──────────────────────────────────────── -->
+<section class="concept-intro-section" id="concept">
+  <div class="concept-intro-inner fade-in">
+    <div class="section-header">
+      <div class="section-number">Design Concept &mdash; Speculative UI/UX</div>
+      <h2>The Agentic Workspace</h2>
+      <p>A prototype layout for how the Product Engineer observes agents and reviews the artifacts that require human judgment &mdash; designed around the principle that the PE&rsquo;s primary interface is a <strong>prioritized decision queue</strong>, not a log viewer or project board.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">The Core UX Insight</div>
+      <p>Most agent monitoring UIs are built for engineers debugging systems. This workspace is built for a Product Engineer making product decisions. The distinction is critical: the interface surfaces <em>what needs a judgment call</em>, not what the agents are doing internally. Agent activity is context; artifact review is the job. Everything in this layout is organized around that hierarchy.</p>
+    </div>
+
+    <h3 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.75rem;">Scenario</h3>
+    <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">A neutral, representative scenario: a B2B SaaS analytics platform adding a new capability mid-lifecycle. The workspace below shows a snapshot during Engineering Sprint 2 of 3, with some agents complete, one blocked, and several critical artifacts awaiting review.</p>
+
+    <div class="concept-scenario-card fade-in">
+      <div class="scenario-cell">
+        <div class="scenario-cell-lbl">Product</div>
+        <div class="scenario-cell-val">Pulse Analytics</div>
+        <div class="scenario-cell-sub">B2B SaaS &mdash; data analytics platform</div>
+      </div>
+      <div class="scenario-cell">
+        <div class="scenario-cell-lbl">New Capability</div>
+        <div class="scenario-cell-val">Smart Alerts</div>
+        <div class="scenario-cell-sub">ML anomaly detection &amp; notification routing</div>
+      </div>
+      <div class="scenario-cell">
+        <div class="scenario-cell-lbl">PE (Orchestrator)</div>
+        <div class="scenario-cell-val">Maya Chen</div>
+        <div class="scenario-cell-sub">Product Engineer &mdash; Analytics team</div>
+      </div>
+      <div class="scenario-cell">
+        <div class="scenario-cell-lbl">PDLC Stage</div>
+        <div class="scenario-cell-val">Engineering</div>
+        <div class="scenario-cell-sub">Sprint 2 of 3 &mdash; Day 6 of 10</div>
+      </div>
+      <div class="scenario-cell">
+        <div class="scenario-cell-lbl">Status</div>
+        <div class="scenario-cell-val">In Progress</div>
+        <div class="scenario-cell-sub">1 agent blocked &middot; 2 escalations active</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Workspace ──────────────────────────────────────────── -->
+<div id="workspace">
+
+  <!-- Workspace topbar -->
+  <div class="ws-topbar">
+    <div class="ws-topbar-row1">
+      <div class="ws-feature-context">
+        <span class="ws-product-name">Pulse Analytics</span>
+        <div>
+          <div class="ws-feature-name">Smart Alerts</div>
+          <div class="ws-feature-desc">ML-powered anomaly detection with configurable thresholds &amp; multi-channel notification routing</div>
+        </div>
+      </div>
+      <div class="ws-meta-right">
+        <div class="ws-synced">
+          <span class="ws-synced-dot"></span>
+          <span>Live &mdash; last sync 2m ago</span>
+        </div>
+        <span style="color: hsl(var(--border));">|</span>
+        <span>Maya Chen</span>
+      </div>
+    </div>
+
+    <!-- PDLC stage indicator -->
+    <div class="pdlc-row">
+      <span class="pdlc-stage done"><span class="pdlc-tick">&#10003;</span>Discovery</span>
+      <span class="pdlc-sep">&#8250;</span>
+      <span class="pdlc-stage done"><span class="pdlc-tick">&#10003;</span>Value &amp; Feasibility</span>
+      <span class="pdlc-sep">&#8250;</span>
+      <span class="pdlc-stage done"><span class="pdlc-tick">&#10003;</span>Design</span>
+      <span class="pdlc-sep">&#8250;</span>
+      <span class="pdlc-stage active"><span class="pdlc-tick">&#9654;</span>Engineering</span>
+      <span class="pdlc-sep">&#8250;</span>
+      <span class="pdlc-stage"><span class="pdlc-tick"></span>QA &amp; Staging</span>
+      <span class="pdlc-sep">&#8250;</span>
+      <span class="pdlc-stage"><span class="pdlc-tick"></span>Release</span>
+      <span class="pdlc-sprint-badge">Sprint <span>2</span> of 3 &mdash; Day <span>6</span>/10</span>
+    </div>
+
+    <!-- Summary strip -->
+    <div class="ws-summary-strip">
+      <div class="ws-stat">
+        <div class="ws-stat-num">61%</div>
+        <div class="ws-stat-label">Feature readiness</div>
+      </div>
+      <div class="ws-stat">
+        <div class="ws-stat-num warn">5</div>
+        <div class="ws-stat-label">Artifacts to review</div>
+      </div>
+      <div class="ws-stat">
+        <div class="ws-stat-num warn">2</div>
+        <div class="ws-stat-label">Open escalations</div>
+      </div>
+      <div class="ws-stat">
+        <div class="ws-stat-num warn">1</div>
+        <div class="ws-stat-label">Agent blocked</div>
+      </div>
+      <div class="ws-stat">
+        <div class="ws-stat-num">8</div>
+        <div class="ws-stat-label">Agents active / complete</div>
+      </div>
+      <div class="ws-stat">
+        <div class="ws-stat-num">4d</div>
+        <div class="ws-stat-label">Sprint remaining (p50)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Three-column layout ── -->
+  <div class="ws-layout">
+
+    <!-- ── LEFT: Agent roster ── -->
+    <div class="ws-left">
+      <div class="ws-panel">
+        <div class="ws-panel-hdr">
+          Agent Roster
+          <span class="ws-count-pill">10 agents</span>
+        </div>
+
+        <!-- Orchestrator -->
+        <div class="agent-item">
+          <span class="agent-dot active"></span>
+          <div class="agent-main">
+            <div class="agent-name">Orchestrator</div>
+            <div class="agent-sub"><span class="agent-status-text">Routing &amp; monitoring</span></div>
+          </div>
+        </div>
+
+        <!-- Value Agent -->
+        <div class="agent-item">
+          <span class="agent-dot complete"></span>
+          <div class="agent-main">
+            <div class="agent-name">Value Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">Complete</span></div>
+            <div class="agent-score-wrap">
+              <div class="agent-score-bar"><div class="agent-score-fill" style="width:82%"></div></div>
+              <span class="agent-score-num">82%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research Agent -->
+        <div class="agent-item">
+          <span class="agent-dot complete"></span>
+          <div class="agent-main">
+            <div class="agent-name">Research Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">Complete &mdash; 3 interviews</span></div>
+            <div class="agent-score-wrap">
+              <div class="agent-score-bar"><div class="agent-score-fill" style="width:91%"></div></div>
+              <span class="agent-score-num">91%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design Agent -->
+        <div class="agent-item">
+          <span class="agent-dot complete"></span>
+          <div class="agent-main">
+            <div class="agent-name">Design Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">Approved &mdash; usability tested</span></div>
+          </div>
+        </div>
+
+        <!-- Technical Design Agent -->
+        <div class="agent-item">
+          <span class="agent-dot complete"></span>
+          <div class="agent-main">
+            <div class="agent-name">Technical Design Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">ADR pending PE review</span></div>
+            <div class="agent-score-wrap">
+              <div class="agent-score-bar"><div class="agent-score-fill" style="width:78%"></div></div>
+              <span class="agent-score-num">78%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engineering Agent -->
+        <div class="agent-item">
+          <span class="agent-dot active"></span>
+          <div class="agent-main">
+            <div class="agent-name">Engineering Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">In progress &mdash; impl. loop</span></div>
+            <div class="agent-score-wrap">
+              <div class="agent-score-bar"><div class="agent-score-fill" style="width:60%"></div></div>
+              <span class="agent-score-num">60%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legal / Compliance Agent -->
+        <div class="agent-item">
+          <span class="agent-dot blocked"></span>
+          <div class="agent-main">
+            <div class="agent-name">
+              Legal / Compliance Agent
+              <span class="agent-badge-blocked">Blocked</span>
+            </div>
+            <div class="agent-sub"><span class="agent-status-text">Waiting for PE direction</span></div>
+          </div>
+        </div>
+
+        <!-- Quality Agent -->
+        <div class="agent-item">
+          <span class="agent-dot standby"></span>
+          <div class="agent-main">
+            <div class="agent-name">Quality Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">Standby &mdash; awaiting engineering</span></div>
+          </div>
+        </div>
+
+        <!-- GTM Agent -->
+        <div class="agent-item">
+          <span class="agent-dot active"></span>
+          <div class="agent-main">
+            <div class="agent-name">GTM Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">Drafting launch materials</span></div>
+            <div class="agent-score-wrap">
+              <div class="agent-score-bar"><div class="agent-score-fill" style="width:40%"></div></div>
+              <span class="agent-score-num">40%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Observability Agent -->
+        <div class="agent-item">
+          <span class="agent-dot monitoring"></span>
+          <div class="agent-main">
+            <div class="agent-name">Observability Agent</div>
+            <div class="agent-sub"><span class="agent-status-text">Monitoring baseline metrics</span></div>
+          </div>
+        </div>
+
+        <!-- Feature confidence -->
+        <div style="border-top: 1px solid hsl(var(--border));">
+          <div class="ws-panel-hdr" style="border-bottom: 1px solid hsl(var(--border));">
+            Confidence by Dimension
+          </div>
+          <div class="conf-item">
+            <span class="conf-dim">Value</span>
+            <div class="conf-bar-wrap"><div class="conf-bar-fill" style="width:82%"></div></div>
+            <span class="conf-val">82%</span>
+            <span class="conf-delta">&#8679;7</span>
+          </div>
+          <div class="conf-item">
+            <span class="conf-dim">Usability</span>
+            <div class="conf-bar-wrap"><div class="conf-bar-fill" style="width:79%"></div></div>
+            <span class="conf-val">79%</span>
+          </div>
+          <div class="conf-item">
+            <span class="conf-dim">Feasibility</span>
+            <div class="conf-bar-wrap"><div class="conf-bar-fill" style="width:61%"></div></div>
+            <span class="conf-val">61%</span>
+          </div>
+          <div class="conf-item">
+            <span class="conf-dim">Viability</span>
+            <div class="conf-bar-wrap"><div class="conf-bar-fill" style="width:45%"></div></div>
+            <span class="conf-val">45%</span>
+            <span style="font-size:0.625rem; color: hsl(0 55% 50%);">&#9888;</span>
+          </div>
+        </div>
+
+        <!-- Readiness -->
+        <div class="readiness-block">
+          <div class="readiness-label-row">
+            <span class="readiness-title">Feature Readiness</span>
+            <span class="readiness-num">61%</span>
+          </div>
+          <div class="readiness-bar-wrap"><div class="readiness-bar-fill"></div></div>
+          <div class="readiness-note">Blocked by: Legal finding unresolved &middot; ADR pending sign-off</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CENTER: Artifact review queue ── -->
+    <div class="ws-center">
+      <div class="ws-panel">
+        <div class="ws-panel-hdr">
+          Artifact Review Queue
+          <span class="ws-count-pill urgent">5 pending</span>
+        </div>
+
+        <div class="queue-intro">
+          <strong>2 items need deep review</strong> &mdash; the Legal finding is blocking engineering from completing the alert history schema. The ADR requires an architectural direction call. Review these first.
+        </div>
+
+        <!-- ── TIER 1 ── -->
+        <div class="tier-separator">
+          <span class="tier-badge t1">Tier 1</span>
+          Deep review &mdash; 20&ndash;40 min each &middot; full judgment required
+        </div>
+
+        <!-- Artifact 1: Legal GDPR -->
+        <div class="artifact-card" id="art1">
+          <div class="artifact-card-top" onclick="toggleArtifact('art1')">
+            <span class="artifact-num">01</span>
+            <div class="artifact-main">
+              <div class="artifact-title">GDPR conflict: alert history data retention</div>
+              <div class="artifact-meta">
+                <span class="artifact-agent-name">Legal / Compliance Agent</span>
+                <span class="artifact-tag blocking">Blocking engineering</span>
+                <span>&middot; Raised 14 min ago</span>
+              </div>
+            </div>
+            <span class="artifact-chevron">&#9660;</span>
+          </div>
+          <div class="artifact-detail">
+            <p class="artifact-lead">The Engineering Agent&rsquo;s alert history schema stores event data for <strong>90 days by default</strong> with no per-customer opt-out mechanism. The Legal Agent flagged a conflict with <strong>GDPR Art. 17 (right to erasure)</strong> for EU customers and Art. 5(1)(e) (storage limitation principle). Engineering implementation is paused pending your direction.</p>
+
+            <div class="artifact-finding-block">
+              <div class="artifact-finding-lbl">Specific finding</div>
+              <div class="artifact-finding-body">Table <code>alert_events</code> has no <code>customer_region</code> partition key and no retention policy hook. EU customers cannot currently request deletion of individual alert records without a full account purge. Estimated affected customer base: ~38% of ARR (EU segment).</div>
+            </div>
+
+            <div class="artifact-finding-lbl" style="margin-bottom:0.375rem;">Three options (Legal Agent analysis)</div>
+            <div class="artifact-option-grid">
+              <div class="artifact-option">
+                <div class="artifact-option-label">Option A &mdash; Recommended</div>
+                <h4>Per-customer retention config</h4>
+                <p>Add configurable retention (30 / 60 / 90 days) to customer settings. Default 30 days for EU, 90 days elsewhere. Adds ~2 days to engineering estimate.</p>
+                <div class="pros-cons">
+                  <span class="pro">Fully GDPR compliant</span>
+                  <span class="pro">Product differentiator for enterprise</span>
+                  <span class="con">Adds 2 days to sprint</span>
+                </div>
+              </div>
+              <div class="artifact-option">
+                <div class="artifact-option-label">Option B</div>
+                <h4>Treat as analytics data</h4>
+                <p>Reclassify alert_events under the existing analytics data policy (already GDPR-reviewed). Requires legal sign-off on classification. Zero engineering changes.</p>
+                <div class="pros-cons">
+                  <span class="pro">No engineering delay</span>
+                  <span class="con">Legal classification uncertain &mdash; needs external counsel</span>
+                  <span class="con">Potential compliance debt</span>
+                </div>
+              </div>
+              <div class="artifact-option">
+                <div class="artifact-option-label">Option C</div>
+                <h4>Global 30-day default, no config</h4>
+                <p>Hardcode 30-day retention globally. Simple, compliant. Loses differentiation and may frustrate customers who want longer audit trails.</p>
+                <div class="pros-cons">
+                  <span class="pro">Fastest to implement (&lt;1 day)</span>
+                  <span class="pro">Unambiguously compliant</span>
+                  <span class="con">No enterprise retention config</span>
+                  <span class="con">May reduce perceived value of audit trail</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="artifact-agent-rec">
+              <strong>Agent recommendation:</strong> Option A. The per-customer config adds 2 days but builds the retention policy infrastructure that will be needed for every future analytics feature. Treating this as a platform investment rather than a sprint cost makes Option A the right choice at this stage of the product.
+            </div>
+
+            <div class="artifact-actions">
+              <button class="btn btn-primary">Approve Option A</button>
+              <button class="btn btn-secondary">Choose Option B</button>
+              <button class="btn btn-secondary">Choose Option C</button>
+              <button class="btn btn-ghost">Add context note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artifact 2: ADR -->
+        <div class="artifact-card" id="art2">
+          <div class="artifact-card-top" onclick="toggleArtifact('art2')">
+            <span class="artifact-num">02</span>
+            <div class="artifact-main">
+              <div class="artifact-title">ADR: Alert evaluation engine &mdash; two architectural approaches</div>
+              <div class="artifact-meta">
+                <span class="artifact-agent-name">Technical Design Agent</span>
+                <span class="artifact-tag">Direction needed</span>
+                <span>&middot; Raised 47 min ago</span>
+              </div>
+            </div>
+            <span class="artifact-chevron">&#9660;</span>
+          </div>
+          <div class="artifact-detail">
+            <p class="artifact-lead">The Technical Design Agent has completed the architecture design for the alert evaluation engine and found <strong>two viable approaches with materially different trade-offs</strong>. Both are feasible; the choice has long-term platform implications. Agent is requesting PE direction before engineering proceeds.</p>
+
+            <div class="artifact-option-grid">
+              <div class="artifact-option">
+                <div class="artifact-option-label">Option A &mdash; Event streaming</div>
+                <h4>Kafka-based async evaluation</h4>
+                <p>Each metric event triggers an alert evaluation job via Kafka topic. Evaluation is fully real-time; latency &lt;5 seconds end-to-end.</p>
+                <div class="pros-cons">
+                  <span class="pro">Real-time alerting (&lt;5s latency)</span>
+                  <span class="pro">Scales horizontally with metric volume</span>
+                  <span class="pro">Decouples evaluation from ingestion</span>
+                  <span class="con">Adds Kafka dependency (new infra)</span>
+                  <span class="con">+2&ndash;3 weeks for infra setup &amp; ops ramp</span>
+                  <span class="con">Increases operational complexity</span>
+                </div>
+              </div>
+              <div class="artifact-option">
+                <div class="artifact-option-label">Option B &mdash; Recommended</div>
+                <h4>Polling-based sync evaluation</h4>
+                <p>Scheduled cron job evaluates alert rules against latest metrics every 60 seconds. Simple, no new infrastructure.</p>
+                <div class="pros-cons">
+                  <span class="pro">No new infrastructure</span>
+                  <span class="pro">Ships within current sprint</span>
+                  <span class="pro">Simple to monitor and debug</span>
+                  <span class="con">Minimum 1-min alert latency</span>
+                  <span class="con">Not suitable for sub-minute SLA commitments</span>
+                  <span class="con">Will need refactor if latency requirements tighten</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="artifact-data-rows">
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Effort (Option A)</span>
+                <span class="adr-val">p50: 14 days &mdash; p85: 21 days (includes infra setup)</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Effort (Option B)</span>
+                <span class="adr-val">p50: 5 days &mdash; p85: 8 days</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Customer latency req.</span>
+                <span class="adr-val">Research: 3/3 interviews: &ldquo;near-real-time&rdquo; &mdash; none specified &lt;1 min SLA</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Upgrade path</span>
+                <span class="adr-val">Option B &rarr; A is a clean migration (evaluation logic is encapsulated)</span>
+              </div>
+            </div>
+
+            <div class="artifact-agent-rec">
+              <strong>Agent recommendation:</strong> Option B now, with Option A as a documented upgrade path in the product KB. Customer research shows no sub-minute SLA requirements; adding Kafka now is premature optimization at significant sprint cost. Revisit when latency complaints appear in support data.
+            </div>
+
+            <div class="artifact-actions">
+              <button class="btn btn-primary">Proceed with Option B</button>
+              <button class="btn btn-secondary">Proceed with Option A</button>
+              <button class="btn btn-ghost">Request feasibility spike first</button>
+              <button class="btn btn-ghost">Add context note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── TIER 2 ── -->
+        <div class="tier-separator">
+          <span class="tier-badge t2">Tier 2</span>
+          Spot check &mdash; 5&ndash;10 min each &middot; approve or escalate to Tier 1
+        </div>
+
+        <!-- Artifact 3: Value assessment -->
+        <div class="artifact-card" id="art3">
+          <div class="artifact-card-top" onclick="toggleArtifact('art3')">
+            <span class="artifact-num">03</span>
+            <div class="artifact-main">
+              <div class="artifact-title">Value assessment update: WTP signals from 3 customer interviews</div>
+              <div class="artifact-meta">
+                <span class="artifact-agent-name">Research Agent + Value Agent</span>
+                <span>&middot; Confidence updated 75% &rarr; 82%</span>
+                <span>&middot; 31 min ago</span>
+              </div>
+            </div>
+            <span class="artifact-chevron">&#9660;</span>
+          </div>
+          <div class="artifact-detail">
+            <p class="artifact-lead">The Research Agent completed three follow-up customer interviews after showing the prototype alert configuration UI. All three rated Smart Alerts as a <strong>must-have feature</strong>. Two customers explicitly mentioned they would upgrade their tier for access. Value confidence updated from 75% to <strong>82%</strong>.</p>
+
+            <div class="artifact-data-rows">
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Customers interviewed</span>
+                <span class="adr-val">Acme Corp (Enterprise), Novo Health (Mid-market), Cascade Labs (SMB)</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">WTP signal</span>
+                <span class="adr-val">2/3 would upgrade tier &middot; 1/3 &ldquo;essential for compliance monitoring use case&rdquo;</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Key concern raised</span>
+                <span class="adr-val">Alert fatigue &mdash; all three mentioned importance of smart threshold defaults, not just manual config</span>
+              </div>
+            </div>
+
+            <div class="artifact-quote">
+              <p>&ldquo;We check the dashboard manually five times a day just because we&rsquo;re scared something spiked and we missed it. If this catches anomalies automatically I can stop doing that.&rdquo;</p>
+              <div class="quote-attr">&mdash; Head of Data, Acme Corp (Enterprise customer, ~$120k ARR)</div>
+            </div>
+
+            <div class="artifact-finding-block">
+              <div class="artifact-finding-lbl">Implication flagged by Research Agent</div>
+              <div class="artifact-finding-body">The alert fatigue concern suggests smart defaults (ML-suggested thresholds) are more important than the manual config UI. Consider de-prioritizing advanced manual config and focusing engineering on the ML baseline suggestion. This is a product direction question, not just a UX preference.</div>
+            </div>
+
+            <div class="artifact-actions">
+              <button class="btn btn-primary">Approve &amp; update backlog</button>
+              <button class="btn btn-secondary">Escalate to Tier 1 (direction change)</button>
+              <button class="btn btn-ghost">Request one more interview</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artifact 4: Usability test -->
+        <div class="artifact-card" id="art4">
+          <div class="artifact-card-top" onclick="toggleArtifact('art4')">
+            <span class="artifact-num">04</span>
+            <div class="artifact-main">
+              <div class="artifact-title">Usability test: 3-step vs. single-page alert configuration flow</div>
+              <div class="artifact-meta">
+                <span class="artifact-agent-name">Design Agent</span>
+                <span class="artifact-tag conflict">API impact</span>
+                <span>&middot; 2h ago</span>
+              </div>
+            </div>
+            <span class="artifact-chevron">&#9660;</span>
+          </div>
+          <div class="artifact-detail">
+            <p class="artifact-lead">The Design Agent ran a moderated usability test comparing two alert configuration flows. The <strong>3-step wizard outperformed the single-page form</strong> on first-time setup, but introduced an API constraint flagged by the Engineering Agent that has since escalated into a cross-domain conflict.</p>
+
+            <div class="artifact-data-rows">
+              <div class="artifact-data-row">
+                <span class="adr-lbl">First-time setup errors</span>
+                <span class="adr-val">3-step wizard: 11% error rate &middot; single-page: 33% error rate</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Repeat config time</span>
+                <span class="adr-val">3-step: 2.4 min avg &middot; single-page: 0.9 min avg</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Design recommendation</span>
+                <span class="adr-val">3-step for first alert &middot; single-page for subsequent (progressive disclosure)</span>
+              </div>
+              <div class="artifact-data-row">
+                <span class="adr-lbl">Engineering conflict</span>
+                <span class="adr-val">Step 3 (notification routing) requires a separate API call that breaks transactional save &rarr; escalated</span>
+              </div>
+            </div>
+
+            <div class="artifact-agent-rec">
+              <strong>Note:</strong> This artifact is linked to Escalation #2. Review together. Approving this design as-is requires the Engineering Agent to either refactor the auth middleware (est. +3&ndash;5 days) or accept eventual consistency between alert rule and notification routing config (user-visible edge case).
+            </div>
+
+            <div class="artifact-actions">
+              <button class="btn btn-primary">Approve design (accept middleware cost)</button>
+              <button class="btn btn-secondary">Approve design (accept eventual consistency)</button>
+              <button class="btn btn-ghost">Request design revision (single API call constraint)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── TIER 3 ── -->
+        <div class="tier-separator">
+          <span class="tier-badge t3">Tier 3</span>
+          Scan &mdash; 1&ndash;2 min &middot; approve or flag
+        </div>
+
+        <!-- Artifact 5: Changelog -->
+        <div class="artifact-card" id="art5">
+          <div class="artifact-card-top" onclick="toggleArtifact('art5')">
+            <span class="artifact-num">05</span>
+            <div class="artifact-main">
+              <div class="artifact-title">Internal sprint review changelog &mdash; stakeholder update draft</div>
+              <div class="artifact-meta">
+                <span class="artifact-agent-name">GTM Agent</span>
+                <span>&middot; Internal only &middot; 1h ago</span>
+              </div>
+            </div>
+            <span class="artifact-chevron">&#9660;</span>
+          </div>
+          <div class="artifact-detail">
+            <p class="artifact-lead">The GTM Agent drafted the internal sprint 2 progress update for the stakeholder Slack channel. No customer-facing content. Standard format.</p>
+
+            <div class="artifact-finding-block">
+              <div class="artifact-finding-lbl">Draft content</div>
+              <div class="artifact-finding-body">
+                <strong>Smart Alerts &mdash; Sprint 2 Update</strong><br><br>
+                Design approved following usability testing (3-step wizard selected, 22% reduction in config errors). Engineering is 60% through core implementation. Legal review in progress &mdash; GDPR compliance approach being finalised. Customer research complete: 3/3 enterprise interviews rated feature as must-have. Value confidence up to 82%.<br><br>
+                <em>Next: ADR sign-off, legal resolution, then engineering completion by end of sprint 2. QA begins sprint 3.</em>
+              </div>
+            </div>
+
+            <div class="artifact-actions">
+              <button class="btn btn-primary">Approve &amp; post to Slack</button>
+              <button class="btn btn-ghost">Edit before posting</button>
+              <button class="btn btn-ghost">Hold until Legal is resolved</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ws-panel artifact queue -->
+    </div><!-- /ws-center -->
+
+    <!-- ── RIGHT: Escalations + Activity ── -->
+    <div class="ws-right-col">
+
+      <!-- Escalations -->
+      <div class="ws-panel" style="margin-bottom: 1rem;">
+        <div class="ws-panel-hdr">
+          Escalations
+          <span class="ws-count-pill urgent">2 open</span>
+        </div>
+
+        <!-- Escalation 1 -->
+        <div class="escalation-item">
+          <div class="escalation-type-row">
+            <span class="esc-dot"></span>
+            Blocking &mdash; Legal agent
+          </div>
+          <div class="escalation-title">GDPR retention decision required</div>
+          <div class="escalation-body">Legal Agent cannot complete compliance review until PE selects a data retention approach. Engineering implementation of <code>alert_events</code> schema is paused. This is a sprint blocker.</div>
+          <div class="escalation-from">From: <span>Legal / Compliance Agent</span> &middot; 14 min ago</div>
+          <div class="escalation-actions">
+            <button class="btn btn-primary" style="font-size:0.6875rem; padding: 0.25rem 0.625rem;">Review artifact #01</button>
+          </div>
+        </div>
+
+        <!-- Escalation 2 -->
+        <div class="escalation-item">
+          <div class="escalation-type-row">
+            <span class="esc-dot warn"></span>
+            Cross-domain conflict &mdash; Design &times; Engineering
+          </div>
+          <div class="escalation-title">3-step config flow breaks transactional API constraint</div>
+          <div class="escalation-body">Design Agent approved 3-step wizard. Engineering Agent found that step 3 (notification routing) requires a separate auth-scoped API call, preventing a single transactional save. Three options: (1) refactor middleware (+3&ndash;5 days), (2) accept eventual consistency, (3) request design revision to merge steps 2&ndash;3.</div>
+          <div class="escalation-from">From: <span>Orchestrator</span> (conflict detected) &middot; 1h 12m ago</div>
+          <div class="escalation-actions">
+            <button class="btn btn-primary" style="font-size:0.6875rem; padding: 0.25rem 0.625rem;">Review artifact #04</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Activity feed -->
+      <div class="ws-panel">
+        <div class="ws-panel-hdr">
+          Agent Activity
+          <span class="ws-count-pill">Live</span>
+        </div>
+
+        <div class="activity-item">
+          <span class="activity-time">2m</span>
+          <span class="activity-text"><strong>Quality Agent</strong> entered standby &mdash; waiting for Engineering Agent completion signal</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">8m</span>
+          <span class="activity-text"><strong>Engineering Agent</strong> wrote ADR draft to product KB (alert evaluation engine, v1)</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">14m</span>
+          <span class="activity-text"><strong>Legal Agent</strong> raised escalation &mdash; GDPR Art. 17 conflict detected in <code>alert_events</code> schema draft</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">31m</span>
+          <span class="activity-text"><strong>Research Agent</strong> updated value confidence 75% &rarr; 82% after 3 customer interviews &mdash; artifact queued for review</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">47m</span>
+          <span class="activity-text"><strong>Engineering Agent</strong> completed API design, started implementation loop &mdash; alert rule evaluation core</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">1h</span>
+          <span class="activity-text"><strong>Technical Design Agent</strong> completed effort estimate: p50 5d / p85 8d (Option B) &mdash; ADR queued for PE review</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">1h 12m</span>
+          <span class="activity-text"><strong>Orchestrator</strong> detected cross-domain conflict: Design approval vs. Engineering API constraint &mdash; escalation #2 raised</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">2h</span>
+          <span class="activity-text"><strong>Design Agent</strong> finalised usability test &mdash; 3-step wizard selected (22% lower error rate on first-time setup)</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">2h 31m</span>
+          <span class="activity-text"><strong>GTM Agent</strong> began drafting launch materials &mdash; stakeholder update queued for scan review</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">3h 10m</span>
+          <span class="activity-text"><strong>Research Agent</strong> completed 3rd customer interview &mdash; Cascade Labs (SMB). Alert fatigue theme emerged across all three sessions</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">Yesterday</span>
+          <span class="activity-text"><strong>Design Agent</strong> completed accessibility audit &mdash; WCAG 2.1 AA compliant. Written to product KB</span>
+        </div>
+        <div class="activity-item">
+          <span class="activity-time">Yesterday</span>
+          <span class="activity-text"><strong>Technical Design Agent</strong> completed security review of proposed API design &mdash; no findings above threshold</span>
+        </div>
+
+      </div>
+
+    </div><!-- /ws-right-col -->
+
+  </div><!-- /ws-layout -->
+</div><!-- /workspace -->
+
+<!-- ── Design annotations ─────────────────────────────────── -->
+<section class="annotation-section" id="design-notes">
+  <div style="max-width: 1440px; margin: 0 auto; padding-bottom: 1.5rem;">
+    <div class="section-header fade-in" style="padding: 0 0 1.5rem;">
+      <div class="section-number">UX / Design Rationale</div>
+      <h2>Why This Layout</h2>
+      <p>Key decisions behind the workspace structure &mdash; each one is a deliberate UX position, not a default.</p>
+    </div>
+  </div>
+  <div class="annotation-grid fade-in" style="max-width: 1440px; margin: 0 auto; padding-bottom: 4rem;">
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Artifact queue is the dominant element</h3>
+      <p>The center column (the widest) holds only the review queue. Agent status and activity are secondary, in narrower columns. This forces the layout itself to communicate the PE&rsquo;s actual job: making decisions, not monitoring dashboards. The queue is never just a list &mdash; each item is a pre-packaged decision with agent reasoning, options, and a clear call to action.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Tier system enforces review discipline</h3>
+      <p>Tier 1 (deep), Tier 2 (spot check), Tier 3 (scan) are visually separated with clear time budgets shown in the headers. This prevents the PE from spending 30 minutes reviewing a changelog draft or skimming a legal finding. The tier is set by the agent based on artifact type &mdash; the PE doesn&rsquo;t categorize, they process.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Escalations are separate from the queue</h3>
+      <p>Escalations require a different cognitive mode than artifact review: they are conflicts or blocks, not decisions packaged for approval. Showing them in the right panel (visible but not dominant) lets the PE hold them in peripheral attention while working through the queue. The &ldquo;Review artifact #01&rdquo; button links escalations back to the relevant artifact, keeping the queue as the single point of action.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Agent roster shows state, not activity</h3>
+      <p>The agent roster doesn&rsquo;t show what agents are currently executing &mdash; it shows their lifecycle state (complete, in progress, blocked, standby). The activity feed handles the narrative of what happened. The roster is for situational awareness at a glance: which agents are done, which are running, which need PE input. Confidence scores appear only where a score exists and is meaningful.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Blocking state surfaces immediately</h3>
+      <p>The &ldquo;Blocked&rdquo; badge on the Legal Agent, the red summary stat, and the escalation panel all refer to the same issue from three different vantage points. This redundancy is intentional: a sprint-blocking issue should be unmissable regardless of where on the page the PE is looking. The queue intro also calls it out explicitly in plain language.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> PDLC stage bar provides context, not control</h3>
+      <p>The stage indicator at the top shows where this feature is in the lifecycle, giving the PE the frame for interpreting agent behavior. It&rsquo;s not a navigation tool &mdash; the PE doesn&rsquo;t click it to move stages. Stage transitions happen when confidence thresholds and gates are met, not by clicking a button. The current sprint counter adds temporal grounding without requiring a separate calendar view.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Feature readiness is a single derived number</h3>
+      <p>The 61% readiness score is the Orchestrator&rsquo;s aggregate view across the four confidence dimensions (value, usability, feasibility, viability), weighted by lifecycle stage and unblocked by open items. It gives the PE a single answer to &ldquo;how far are we?&rdquo; without requiring them to mentally average four scores. It also degrades visibly when blockers exist &mdash; the 61% reflects both confidence and blockage.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Artifacts bundle context with the decision</h3>
+      <p>Each artifact card includes: who raised it, how long ago, what the agent found, what the options are, the agent&rsquo;s recommendation (labeled as such, not presented as fact), and clear action buttons. The PE should never need to open a separate tool, read a thread, or ask a follow-up question to make the decision. If the context is insufficient, the &ldquo;Add context note&rdquo; / &ldquo;Request more info&rdquo; actions let the PE send feedback back into the agent loop.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Agentic Workspace &mdash; Design Concept &middot; PDLC Futures Sketchpad &middot; March 2026 &middot; <a href="index.html">Back to writeup</a>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
+
+<script>
+// Artifact card toggle
+function toggleArtifact(id) {
+  const card = document.getElementById(id);
+  if (!card) return;
+  card.classList.toggle('expanded');
+}
+
+// Mobile nav toggle
+document.querySelector('.nav-mobile-toggle')?.addEventListener('click', () => {
+  document.querySelector('.nav-links')?.classList.toggle('open');
+});
+
+// Scroll to top
+document.getElementById('scrollTop')?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Scroll progress + scroll-top visibility
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = (scrollTop / docHeight) * 100 + '%';
+  document.getElementById('scrollTop')?.classList.toggle('visible', scrollTop > 400);
+});
+
+// Fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => document.querySelector('.nav-links')?.classList.remove('open'));
+});
+</script>
+
+</body>
+</html>

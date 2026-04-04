@@ -34,10 +34,78 @@
   });
 })();
 
-// Mobile nav toggle
-document.querySelector('.nav-mobile-toggle')?.addEventListener('click', () => {
-  document.querySelector('.nav-links')?.classList.toggle('open');
-});
+// Section navigation panel (all viewports)
+(function () {
+  const toggle = document.getElementById('sectionNavToggle');
+  const panel = document.getElementById('sectionNavPanel');
+  const backdrop = document.getElementById('sectionNavBackdrop');
+  const closeBtn = document.getElementById('sectionNavClose');
+  if (!toggle || !panel || !backdrop) return;
+
+  let closeTimer = null;
+
+  function openPanel() {
+    clearTimeout(closeTimer);
+    backdrop.removeAttribute('hidden');
+    panel.removeAttribute('hidden');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('section-nav-open');
+    requestAnimationFrame(() => {
+      backdrop.classList.add('is-visible');
+      panel.classList.add('is-open');
+    });
+    closeBtn?.focus();
+  }
+
+  function closePanel() {
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('section-nav-open');
+    backdrop.classList.remove('is-visible');
+    panel.classList.remove('is-open');
+    clearTimeout(closeTimer);
+    let finished = false;
+    function done() {
+      if (finished) return;
+      finished = true;
+      backdrop.setAttribute('hidden', '');
+      panel.setAttribute('hidden', '');
+    }
+    backdrop.addEventListener(
+      'transitionend',
+      function onBackdropEnd(e) {
+        if (e.propertyName !== 'opacity') return;
+        backdrop.removeEventListener('transitionend', onBackdropEnd);
+        done();
+      },
+      { once: true }
+    );
+    closeTimer = window.setTimeout(done, 320);
+  }
+
+  function togglePanel() {
+    if (panel.classList.contains('is-open')) closePanel();
+    else openPanel();
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePanel();
+  });
+  closeBtn?.addEventListener('click', () => closePanel());
+  backdrop.addEventListener('click', () => closePanel());
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+      e.preventDefault();
+      closePanel();
+      toggle.focus();
+    }
+  });
+
+  document.querySelectorAll('#sectionNavList a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => closePanel());
+  });
+})();
 
 // Scroll to top button
 document.getElementById('scrollTop')?.addEventListener('click', () => {
@@ -72,22 +140,22 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Active nav tracking
+// Active section highlight in section nav
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-window.addEventListener('scroll', () => {
+const navLinks = document.querySelectorAll('#sectionNavList a[href^="#"], #sectionMap a[href^="#"]');
+function updateActiveSectionNav() {
   let current = '';
-  sections.forEach(section => { if (window.scrollY >= section.offsetTop - 100) current = section.getAttribute('id'); });
-  navLinks.forEach(link => {
+  const y = window.scrollY;
+  sections.forEach((section) => {
+    if (y >= section.offsetTop - 100) current = section.getAttribute('id');
+  });
+  navLinks.forEach((link) => {
     link.classList.remove('active');
     if (link.getAttribute('href') === '#' + current) link.classList.add('active');
   });
-});
-
-// Close mobile nav on link click
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
-});
+}
+window.addEventListener('scroll', updateActiveSectionNav, { passive: true });
+updateActiveSectionNav();
 
 // Roadmap item toggle (event delegation)
 document.querySelector('.roadmap')?.addEventListener('click', (e) => {
