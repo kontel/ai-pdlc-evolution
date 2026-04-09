@@ -140,6 +140,77 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// Dynamic freshness chips for section nav + hero map
+(function () {
+  const freshnessTargets = document.querySelectorAll('#sectionNavList a[data-updated], #sectionMap a[data-updated]');
+  if (!freshnessTargets.length) return;
+
+  function parseDate(raw) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw || '');
+    if (!match) return null;
+    return {
+      year: Number(match[1]),
+      month: Number(match[2]),
+      day: Number(match[3])
+    };
+  }
+
+  function diffInDays(fromParts, toDate) {
+    const fromUtc = Date.UTC(fromParts.year, fromParts.month - 1, fromParts.day);
+    const toUtc = Date.UTC(toDate.getFullYear(), toDate.getMonth(), toDate.getDate());
+    return Math.max(0, Math.floor((toUtc - fromUtc) / 86400000));
+  }
+
+  function formatRelativeDays(days) {
+    if (days === 0) return 'Updated today';
+    if (days === 1) return 'Updated 1d ago';
+    return `Updated ${days}d ago`;
+  }
+
+  function formatAbsoluteDate(parts) {
+    const date = new Date(parts.year, parts.month - 1, parts.day);
+    return date.toLocaleDateString(undefined, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+
+  function stateForDays(days) {
+    if (days <= 7) return 'strong';
+    if (days <= 21) return 'medium';
+    return 'muted';
+  }
+
+  freshnessTargets.forEach((target) => {
+    const rawDate = target.dataset.updated;
+    const parts = parseDate(rawDate);
+    if (!parts) return;
+
+    const note = target.dataset.updateNote;
+    const days = diffInDays(parts, new Date());
+    const state = stateForDays(days);
+    const chip = target.querySelector('.nav-freshness');
+    if (!chip) return;
+
+    chip.textContent = formatRelativeDays(days);
+    chip.classList.remove('nav-freshness--recent', 'nav-freshness--weeks', 'nav-freshness--stable');
+    chip.classList.add(
+      state === 'strong' ? 'nav-freshness--recent' :
+      state === 'medium' ? 'nav-freshness--weeks' :
+      'nav-freshness--stable'
+    );
+
+    target.classList.remove('freshness-strong', 'freshness-medium', 'freshness-muted');
+    target.classList.add(`freshness-${state}`);
+
+    const absolute = formatAbsoluteDate(parts);
+    const title = note ? `${note} · Last updated ${absolute}` : `Last updated ${absolute}`;
+    chip.title = title;
+    target.title = title;
+  });
+})();
+
 // Active section highlight in section nav
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('#sectionNavList a[href^="#"], #sectionMap a[href^="#"]');
