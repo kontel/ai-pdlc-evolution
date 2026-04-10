@@ -364,9 +364,9 @@ section.hero-below {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.2rem;
-  padding: 0.65rem 0.65rem 0.75rem;
-  min-height: 5.5rem;
+  gap: 0.16rem;
+  padding: 0.78rem 0.65rem 0.66rem;
+  min-height: 5.3rem;
   text-decoration: none;
   color: hsl(var(--foreground));
   border: 1px solid hsl(var(--border));
@@ -422,6 +422,7 @@ section.hero-below {
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.01em;
+  margin-top: 0.12rem;
 }
 .section-tile-flavor {
   font-size: 0.5625rem;
@@ -431,7 +432,7 @@ section.hero-below {
   color: hsl(var(--muted-foreground));
   line-height: 1.35;
   margin-top: auto;
-  padding-top: 0.15rem;
+  padding-top: 0.05rem;
 }
 
 @media (max-width: 960px) {
@@ -440,7 +441,7 @@ section.hero-below {
 @media (max-width: 520px) {
   .section-map-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-section-map { padding-top: 2rem; margin-top: 2rem; }
-  .section-tile { min-height: 5rem; padding: 0.55rem 0.55rem 0.65rem; }
+  .section-tile { min-height: 4.85rem; padding: 0.68rem 0.55rem 0.58rem; }
   .section-tile-freshness {
     top: 0.35rem;
     right: 0.35rem;
