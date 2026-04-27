@@ -23,5 +23,6 @@ build/
 *.log
 .cache/
 
-# Claude / Cursor (local config)
-.claude/
+# Claude / Cursor (local config) — keep shared skills tracked
+.claude/*
+!.claude/skills/

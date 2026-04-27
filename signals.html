@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signals — PDLC Futures Sketchpad</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Page chrome ─────────────────────────────────────── */
+    .sig-page { background: hsl(var(--secondary)); min-height: 100vh; }
+    .sig-shell {
+      max-width: 1080px; margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    /* ── Hero ────────────────────────────────────────────── */
+    .sig-hero {
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 1.75rem 1.75rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .sig-eyebrow {
+      font-size: 0.625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 0.5rem;
+    }
+    .sig-title {
+      font-size: 1.75rem; font-weight: 700;
+      letter-spacing: -0.025em; margin-bottom: 0.5rem;
+    }
+    .sig-lead {
+      font-size: 0.9375rem; color: hsl(var(--muted-foreground));
+      line-height: 1.65; max-width: 760px;
+    }
+    .sig-lead strong { color: hsl(var(--foreground)); font-weight: 600; }
+    .sig-meta-row {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;
+      margin-top: 1rem;
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+      letter-spacing: 0.02em;
+    }
+    .sig-meta-pill {
+      padding: 0.2rem 0.5rem;
+      border: 1px solid hsl(var(--border)); border-radius: 9999px;
+      background: hsl(var(--background));
+      font-weight: 600; color: hsl(var(--foreground));
+      font-size: 0.625rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .sig-meta-pill.pulse::before {
+      content: ''; display: inline-block;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: hsl(120 50% 45%);
+      margin-right: 0.375rem; vertical-align: 1px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* ── Filters ─────────────────────────────────────────── */
+    .sig-filters {
+      display: flex; flex-wrap: wrap; gap: 0.375rem;
+      margin-bottom: 1.5rem;
+    }
+    .sig-chip {
+      font-family: inherit;
+      font-size: 0.6875rem; font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid hsl(var(--border)); border-radius: 9999px;
+      background: hsl(var(--background)); color: hsl(var(--muted-foreground));
+      cursor: pointer; transition: all 0.12s;
+    }
+    .sig-chip:hover { color: hsl(var(--foreground)); }
+    .sig-chip.active {
+      background: hsl(var(--foreground)); color: hsl(var(--primary-foreground));
+      border-color: hsl(var(--foreground));
+    }
+    .sig-chip-count {
+      display: inline-block; margin-left: 0.3rem;
+      font-size: 0.625rem; opacity: 0.7;
+    }
+
+    /* ── Week block ──────────────────────────────────────── */
+    .sig-week {
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      margin-bottom: 1rem; overflow: hidden;
+    }
+    .sig-week-hdr {
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid hsl(var(--border));
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .sig-week-num {
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: hsl(var(--muted-foreground));
+    }
+    .sig-week-range {
+      font-size: 1.0625rem; font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .sig-week-tldr {
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      line-height: 1.5; padding: 0.625rem 1.25rem;
+      background: hsl(var(--secondary));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .sig-week-tldr strong { color: hsl(var(--foreground)); font-weight: 600; }
+
+    /* ── Layer rail ──────────────────────────────────────── */
+    .sig-layer {
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .sig-layer:last-child { border-bottom: none; }
+    .sig-layer-hdr {
+      padding: 0.5rem 1.25rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.5625rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: hsl(var(--muted-foreground));
+      background: hsl(var(--secondary));
+    }
+    .sig-layer-num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      padding: 0.05rem 0.375rem; border-radius: 3px;
+      background: hsl(var(--foreground)); color: hsl(var(--primary-foreground));
+      font-size: 0.5625rem;
+    }
+    .sig-layer.cross .sig-layer-num {
+      background: hsl(var(--background)); color: hsl(var(--foreground));
+      border: 1px solid hsl(var(--border));
+    }
+
+    /* ── Item ────────────────────────────────────────────── */
+    .sig-item {
+      padding: 0.875rem 1.25rem;
+      border-top: 1px solid hsl(var(--border));
+      display: grid; grid-template-columns: 64px 1fr; gap: 0.875rem;
+      align-items: start;
+    }
+    .sig-layer .sig-item:first-of-type { border-top: 0; }
+    .sig-item-date {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.6875rem; font-weight: 600;
+      color: hsl(var(--muted-foreground));
+      text-transform: uppercase; letter-spacing: 0.04em;
+      padding-top: 0.125rem;
+    }
+    .sig-item-body { min-width: 0; }
+    .sig-item-title {
+      font-size: 0.9375rem; font-weight: 600;
+      letter-spacing: -0.01em; margin-bottom: 0.25rem;
+      line-height: 1.35;
+    }
+    .sig-item-title a {
+      color: hsl(var(--foreground)); text-decoration: none;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .sig-item-title a:hover { border-bottom-color: hsl(var(--foreground)); opacity: 1; }
+    .sig-item-summary {
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      line-height: 1.6; margin-bottom: 0.375rem;
+    }
+    .sig-item-summary em {
+      color: hsl(var(--foreground)); font-style: normal; font-weight: 600;
+    }
+    .sig-item-tags {
+      display: flex; flex-wrap: wrap; gap: 0.3rem;
+      font-size: 0.625rem;
+    }
+    .sig-tag {
+      padding: 0.05rem 0.4rem;
+      border: 1px solid hsl(var(--border)); border-radius: 3px;
+      color: hsl(var(--muted-foreground));
+      font-weight: 600; letter-spacing: 0.03em;
+    }
+    .sig-source {
+      font-size: 0.625rem; color: hsl(var(--muted-foreground));
+      letter-spacing: 0.02em;
+    }
+    .sig-source::before { content: '· '; }
+
+    /* ── How-to / methodology ────────────────────────────── */
+    .sig-method {
+      margin-top: 2rem;
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+    }
+    .sig-method h3 {
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: -0.01em; margin-bottom: 0.5rem;
+    }
+    .sig-method p {
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      line-height: 1.65; margin-bottom: 0.5rem;
+    }
+    .sig-method code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.75rem; background: hsl(var(--secondary));
+      padding: 0.05rem 0.3rem; border-radius: 3px;
+    }
+    .sig-method ol {
+      margin: 0.5rem 0 0.75rem; padding-left: 1.25rem;
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground)); line-height: 1.7;
+    }
+    .sig-method ol strong { color: hsl(var(--foreground)); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .sig-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .sig-item-date { padding-top: 0; }
+    }
+  </style>
+</head>
+<body class="sig-page">
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">PDLC Futures Sketchpad</div>
+    <button class="nav-mobile-toggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">&#8592; Writeup</a></li>
+      <li><a href="workspace.html">Workspace</a></li>
+      <li><a href="signals.html" class="active">Signals</a></li>
+      <li><a href="usecases.html">Use Cases</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="sig-shell">
+
+  <!-- Hero -->
+  <section class="sig-hero fade-in">
+    <div class="sig-eyebrow">Third surface &middot; weekly cadence</div>
+    <h1 class="sig-title">Signals</h1>
+    <p class="sig-lead">
+      A short, dated log of <strong>industry signals from the last 1&ndash;2 weeks</strong> &mdash; news, papers, posts and product moves on the topics this writeup tracks: agentic PDLC, the three-layer future of computing (<em>ambient intent &middot; agentic execution &middot; ephemeral verification</em>), product engineer role, harness engineering, trust calibration. Each item is 2&ndash;5 sentences, with a source link. New entries land here weekly &mdash; older weeks accumulate at the bottom rather than getting overwritten.
+    </p>
+    <div class="sig-meta-row">
+      <span class="sig-meta-pill pulse">Updated weekly</span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">26 April 2026</strong></span>
+      <span>&middot; Refresh cadence: every Sunday evening</span>
+      <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
+    </div>
+  </section>
+
+  <!-- Filters (visual / progressive enhancement) -->
+  <div class="sig-filters" id="sigFilters">
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">13</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">4</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">4</span></button>
+    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">5</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">0</span></button>
+  </div>
+
+  <!-- ── Week of 21–26 April 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Week 17 &middot; 2026</div>
+        <div class="sig-week-range">21&ndash;26 April 2026</div>
+      </div>
+      <div class="sig-source">13 signals · seeded</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the week:</strong> all three layers shipped at once. OpenAI&rsquo;s Codex update made desktop computer use real for ~3M weekly developers; Google&rsquo;s A2UI v0.9 standardised generative UI; Microsoft previewed an &ldquo;agentic, ambient&rdquo; OS direction. The single-surface dashboard era is visibly ending.
+    </div>
+
+    <!-- Layer 1: Ambient intent capture -->
+    <div class="sig-layer" data-layer="ambient">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">01</span> Ambient intent capture</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 23</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.windowscentral.com/microsoft/windows-11/microsoft-teases-windows-12-next-version-os-agentic-ai-ambient-computing-copilot" target="_blank" rel="noopener">Microsoft teases an &ldquo;agentic, ambient&rdquo; next OS</a></div>
+          <div class="sig-item-summary">Microsoft sketched its next-generation Windows direction this week: an OS that <em>semantically understands what is on your screen at all times</em> as a first-class capability. The framing is explicit &mdash; agentic, ambient, multimodal &mdash; and it positions ambient intent capture as platform-level, not application-level. If this lands, every app becomes a potential intent source rather than the destination.</div>
+          <div class="sig-item-tags"><span class="sig-tag">OS-level</span><span class="sig-tag">Microsoft</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 22</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://markets.financialcontent.com/wral/article/tokenring-2026-1-5-openais-ambient-ambitions-the-screenless-ai-gadget-set-to-redefine-computing-in-fall-2026" target="_blank" rel="noopener">OpenAI&rsquo;s &ldquo;Ambient&rdquo; screenless device coverage intensifies</a></div>
+          <div class="sig-item-summary">Coverage of OpenAI&rsquo;s rumoured screenless device crystallised into a coherent architectural picture this week: <em>LLM-as-kernel</em> instead of files-and-apps; intent flowing in via voice and sensors; &ldquo;Agentic Workspaces&rdquo; created on demand; results returned via voice. If accurate, it is the first mainstream consumer device explicitly designed around the three-layer model.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Hardware</span><span class="sig-tag">OpenAI</span><span class="sig-tag">Voice-first</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 17</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.digitalocean.com/community/tutorials/ambient-agents-context-aware-ai" target="_blank" rel="noopener">DigitalOcean &mdash; Ambient agents: the next frontier in context-aware AI</a></div>
+          <div class="sig-item-summary">A clean primer that locks down the four properties separating ambient agents from chatbots: <em>continuous</em> (not episodic), <em>environmental</em> (not device-bound), <em>proactive</em> (acting on their own), <em>multimodal</em> (across sensors, voice, vision, logs). Useful as a working definition when arguing internally about whether something is &ldquo;just a chatbot&rdquo; or genuinely ambient.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Definition</span><span class="sig-tag">Primer</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 15</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.speechmatics.com/company/articles-and-news/what-is-ambient-ai-how-voice-first-tech-is-rewriting-the-rules-of-healthcare" target="_blank" rel="noopener">Speechmatics &mdash; voice-first ambient AI in healthcare</a></div>
+          <div class="sig-item-summary">A real-world deployment write-up: clinicians have a conversation with the patient, ambient AI captures it, structures it, and pre-fills the chart. The PDLC analogue is direct: ambient capture of <em>what the team is actually deciding in meetings</em> could pre-fill the spec, the JTBD, and the agent context window without anyone typing it twice.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Vertical &middot; healthcare</span><span class="sig-tag">Voice</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 16</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://openai.com/index/codex-for-almost-everything/" target="_blank" rel="noopener">OpenAI &mdash; &ldquo;Codex for (almost) everything&rdquo;</a></div>
+          <div class="sig-item-summary">The biggest release of the fortnight. Codex now does desktop <em>computer use</em> (sees, clicks, types across any Mac/Windows app), ships an in-app browser, exposes 90+ plugins (Atlassian Rovo, GitLab, CircleCI, Microsoft Suite, Render, etc.), and can <em>schedule</em> itself to wake up days or weeks later and resume long-running work. Distributed to ~3M weekly developers in one update. This single move closes most of the &ldquo;but the agent can&rsquo;t actually <em>do</em> things&rdquo; gap.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Computer use</span><span class="sig-tag">OpenAI</span><span class="sig-tag">Long-running</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 16</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.macrumors.com/2026/04/16/openai-codex-mac-update/" target="_blank" rel="noopener">MacRumors &mdash; Codex now sees, clicks and types in parallel</a></div>
+          <div class="sig-item-summary">Useful detail beyond OpenAI&rsquo;s own post: <em>multiple agents run on your Mac in parallel without interfering with what you&rsquo;re doing in other apps</em>. That parallelism is the bit that flips the mental model &mdash; agents stop being &ldquo;a tab you switch to&rdquo; and become &ldquo;background processes you tune in to&rdquo;.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Parallelism</span><span class="sig-tag">Background</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 21</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://fillify.tech/blog/agentic-ai-browser-automation-form-filling-2026" target="_blank" rel="noopener">Fillify &mdash; 2026 is the year AI stops assisting and starts doing</a></div>
+          <div class="sig-item-summary">A short opinion piece arguing that browser-native agents bypass the &ldquo;integrate every API&rdquo; problem entirely &mdash; if the agent can drive Chrome, every website becomes addressable without bespoke connectors. Not a new idea, but the framing (&ldquo;assist&rdquo; vs. &ldquo;do&rdquo;) is a useful internal slogan when arguing for browser-driven over API-driven automation in non-public-API tools.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Browser-native</span><span class="sig-tag">Pattern</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 18</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://o-mega.ai/articles/ai-browser-agents-in-the-enterprise-the-ultimate-2026-guide" target="_blank" rel="noopener">Enterprise browser agents (Comet Enterprise, Island AI Browser)</a></div>
+          <div class="sig-item-summary">Comet Enterprise (Perplexity) and Island&rsquo;s AI Browser are now positioned as governed, audited, DLP-enforced agent runtimes. Procurement-grade enterprise browser agents are a real category &mdash; not just a research demo. The implication for PDLC: when agents can be granted scoped credentials with audit trails, &ldquo;agent ran the workflow&rdquo; becomes acceptable evidence in regulated environments.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Governance</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 3: Ephemeral verification UX -->
+    <div class="sig-layer" data-layer="ephemeral">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">03</span> Ephemeral verification UX</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 24</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://developers.googleblog.com/a2ui-v0-9-generative-ui/" target="_blank" rel="noopener">Google &mdash; A2UI v0.9 generative-UI spec</a></div>
+          <div class="sig-item-summary">Google released A2UI v0.9 this week. It is <em>declarative</em> (not executable code), <em>framework-agnostic</em> (React, Flutter, Lit, Angular renderers shipped), and explicitly safe-by-construction: agents can only request components from a pre-approved catalog the host app maintains. This is the first credible standard for &ldquo;agents emit UI on demand&rdquo; that an enterprise security team can sign off on.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Google</span><span class="sig-tag">Generative UI</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 22</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.copilotkit.ai/blog/build-with-googles-new-a2ui-spec-agent-user-interfaces-with-a2ui-ag-ui" target="_blank" rel="noopener">CopilotKit &mdash; building with A2UI + AG-UI</a></div>
+          <div class="sig-item-summary">A complementary piece showing the natural pairing: <em>A2UI describes <strong>what</strong> the agent wants to render; AG-UI streams the live execution</em>. Together they form an end-to-end ephemeral-UI toolchain &mdash; declarative surface + streaming state &mdash; that matches the workspace prototype&rsquo;s Flow mode almost exactly.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Toolchain</span><span class="sig-tag">A2UI</span><span class="sig-tag">AG-UI</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://thenewstack.io/agent-ui-standards-multiply-mcp-apps-and-googles-a2ui/" target="_blank" rel="noopener">The New Stack &mdash; Agent UI standards multiply</a></div>
+          <div class="sig-item-summary">A useful market read: MCP Apps and A2UI are converging on the same idea from different directions. UIs become declarative artifacts agents emit, not products engineers ship. Expect a brief standards war and then de-facto interop &mdash; bet on the abstraction, not the specific spec.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standards</span><span class="sig-tag">Market</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 18</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.everydayux.net/designers-adapting-to-generative-disposable-ui/" target="_blank" rel="noopener">EverydayUX &mdash; designing for disposable UI</a></div>
+          <div class="sig-item-summary">A clear thesis for design teams: when the agent generates the screen, designers stop owning &ldquo;screens&rdquo; and start owning <em>component catalogs, decision frames, and trust signals</em>. The artifact shifts from a Figma file to a system spec. This is the design-side mirror of the engineering &ldquo;harness, not code&rdquo; shift the writeup already covers in Section 5.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Design role</span><span class="sig-tag">Disposable UI</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 14</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.geeky-gadgets.com/agentic-software-takes-over-routine-screens-redefining-b2b-saas-products/" target="_blank" rel="noopener">Geeky Gadgets &mdash; B2B SaaS roadmap 2026</a></div>
+          <div class="sig-item-summary">Argues that &ldquo;routine screens&rdquo; (forms, dashboards, settings panels) are the first to be absorbed by agents in B2B SaaS, while durable UI survives only for high-stakes review and orchestration. Maps almost one-to-one to the workspace prototype&rsquo;s thesis: orchestration is the surface that stays; routine ops becomes ephemeral.</div>
+          <div class="sig-item-tags"><span class="sig-tag">B2B SaaS</span><span class="sig-tag">Roadmap</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="sig-method fade-in" id="methodology">
+    <h3>How this page is produced</h3>
+    <p>
+      Each Sunday evening, the <code>refresh-signals</code> Claude Code skill (in <code>.claude/skills/refresh-signals/</code>) runs the same scan we ran for the seed entries:
+    </p>
+    <ol>
+      <li><strong>Scope.</strong> Last 7&ndash;14 days only. Strictly enforced &mdash; older items belong in the writeup, not here.</li>
+      <li><strong>Topics.</strong> Agentic PDLC, the three layers (ambient / agentic / ephemeral), product engineer role, harness engineering, trust calibration, multi-agent orchestration, generative UI standards.</li>
+      <li><strong>Per signal.</strong> 2&ndash;5 sentences. One source link in the title. Plain English. Why-it-matters first, what-it-is second.</li>
+      <li><strong>Layering.</strong> Each item is filed under one of three layers, or the cross-cutting rail (orchestration patterns, role evolution, regulation). Five items per layer per week is plenty &mdash; signal beats volume.</li>
+      <li><strong>Append, don&rsquo;t overwrite.</strong> Each new week is added as a new <code>&lt;section class="sig-week"&gt;</code> at the top; older weeks stay below for longitudinal reading.</li>
+    </ol>
+    <p>
+      The skill produces a draft block that the PE reviews before commit &mdash; this is a Layer&nbsp;3 surface in its own right. To run it: invoke the skill from Claude Code on this repo and follow the prompts.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    Signals &middot; PDLC Futures Sketchpad &middot; Refreshed weekly &middot;
+    <a href="index.html" style="text-decoration: underline; text-underline-offset: 2px;">Back to writeup</a>
+    &middot;
+    <a href="workspace.html" style="text-decoration: underline; text-underline-offset: 2px;">Workspace</a>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
+
+<script>
+// Filter chips
+document.querySelectorAll('.sig-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const filter = chip.dataset.filter;
+    document.querySelectorAll('.sig-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    document.querySelectorAll('.sig-layer').forEach(layer => {
+      const show = filter === 'all' || layer.dataset.layer === filter;
+      layer.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+// Mobile nav toggle
+document.querySelector('.nav-mobile-toggle')?.addEventListener('click', () => {
+  document.querySelector('.nav-links')?.classList.toggle('open');
+});
+
+// Scroll to top + progress
+document.getElementById('scrollTop')?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const bar = document.getElementById('progressBar');
+  if (bar) bar.style.width = (scrollTop / docHeight) * 100 + '%';
+  document.getElementById('scrollTop')?.classList.toggle('visible', scrollTop > 400);
+});
+
+// Fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => document.querySelector('.nav-links')?.classList.remove('open'));
+});
+</script>
+
+</body>
+</html>

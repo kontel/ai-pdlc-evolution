@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Use Case Periodic Table for Product Teams</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .uc-page { background: hsl(var(--secondary)); min-height: 100vh; }
+
+    /* Header */
+    .uc-header {
+      margin-top: 56px;
+      padding: 3.5rem 1.5rem 2.5rem;
+      text-align: center;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .uc-header h1 {
+      font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;
+      margin-bottom: 0.625rem; line-height: 1.15;
+    }
+    .uc-header p {
+      font-size: 0.9375rem; color: hsl(var(--muted-foreground));
+      max-width: 640px; margin: 0 auto; line-height: 1.6;
+    }
+    .uc-header-stats {
+      display: flex; justify-content: center; gap: 2.5rem; margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .uc-header-stat { text-align: center; }
+    .uc-header-stat .num {
+      font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .uc-header-stat .label {
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+      text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.25rem;
+    }
+    .uc-back {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      text-decoration: none; padding: 0.5rem 0;
+    }
+    .uc-back:hover { color: hsl(var(--foreground)); }
+
+    /* ═══ Filter bar ═══ */
+    .uc-filters {
+      position: sticky; top: 56px; z-index: 40;
+      background: hsla(var(--background), 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0.75rem 1.5rem;
+    }
+    .uc-filter-row {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; gap: 0.625rem; flex-wrap: wrap;
+    }
+    .uc-filter-group {
+      display: flex; align-items: center; gap: 0.375rem;
+    }
+    .uc-filter-group-label {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: hsl(var(--muted-foreground));
+      margin-right: 0.125rem;
+    }
+    .uc-filter-btn {
+      font-size: 0.75rem; padding: 0.3rem 0.7rem;
+      border: 1.5px solid hsl(var(--border)); border-radius: 6px;
+      background: transparent; color: hsl(var(--muted-foreground));
+      cursor: pointer; transition: all 0.15s; font-family: inherit;
+      font-weight: 500;
+    }
+    .uc-filter-btn:hover {
+      color: hsl(var(--foreground)); border-color: hsl(var(--foreground));
+      background: hsl(var(--secondary));
+    }
+    .uc-filter-btn:focus-visible {
+      outline: 2px solid hsl(215 90% 55%);
+      outline-offset: 2px;
+    }
+    .uc-filter-btn[aria-pressed="true"] {
+      background: hsl(var(--foreground)); color: hsl(var(--primary-foreground));
+      border-color: hsl(var(--foreground)); font-weight: 700;
+    }
+    .uc-filter-sep {
+      width: 1px; height: 24px; background: hsl(var(--border));
+      flex-shrink: 0; margin: 0 0.25rem;
+    }
+    .uc-filter-count {
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+      margin-left: auto; font-weight: 600; font-variant-numeric: tabular-nums;
+    }
+
+    /* ═══ Legend ═══ */
+    .uc-legend {
+      max-width: 1200px; margin: 1.25rem auto 0; padding: 0 1.5rem;
+      display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: center;
+    }
+    .uc-legend-title {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: hsl(var(--muted-foreground));
+    }
+    .uc-legend-item {
+      display: flex; align-items: center; gap: 0.375rem;
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+    }
+    .uc-legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+    /* ═══ Grid — periodic table ═══ */
+    .uc-grid {
+      max-width: 1200px; margin: 1.25rem auto 3rem; padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      gap: 0.5rem;
+    }
+
+    /* ═══ Element card — periodic table style ═══ */
+    .uc-element {
+      aspect-ratio: 1 / 1.1;
+      border: 1.5px solid hsl(var(--border));
+      border-radius: 8px;
+      padding: 0.625rem 0.625rem 0.5rem;
+      background: hsl(var(--background));
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .uc-element:hover {
+      border-color: hsl(var(--foreground));
+      box-shadow: 0 4px 16px hsla(var(--foreground), 0.1);
+      transform: translateY(-2px) scale(1.02);
+      z-index: 2;
+    }
+    .uc-element:focus-visible {
+      outline: 2px solid hsl(215 90% 55%);
+      outline-offset: 2px;
+    }
+    .uc-element.hidden { display: none; }
+
+    /* Category top-bar accent */
+    .uc-element::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .uc-element[data-category="discovery"]::before   { background: #6366f1; }
+    .uc-element[data-category="research"]::before    { background: #8b5cf6; }
+    .uc-element[data-category="strategy"]::before    { background: #ec4899; }
+    .uc-element[data-category="specs"]::before       { background: #f59e0b; }
+    .uc-element[data-category="design"]::before      { background: #10b981; }
+    .uc-element[data-category="analytics"]::before   { background: #3b82f6; }
+    .uc-element[data-category="gtm"]::before         { background: #ef4444; }
+    .uc-element[data-category="ops"]::before          { background: #64748b; }
+
+    .uc-element-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .uc-number {
+      font-size: 0.5625rem; font-weight: 700; color: hsl(var(--muted-foreground));
+      line-height: 1; letter-spacing: 0.02em;
+    }
+    .uc-risk-badge {
+      font-size: 0.5rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: hsl(var(--muted-foreground));
+      background: hsl(var(--secondary)); padding: 0.1em 0.35em;
+      border-radius: 3px; line-height: 1.5;
+    }
+    .uc-symbol {
+      font-size: 2rem; font-weight: 900; letter-spacing: -0.04em;
+      line-height: 1; margin: 0.125rem 0 0.25rem;
+      color: hsl(var(--foreground));
+    }
+    .uc-name {
+      font-size: 0.6875rem; font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .uc-desc {
+      font-size: 0.5625rem; color: hsl(var(--muted-foreground));
+      line-height: 1.4; flex: 1; margin-top: 0.25rem;
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .uc-meta {
+      display: flex; flex-direction: column; gap: 0.25rem;
+      margin-top: auto; padding-top: 0.375rem;
+    }
+    .uc-meter-row {
+      display: flex; align-items: center; gap: 0.25rem;
+    }
+    .uc-meter-icon {
+      font-size: 0.5rem; width: 0.75rem; text-align: center;
+      color: hsl(var(--muted-foreground)); flex-shrink: 0;
+      line-height: 1;
+    }
+    .uc-meter-dots {
+      display: flex; gap: 3px;
+    }
+    .uc-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      border: 1.5px solid hsl(var(--border));
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .uc-dot.filled { border-color: transparent; }
+    .uc-dot.filled.impact  { background: hsl(var(--foreground)); }
+    .uc-dot.filled.eff-low { background: #22c55e; }
+    .uc-dot.filled.eff-med { background: #eab308; }
+    .uc-dot.filled.eff-hi  { background: #ef4444; }
+    .uc-meter-label {
+      font-size: 0.45rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; color: hsl(var(--muted-foreground));
+      margin-left: 0.2rem; line-height: 1;
+    }
+
+    /* Keep tag styles for modal */
+    .uc-tag {
+      font-size: 0.5rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.15em 0.4em; border-radius: 3px;
+      line-height: 1.5;
+    }
+    .uc-effort-low    { background: #dcfce7; color: #166534; }
+    .uc-effort-medium { background: #fef9c3; color: #854d0e; }
+    .uc-effort-high   { background: #fee2e2; color: #991b1b; }
+    .uc-impact-high   { background: hsl(var(--foreground)); color: hsl(var(--primary-foreground)); }
+    .uc-impact-medium { background: hsl(240 4.8% 88%); color: hsl(var(--foreground)); }
+
+    /* Modal visual meters */
+    .uc-modal-meters {
+      display: flex; gap: 1.5rem; margin-top: 0.5rem;
+    }
+    .uc-modal-meter {
+      display: flex; align-items: center; gap: 0.375rem;
+    }
+    .uc-modal-meter-label {
+      font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; color: hsl(var(--muted-foreground));
+    }
+    .uc-modal-meter-dots {
+      display: flex; gap: 5px;
+    }
+    .uc-modal-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid hsl(var(--border));
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .uc-modal-dot.filled { border-color: transparent; }
+    .uc-modal-dot.filled.impact  { background: hsl(var(--foreground)); }
+    .uc-modal-dot.filled.eff-low { background: #22c55e; }
+    .uc-modal-dot.filled.eff-med { background: #eab308; }
+    .uc-modal-dot.filled.eff-hi  { background: #ef4444; }
+
+    /* ═══ Modal overlay ═══ */
+    .uc-modal-backdrop {
+      position: fixed; inset: 0; z-index: 100;
+      background: hsla(var(--foreground), 0.5);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .uc-modal-backdrop.open {
+      opacity: 1; pointer-events: auto;
+    }
+
+    .uc-modal {
+      position: fixed; z-index: 101;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.92);
+      width: min(580px, calc(100vw - 2rem));
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: 12px;
+      box-shadow: 0 24px 48px hsla(var(--foreground), 0.15);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .uc-modal.open {
+      opacity: 1; pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .uc-modal-top {
+      padding: 1.5rem 1.5rem 0;
+      display: flex; align-items: flex-start; gap: 1.25rem;
+    }
+    .uc-modal-element {
+      width: 80px; height: 88px; flex-shrink: 0;
+      border: 1.5px solid hsl(var(--border)); border-radius: 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .uc-modal-element::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .uc-modal-element .uc-number {
+      position: absolute; top: 6px; right: 6px;
+    }
+    .uc-modal-element .uc-symbol {
+      font-size: 1.75rem;
+    }
+    .uc-modal-element .uc-name {
+      font-size: 0.5625rem; text-align: center; padding: 0 0.25rem;
+    }
+
+    .uc-modal-header { flex: 1; min-width: 0; }
+    .uc-modal-title {
+      font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.2; margin-bottom: 0.375rem;
+    }
+    .uc-modal-tags { display: flex; gap: 0.375rem; flex-wrap: wrap; }
+    .uc-modal-tag {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; padding: 0.2em 0.5em; border-radius: 4px;
+      line-height: 1.5;
+    }
+    .uc-modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      width: 32px; height: 32px; border-radius: 6px;
+      border: 1px solid hsl(var(--border)); background: hsl(var(--secondary));
+      color: hsl(var(--muted-foreground)); cursor: pointer;
+      font-size: 1.125rem; font-family: inherit;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .uc-modal-close:hover {
+      background: hsl(var(--foreground)); color: hsl(var(--primary-foreground));
+      border-color: hsl(var(--foreground));
+    }
+    .uc-modal-close:focus-visible {
+      outline: 2px solid hsl(215 90% 55%); outline-offset: 2px;
+    }
+
+    .uc-modal-body {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.9375rem; line-height: 1.7;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .uc-modal-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.75rem; padding: 0 1.5rem 1.5rem;
+    }
+    .uc-modal-stat {
+      text-align: center;
+      padding: 0.75rem;
+      background: hsl(var(--secondary));
+      border-radius: 8px;
+    }
+    .uc-modal-stat .num {
+      font-size: 1rem; font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .uc-modal-stat .label {
+      font-size: 0.5625rem; color: hsl(var(--muted-foreground));
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-top: 0.125rem;
+    }
+
+    /* Footer */
+    .uc-footer {
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+      border-top: 1px solid hsl(var(--border));
+      background: hsl(var(--background));
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .uc-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.375rem; }
+      .uc-header h1 { font-size: 1.5rem; }
+      .uc-symbol { font-size: 1.5rem; }
+      .uc-modal { width: calc(100vw - 1.5rem); }
+      .uc-modal-top { flex-direction: column; gap: 0.75rem; }
+      .uc-modal-element { width: 60px; height: 66px; }
+      .uc-modal-element .uc-symbol { font-size: 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .uc-grid { grid-template-columns: repeat(3, 1fr); }
+      .uc-element { aspect-ratio: 1 / 1.2; }
+      .uc-desc { display: none; }
+    }
+  </style>
+</head>
+<body class="uc-page">
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">PDLC Futures Sketchpad</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">&larr; Main Sketchpad</a></li>
+      <li><a href="workspace.html">Workspace</a></li>
+      <li><a href="signals.html">Signals</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="uc-header">
+  <a href="index.html" class="uc-back">&larr; Back to Sketchpad</a>
+  <h1>The AI Use Case Periodic Table<br>for Product Teams</h1>
+  <p>30 non-engineering AI use cases that make product managers, designers, and leaders measurably more effective. Organised by lifecycle phase. Filterable by effort, impact, product risk, and AI readiness.</p>
+  <div class="uc-header-stats">
+    <div class="uc-header-stat"><div class="num">30</div><div class="label">Use cases</div></div>
+    <div class="uc-header-stat"><div class="num">8</div><div class="label">Categories</div></div>
+    <div class="uc-header-stat"><div class="num">15-20h</div><div class="label">Weekly time saved</div></div>
+    <div class="uc-header-stat"><div class="num">0</div><div class="label">Lines of code</div></div>
+  </div>
+</div>
+
+<!-- Filter bar -->
+<div class="uc-filters" role="toolbar" aria-label="Filter use cases">
+  <div class="uc-filter-row">
+    <div class="uc-filter-group" role="group" aria-label="Filter by category">
+      <span class="uc-filter-group-label" id="catLabel">Category</span>
+      <button class="uc-filter-btn" role="switch" aria-pressed="true" aria-labelledby="catLabel" data-filter="category" data-value="all">All</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="discovery">Discovery</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="research">Research</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="strategy">Strategy</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="specs">Specs</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="design">Design</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="analytics">Analytics</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="gtm">GTM</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="category" data-value="ops">Ops</button>
+    </div>
+
+    <div class="uc-filter-sep" role="separator"></div>
+
+    <div class="uc-filter-group" role="group" aria-label="Filter by impact">
+      <span class="uc-filter-group-label">Impact</span>
+      <button class="uc-filter-btn" role="switch" aria-pressed="true" data-filter="impact" data-value="all">All</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="impact" data-value="high">High</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="impact" data-value="medium">Medium</button>
+    </div>
+
+    <div class="uc-filter-sep" role="separator"></div>
+
+    <div class="uc-filter-group" role="group" aria-label="Filter by effort">
+      <span class="uc-filter-group-label">Effort</span>
+      <button class="uc-filter-btn" role="switch" aria-pressed="true" data-filter="effort" data-value="all">All</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="effort" data-value="low">Low</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="effort" data-value="medium">Med</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="effort" data-value="high">High</button>
+    </div>
+
+    <div class="uc-filter-sep" role="separator"></div>
+
+    <div class="uc-filter-group" role="group" aria-label="Filter by product risk">
+      <span class="uc-filter-group-label">Risk</span>
+      <button class="uc-filter-btn" role="switch" aria-pressed="true" data-filter="risk" data-value="all">All</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="risk" data-value="value">Value</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="risk" data-value="usability">Usability</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="risk" data-value="feasibility">Feasibility</button>
+      <button class="uc-filter-btn" role="switch" aria-pressed="false" data-filter="risk" data-value="viability">Viability</button>
+    </div>
+
+    <span class="uc-filter-count" aria-live="polite"><span id="visibleCount">30</span> / 30</span>
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="uc-legend">
+  <span class="uc-legend-title">Categories:</span>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#6366f1;"></div>Discovery</div>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#8b5cf6;"></div>Research</div>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#ec4899;"></div>Strategy</div>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#f59e0b;"></div>Specs</div>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#10b981;"></div>Design</div>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#3b82f6;"></div>Analytics</div>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#ef4444;"></div>GTM</div>
+  <div class="uc-legend-item"><div class="uc-legend-dot" style="background:#64748b;"></div>Ops</div>
+</div>
+
+<!-- Modal -->
+<div class="uc-modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+<div class="uc-modal" id="ucModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <button class="uc-modal-close" id="modalClose" aria-label="Close detail view">&times;</button>
+  <div id="modalContent"></div>
+</div>
+
+<!-- Periodic table grid -->
+<div class="uc-grid" id="ucGrid" role="list" aria-label="AI use cases">
+
+  <!-- ═══ DISCOVERY ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="discovery" data-impact="high" data-effort="low" data-risk="value"
+       data-detail="Use AI to synthesise customer interviews, support tickets, NPS responses, and sales call transcripts into ranked problem themes. Surfaces patterns humans miss across hundreds of data points.|Time saved|5-7 hrs/week|Tools|Dovetail AI, Claude, ChatGPT|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">01</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Fb</div>
+    <div class="uc-name">Feedback Synthesis</div>
+    <div class="uc-desc">Aggregate tickets, reviews, calls, and surveys. Surface themes automatically.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="discovery" data-impact="high" data-effort="medium" data-risk="value"
+       data-detail="AI transcribes customer and stakeholder interviews, extracts verbatim quotes, maps feedback to roadmap themes, and highlights contradictions across participants.|Time saved|8-10 hrs/cycle|Tools|Grain, Dovetail, Otter.ai + Claude|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">02</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Ia</div>
+    <div class="uc-name">Interview Analysis</div>
+    <div class="uc-desc">Transcribe interviews, extract quotes, map to themes across 20+ conversations.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="discovery" data-impact="high" data-effort="low" data-risk="value"
+       data-detail="Surface unmet needs, underserved segments, and opportunity gaps by analysing behavioural data, feedback clusters, and competitive whitespace simultaneously.|Time saved|3-5 hrs/sprint|Tools|Claude, ChatGPT, Amplitude AI|Source|SVPG + JTBD">
+    <div class="uc-element-top"><span class="uc-number">03</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Os</div>
+    <div class="uc-name">Opportunity Scoring</div>
+    <div class="uc-desc">Rank problem spaces by frequency, severity, and strategic fit.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="discovery" data-impact="medium" data-effort="low" data-risk="value"
+       data-detail="AI monitors job postings, pricing pages, changelogs, press releases, and app store updates for competitors. Sends a daily digest of meaningful changes.|Time saved|Continuous|Tools|Klue, Crayon, Claude|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">04</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Cm</div>
+    <div class="uc-name">Competitor Monitor</div>
+    <div class="uc-desc">Track competitor sites, pricing, features. Daily digest of changes.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <!-- ═══ RESEARCH ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="research" data-impact="high" data-effort="medium" data-risk="usability"
+       data-detail="Generate usability test scripts, moderate simulated sessions against persona profiles, and synthesise findings into severity-ranked issue lists with video timestamps.|Time saved|4-6 hrs/round|Tools|Maze AI, UserTesting AI, Claude|Source|NNGroup">
+    <div class="uc-element-top"><span class="uc-number">05</span><span class="uc-risk-badge">Usability</span></div>
+    <div class="uc-symbol">Ut</div>
+    <div class="uc-name">Usability Test Synthesis</div>
+    <div class="uc-desc">Generate test scripts, synthesise sessions, rank issues by severity.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="research" data-impact="medium" data-effort="low" data-risk="value"
+       data-detail="AI scans academic papers, industry reports, news, and patent filings. Filters for relevance to your domain and summarises weekly with trend indicators.|Time saved|Continuous|Tools|Elicit, Perplexity, Claude|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">06</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Mt</div>
+    <div class="uc-name">Market Trend Scan</div>
+    <div class="uc-desc">Monitor news, papers, reports. Filter for relevance, summarise weekly.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="research" data-impact="high" data-effort="medium" data-risk="usability"
+       data-detail="Build detailed persona profiles from behavioural analytics, survey data, and interview transcripts. AI identifies segments you didn't know existed and validates assumptions against real data.|Time saved|6-8 hrs/cycle|Tools|Claude, Amplitude AI, Mixpanel|Source|Product-Led Alliance">
+    <div class="uc-element-top"><span class="uc-number">07</span><span class="uc-risk-badge">Usability</span></div>
+    <div class="uc-symbol">Ps</div>
+    <div class="uc-name">Persona Synthesis</div>
+    <div class="uc-desc">Build data-driven personas from analytics + interviews.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="research" data-impact="medium" data-effort="low" data-risk="value"
+       data-detail="Analyse App Store and Play Store reviews, G2/Capterra feedback, and social mentions. Cluster by theme, sentiment, and feature request. Track sentiment over time.|Time saved|2-3 hrs/week|Tools|Appfigures, Claude, MonkeyLearn|Source|Productboard">
+    <div class="uc-element-top"><span class="uc-number">08</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Sa</div>
+    <div class="uc-name">Sentiment Analysis</div>
+    <div class="uc-desc">Cluster app reviews, social mentions, G2 feedback by theme.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <!-- ═══ STRATEGY ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="strategy" data-impact="high" data-effort="medium" data-risk="viability"
+       data-detail="AI assists in building and pressure-testing business cases: TAM/SAM/SOM estimation, revenue modelling, cost projections, and sensitivity analysis.|Time saved|6-10 hrs/case|Tools|Claude, ChatGPT, Excel + AI|Source|McKinsey, Bain">
+    <div class="uc-element-top"><span class="uc-number">09</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Bc</div>
+    <div class="uc-name">Business Case</div>
+    <div class="uc-desc">TAM/SAM estimation, revenue models, sensitivity analysis.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="strategy" data-impact="high" data-effort="low" data-risk="value"
+       data-detail="Score and stack-rank backlog items using weighted criteria: strategic alignment, user impact, effort estimate, revenue potential, and risk.|Time saved|2-4 hrs/sprint|Tools|Linear AI, Productboard AI, Claude|Source|Productboard, ChatPRD">
+    <div class="uc-element-top"><span class="uc-number">10</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Bp</div>
+    <div class="uc-name">Backlog Priority</div>
+    <div class="uc-desc">Score and stack-rank items by strategic fit, impact, effort.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="strategy" data-impact="medium" data-effort="medium" data-risk="viability"
+       data-detail="Generate and visualise roadmap options based on different strategic scenarios (aggressive growth vs. consolidation vs. pivot). Model trade-offs and dependencies.|Time saved|4-6 hrs/quarter|Tools|Notion AI, Claude, Productboard|Source|Voltage Control">
+    <div class="uc-element-top"><span class="uc-number">11</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Rs</div>
+    <div class="uc-name">Roadmap Scenarios</div>
+    <div class="uc-desc">Model roadmap options under different strategic assumptions.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="strategy" data-impact="high" data-effort="high" data-risk="viability"
+       data-detail="Map your product against the four big risks (value, usability, feasibility, viability) using AI to scan for evidence of each. Generates a risk heat map with confidence levels.|Time saved|3-5 hrs/review|Tools|Claude, structured prompts|Source|SVPG (Cagan)">
+    <div class="uc-element-top"><span class="uc-number">12</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Ra</div>
+    <div class="uc-name">Risk Assessment</div>
+    <div class="uc-desc">Map product against four risks. Generate heat maps with evidence.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-high">High</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <!-- ═══ SPECS ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="specs" data-impact="high" data-effort="low" data-risk="feasibility"
+       data-detail="AI drafts PRDs from Slack threads, meeting notes, and feedback. Includes problem statement, user stories, acceptance criteria, edge cases, and technical considerations.|Time saved|4-6 hrs/PRD|Tools|ChatPRD, Claude, Notion AI|Source|Aakash Gupta, ChatPRD">
+    <div class="uc-element-top"><span class="uc-number">13</span><span class="uc-risk-badge">Feasibility</span></div>
+    <div class="uc-symbol">Pg</div>
+    <div class="uc-name">PRD Generation</div>
+    <div class="uc-desc">Draft PRDs from notes and feedback. Stories, ACs, edge cases.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="specs" data-impact="high" data-effort="medium" data-risk="feasibility"
+       data-detail="Given acceptance criteria, AI generates comprehensive test scenarios including happy paths, edge cases, error states, and boundary conditions.|Time saved|2-4 hrs/feature|Tools|Claude, ChatGPT|Source|Anthropic">
+    <div class="uc-element-top"><span class="uc-number">14</span><span class="uc-risk-badge">Feasibility</span></div>
+    <div class="uc-symbol">Ac</div>
+    <div class="uc-name">AC Expansion</div>
+    <div class="uc-desc">Expand ACs into test scenarios. Edge cases, error states, boundaries.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="specs" data-impact="medium" data-effort="low" data-risk="feasibility"
+       data-detail="AI reviews specs for internal consistency, missing requirements, ambiguous language, and unstated assumptions. Flags contradictions and suggests clarifications.|Time saved|1-2 hrs/spec|Tools|Claude, ChatGPT|Source|ChatPRD">
+    <div class="uc-element-top"><span class="uc-number">15</span><span class="uc-risk-badge">Feasibility</span></div>
+    <div class="uc-symbol">Sr</div>
+    <div class="uc-name">Spec Review</div>
+    <div class="uc-desc">Review specs for ambiguity, gaps, and contradictions.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="specs" data-impact="medium" data-effort="low" data-risk="feasibility"
+       data-detail="AI maps dependencies between features, teams, and systems. Visualises critical paths, flags risks where one delayed item blocks multiple downstream deliverables.|Time saved|2-3 hrs/planning|Tools|Linear AI, Claude, Jira AI|Source|Zenhub">
+    <div class="uc-element-top"><span class="uc-number">16</span><span class="uc-risk-badge">Feasibility</span></div>
+    <div class="uc-symbol">Dm</div>
+    <div class="uc-name">Dependency Map</div>
+    <div class="uc-desc">Map cross-team dependencies. Flag critical path risks.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <!-- ═══ DESIGN ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="design" data-impact="high" data-effort="medium" data-risk="usability"
+       data-detail="Generate interactive prototypes from text descriptions or rough sketches. Iterate on layouts, flows, and micro-interactions without waiting for design sprints.|Time saved|Days/concept|Tools|v0, Lovable, Bolt, Figma AI|Source|Google Research">
+    <div class="uc-element-top"><span class="uc-number">17</span><span class="uc-risk-badge">Usability</span></div>
+    <div class="uc-symbol">Rp</div>
+    <div class="uc-name">Rapid Prototype</div>
+    <div class="uc-desc">Generate prototypes from text. Test concepts in hours.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="design" data-impact="medium" data-effort="low" data-risk="usability"
+       data-detail="AI writes and iterates on UX copy: button labels, error messages, empty states, onboarding flows, tooltips. Adapts to brand voice and tests variants.|Time saved|1-2 hrs/feature|Tools|Claude, ChatGPT, Writer|Source|NNGroup">
+    <div class="uc-element-top"><span class="uc-number">18</span><span class="uc-risk-badge">Usability</span></div>
+    <div class="uc-symbol">Ux</div>
+    <div class="uc-name">UX Microcopy</div>
+    <div class="uc-desc">Write button labels, error messages, empty states. Brand voice.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="design" data-impact="medium" data-effort="medium" data-risk="usability"
+       data-detail="Run WCAG 2.1 AA audits on designs and prototypes. Check colour contrast, touch targets, keyboard navigation, screen reader behaviour, and focus order.|Time saved|2-3 hrs/audit|Tools|Axe, Pa11y, Claude|Source|W3C, Deque">
+    <div class="uc-element-top"><span class="uc-number">19</span><span class="uc-risk-badge">Usability</span></div>
+    <div class="uc-symbol">Ax</div>
+    <div class="uc-name">A11y Audit</div>
+    <div class="uc-desc">WCAG 2.1 AA checks. Contrast, touch targets, keyboard nav.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <!-- ═══ ANALYTICS ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="analytics" data-impact="high" data-effort="low" data-risk="value"
+       data-detail="AI monitors key metrics continuously, detects anomalies, alerts with potential root causes. Catches problems in hours, not the next weekly review.|Time saved|Continuous|Tools|Amplitude AI, Mixpanel, Grafana AI|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">20</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Ma</div>
+    <div class="uc-name">Anomaly Alerts</div>
+    <div class="uc-desc">Detect metric anomalies in real time. Root cause hypotheses.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="analytics" data-impact="high" data-effort="medium" data-risk="value"
+       data-detail="AI monitors experiments, determines statistical significance, interprets results, and drafts recommendations. Flags insufficient sample sizes or confounds.|Time saved|1-2 hrs/exp|Tools|Statsig, Eppo, Amplitude|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">21</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Ei</div>
+    <div class="uc-name">Experiment Interp.</div>
+    <div class="uc-desc">Monitor A/B tests, determine significance, draft recommendations.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="analytics" data-impact="high" data-effort="low" data-risk="value"
+       data-detail="Analyse conversion funnels daily, identify drop-off points, correlate with recent changes. Catches regression in hours, not weeks.|Time saved|Real-time|Tools|Amplitude AI, Mixpanel, PostHog|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">22</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Fa</div>
+    <div class="uc-name">Funnel Analysis</div>
+    <div class="uc-desc">Daily funnel analysis. Drop-offs, correlations, hypotheses.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="analytics" data-impact="medium" data-effort="medium" data-risk="value"
+       data-detail="Track cohort performance over time, identify behavioural differences between segments, surface valuable cohorts, and flag early churn signals.|Time saved|3-4 hrs/analysis|Tools|Amplitude, Mixpanel, Claude|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">23</span><span class="uc-risk-badge">Value</span></div>
+    <div class="uc-symbol">Co</div>
+    <div class="uc-name">Cohort Insights</div>
+    <div class="uc-desc">Track cohorts, churn signals, PMF indicators across segments.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <!-- ═══ GTM ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="gtm" data-impact="medium" data-effort="low" data-risk="viability"
+       data-detail="AI reads commit logs and PRs, generates customer-facing release notes in your brand voice. Separates internal from customer-visible changes.|Time saved|1-2 hrs/release|Tools|Claude, ChatGPT, Linear AI|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">24</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Rn</div>
+    <div class="uc-name">Release Notes</div>
+    <div class="uc-desc">Generate customer-facing notes from commits. Multi-format.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="gtm" data-impact="high" data-effort="medium" data-risk="viability"
+       data-detail="AI monitors competitive changes and product updates. Generates persona-specific battle cards for sales. Keeps them current automatically.|Time saved|2-3 hrs/update|Tools|Klue, Crayon, Claude|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">25</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Sb</div>
+    <div class="uc-name">Battle Cards</div>
+    <div class="uc-desc">Auto-generate and keep competitive battle cards current.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="gtm" data-impact="medium" data-effort="low" data-risk="viability"
+       data-detail="AI reads PRDs and generates landing page copy with value propositions, feature descriptions, and social proof placement. Adapts to brand guidelines.|Time saved|3-5 hrs/launch|Tools|Claude, Jasper, Copy.ai|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">26</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Lc</div>
+    <div class="uc-name">Launch Copy</div>
+    <div class="uc-desc">Generate landing page copy and value props from PRDs.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="gtm" data-impact="medium" data-effort="medium" data-risk="viability"
+       data-detail="Compile customer data, usage metrics, and interview quotes into draft case studies with quantified results, narrative arc, and pull quotes.|Time saved|4-6 hrs each|Tools|Claude, ChatGPT|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">27</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Cs</div>
+    <div class="uc-name">Case Studies</div>
+    <div class="uc-desc">Compile data and interviews into case studies with results.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <!-- ═══ OPS ═══ -->
+  <div class="uc-element" role="listitem" tabindex="0" data-category="ops" data-impact="high" data-effort="low" data-risk="viability"
+       data-detail="AI pulls metrics from dashboards, identifies movements, and drafts narrative reports. Adapts tone for different audiences (board, VP, team).|Time saved|2-3 hrs/week|Tools|Claude, ChatGPT, Notion AI|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">28</span><span class="uc-risk-badge">Viability</span></div>
+    <div class="uc-symbol">Er</div>
+    <div class="uc-name">Exec Reporting</div>
+    <div class="uc-desc">Pull metrics, draft narratives. Adapt tone for board vs. team.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="ops" data-impact="medium" data-effort="low" data-risk="feasibility"
+       data-detail="AI reads project context, recent updates, and previous communications. Drafts emails and Slack messages in your tone. Handles stakeholder updates and team announcements.|Time saved|3-5 hrs/week|Tools|Claude, ChatGPT, Grammarly|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">29</span><span class="uc-risk-badge">Feasibility</span></div>
+    <div class="uc-symbol">Cd</div>
+    <div class="uc-name">Comms Drafting</div>
+    <div class="uc-desc">Draft stakeholder emails and Slack updates in your tone.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-low">Low</span>
+      <span class="uc-tag uc-impact-medium">Med</span>
+    </div>
+  </div>
+
+  <div class="uc-element" role="listitem" tabindex="0" data-category="ops" data-impact="high" data-effort="medium" data-risk="feasibility"
+       data-detail="AI transcribes meetings, extracts decisions, assigns action items to participants, sends formatted summaries, and tracks follow-ups.|Time saved|2-3 hrs/week|Tools|Otter.ai, Fireflies, Grain, Claude|Source|Aakash Gupta">
+    <div class="uc-element-top"><span class="uc-number">30</span><span class="uc-risk-badge">Feasibility</span></div>
+    <div class="uc-symbol">Mi</div>
+    <div class="uc-name">Meeting Intel</div>
+    <div class="uc-desc">Transcribe, extract decisions, assign actions, track follow-ups.</div>
+    <div class="uc-meta">
+      <span class="uc-tag uc-effort-medium">Med</span>
+      <span class="uc-tag uc-impact-high">High</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Sources -->
+<div class="uc-footer">
+  <p style="margin-bottom: 0.5rem;">
+    Inspired by <a href="https://aakashgupta.medium.com/21-ai-agent-use-cases-that-make-pms-10x-more-productive-most-pms-use-zero-47982523a75f" target="_blank" style="text-decoration: underline;">Aakash Gupta &mdash; 21 AI Agent Use Cases</a>
+    &middot; <a href="https://developers.openai.com/codex/use-cases" target="_blank" style="text-decoration: underline;">OpenAI Codex Use Cases</a>
+    &middot; <a href="https://www.svpg.com/four-big-risks/" target="_blank" style="text-decoration: underline;">SVPG Four Big Risks</a>
+    &middot; <a href="https://www.productboard.com/blog/ai-skills-product-managers-need/" target="_blank" style="text-decoration: underline;">Productboard AI Skills</a>
+  </p>
+  <p>PDLC Futures Sketchpad &middot; April 2026 &middot; <a href="index.html" style="text-decoration: underline;">Back to main sketchpad &rarr;</a></p>
+</div>
+
+<script>
+(function() {
+  const grid = document.getElementById('ucGrid');
+  const elements = grid.querySelectorAll('.uc-element');
+  const countEl = document.getElementById('visibleCount');
+  const modal = document.getElementById('ucModal');
+  const backdrop = document.getElementById('modalBackdrop');
+  const modalContent = document.getElementById('modalContent');
+  const modalClose = document.getElementById('modalClose');
+
+  // Category colour map
+  const catColors = {
+    discovery: '#6366f1', research: '#8b5cf6', strategy: '#ec4899',
+    specs: '#f59e0b', design: '#10b981', analytics: '#3b82f6',
+    gtm: '#ef4444', ops: '#64748b'
+  };
+
+  // Render visual dot meters on cards
+  function renderDots(count, type, size) {
+    const cls = size === 'lg' ? 'uc-modal-dot' : 'uc-dot';
+    let html = '';
+    for (let i = 0; i < 3; i++) {
+      const filled = i < count;
+      html += `<span class="${cls}${filled ? ' filled ' + type : ''}"></span>`;
+    }
+    return html;
+  }
+
+  elements.forEach(el => {
+    const impact = el.dataset.impact;
+    const effort = el.dataset.effort;
+    const impactLevel = impact === 'high' ? 3 : 2;
+    const effortLevel = effort === 'low' ? 1 : effort === 'medium' ? 2 : 3;
+    const effClass = effort === 'low' ? 'eff-low' : effort === 'medium' ? 'eff-med' : 'eff-hi';
+    const meta = el.querySelector('.uc-meta');
+    if (meta) {
+      meta.innerHTML = `
+        <div class="uc-meter-row" title="Impact: ${impact}">
+          <span class="uc-meter-icon">↑</span>
+          <div class="uc-meter-dots">${renderDots(impactLevel, 'impact', 'sm')}</div>
+          <span class="uc-meter-label">${impact}</span>
+        </div>
+        <div class="uc-meter-row" title="Effort: ${effort}">
+          <span class="uc-meter-icon">⚡</span>
+          <div class="uc-meter-dots">${renderDots(effortLevel, effClass, 'sm')}</div>
+          <span class="uc-meter-label">${effort}</span>
+        </div>`;
+    }
+  });
+
+  // Active filters
+  const filters = { category: 'all', impact: 'all', effort: 'all', risk: 'all' };
+
+  // Filter buttons — accessible with aria-pressed
+  document.querySelectorAll('.uc-filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const filterType = this.dataset.filter;
+      const value = this.dataset.value;
+      filters[filterType] = value;
+
+      document.querySelectorAll(`.uc-filter-btn[data-filter="${filterType}"]`).forEach(b => {
+        const isActive = b.dataset.value === value;
+        b.setAttribute('aria-pressed', isActive);
+      });
+
+      applyFilters();
+    });
+  });
+
+  function applyFilters() {
+    let visible = 0;
+    elements.forEach(el => {
+      const show =
+        (filters.category === 'all' || filters.category === el.dataset.category) &&
+        (filters.impact === 'all' || filters.impact === el.dataset.impact) &&
+        (filters.effort === 'all' || filters.effort === el.dataset.effort) &&
+        (filters.risk === 'all' || filters.risk === el.dataset.risk);
+      el.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    countEl.textContent = visible;
+  }
+
+  // Modal open
+  function openModal(el) {
+    const detail = el.dataset.detail;
+    if (!detail) return;
+
+    const parts = detail.split('|');
+    const desc = parts[0];
+    const name = el.querySelector('.uc-name').textContent;
+    const symbol = el.querySelector('.uc-symbol').textContent;
+    const number = el.querySelector('.uc-number').textContent;
+    const category = el.dataset.category;
+    const impact = el.dataset.impact;
+    const effort = el.dataset.effort;
+    const risk = el.dataset.risk;
+    const color = catColors[category] || '#64748b';
+
+    // Build stat pairs from remaining parts
+    const stats = [];
+    for (let i = 1; i < parts.length; i += 2) {
+      if (parts[i + 1]) stats.push({ label: parts[i].trim(), value: parts[i + 1].trim() });
+    }
+
+    let html = `
+      <div class="uc-modal-top">
+        <div class="uc-modal-element" style="border-color: ${color};">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${color};"></div>
+          <span class="uc-number">${number}</span>
+          <span class="uc-symbol">${symbol}</span>
+          <span class="uc-name">${name}</span>
+        </div>
+        <div class="uc-modal-header">
+          <div class="uc-modal-title" id="modalTitle">${name}</div>
+          <div class="uc-modal-tags">
+            <span class="uc-modal-tag" style="background:${color}22;color:${color};">${category}</span>
+            <span class="uc-modal-tag" style="background:hsl(var(--secondary));color:hsl(var(--muted-foreground));">${risk} risk</span>
+          </div>
+          <div class="uc-modal-meters">
+            <div class="uc-modal-meter">
+              <span class="uc-modal-meter-label">Impact</span>
+              <div class="uc-modal-meter-dots">${renderDots(impact === 'high' ? 3 : 2, 'impact', 'lg')}</div>
+            </div>
+            <div class="uc-modal-meter">
+              <span class="uc-modal-meter-label">Effort</span>
+              <div class="uc-modal-meter-dots">${renderDots(effort === 'low' ? 1 : effort === 'medium' ? 2 : 3, effort === 'low' ? 'eff-low' : effort === 'medium' ? 'eff-med' : 'eff-hi', 'lg')}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uc-modal-body">${desc}</div>
+      <div class="uc-modal-stats">
+        ${stats.map(s => `<div class="uc-modal-stat"><div class="num">${s.value}</div><div class="label">${s.label}</div></div>`).join('')}
+      </div>`;
+
+    modalContent.innerHTML = html;
+    modal.setAttribute('aria-hidden', 'false');
+    backdrop.setAttribute('aria-hidden', 'false');
+    modal.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    backdrop.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  elements.forEach(el => {
+    el.addEventListener('click', () => openModal(el));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(el); } });
+  });
+  modalClose.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+})();
+</script>
+</body>
+</html>

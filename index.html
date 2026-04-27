@@ -19,7 +19,9 @@
         <span class="nav-sections-btn-label">Sections</span>
         <span class="nav-sections-btn-chevron" aria-hidden="true"></span>
       </button>
-      <a href="workspace.html" class="nav-workspace-link">Workspace <span class="nav-freshness nav-freshness--weeks" title="Added March 2026">~2 wks</span></a>
+      <a href="workspace.html" class="nav-workspace-link">Workspace <span class="nav-freshness nav-freshness--recent" title="Updated 26 April 2026">today</span></a>
+      <a href="signals.html" class="nav-workspace-link">Signals <span class="nav-freshness nav-freshness--recent" title="New page added 26 April 2026">new</span></a>
+      <a href="usecases.html" class="nav-workspace-link">Use Cases <span class="nav-freshness nav-freshness--recent" title="Added April 2026">new</span></a>
     </div>
   </div>
   <div class="section-nav-backdrop" id="sectionNavBackdrop" hidden aria-hidden="true"></div>
@@ -46,7 +48,7 @@
       <li><a href="#beyond-code" data-section-id="beyond-code" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Beyond coding</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
       <li><a href="#roadmap" data-section-id="roadmap" data-updated="2026-04-09" data-update-note="Adoption chasm, numbering fix"><span class="section-nav-text">Roadmap &amp; adoption</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#risks" data-section-id="risks" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Risks</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#future" data-section-id="future" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
+      <li><a href="#future" data-section-id="future" data-updated="2026-04-26" data-update-note="9.1 three-layer future of computing added"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#product-engineer" data-section-id="product-engineer" data-updated="2026-04-08" data-update-note="JTBD shifts and recipe patterns"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#agent-architecture" data-section-id="agent-architecture" data-updated="2026-03-20" data-update-note="Major section added March 2026"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--weeks">Updated 19d ago</span></a></li>
       <li><a href="#sources" data-section-id="sources" data-updated="2026-04-09" data-update-note="Adoption chasm sources added"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
@@ -129,8 +131,8 @@
         <span class="section-tile-name">Four risks</span>
         <span class="section-tile-flavor">Product lens</span>
       </a>
-      <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
+      <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-04-26" data-update-note="9.1 three-layer future of computing added">
+        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">10</span>
         <span class="section-tile-name">Future vision</span>
         <span class="section-tile-flavor">Compound gains</span>
@@ -1594,6 +1596,204 @@
       <h3>Bottom Line</h3>
       <p>The organizations that will thrive are not the ones with the best AI tools&mdash;they're the ones that redesign their processes, roles, and culture around what AI makes possible. Rigor doesn't disappear with AI&mdash;it relocates: into clearer product-risk framing, better team boundaries, stronger harnesses, and smarter adoption choices. The engineer's job shifts from writing code to engineering the system that writes code. The technology is the catalyst; the transformation is organizational.</p>
     </div>
+
+    <!-- 9.x The future interface is probably three layers -->
+    <style>
+      .three-layer-section { margin-top: 3rem; }
+      .three-layer-eyebrow {
+        font-size: 0.625rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.08em;
+        color: hsl(var(--muted-foreground)); margin-bottom: 0.5rem;
+      }
+      .three-layer-h {
+        font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .three-layer-lead {
+        font-size: 0.9375rem; color: hsl(var(--muted-foreground));
+        line-height: 1.65; margin-bottom: 1.25rem; max-width: 760px;
+      }
+      .three-layer-figure {
+        border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+        overflow: hidden; background: hsl(var(--secondary));
+        margin-bottom: 1.25rem;
+      }
+      .three-layer-figure img { display: block; width: 100%; height: auto; }
+      .three-layer-caption {
+        padding: 0.625rem 0.875rem; font-size: 0.6875rem;
+        color: hsl(var(--muted-foreground));
+        border-top: 1px solid hsl(var(--border));
+        background: hsl(var(--background)); letter-spacing: 0.01em;
+      }
+      .three-layer-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem; margin-bottom: 1rem;
+      }
+      .three-layer-card {
+        border: 1px solid hsl(var(--border)); border-radius: var(--radius);
+        background: hsl(var(--background)); padding: 0.875rem 1rem;
+        display: flex; flex-direction: column;
+      }
+      .three-layer-num {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.625rem; font-weight: 700;
+        color: hsl(var(--muted-foreground));
+        letter-spacing: 0.06em; text-transform: uppercase;
+        margin-bottom: 0.25rem;
+      }
+      .three-layer-title {
+        font-size: 0.9375rem; font-weight: 700;
+        letter-spacing: -0.01em; margin-bottom: 0.375rem;
+      }
+      .three-layer-body {
+        font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+        line-height: 1.6; margin-bottom: 0.625rem;
+      }
+      .three-layer-signals {
+        list-style: none; padding: 0; margin: 0;
+        border-top: 1px dashed hsl(var(--border));
+        padding-top: 0.5rem;
+        display: flex; flex-direction: column; gap: 0.375rem;
+      }
+      .three-layer-signals li {
+        font-size: 0.6875rem; line-height: 1.45;
+        color: hsl(var(--muted-foreground));
+      }
+      .three-layer-signals a {
+        color: hsl(var(--foreground)); text-decoration: none;
+        border-bottom: 1px solid hsl(var(--border)); font-weight: 600;
+      }
+      .three-layer-signals a:hover { border-bottom-color: hsl(var(--foreground)); opacity: 1; }
+      .three-layer-signal-tag {
+        display: inline-block; font-size: 0.5625rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.04em;
+        color: hsl(var(--muted-foreground));
+        padding: 0.05rem 0.3rem;
+        border: 1px solid hsl(var(--border));
+        border-radius: 3px; margin-right: 0.25rem; vertical-align: 1px;
+      }
+      .three-layer-tieback {
+        border: 1px solid hsl(var(--foreground)); border-radius: var(--radius);
+        padding: 0.875rem 1rem; font-size: 0.8125rem; line-height: 1.6;
+        color: hsl(var(--foreground)); background: hsl(var(--background));
+      }
+      .three-layer-tieback strong { font-weight: 700; }
+      .three-layer-tieback em {
+        font-style: normal; background: hsl(var(--secondary));
+        padding: 0.05rem 0.3rem; border-radius: 3px; font-weight: 600;
+      }
+      @media (max-width: 900px) {
+        .three-layer-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+    <div class="three-layer-section fade-in" id="three-layer-future">
+      <div class="three-layer-eyebrow">9.1 &middot; Zooming out &middot; the bigger frame</div>
+      <h3 class="three-layer-h">The future interface is probably three layers</h3>
+      <p class="three-layer-lead">
+        Section 9 above describes the future-state PDLC <em>organisationally</em>. This subsection zooms out one level &mdash; to the future of <em>computing itself</em> &mdash; because the PDLC sits inside that broader shift. The agentic transition isn&rsquo;t one product category; it splits the &ldquo;interface&rdquo; into three layers that used to be collapsed into a single GUI. The two-week news cycle (12&ndash;26 April 2026) has been overwhelmingly about all three of them shipping at once.
+      </p>
+
+      <figure class="three-layer-figure">
+        <img src="assets/three-layer-future.jpg" alt="Future of computing paradigm: ambient intent capture, agentic execution, ephemeral verification UX">
+        <figcaption class="three-layer-caption">
+          <strong>Future of computing paradigm</strong> &mdash; ambient intent capture &rarr; agentic execution &rarr; ephemeral verification UX. The user (left) and the inspection surfaces (right) are the only places humans appear; everything in between is machine-to-machine.
+        </figcaption>
+      </figure>
+
+      <div class="three-layer-grid">
+
+        <!-- Layer 1: Ambient intent capture -->
+        <div class="three-layer-card">
+          <div class="three-layer-num">Layer 01</div>
+          <div class="three-layer-title">Ambient intent capture</div>
+          <div class="three-layer-body">
+            Voice, location, calendar, screen context, messages, habits, biometrics. The system understands what you&rsquo;re trying to do <em>before</em> you explicitly &ldquo;open&rdquo; anything &mdash; or augments your intent in real time.
+          </div>
+          <ul class="three-layer-signals">
+            <li>
+              <span class="three-layer-signal-tag">Apr 23</span>
+              <a href="https://www.windowscentral.com/microsoft/windows-11/microsoft-teases-windows-12-next-version-os-agentic-ai-ambient-computing-copilot" target="_blank" rel="noopener">Microsoft teases an &ldquo;agentic, ambient&rdquo; next OS</a> &mdash; semantic understanding of on-screen content as a first-class OS capability.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 22</span>
+              <a href="https://markets.financialcontent.com/wral/article/tokenring-2026-1-5-openais-ambient-ambitions-the-screenless-ai-gadget-set-to-redefine-computing-in-fall-2026" target="_blank" rel="noopener">OpenAI&rsquo;s &ldquo;Ambient&rdquo; screenless device</a> &mdash; LLM-as-kernel; agentic workspaces replace apps; intent flows in via voice + sensors.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 17</span>
+              <a href="https://www.digitalocean.com/community/tutorials/ambient-agents-context-aware-ai" target="_blank" rel="noopener">DigitalOcean &mdash; Ambient agents primer</a> &mdash; continuous, environmental, proactive, multimodal; the four properties that distinguish ambient agents from chatbots.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 15</span>
+              <a href="https://www.speechmatics.com/company/articles-and-news/what-is-ambient-ai-how-voice-first-tech-is-rewriting-the-rules-of-healthcare" target="_blank" rel="noopener">Speechmatics &mdash; voice-first ambient AI</a> &mdash; deployed in clinical workflows; a real-world template for capture-then-act loops.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Layer 2: Agentic execution -->
+        <div class="three-layer-card">
+          <div class="three-layer-num">Layer 02</div>
+          <div class="three-layer-title">Agentic execution</div>
+          <div class="three-layer-body">
+            The actual work happens through agents driving software, APIs, browsers, documents, email, calendars, payments, support systems. Most &ldquo;computer use&rdquo; becomes machine-to-machine clerical labor.
+          </div>
+          <ul class="three-layer-signals">
+            <li>
+              <span class="three-layer-signal-tag">Apr 16</span>
+              <a href="https://openai.com/index/codex-for-almost-everything/" target="_blank" rel="noopener">OpenAI &mdash; &ldquo;Codex for (almost) everything&rdquo;</a> &mdash; desktop computer use, in-app browser, 90+ plugins, scheduling that wakes the agent up days later. The single biggest move of the fortnight.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 16</span>
+              <a href="https://www.macrumors.com/2026/04/16/openai-codex-mac-update/" target="_blank" rel="noopener">MacRumors &mdash; Codex now sees, clicks and types</a> &mdash; multi-agent parallelism on Mac; users keep working in other apps while agents drive the rest.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 21</span>
+              <a href="https://fillify.tech/blog/agentic-ai-browser-automation-form-filling-2026" target="_blank" rel="noopener">Fillify &mdash; 2026 is the year AI stops assisting and starts <em>doing</em></a> &mdash; browser-native agents bypass the &ldquo;integrate every API&rdquo; problem entirely.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 18</span>
+              <a href="https://o-mega.ai/articles/ai-browser-agents-in-the-enterprise-the-ultimate-2026-guide" target="_blank" rel="noopener">Enterprise browser agents (Comet Enterprise, Island)</a> &mdash; governed, audited, DLP-enforced agent runs are now an enterprise procurement category.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Layer 3: Ephemeral verification UX -->
+        <div class="three-layer-card">
+          <div class="three-layer-num">Layer 03</div>
+          <div class="three-layer-title">Ephemeral verification UX</div>
+          <div class="three-layer-body">
+            Humans still have to inspect, compare, approve, edit, reject, or just enjoy things. That&rsquo;s where GUI survives &mdash; but as <em>disposable, task-specific</em> surfaces generated for the moment, not as durable apps.
+          </div>
+          <ul class="three-layer-signals">
+            <li>
+              <span class="three-layer-signal-tag">Apr 24</span>
+              <a href="https://developers.googleblog.com/a2ui-v0-9-generative-ui/" target="_blank" rel="noopener">Google &mdash; A2UI v0.9 generative-UI spec</a> &mdash; declarative, framework-agnostic, agents render UI from a trusted component catalog (no arbitrary code).
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 22</span>
+              <a href="https://www.copilotkit.ai/blog/build-with-googles-new-a2ui-spec-agent-user-interfaces-with-a2ui-ag-ui" target="_blank" rel="noopener">CopilotKit &mdash; building with A2UI + AG-UI</a> &mdash; A2UI describes <em>what</em> to render; AG-UI streams the live execution. Together: an end-to-end ephemeral-UI toolchain.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 19</span>
+              <a href="https://thenewstack.io/agent-ui-standards-multiply-mcp-apps-and-googles-a2ui/" target="_blank" rel="noopener">The New Stack &mdash; Agent UI standards multiply</a> &mdash; MCP Apps + A2UI converge on the same idea: UIs become declarative artifacts agents emit, not products engineers build.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 18</span>
+              <a href="https://www.everydayux.net/designers-adapting-to-generative-disposable-ui/" target="_blank" rel="noopener">EverydayUX &mdash; designing for disposable UI</a> &mdash; the designer&rsquo;s job shifts from &ldquo;screens&rdquo; to <em>component catalogs, decision frames, and trust signals</em>.
+            </li>
+            <li>
+              <span class="three-layer-signal-tag">Apr 14</span>
+              <a href="https://www.geeky-gadgets.com/agentic-software-takes-over-routine-screens-redefining-b2b-saas-products/" target="_blank" rel="noopener">Geeky Gadgets &mdash; B2B SaaS roadmap 2026</a> &mdash; routine screens get absorbed by agents; durable UI remains only for high-stakes review and orchestration.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="three-layer-tieback">
+        <strong>How the workspace prototype fits this model.</strong>
+        The <a href="workspace.html" style="text-decoration:underline;">workspace prototype</a> is deliberately a Layer&nbsp;3 surface &mdash; not an app, not a dashboard. It exists so a Product Engineer can <em>inspect, compare, approve, edit or reject</em> the artifacts that ten specialised agents produce in Layer&nbsp;2. The Layer&nbsp;1 input (calendar, repo state, telemetry, customer signals) feeds the agents directly &mdash; the PE never types it in. The three modes &mdash; <em>Focus</em>, <em>Flow</em>, <em>Map</em> &mdash; are three shapes the same Layer&nbsp;3 surface can take depending on whether the PE is deciding, tuning in, or steering. Each is generated for the moment; none is a durable screen the way a Jira board is. For week-by-week tracking of these three layers, see <a href="signals.html" style="text-decoration:underline;">Signals &rarr;</a>.
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2810,6 +3010,15 @@
     </div>
     <div class="fade-in" style="font-size: 0.875rem; line-height: 1.8;">
 
+      <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">26 April 2026</h4>
+      <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Section 9.1</strong> &mdash; <em>The future interface is probably three layers</em> (new) &mdash; New subsection inside the future-state vision framing the broader computing shift the PDLC sits inside: <strong>(1) ambient intent capture</strong> (voice, screen context, calendar, biometrics), <strong>(2) agentic execution</strong> (machine-to-machine clerical labor through browsers, APIs and desktop computer use), and <strong>(3) ephemeral verification UX</strong> (disposable, task-specific surfaces generated for the moment). Includes the &ldquo;Future of computing paradigm&rdquo; infographic and 13 signals from the 12&ndash;26 April 2026 window: OpenAI Codex computer-use update (Apr 16), Google A2UI v0.9 (Apr 24), Microsoft agentic-ambient OS preview (Apr 23), OpenAI screenless-device coverage, Comet Enterprise &amp; Island AI Browser, MCP Apps + A2UI standards convergence, and disposable-UI design pieces.</li>
+        <li><strong>New page &mdash; Signals</strong> &mdash; Added <code>signals.html</code> as a third surface alongside the writeup and workspace. A weekly-cadence log of 2&ndash;5-sentence industry signals with source links, organised by week and by the three layers (ambient, agentic, ephemeral) plus cross-cutting items (orchestration, trust, role evolution). Seeded with the 26&nbsp;April week.</li>
+        <li><strong>Workspace prototype</strong> &mdash; Added a <strong>Focus / Flow / Map</strong> mode switcher to <code>workspace.html</code>. Focus is a single-card decision inbox (keyboard-driven J/K/A/E/S); Flow is an ambient stream with a live &ldquo;Now working&rdquo; bar and inline decisions; Map is the existing three-column command view, enhanced with per-agent trust calibration (30-day recommendation acceptance) and Pause / Redirect controls. Added &ldquo;Three modes &middot; one workspace&rdquo; rationale section with linked sources.</li>
+        <li><strong>New skill</strong> &mdash; Added <code>.claude/skills/refresh-signals/</code> &mdash; a Claude Code skill the PE can invoke weekly to do a fresh 1&ndash;2 week industry scan and append entries to <code>signals.html</code> in the same format.</li>
+        <li><strong>Section nav</strong> &mdash; Updated <em>Future vision</em> freshness marker to <strong>Recent</strong> to reflect the new 9.1 subsection. Added <em>Signals</em> link to the section list.</li>
+      </ul>
+
       <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">9 April 2026</h4>
       <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
         <li><strong>Section 7.5</strong> &mdash; <em>The AI Adoption Chasm: Helping Everyone Cross</em> (new) &mdash; New subsection on Karpathy&rsquo;s &ldquo;two populations, two realities&rdquo; observation: casual-tier users vs. frontier-tier professionals are speaking past each other. Includes Geoffrey Moore&rsquo;s chasm model applied per role, Fortune&rsquo;s trust-gap data (52-point executive&ndash;worker chasm, 80% mandate rejection), and six practical principles for helping colleagues cross. Sources: Karpathy (Apr 2026), Fortune (Apr 2026), Netguru, UX Tigers / Jakob Nielsen, HBR (Mar 2026), Federal Reserve Bank of SF, WEF, Microsoft Frontier Forge, EY.</li>
@@ -2856,6 +3065,10 @@
   <div class="container">
     Research Synthesis &amp; Transformation Outline &middot; March&ndash;April 2026 &middot;
     <a href="workspace.html" style="text-decoration: underline; text-underline-offset: 2px;">Agentic Workspace prototype &#8594;</a>
+    &middot;
+    <a href="signals.html" style="text-decoration: underline; text-underline-offset: 2px;">Signals &#8594;</a>
+    &middot;
+    <a href="usecases.html" style="text-decoration: underline; text-underline-offset: 2px;">AI Use Case Periodic Table &#8594;</a>
   </div>
 </footer>
 

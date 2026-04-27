@@ -454,6 +454,328 @@
     .scenario-cell-val { font-size: 0.875rem; font-weight: 600; }
     .scenario-cell-sub { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-top: 0.125rem; }
 
+    /* ── Mode switcher ──────────────────────────────────── */
+    .ws-mode-tabs {
+      max-width: 1440px; margin: 0 auto;
+      padding: 0.875rem 1.5rem 0;
+      display: flex; align-items: center; gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .ws-mode-tablist {
+      display: inline-flex; border: 1px solid hsl(var(--border));
+      border-radius: var(--radius); background: hsl(var(--background));
+      padding: 3px; gap: 2px;
+    }
+    .ws-mode-tab {
+      font-family: inherit;
+      padding: 0.4rem 0.875rem; font-size: 0.75rem; font-weight: 600;
+      color: hsl(var(--muted-foreground));
+      background: transparent; border: 0; border-radius: 5px;
+      cursor: pointer; letter-spacing: 0.01em;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ws-mode-tab:hover { color: hsl(var(--foreground)); }
+    .ws-mode-tab.active {
+      background: hsl(var(--foreground));
+      color: hsl(var(--primary-foreground));
+    }
+    .ws-mode-tab-glyph {
+      font-size: 0.75rem; line-height: 1; opacity: 0.9;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .ws-mode-desc {
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+      letter-spacing: 0.01em;
+    }
+    .ws-mode-desc strong { color: hsl(var(--foreground)); font-weight: 600; }
+    .ws-kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.625rem; padding: 0.1rem 0.35rem;
+      border: 1px solid hsl(var(--border)); border-bottom-width: 2px;
+      border-radius: 3px; background: hsl(var(--background));
+      color: hsl(var(--muted-foreground));
+      margin: 0 0.125rem;
+    }
+
+    .ws-mode { animation: modeFade 0.18s ease-out; }
+    .ws-mode[hidden] { display: none; }
+    @keyframes modeFade {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Trust calibration + interrupt affordances (shared) */
+    .agent-trust {
+      font-size: 0.5625rem; color: hsl(var(--muted-foreground));
+      margin-top: 0.25rem; letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 0.375rem;
+    }
+    .agent-trust-val { font-weight: 700; color: hsl(var(--foreground)); }
+    .agent-interrupt {
+      font-family: inherit;
+      font-size: 0.5625rem; font-weight: 600;
+      color: hsl(var(--muted-foreground));
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border)); border-radius: 3px;
+      padding: 0.1rem 0.375rem; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      transition: all 0.12s;
+    }
+    .agent-interrupt:hover {
+      border-color: hsl(var(--foreground)); color: hsl(var(--foreground));
+    }
+
+    /* ── FOCUS mode (Decision Inbox) ──────────────────────── */
+    .ws-mode-focus {
+      max-width: 780px; margin: 0 auto;
+      padding: 1.25rem 1.5rem 4rem;
+    }
+    .focus-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.625rem 0; margin-bottom: 0.875rem;
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+      letter-spacing: 0.02em;
+    }
+    .focus-progress {
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .focus-progress-bar {
+      width: 80px; height: 3px; background: hsl(var(--border)); border-radius: 2px;
+      overflow: hidden;
+    }
+    .focus-progress-fill {
+      height: 100%; background: hsl(var(--foreground)); border-radius: 2px;
+      transition: width 0.25s;
+    }
+    .focus-kbd-hints {
+      display: flex; align-items: center; gap: 0.25rem;
+      font-size: 0.625rem;
+    }
+    .focus-card {
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden;
+      box-shadow: 0 0 0 4px hsl(var(--secondary));
+    }
+    .focus-card-tier {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.5625rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      border-bottom: 1px solid hsl(var(--border));
+      display: flex; align-items: center; gap: 0.625rem;
+      background: hsl(var(--secondary));
+    }
+    .focus-card-body { padding: 1.5rem 1.25rem 1.25rem; }
+    .focus-card-title {
+      font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 0.5rem; line-height: 1.25;
+    }
+    .focus-card-meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+      margin-bottom: 1rem;
+    }
+    .focus-card-meta .artifact-tag { font-size: 0.5625rem; }
+    .focus-uncertainty {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      padding: 0.2rem 0.5rem;
+      background: hsl(var(--secondary));
+      border: 1px solid hsl(var(--border));
+      border-radius: 9999px;
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+    }
+    .focus-uncertainty strong { color: hsl(var(--foreground)); font-weight: 600; }
+    .focus-nav {
+      margin-top: 1rem; display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+    }
+    .focus-nav-btn {
+      font-family: inherit;
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 0.5rem 0.875rem; font-size: 0.75rem; font-weight: 500;
+      cursor: pointer; color: hsl(var(--foreground));
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .focus-nav-btn:hover { background: hsl(var(--secondary)); border-color: hsl(var(--foreground)); }
+    .focus-nav-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+    .focus-stack-hint {
+      margin-top: 0.75rem; text-align: center;
+      font-size: 0.625rem; color: hsl(var(--muted-foreground));
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+
+    /* ── FLOW mode (Ambient Stream) ───────────────────────── */
+    .ws-mode-flow {
+      max-width: 900px; margin: 0 auto;
+      padding: 1rem 1.5rem 4rem;
+    }
+    .flow-nowbar {
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .flow-nowbar-hdr {
+      font-size: 0.5625rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 0.625rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .flow-nowbar-hdr::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: hsl(120 50% 45%); animation: pulse 2s infinite;
+    }
+    .flow-now-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.5rem;
+    }
+    .flow-now-item {
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 0.5rem 0.625rem;
+      font-size: 0.75rem;
+    }
+    .flow-now-item-name {
+      font-weight: 600; font-size: 0.75rem;
+      display: flex; align-items: center; gap: 0.375rem;
+      margin-bottom: 0.125rem;
+    }
+    .flow-now-item-name::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: hsl(var(--foreground));
+      animation: pulse 2s infinite;
+    }
+    .flow-now-item-task {
+      font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+      line-height: 1.4; margin-bottom: 0.375rem;
+    }
+    .flow-now-controls { display: flex; gap: 0.25rem; }
+
+    .flow-filters {
+      display: flex; gap: 0.375rem; margin-bottom: 0.75rem; flex-wrap: wrap;
+    }
+    .flow-chip {
+      font-family: inherit;
+      font-size: 0.6875rem; font-weight: 500;
+      padding: 0.3rem 0.625rem;
+      border: 1px solid hsl(var(--border)); border-radius: 9999px;
+      background: hsl(var(--background)); color: hsl(var(--muted-foreground));
+      cursor: pointer; transition: all 0.12s;
+    }
+    .flow-chip:hover { color: hsl(var(--foreground)); }
+    .flow-chip.active {
+      background: hsl(var(--foreground)); color: hsl(var(--primary-foreground));
+      border-color: hsl(var(--foreground));
+    }
+    .flow-chip-count {
+      font-size: 0.625rem; opacity: 0.6; margin-left: 0.25rem;
+    }
+
+    .flow-stream { position: relative; }
+    .flow-stream::before {
+      content: ''; position: absolute; left: 47px; top: 10px; bottom: 10px;
+      width: 1px; background: hsl(var(--border));
+    }
+    .flow-event {
+      display: grid; grid-template-columns: 44px 14px 1fr;
+      gap: 0.5rem; align-items: flex-start;
+      padding: 0.75rem 0; position: relative;
+    }
+    .flow-event-time {
+      font-size: 0.625rem; color: hsl(var(--muted-foreground));
+      text-align: right; padding-top: 0.375rem; letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .flow-event-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: hsl(var(--background));
+      border: 1.5px solid hsl(var(--foreground));
+      margin-top: 0.5rem; margin-left: 2px;
+      z-index: 1;
+    }
+    .flow-event-dot.solid { background: hsl(var(--foreground)); }
+    .flow-event-dot.warn { background: hsl(38 75% 48%); border-color: hsl(38 75% 48%); }
+    .flow-event-dot.block { background: hsl(0 62% 52%); border-color: hsl(0 62% 52%); }
+    .flow-event-content {
+      background: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 0.625rem 0.875rem;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+    .flow-event-content.passive {
+      border: 0; padding: 0.375rem 0;
+      background: transparent;
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+    }
+    .flow-event-content.passive strong { color: hsl(var(--foreground)); font-weight: 600; }
+    .flow-event-content.decision {
+      border-color: hsl(var(--foreground));
+      box-shadow: 0 0 0 3px hsl(var(--secondary));
+    }
+    .flow-event-content.blocking {
+      border-color: hsl(0 55% 72%);
+      background: hsl(0 60% 99%);
+    }
+    .flow-event-title {
+      font-weight: 600; font-size: 0.8125rem;
+      margin-bottom: 0.25rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    }
+    .flow-event-agent {
+      font-size: 0.625rem; color: hsl(var(--muted-foreground));
+      text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700;
+    }
+    .flow-event-body {
+      font-size: 0.75rem; color: hsl(var(--muted-foreground));
+      line-height: 1.5;
+    }
+    .flow-event-actions {
+      display: flex; gap: 0.375rem; margin-top: 0.5rem;
+    }
+    .flow-event-actions .btn { font-size: 0.6875rem; padding: 0.3rem 0.625rem; }
+
+    /* ── Signals / sources list ──────────────────────────── */
+    .signals-list {
+      list-style: none; padding: 0; margin: 0 0 0.75rem;
+      display: grid; gap: 0.625rem;
+    }
+    .signals-list li {
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      line-height: 1.55;
+      padding: 0.625rem 0.75rem;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      background: hsl(var(--background));
+      transition: border-color 0.15s;
+    }
+    .signals-list li:hover { border-color: hsl(var(--foreground)); }
+    .signals-list a {
+      color: hsl(var(--foreground));
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .signals-list a:hover { border-bottom-color: hsl(var(--foreground)); opacity: 1; }
+    .signals-list strong { font-weight: 600; color: hsl(var(--foreground)); }
+    .signal-meta {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.625rem;
+      color: hsl(var(--muted-foreground));
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
     /* ── Responsive ─────────────────────────────────────── */
     @media (max-width: 1100px) {
       .ws-layout {
@@ -468,6 +790,8 @@
       .pdlc-row { flex-wrap: wrap; gap: 0.25rem; }
       .ws-summary-strip { gap: 1rem; flex-wrap: wrap; }
       .artifact-option-grid { grid-template-columns: 1fr; }
+      .ws-mode-desc { display: none; }
+      .focus-kbd-hints { display: none; }
     }
   </style>
 </head>
@@ -480,10 +804,11 @@
     <div class="nav-logo">PDLC Futures Sketchpad</div>
     <button class="nav-mobile-toggle" aria-label="Toggle menu">&#9776;</button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">&#8592; Back to Writeup</a></li>
-      <li><a href="#concept" class="active">Workspace Concept</a></li>
-      <li><a href="#workspace">Live Workspace</a></li>
-      <li><a href="#design-notes">Design Notes</a></li>
+      <li><a href="index.html">&#8592; Writeup</a></li>
+      <li><a href="#concept" class="active">Concept</a></li>
+      <li><a href="#workspace">Workspace</a></li>
+      <li><a href="#modes-rationale">Three Modes</a></li>
+      <li><a href="signals.html">Signals</a></li>
     </ul>
   </div>
 </nav>
@@ -603,7 +928,275 @@
     </div>
   </div>
 
-  <!-- ── Three-column layout ── -->
+  <!-- ── Mode switcher ── -->
+  <div class="ws-mode-tabs" role="tablist" aria-label="Workspace mode">
+    <div class="ws-mode-tablist">
+      <button class="ws-mode-tab" data-mode="focus" role="tab" aria-selected="false">
+        <span class="ws-mode-tab-glyph">&#9724;</span> Focus
+      </button>
+      <button class="ws-mode-tab" data-mode="flow" role="tab" aria-selected="false">
+        <span class="ws-mode-tab-glyph">&#8942;</span> Flow
+      </button>
+      <button class="ws-mode-tab active" data-mode="map" role="tab" aria-selected="true">
+        <span class="ws-mode-tab-glyph">&#9636;</span> Map
+      </button>
+    </div>
+    <div class="ws-mode-desc" id="wsModeDesc">
+      <strong>Map</strong> &mdash; situational awareness across roster, queue and signals. The steering view.
+    </div>
+  </div>
+
+  <!-- ══════════ FOCUS mode ══════════ -->
+  <div class="ws-mode ws-mode-focus" data-mode="focus" hidden>
+
+    <div class="focus-bar">
+      <div class="focus-progress">
+        <span>Decision <strong style="color:hsl(var(--foreground));">1</strong> of 5</span>
+        <div class="focus-progress-bar"><div class="focus-progress-fill" style="width:20%"></div></div>
+        <span>&middot; 2 Tier&nbsp;1 remaining</span>
+      </div>
+      <div class="focus-kbd-hints">
+        <span class="ws-kbd">J</span><span class="ws-kbd">K</span> nav
+        <span style="padding:0 0.25rem;">&middot;</span>
+        <span class="ws-kbd">A</span> approve
+        <span class="ws-kbd">E</span> escalate
+        <span class="ws-kbd">S</span> skip
+      </div>
+    </div>
+
+    <div class="focus-card" id="focusCard">
+      <div class="focus-card-tier">
+        <span class="tier-badge t1">Tier 1</span>
+        Deep review &middot; 20&ndash;40 min budget &middot; full judgment required
+      </div>
+      <div class="focus-card-body">
+        <div class="focus-card-title">GDPR conflict: alert history data retention</div>
+        <div class="focus-card-meta">
+          <span class="artifact-agent-name">Legal / Compliance Agent</span>
+          <span class="artifact-tag blocking">Blocking engineering</span>
+          <span class="focus-uncertainty">
+            Agent confidence <strong>72%</strong> &middot; historical accuracy <strong>91%</strong>
+          </span>
+          <span>&middot; Raised 14 min ago</span>
+        </div>
+
+        <p class="artifact-lead">The Engineering Agent&rsquo;s alert history schema stores event data for <strong>90 days by default</strong> with no per-customer opt-out mechanism. The Legal Agent flagged a conflict with <strong>GDPR Art. 17 (right to erasure)</strong> for EU customers and Art. 5(1)(e) (storage limitation principle). Engineering implementation is paused pending your direction.</p>
+
+        <div class="artifact-finding-block">
+          <div class="artifact-finding-lbl">Specific finding</div>
+          <div class="artifact-finding-body">Table <code>alert_events</code> has no <code>customer_region</code> partition key and no retention policy hook. EU customers cannot currently request deletion of individual alert records without a full account purge. Estimated affected customer base: ~38% of ARR (EU segment).</div>
+        </div>
+
+        <div class="artifact-finding-lbl" style="margin-bottom:0.375rem;">Three options</div>
+        <div class="artifact-option-grid">
+          <div class="artifact-option">
+            <div class="artifact-option-label">Option A &mdash; Recommended</div>
+            <h4>Per-customer retention config</h4>
+            <p>Configurable retention (30 / 60 / 90 days). Default 30 for EU, 90 elsewhere. +2 days engineering.</p>
+            <div class="pros-cons">
+              <span class="pro">Fully GDPR compliant</span>
+              <span class="pro">Enterprise differentiator</span>
+              <span class="con">+2 days to sprint</span>
+            </div>
+          </div>
+          <div class="artifact-option">
+            <div class="artifact-option-label">Option B</div>
+            <h4>Treat as analytics data</h4>
+            <p>Reclassify under existing analytics policy. Zero engineering; requires legal sign-off.</p>
+            <div class="pros-cons">
+              <span class="pro">No engineering delay</span>
+              <span class="con">Needs external counsel</span>
+              <span class="con">Compliance debt</span>
+            </div>
+          </div>
+          <div class="artifact-option">
+            <div class="artifact-option-label">Option C</div>
+            <h4>Global 30-day default</h4>
+            <p>Hardcode 30-day retention globally. Simple, compliant, loses differentiation.</p>
+            <div class="pros-cons">
+              <span class="pro">Fastest (&lt;1 day)</span>
+              <span class="con">No enterprise config</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="artifact-agent-rec">
+          <strong>Agent recommendation:</strong> Option A. The per-customer config adds 2 days but builds retention infrastructure needed for every future analytics feature. Treat as a platform investment.
+        </div>
+
+        <div class="artifact-actions">
+          <button class="btn btn-primary">Approve Option A <span class="ws-kbd" style="margin-left:0.25rem;">A</span></button>
+          <button class="btn btn-secondary">Option B</button>
+          <button class="btn btn-secondary">Option C</button>
+          <button class="btn btn-ghost">Escalate <span class="ws-kbd">E</span></button>
+          <button class="btn btn-ghost">Skip <span class="ws-kbd">S</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="focus-nav">
+      <button class="focus-nav-btn" disabled>&larr; Previous</button>
+      <span class="focus-stack-hint">4 more decisions after this one</span>
+      <button class="focus-nav-btn">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ══════════ FLOW mode ══════════ -->
+  <div class="ws-mode ws-mode-flow" data-mode="flow" hidden>
+
+    <!-- "Now working" ambient bar -->
+    <div class="flow-nowbar">
+      <div class="flow-nowbar-hdr">Now working &middot; live</div>
+      <div class="flow-now-grid">
+        <div class="flow-now-item">
+          <div class="flow-now-item-name">Engineering Agent</div>
+          <div class="flow-now-item-task">Implementation loop &mdash; alert rule eval core (60%)</div>
+          <div class="flow-now-controls">
+            <button class="agent-interrupt">Pause</button>
+            <button class="agent-interrupt">Redirect</button>
+          </div>
+        </div>
+        <div class="flow-now-item">
+          <div class="flow-now-item-name">GTM Agent</div>
+          <div class="flow-now-item-task">Drafting sprint-2 stakeholder update (40%)</div>
+          <div class="flow-now-controls">
+            <button class="agent-interrupt">Pause</button>
+            <button class="agent-interrupt">Redirect</button>
+          </div>
+        </div>
+        <div class="flow-now-item">
+          <div class="flow-now-item-name">Orchestrator</div>
+          <div class="flow-now-item-task">Routing &amp; conflict detection across 10 agents</div>
+          <div class="flow-now-controls">
+            <button class="agent-interrupt">Pause</button>
+          </div>
+        </div>
+        <div class="flow-now-item">
+          <div class="flow-now-item-name">Observability Agent</div>
+          <div class="flow-now-item-task">Monitoring baseline metrics &mdash; no anomalies</div>
+          <div class="flow-now-controls">
+            <button class="agent-interrupt">Mute</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-filters">
+      <button class="flow-chip active">All <span class="flow-chip-count">12</span></button>
+      <button class="flow-chip">Decisions <span class="flow-chip-count">5</span></button>
+      <button class="flow-chip">Blocks <span class="flow-chip-count">1</span></button>
+      <button class="flow-chip">Conflicts <span class="flow-chip-count">1</span></button>
+      <button class="flow-chip">Updates <span class="flow-chip-count">5</span></button>
+    </div>
+
+    <div class="flow-stream">
+
+      <div class="flow-event">
+        <div class="flow-event-time">2m</div>
+        <div class="flow-event-dot"></div>
+        <div class="flow-event-content passive"><strong>Quality Agent</strong> entered standby &mdash; waiting for Engineering completion signal</div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">8m</div>
+        <div class="flow-event-dot solid"></div>
+        <div class="flow-event-content passive"><strong>Engineering Agent</strong> wrote ADR draft to product KB (alert evaluation engine, v1)</div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">14m</div>
+        <div class="flow-event-dot block"></div>
+        <div class="flow-event-content decision blocking">
+          <div class="flow-event-title">
+            GDPR conflict: alert history data retention
+            <span class="flow-event-agent">Legal / Compliance</span>
+          </div>
+          <div class="flow-event-body">Schema stores 90 days by default with no per-customer opt-out &mdash; conflicts with GDPR Art. 17. Engineering paused. <span class="focus-uncertainty" style="margin-left:0.25rem;">confidence <strong>72%</strong></span></div>
+          <div class="flow-event-actions">
+            <button class="btn btn-primary">Approve Option A</button>
+            <button class="btn btn-secondary">See 3 options</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">31m</div>
+        <div class="flow-event-dot solid"></div>
+        <div class="flow-event-content decision">
+          <div class="flow-event-title">
+            Value confidence 75% &rarr; 82% after 3 customer interviews
+            <span class="flow-event-agent">Research + Value</span>
+          </div>
+          <div class="flow-event-body">All three rated Smart Alerts must-have. 2/3 would upgrade tier. Alert fatigue theme emerged &mdash; implication: smart defaults may matter more than manual config.</div>
+          <div class="flow-event-actions">
+            <button class="btn btn-primary">Approve &amp; update backlog</button>
+            <button class="btn btn-ghost">Escalate to Tier 1</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">47m</div>
+        <div class="flow-event-dot solid"></div>
+        <div class="flow-event-content decision">
+          <div class="flow-event-title">
+            ADR: Alert evaluation engine &mdash; two architectural paths
+            <span class="flow-event-agent">Technical Design</span>
+          </div>
+          <div class="flow-event-body">Option A Kafka streaming (+2&ndash;3 wks, &lt;5s latency). Option B polling (fits sprint, 1-min latency). Recommended B with A as documented upgrade path &mdash; no customer SLA &lt;1 min.</div>
+          <div class="flow-event-actions">
+            <button class="btn btn-primary">Proceed with Option B</button>
+            <button class="btn btn-secondary">Proceed with Option A</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">1h</div>
+        <div class="flow-event-dot"></div>
+        <div class="flow-event-content passive"><strong>Technical Design Agent</strong> completed effort estimate: p50 5d / p85 8d (Option B)</div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">1h 12m</div>
+        <div class="flow-event-dot warn"></div>
+        <div class="flow-event-content decision" style="border-color: hsl(38 75% 60%); background: hsl(38 80% 99%);">
+          <div class="flow-event-title">
+            Conflict: 3-step config flow breaks transactional save
+            <span class="flow-event-agent">Orchestrator</span>
+          </div>
+          <div class="flow-event-body">Design Agent approved 3-step wizard (22% lower error rate). Engineering Agent found step 3 requires separate API call &mdash; breaks single transaction. Three resolutions available.</div>
+          <div class="flow-event-actions">
+            <button class="btn btn-primary">Accept middleware cost (+3&ndash;5d)</button>
+            <button class="btn btn-secondary">Accept eventual consistency</button>
+            <button class="btn btn-ghost">Request design revision</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">2h</div>
+        <div class="flow-event-dot solid"></div>
+        <div class="flow-event-content passive"><strong>Design Agent</strong> finalised usability test &mdash; 3-step wizard selected (22% lower error rate)</div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">2h 31m</div>
+        <div class="flow-event-dot"></div>
+        <div class="flow-event-content passive"><strong>GTM Agent</strong> began drafting launch materials &mdash; stakeholder update queued</div>
+      </div>
+
+      <div class="flow-event">
+        <div class="flow-event-time">3h 10m</div>
+        <div class="flow-event-dot"></div>
+        <div class="flow-event-content passive"><strong>Research Agent</strong> completed 3rd customer interview &mdash; Cascade Labs (SMB). Alert fatigue theme across all three sessions.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ MAP mode (enhanced existing layout) ══════════ -->
+  <div class="ws-mode ws-mode-map" data-mode="map">
   <div class="ws-layout">
 
     <!-- ── LEFT: Agent roster ── -->
@@ -681,6 +1274,10 @@
               <div class="agent-score-bar"><div class="agent-score-fill" style="width:60%"></div></div>
               <span class="agent-score-num">60%</span>
             </div>
+            <div class="agent-trust">
+              <span>Rec. accepted <span class="agent-trust-val">84%</span> (30d)</span>
+              <button class="agent-interrupt" type="button">Pause</button>
+            </div>
           </div>
         </div>
 
@@ -693,6 +1290,9 @@
               <span class="agent-badge-blocked">Blocked</span>
             </div>
             <div class="agent-sub"><span class="agent-status-text">Waiting for PE direction</span></div>
+            <div class="agent-trust">
+              <span>Rec. accepted <span class="agent-trust-val">91%</span> (30d)</span>
+            </div>
           </div>
         </div>
 
@@ -1181,7 +1781,103 @@
     </div><!-- /ws-right-col -->
 
   </div><!-- /ws-layout -->
+  </div><!-- /ws-mode-map -->
 </div><!-- /workspace -->
+
+<!-- ── Three modes rationale ─────────────────────────────── -->
+<section class="annotation-section" id="modes-rationale" style="padding-top: 3rem;">
+  <div style="max-width: 1440px; margin: 0 auto; padding-bottom: 1.5rem;">
+    <div class="section-header fade-in" style="padding: 0 0 1.5rem;">
+      <div class="section-number">Three modes &middot; one workspace</div>
+      <h2>Focus &middot; Flow &middot; Map</h2>
+      <p>The Product Engineer switches between three cognitive modes through the day: <strong>deciding</strong>, <strong>tuning in</strong>, and <strong>steering</strong>. One layout can&rsquo;t serve all three &mdash; so the workspace offers three, each stripped to what that mode actually needs.</p>
+    </div>
+  </div>
+  <div class="annotation-grid fade-in" style="max-width: 1440px; margin: 0 auto; padding-bottom: 2rem;">
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Focus &mdash; the Decision Inbox</h3>
+      <p>One decision fills the viewport. No roster, no feed, no escalations panel &mdash; just the next judgment call, fully packaged. Keyboard-driven (<span class="ws-kbd">J</span>/<span class="ws-kbd">K</span> to move, <span class="ws-kbd">A</span> approve, <span class="ws-kbd">E</span> escalate, <span class="ws-kbd">S</span> skip). Use this mode when the queue has backed up and you need to clear it without distraction. Each card surfaces agent confidence <em>and</em> 30-day recommendation accuracy, so you can calibrate trust against the actual agent, not a generic AI.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Flow &mdash; the Ambient Stream</h3>
+      <p>A live vertical stream: agents working up top with pause / redirect controls, time-ordered events below, decisions appearing inline as they arise. No separation between &ldquo;what agents are doing&rdquo; and &ldquo;what needs me&rdquo; &mdash; they&rsquo;re the same stream, filtered. Use this mode when you want to stay in the loop without blocking on every artifact. The &ldquo;Now working&rdquo; bar makes the missing agentic affordance &mdash; <em>interrupt mid-task</em> &mdash; a first-class control.</p>
+    </div>
+
+    <div class="annotation-card">
+      <h3><span class="dot"></span> Map &mdash; the Command View</h3>
+      <p>The three-column roster + queue + escalations layout. Use this mode for situational awareness: where is the feature, who&rsquo;s blocked, what&rsquo;s the confidence shape across the four dimensions, where&rsquo;s the sprint relative to plan. The Map is for steering decisions (reallocate, re-scope, unblock) rather than reviewing artifacts. Agent items now carry a trust signal (recommendation acceptance rate) and the active ones expose a <em>pause</em> control.</p>
+    </div>
+
+  </div>
+
+  <!-- Industry signals callout -->
+  <div style="max-width: 1440px; margin: 0 auto; padding-bottom: 4rem;">
+    <div class="callout" style="max-width: 900px;">
+      <div class="callout-title">Industry signals that informed these modes &mdash; March&ndash;April 2026</div>
+      <p style="margin-bottom: 0.75rem;">Three weeks of industry output converged on a consistent picture: the single-surface agent dashboard is over. The workspace has to adapt to the user&rsquo;s <em>cognitive mode</em>, not just display agent state.</p>
+      <ul class="signals-list">
+        <li>
+          <a href="https://blog.langchain.com/introducing-ambient-agents/" target="_blank" rel="noopener"><strong>LangChain &mdash; Introducing ambient agents &amp; the Agent Inbox.</strong></a>
+          HITL collapsing into three primitives: <em>notify, question, review</em>. Inbox is the dominant interaction metaphor &mdash; pushed to the user, not pulled. &rarr; <em>Focus mode</em>.
+          <span class="signal-meta">langchain.com &middot; Harrison Chase</span>
+        </li>
+        <li>
+          <a href="https://devblogs.microsoft.com/agent-framework/ag-ui-multi-agent-workflow-demo/" target="_blank" rel="noopener"><strong>Microsoft &mdash; Building a Real-Time Multi-Agent UI with AG-UI.</strong></a>
+          Agent execution events streamed over SSE to the frontend. The UI becomes a live feed, not a polled dashboard. &rarr; <em>Flow mode</em>.
+          <span class="signal-meta">devblogs.microsoft.com &middot; Agent Framework</span>
+        </li>
+        <li>
+          <a href="https://www.infoq.com/news/2026/04/anthropic-three-agent-harness-ai/" target="_blank" rel="noopener"><strong>Anthropic three-agent harness supports long-running full-stack AI development.</strong></a>
+          Planning / generation / evaluation separated across agents to keep multi-hour runs coherent. Reinforces the need for a supervisory view over specialised agents. &rarr; <em>Map mode</em>.
+          <span class="signal-meta">InfoQ &middot; April 2026</span>
+        </li>
+        <li>
+          <a href="https://www.ai-agentsplus.com/blog/multi-agent-orchestration-patterns-2026" target="_blank" rel="noopener"><strong>Multi-Agent Orchestration Patterns: Coordinating AI Systems.</strong></a>
+          Sequoia analysis cited: hierarchical systems with 2 delegation levels outperform flat by 28% on complex tasks; a third level adds only 7%. The PE is the top supervisory level &mdash; Map mode is that level&rsquo;s native surface.
+          <span class="signal-meta">ai-agentsplus.com &middot; 2026</span>
+        </li>
+        <li>
+          <a href="https://www.technologyreview.com/2026/04/15/1135530/building-trust-in-the-ai-era-with-privacy-led-ux/" target="_blank" rel="noopener"><strong>MIT Technology Review &mdash; Building trust in the AI era with privacy-led UX.</strong></a>
+          Trust is <em>the</em> primary UX currency in agentic systems; under- and over-trust are equally expensive. &rarr; Per-agent 30-day acceptance rates now visible inline, not hidden in analytics.
+          <span class="signal-meta">technologyreview.com &middot; 15 April 2026</span>
+        </li>
+        <li>
+          <a href="https://www.bprigent.com/article/7-ux-patterns-for-human-oversight-in-ambient-ai-agents" target="_blank" rel="noopener"><strong>Benjamin Prigent &mdash; 7 UX Patterns for Human Oversight in Ambient AI Agents.</strong></a>
+          Explicitly separates overview, oversight flows, activity, work reports, and configuration. Maps to Map (overview), Focus (oversight flows) and Flow (activity + work reports).
+          <span class="signal-meta">bprigent.com</span>
+        </li>
+        <li>
+          <a href="https://www.mindstudio.ai/blog/agentic-os-command-center-manage-agents-by-goals" target="_blank" rel="noopener"><strong>MindStudio &mdash; The Agentic OS Command Center: manage agents by goals, not terminals.</strong></a>
+          Manage agents <em>by goals</em>, not processes. Interrupt / redirect / undo become the primary affordances. &rarr; Pause / Redirect controls on active agents, across all three modes.
+          <span class="signal-meta">mindstudio.ai</span>
+        </li>
+        <li>
+          <a href="https://www.theregister.com/2026/04/15/salesforce_headless_360/" target="_blank" rel="noopener"><strong>Salesforce debuts Headless 360 agentic platform at TDX 2026.</strong></a>
+          Agents become the primary surface; apps become substrates. The workspace&rsquo;s job is to host agent work, not to present a form-based app wrapped around it.
+          <span class="signal-meta">The Register &middot; 15 April 2026</span>
+        </li>
+        <li>
+          <a href="https://www.kai-waehner.de/blog/2026/04/06/enterprise-agentic-ai-landscape-2026-trust-flexibility-and-vendor-lock-in/" target="_blank" rel="noopener"><strong>Kai Waehner &mdash; Enterprise Agentic AI Landscape 2026: Trust, Flexibility, Vendor Lock-in.</strong></a>
+          Trust and lock-in define every enterprise agentic AI decision in 2026 &mdash; reinforces the case for making agent trustworthiness a first-class visible signal, not a hidden admin metric.
+          <span class="signal-meta">kai-waehner.de &middot; 6 April 2026</span>
+        </li>
+        <li>
+          <a href="https://www.uxmatters.com/mt/archives/2026/03/next-gen-agentic-ai-in-ux-design-evolving-the-double-diamond-process.php" target="_blank" rel="noopener"><strong>UXmatters &mdash; Next-Gen Agentic AI in UX Design: Evolving the Double-Diamond Process.</strong></a>
+          The PE interface surfaces <em>what needs a judgment call</em>, not what the agents are doing internally. Reinforces the tiered review queue and the shift to decision-first layouts.
+          <span class="signal-meta">uxmatters.com &middot; March 2026</span>
+        </li>
+        <li>
+          <a href="https://medium.com/@ericbroda/ambient-agents-always-on-always-on-always-working-387238d03e05" target="_blank" rel="noopener"><strong>Eric Broda &mdash; Ambient Agents: Always On, Always Working.</strong></a>
+          Ambient agents run continuously, respond to events, and require a light-touch UI that surfaces only what warrants human attention. Directly shapes the Flow mode&rsquo;s &ldquo;Now working&rdquo; strip.
+          <span class="signal-meta">Medium &middot; March 2026</span>
+        </li>
+      </ul>
+      <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); font-style: italic;">Each mode keeps what&rsquo;s load-bearing for a specific task, drops the rest. That&rsquo;s the opposite of &ldquo;a dashboard with everything on it&rdquo; &mdash; which is what most agent UIs still are.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ── Design annotations ─────────────────────────────────── -->
 <section class="annotation-section" id="design-notes">
@@ -1246,6 +1942,57 @@
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
 
 <script>
+// ── Workspace mode switcher ──
+const MODE_DESC = {
+  focus: '<strong>Focus</strong> &mdash; one decision at a time. Keyboard-driven. For deep review sessions when the queue must clear.',
+  flow:  '<strong>Flow</strong> &mdash; ambient stream of agent events and inline decisions. For tuning in while agents run.',
+  map:   '<strong>Map</strong> &mdash; situational awareness across roster, queue and signals. The steering view.'
+};
+function setWsMode(mode) {
+  document.querySelectorAll('.ws-mode').forEach(el => {
+    el.hidden = el.dataset.mode !== mode;
+  });
+  document.querySelectorAll('.ws-mode-tab').forEach(t => {
+    const on = t.dataset.mode === mode;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  const desc = document.getElementById('wsModeDesc');
+  if (desc) desc.innerHTML = MODE_DESC[mode] || '';
+  try { localStorage.setItem('wsMode', mode); } catch (_) {}
+}
+document.querySelectorAll('.ws-mode-tab').forEach(tab => {
+  tab.addEventListener('click', () => setWsMode(tab.dataset.mode));
+});
+try {
+  const saved = localStorage.getItem('wsMode');
+  if (saved && MODE_DESC[saved]) setWsMode(saved);
+} catch (_) {}
+
+// ── Focus-mode keyboard shortcuts (demo only) ──
+document.addEventListener('keydown', (e) => {
+  const focusActive = !document.querySelector('.ws-mode-focus')?.hidden;
+  if (!focusActive) return;
+  if (['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)) return;
+  const card = document.getElementById('focusCard');
+  if (!card) return;
+  const key = e.key.toLowerCase();
+  if (key === 'j' || key === 'k' || key === 'a' || key === 'e' || key === 's') {
+    card.animate(
+      [{transform:'translateX(0)'},{transform:'translateX(' + (key==='k'?'8px':'-8px') + ')'},{transform:'translateX(0)'}],
+      {duration: 220, easing: 'ease-out'}
+    );
+  }
+});
+
+// Flow filter chips (visual only)
+document.querySelectorAll('.flow-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.flow-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+  });
+});
+
 // Artifact card toggle
 function toggleArtifact(id) {
   const card = document.getElementById(id);
