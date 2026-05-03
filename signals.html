@@ -246,7 +246,7 @@
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">26 April 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">3 May 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -254,12 +254,163 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">13</span></button>
-    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">4</span></button>
-    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">4</span></button>
-    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">5</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">0</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">26</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">7</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">8</span></button>
+    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">8</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">3</span></button>
   </div>
+
+  <!-- ── Week of 27 Apr – 3 May 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Week 18 &middot; 2026</div>
+        <div class="sig-week-range">27 Apr&ndash;3 May 2026</div>
+      </div>
+      <div class="sig-source">13 signals</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the week:</strong> enterprise agent infrastructure went GA simultaneously on both sides &mdash; Microsoft Agent 365 and Google&rsquo;s Gemini Enterprise Agent Platform both shipped on May 1; the four major AI labs signed onto a Linux Foundation standards alliance; and Cloudflare + Stripe quietly introduced the first protocol for agents to self-provision accounts and deploy services without human touch. The platform layer is production-ready.
+    </div>
+
+    <!-- Layer 1: Ambient intent capture -->
+    <div class="sig-layer" data-layer="ambient">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">01</span> Ambient intent capture</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 28</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.mean.ceo/ai-agents-news-may-2026/" target="_blank" rel="noopener">Amazon &ldquo;Join the Chat&rdquo; &mdash; voice AI Q&amp;A embedded in product pages</a></div>
+          <div class="sig-item-summary">Amazon launched a conversational voice layer directly on product pages: ask a question, get a spoken answer drawn from features and reviews. This is <em>ambient intent at the point of decision</em> &mdash; no app switch, no search bar, voice in the existing flow. The PDLC analogue is direct: capturing intent in the native context rather than redirecting it to a dedicated surface.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Voice</span><span class="sig-tag">Vertical &middot; Commerce</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 29</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.neuralbuddies.com/p/ai-news-recap-may-1-2026" target="_blank" rel="noopener">Snapchat &mdash; brand AI agents embedded in user chat</a></div>
+          <div class="sig-item-summary">Snapchat launched AI Sponsored Snaps: brand agents live inside the chat interface, answering questions and guiding purchase decisions where users already are. <em>Intent is met in the ambient social layer</em> rather than redirecting users to a brand-owned surface. The platform becomes the ambient context; the brand becomes a participant, not a destination.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Screen context</span><span class="sig-tag">Vertical &middot; Commerce</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 1</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://asanify.com/blog/news/generalist-visual-ai-may-1-2026/" target="_blank" rel="noopener">Generalist visual AI makes the vendor-moat argument honest</a></div>
+          <div class="sig-item-summary">A sharp analysis arguing that <em>cross-domain visual understanding is now a commodity</em> &mdash; any frontier model can interpret what&rsquo;s on screen without domain-specific fine-tuning. For ambient intent capture, this closes the &ldquo;my domain is special&rdquo; objection: product teams can now assume visual context understanding is available rather than having to negotiate it as a bespoke capability.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Computer use</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 1</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://thenextweb.com/news/google-cloud-next-ai-agents-agentic-era" target="_blank" rel="noopener">Google Gemini Enterprise Agent Platform goes GA</a></div>
+          <div class="sig-item-summary">Google&rsquo;s enterprise multi-agent runtime went generally available on May 1 &mdash; the same day as Microsoft Agent 365. <em>Two competing enterprise agent planes launching simultaneously</em> signals that the market is ready to procure infrastructure, not just pilot it. The platform provides a managed runtime for deploying, connecting, and monitoring Gemini-backed agents across an enterprise estate, with registry sync to AWS Bedrock in public preview.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Google</span><span class="sig-tag">Orchestration</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 29</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.neuralbuddies.com/p/ai-news-recap-may-1-2026" target="_blank" rel="noopener">Cloudflare + Stripe &mdash; protocol for agents to self-provision infrastructure</a></div>
+          <div class="sig-item-summary">The most architecturally significant move of the week: Cloudflare and Stripe jointly introduced a protocol letting AI agents create accounts, purchase domains, and deploy applications <em>without human intervention</em>. This closes the last manual step in fully autonomous deployment pipelines. An agent can now go from intent to running service end-to-end &mdash; the PDLC loop has no mandatory human touchpoint in the toolchain layer.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Long-running</span><span class="sig-tag">Toolchain</span><span class="sig-tag">Enterprise</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 28</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blogs.nvidia.com/blog/adobe-ai-agents-nvidia-wpp/" target="_blank" rel="noopener">Adobe, NVIDIA, WPP &mdash; AI agents run the full creative production pipeline</a></div>
+          <div class="sig-item-summary">A joint announcement from three major creative-industry players: AI agents now execute the full creative production pipeline from brief interpretation to asset generation to campaign assembly. The human role shifts to <em>brief-author and quality gate</em> rather than executor. The creative-industry mirror of the engineering harness shift &mdash; the pipeline is the product, the output is the artifact.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Vertical &middot; Creative</span><span class="sig-tag">Role evolution</span><span class="sig-tag">Orchestration</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 28</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.augmentcode.com/learn/claude-code-119k-stars" target="_blank" rel="noopener">Claude Code crosses 119K GitHub stars &mdash; 607 commits, 52 contributors</a></div>
+          <div class="sig-item-summary">Claude Code&rsquo;s public repo crossed 119K stars with 607 commits, an active contributor base, and a changelog updated April 28. <em>Adoption metrics for agentic coding tools are compressing the typical open-source maturity curve</em> &mdash; 12-month momentum that usually takes 3&ndash;4 years. For PDLC teams, it means the tooling layer is maturing faster than the process and governance layer around it.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Toolchain</span><span class="sig-tag">Anthropic</span><span class="sig-tag">Role evolution</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 3: Ephemeral verification UX -->
+    <div class="sig-layer" data-layer="ephemeral">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">03</span> Ephemeral verification UX</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 29</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.marketingprofs.com/opinions/2026/54640/ai-update-may-1-2026-ai-news-and-views-from-the-past-week" target="_blank" rel="noopener">Salesforce goes headless &mdash; CRM as pure API layer for agent consumption</a></div>
+          <div class="sig-item-summary">Salesforce announced a headless architecture exposing its entire platform via APIs, enabling agents to access data, workflows, and tasks <em>without any traditional user interface</em>. The UI layer becomes optional and ephemeral &mdash; generated on demand when a human needs to review agent decisions, dissolved when they don&rsquo;t. The product manager&rsquo;s dashboard becomes a verification surface, not a working environment.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Generative UI</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Toolchain</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Apr 30</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.digitalcommerce360.com/2026/04/30/ecommerce-trends-what-anthropic-openai-and-google-are-each-doing-in-agentic-commerce/" target="_blank" rel="noopener">Digital Commerce 360 &mdash; three vendors, three stances on verification UX</a></div>
+          <div class="sig-item-summary">A comparative survey of Anthropic, OpenAI, and Google&rsquo;s approaches to agentic commerce &mdash; with focus on the confirmation and trust moment. Each lands in a different spot: Anthropic leans toward <em>explicit approval gates</em>; OpenAI toward proactive action with lightweight consent; Google toward declarative agent intentions. A clear signal that the ephemeral verification UX pattern is not yet standardised across the industry.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">Vertical &middot; Commerce</span><span class="sig-tag">Generative UI</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 1</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://llm-stats.com/llm-updates" target="_blank" rel="noopener">OpenAI GPT-5.5 &mdash; from passive language model to proactive agentic system</a></div>
+          <div class="sig-item-summary">OpenAI released GPT-5.5, explicitly framed as a shift from &ldquo;passive language model&rdquo; to <em>proactive, agent-driven system that acts across applications with minimal instruction</em>. When the model decides to act rather than waiting to be asked, every interface becomes a verification surface rather than a command surface. The user&rsquo;s primary role shifts from initiator to reviewer.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">OpenAI</span><span class="sig-tag">Generative UI</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cross-cutting -->
+    <div class="sig-layer cross" data-layer="cross">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 1</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://nerdleveltech.com/microsoft-agent-365-ga-ai-agent-control-plane" target="_blank" rel="noopener">Microsoft Agent 365 GA &mdash; enterprise agent governance at $15/user/month</a></div>
+          <div class="sig-item-summary">Microsoft shipped Agent 365 into general availability: a dedicated AI agent governance control plane built on Entra, Defender, Purview, and Intune at $15/user/month. <em>Enterprise AI agent governance is now a budget line item, not a research project.</em> Agents receive Entra identities and route through existing security tooling &mdash; the procurement path is established and the category is commercially real.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Governance</span><span class="sig-tag">Microsoft</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 1</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsoft-google-openai-and-anthropic-join-forces-to-form-agentic-ai-alliance-according-to-report-organization-backed-by-the-linux-foundation-is-set-to-create-open-source-standards-for-ai-agents" target="_blank" rel="noopener">Microsoft, Google, OpenAI, Anthropic form Agentic AI Alliance under Linux Foundation</a></div>
+          <div class="sig-item-summary">The four major AI labs announced an open-standards alliance backed by the Linux Foundation to create shared specifications for agent interoperability. The industry is signalling that <em>the agent protocol layer is too important to be owned by any single vendor</em> &mdash; the MCP/AG-UI/A2UI proliferation needed a governance home. Timing alongside the simultaneous enterprise platform launches suggests coordinated positioning ahead of a standards consolidation.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Governance</span><span class="sig-tag">Open source</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 1</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.roborhythms.com/pentagon-ai-contracts-anthropic-excluded-may-2026/" target="_blank" rel="noopener">Pentagon awards classified AI contracts &mdash; Anthropic excluded on supply chain risk</a></div>
+          <div class="sig-item-summary">The US DoD awarded classified-network AI contracts to seven vendors (OpenAI, Google, Microsoft, AWS, NVIDIA, SpaceX, Reflection AI) and formally excluded Anthropic under a supply chain risk designation. <em>Government AI procurement is bifurcating</em>: sovereign/classified track vs. enterprise commercial track. For product teams evaluating AI infrastructure, provider selection is now a geopolitical and compliance decision, not just a capability one.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Regulation</span><span class="sig-tag">Governance</span><span class="sig-tag">Enterprise</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ── Week of 21–26 April 2026 ── -->
   <section class="sig-week fade-in">
