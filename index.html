@@ -50,9 +50,9 @@
       <li><a href="#risks" data-section-id="risks" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Risks</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
       <li><a href="#future" data-section-id="future" data-updated="2026-04-26" data-update-note="9.1 three-layer future of computing added"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#product-engineer" data-section-id="product-engineer" data-updated="2026-04-08" data-update-note="JTBD shifts and recipe patterns"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#agent-architecture" data-section-id="agent-architecture" data-updated="2026-03-20" data-update-note="Major section added March 2026"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--weeks">Updated 19d ago</span></a></li>
-      <li><a href="#sources" data-section-id="sources" data-updated="2026-04-09" data-update-note="Adoption chasm sources added"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#changelog" data-section-id="changelog" data-updated="2026-04-09" data-update-note="Updated with each release"><span class="section-nav-text">Changelog</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li><a href="#agent-architecture" data-section-id="agent-architecture" data-updated="2026-05-04" data-update-note="Interactive agent loop infographic added"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li><a href="#sources" data-section-id="sources" data-updated="2026-05-04" data-update-note="Agent section sources added"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li><a href="#changelog" data-section-id="changelog" data-updated="2026-05-04" data-update-note="Updated with each release"><span class="section-nav-text">Changelog</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
     </ul>
   </div>
 </nav>
@@ -60,7 +60,7 @@
 <!-- Hero: title, subtitles, section map (first screen) -->
 <section class="hero" id="top">
   <div class="container">
-    <span class="hero-badge">Ideas Sketchpad &middot; Continuously Evolving &middot; March 2026</span>
+    <span class="hero-badge">Ideas Sketchpad &middot; Continuously Evolving &middot; May 2026</span>
     <h1>PDLC Futures Sketchpad</h1>
     <p class="subtitle">An evolving collection of perspectives on how AI transforms enterprise product delivery &mdash; from research synthesis to speculative ideas.</p>
     <p class="hero-subline">Each section is a lens, not a blueprint.</p>
@@ -143,19 +143,19 @@
         <span class="section-tile-name">Product engineer</span>
         <span class="section-tile-flavor">Human orchestrator</span>
       </a>
-      <a href="#agent-architecture" class="section-tile" data-section-id="agent-architecture" data-updated="2026-03-20" data-update-note="Major section added March 2026">
-        <span class="nav-freshness nav-freshness--weeks section-tile-freshness">Updated 19d ago</span>
+      <a href="#agent-architecture" class="section-tile" data-section-id="agent-architecture" data-updated="2026-05-04" data-update-note="Interactive agent loop infographic added">
+        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">12</span>
         <span class="section-tile-name">Agent architecture</span>
         <span class="section-tile-flavor">Ensemble &amp; memory</span>
       </a>
-      <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-04-08" data-update-note="Expanded Apr 2026">
+      <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-05-04" data-update-note="Agent section sources added">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">13</span>
         <span class="section-tile-name">Sources</span>
         <span class="section-tile-flavor">References</span>
       </a>
-      <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-04-08" data-update-note="Updated with each release">
+      <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-05-04" data-update-note="Agent section update logged">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">14</span>
         <span class="section-tile-name">Changelog</span>
@@ -2513,10 +2513,141 @@
 
     <!-- 11.1 What an Agent Is -->
 
-    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem;">11.1 The Agent Definition, Unpacked</h3>
+    <h3 id="agent-definition-unpacked" class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem;">11.1 The Agent Definition, Unpacked <span class="nav-new">updated</span> <a href="#agent-definition-unpacked" class="anchor-link" title="Copy link to this section">&#128279;</a></h3>
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
-      The canonical definition of an AI agent is: a reasoning model (LLM) with persistent memory, planning and reflection capability, a set of callable tools/skills, and a loop that lets it observe results and iterate. Each of these five components needs to evolve significantly for the product engineering model to work at the fidelity described in Section 10.
+      The canonical definition of an AI agent is: a reasoning model (LLM) with persistent memory, planning and reflection capability, a set of callable tools/skills, and a loop that lets it observe results and iterate. This section translates the agent model from <a href="https://www.oreilly.com/library/view/an-illustrated-guide/9798341662681/ch01.html" target="_blank"><em>An Illustrated Guide to AI Agents</em></a> into a product-readable operating model: what starts the agent, what it can sense, what it can do, how it learns, and where a human must stay in control. Each of these components needs to evolve significantly for the product engineering model to work at the fidelity described in Section 10.
     </p>
+
+    <div class="agent-loop-lab fade-in" aria-labelledby="agent-loop-title">
+      <div class="agent-loop-intro">
+        <div>
+          <span class="agent-loop-kicker">Interactive visual</span>
+          <h4 id="agent-loop-title">An agent is a loop, not a chatbot</h4>
+          <p>A chatbot mostly answers. An agent receives a trigger, reasons over memory, chooses tools, acts in an environment, reads feedback, and either reports back or keeps improving. Use the steps below to see how that loop changes from a product team&rsquo;s point of view.</p>
+        </div>
+        <div class="agent-loop-metrics" aria-label="Industry adoption signals">
+          <div class="agent-loop-metric">
+            <span class="metric">62%</span>
+            <p>of surveyed organizations are at least experimenting with AI agents.</p>
+            <a href="https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf" target="_blank">McKinsey, 2025</a>
+          </div>
+          <div class="agent-loop-metric">
+            <span class="metric">14%</span>
+            <p>of Global 2000 enterprises in an Infosys-HFS study had reached scaling.</p>
+            <a href="https://www.infosys.com/newsroom/features/2026/enterprises-scaled-agentic-ai.html" target="_blank">Infosys-HFS, 2026</a>
+          </div>
+          <div class="agent-loop-metric">
+            <span class="metric">21%</span>
+            <p>of companies planning agentic AI report mature agent governance.</p>
+            <a href="https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html?icid=mosaic-grid_2026-state-of-ai-in-the-enterprise-report" target="_blank">Deloitte, 2026</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="agent-loop-visual-wrap">
+        <svg class="agent-loop-svg" viewBox="0 0 980 420" role="img" aria-labelledby="agentLoopSvgTitle agentLoopSvgDesc">
+          <title id="agentLoopSvgTitle">Interactive diagram of the AI agent loop</title>
+          <desc id="agentLoopSvgDesc">A user sends a query into an agent. The agent contains reasoning, memory, tools, and planning. The agent acts on an environment, receives feedback, and returns an answer to the user.</desc>
+          <defs>
+            <marker id="agentArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M0,0 L8,4 L0,8 Z" fill="hsl(230 18% 24%)"></path>
+            </marker>
+            <filter id="agentSoftShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="hsl(230 18% 24%)" flood-opacity="0.12"></feDropShadow>
+            </filter>
+          </defs>
+
+          <path class="agent-loop-path agent-loop-query" d="M110 175 C155 95, 210 92, 250 115" marker-end="url(#agentArrow)"></path>
+          <path class="agent-loop-path agent-loop-answer" d="M250 315 C190 318, 145 318, 105 248" marker-end="url(#agentArrow)"></path>
+          <path class="agent-loop-path agent-loop-action" d="M730 122 C805 122, 858 122, 885 188" marker-end="url(#agentArrow)"></path>
+          <path class="agent-loop-path agent-loop-feedback" d="M885 250 C858 320, 805 322, 730 316" marker-end="url(#agentArrow)"></path>
+
+          <g class="agent-loop-svg-node agent-loop-svg-node--user" data-agent-step="trigger" tabindex="0" role="button" aria-label="Trigger and user intent">
+            <rect x="26" y="173" width="115" height="82" rx="8"></rect>
+            <text x="83.5" y="204" text-anchor="middle">User</text>
+            <text x="83.5" y="228" text-anchor="middle" class="agent-loop-small">goal +</text>
+            <text x="83.5" y="244" text-anchor="middle" class="agent-loop-small">constraints</text>
+          </g>
+
+          <g class="agent-loop-agent-frame" filter="url(#agentSoftShadow)">
+            <rect x="255" y="52" width="475" height="318" rx="10"></rect>
+            <text x="278" y="32" class="agent-loop-label">Agent</text>
+          </g>
+
+          <g class="agent-loop-core" data-agent-step="reason" tabindex="0" role="button" aria-label="Reasoning model">
+            <rect x="302" y="92" width="382" height="104" rx="8"></rect>
+            <text x="493" y="136" text-anchor="middle">Reasoning model</text>
+            <text x="493" y="166" text-anchor="middle" class="agent-loop-core-sub">interprets, decomposes, decides</text>
+          </g>
+
+          <g class="agent-loop-module" data-agent-step="memory" tabindex="0" role="button" aria-label="Memory">
+            <rect x="318" y="235" width="108" height="64" rx="8"></rect>
+            <text x="372" y="260" text-anchor="middle">Memory</text>
+            <text x="372" y="281" text-anchor="middle" class="agent-loop-small">context</text>
+          </g>
+          <g class="agent-loop-module" data-agent-step="tools" tabindex="0" role="button" aria-label="Tools">
+            <rect x="439" y="235" width="108" height="64" rx="8"></rect>
+            <text x="493" y="260" text-anchor="middle">Tools</text>
+            <text x="493" y="281" text-anchor="middle" class="agent-loop-small">systems</text>
+          </g>
+          <g class="agent-loop-module" data-agent-step="plan" tabindex="0" role="button" aria-label="Planning and reflection">
+            <rect x="560" y="235" width="108" height="64" rx="8"></rect>
+            <text x="614" y="260" text-anchor="middle">Planning</text>
+            <text x="614" y="281" text-anchor="middle" class="agent-loop-small">next move</text>
+          </g>
+
+          <g class="agent-loop-svg-node agent-loop-svg-node--environment" data-agent-step="environment" tabindex="0" role="button" aria-label="Environment and feedback">
+            <rect x="826" y="173" width="150" height="82" rx="8"></rect>
+            <text x="901" y="204" text-anchor="middle">Environment</text>
+            <text x="901" y="228" text-anchor="middle" class="agent-loop-small">apps + data</text>
+          </g>
+
+          <text x="198" y="82" class="agent-loop-flow-text">Query</text>
+          <text x="157" y="354" class="agent-loop-flow-text">Answer</text>
+          <text x="790" y="82" class="agent-loop-flow-text">Action</text>
+          <text x="780" y="354" class="agent-loop-flow-text">Feedback</text>
+        </svg>
+
+        <div class="agent-loop-sidecar" aria-live="polite">
+          <span class="agent-loop-step-label" id="agentLoopStepLabel">Step 1</span>
+          <h4 id="agentLoopStepTitle">Trigger: the user frames the outcome</h4>
+          <p id="agentLoopStepBody">The agent needs a useful starting point: the product goal, constraints, success measure, and permission boundary. A good trigger sounds like &ldquo;find the highest-risk assumption in this onboarding idea and propose the cheapest test,&rdquo; not &ldquo;think about onboarding.&rdquo;</p>
+          <div class="agent-loop-product-note" id="agentLoopProductNote">Product lens: the PM or PE owns the outcome and the decision boundary before the agent starts working.</div>
+        </div>
+      </div>
+
+      <div class="agent-loop-controls" role="list" aria-label="Explore agent loop steps">
+        <button class="agent-loop-control active" type="button" data-agent-step="trigger" aria-pressed="true">
+          <span>1</span> Trigger
+        </button>
+        <button class="agent-loop-control" type="button" data-agent-step="reason" aria-pressed="false">
+          <span>2</span> Reason
+        </button>
+        <button class="agent-loop-control" type="button" data-agent-step="memory" aria-pressed="false">
+          <span>3</span> Remember
+        </button>
+        <button class="agent-loop-control" type="button" data-agent-step="tools" aria-pressed="false">
+          <span>4</span> Use tools
+        </button>
+        <button class="agent-loop-control" type="button" data-agent-step="plan" aria-pressed="false">
+          <span>5</span> Plan + reflect
+        </button>
+        <button class="agent-loop-control" type="button" data-agent-step="environment" aria-pressed="false">
+          <span>6</span> Act + learn
+        </button>
+      </div>
+
+      <div class="agent-loop-takeaways">
+        <div>
+          <h4>What makes it agentic?</h4>
+          <p>Goal-directed behavior with enough independence to choose steps, tools, or timing. Full autonomy is optional; partial autonomy in a governed workflow can still be an agent when the system makes decisions and acts.</p>
+        </div>
+        <div>
+          <h4>What makes it enterprise-ready?</h4>
+          <p>Governance, observability, sandboxing, and evaluation. Recent industry research points to a clear pattern: pilots are common, but scaled agent systems need operating discipline as much as model capability.</p>
+        </div>
+      </div>
+    </div>
 
     <div class="harness-visual fade-in" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
       <div class="harness-layer">
@@ -2967,6 +3098,14 @@
       <li><span class="source-org">Birgitta B&ouml;ckeler / Thoughtworks</span> &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" target="_blank">Harness Engineering</a> (Feb 2026)</li>
       <li><span class="source-org">Birgitta B&ouml;ckeler / Thoughtworks</span> &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-for-agents.html" target="_blank">Context Engineering for Coding Agents</a> (Feb 2026)</li>
       <li><span class="source-org">Erik Doernenburg / Thoughtworks</span> &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/assessing-quality-when-coding-with-agent.html" target="_blank">Assessing Internal Quality While Coding with an Agent</a> (Jan 2026)</li>
+      <li><span class="source-org">O&rsquo;Reilly</span> &mdash; <a href="https://www.oreilly.com/library/view/an-illustrated-guide/9798341662681/ch01.html" target="_blank">An Illustrated Guide to AI Agents, Chapter 1: Introduction</a> (Early Release, 2026)</li>
+      <li><span class="source-org">Gartner</span> &mdash; <a href="https://www.gartner.com/en/articles/hype-cycle-for-agentic-ai" target="_blank">2026 Hype Cycle for Agentic AI</a> (Apr 2026)</li>
+      <li><span class="source-org">McKinsey</span> &mdash; <a href="https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf" target="_blank">The State of AI in 2025: Agents, Innovation, and Transformation</a> (Nov 2025)</li>
+      <li><span class="source-org">McKinsey</span> &mdash; <a href="https://www.mckinsey.com/featured-insights/week-in-charts/agentic-ai-advances" target="_blank">Agentic AI Advances</a> (Jan 2026)</li>
+      <li><span class="source-org">Deloitte</span> &mdash; <a href="https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html?icid=mosaic-grid_2026-state-of-ai-in-the-enterprise-report" target="_blank">State of AI in the Enterprise 2026</a> (Feb 2026)</li>
+      <li><span class="source-org">Infosys / HFS Research</span> &mdash; <a href="https://www.infosys.com/newsroom/features/2026/enterprises-scaled-agentic-ai.html" target="_blank">Stop Scaling Agentic AI on Operating Models Built for Control</a> (Apr 2026)</li>
+      <li><span class="source-org">OpenAI</span> &mdash; <a href="https://openai.com/academy/workspace-agents/" target="_blank">Workspace Agents</a> (Apr 2026)</li>
+      <li><span class="source-org">OpenAI</span> &mdash; <a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk/" target="_blank">The Next Evolution of the Agents SDK</a> (Apr 2026)</li>
       <li><span class="source-org">Silicon Valley Product Group</span> &mdash; <a href="https://www.svpg.com/four-big-risks/" target="_blank">The Four Big Risks</a></li>
       <li><span class="source-org">Team Topologies</span> &mdash; <a href="https://teamtopologies.com/" target="_blank">Organizing for Fast Flow of Value</a></li>
       <li><span class="source-org">OpenAI</span> &mdash; <a href="https://openai.com/index/harness-engineering/" target="_blank">Harness Engineering: Leveraging Codex in an Agent-First World</a> (Feb 2026)</li>
@@ -3009,6 +3148,12 @@
       <p>A reverse-chronological record of substantive additions and updates.</p>
     </div>
     <div class="fade-in" style="font-size: 0.875rem; line-height: 1.8;">
+
+      <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">4 May 2026</h4>
+      <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Section 11.1</strong> &mdash; <em>The Agent Definition, Unpacked</em> (updated) &mdash; Added an accessible inline SVG infographic that turns the user / agent / environment loop into a product-readable interactive explainer. The visual is grounded in the attached <em>Illustrated Guide to AI Agents</em> chapter and refreshed with 2025&ndash;2026 industry signals from O&rsquo;Reilly, Gartner, McKinsey, Deloitte, Infosys-HFS, and OpenAI.</li>
+        <li><strong>Section 12</strong> &mdash; <em>Sources</em> (updated) &mdash; Added agent-definition, adoption, governance, sandboxing, and workspace-agent sources used in the new visual.</li>
+      </ul>
 
       <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">3 May 2026</h4>
       <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
@@ -3068,7 +3213,7 @@
 
 <footer>
   <div class="container">
-    Research Synthesis &amp; Transformation Outline &middot; March&ndash;April 2026 &middot;
+    Research Synthesis &amp; Transformation Outline &middot; March&ndash;May 2026 &middot;
     <a href="workspace.html" style="text-decoration: underline; text-underline-offset: 2px;">Agentic Workspace prototype &#8594;</a>
     &middot;
     <a href="signals.html" style="text-decoration: underline; text-underline-offset: 2px;">Signals &#8594;</a>
