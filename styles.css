@@ -261,10 +261,25 @@ section { padding: 5rem 1.5rem; }
   font-weight: 500;
 }
 .hero-section-map {
+  position: relative;
   margin-top: 2.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid hsl(var(--border));
 }
+.hero-section-map::before {
+  content: '';
+  position: absolute;
+  inset: 2.5rem 0 0;
+  background-image: linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 140px 100%;
+  background-position: center top;
+  opacity: 0.35;
+  mask-image: linear-gradient(to bottom, transparent 0, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 12%, black 88%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-section-map > * { position: relative; z-index: 1; }
 .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 1.75rem; flex-wrap: wrap; }
 .hero-stat { text-align: center; }
 .hero-stat .num { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
@@ -390,18 +405,11 @@ section.hero-below {
   background: hsl(var(--accent));
   box-shadow: inset 0 0 0 1px hsl(var(--foreground));
 }
-.section-tile.freshness-strong {
-  border-color: hsl(160 35% 80%);
-  background: linear-gradient(180deg, hsla(160, 58%, 52%, 0.08), transparent 42%), hsl(var(--card));
-  box-shadow: inset 0 0 0 1px hsla(160, 45%, 42%, 0.08);
-}
-.section-tile.freshness-medium {
-  border-color: hsl(40 88% 82%);
-  background: linear-gradient(180deg, hsla(42, 96%, 55%, 0.08), transparent 42%), hsl(var(--card));
-  box-shadow: inset 0 0 0 1px hsla(42, 96%, 45%, 0.06);
-}
+.section-tile.freshness-strong,
+.section-tile.freshness-medium,
 .section-tile.freshness-muted {
   border-color: hsl(var(--border));
+  background: hsl(var(--card));
 }
 .section-tile-freshness {
   position: absolute;
@@ -497,7 +505,8 @@ section.hero-below {
 /* Callout */
 .callout {
   border: 1px solid hsl(var(--border)); border-left: 3px solid hsl(var(--foreground));
-  border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 2rem 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.25rem 1.5rem; margin: 2rem 0;
   background: hsl(var(--secondary));
 }
 .callout .callout-title {
@@ -661,20 +670,17 @@ section.hero-below {
 
 /* Quote */
 .quote-block {
-  border: 1px solid hsl(var(--border)); border-radius: var(--radius);
-  padding: 1.5rem 2rem; margin-top: 2rem; position: relative;
-}
-.quote-block::before {
-  content: '\201C'; font-size: 3rem; line-height: 1; position: absolute;
-  top: 0.5rem; left: 1rem; color: hsl(var(--muted)); font-family: Georgia, serif;
+  border: 1px solid hsl(var(--border)); border-left: 3px solid hsl(var(--foreground));
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.25rem 1.5rem; margin-top: 2rem; position: relative;
 }
 .quote-block p {
-  font-size: 0.9375rem; font-style: italic;
-  color: hsl(var(--muted-foreground)); line-height: 1.6; padding-left: 1.5rem;
+  font-size: 0.9375rem;
+  color: hsl(var(--foreground)); line-height: 1.6;
 }
 .quote-block .quote-source {
-  font-size: 0.75rem; font-style: normal; color: hsl(var(--muted-foreground));
-  margin-top: 0.75rem; padding-left: 1.5rem;
+  font-size: 0.75rem; color: hsl(var(--muted-foreground));
+  margin-top: 0.75rem;
 }
 .quote-block .quote-source a { color: hsl(var(--muted-foreground)); text-decoration: underline; }
 
@@ -909,7 +915,7 @@ footer {
 .agent-loop-lab {
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
-  background: linear-gradient(180deg, hsl(var(--card)), hsl(210 22% 98%));
+  background: hsl(var(--card));
   padding: 1.25rem;
   margin: 1.5rem 0 2rem;
 }
@@ -926,7 +932,7 @@ footer {
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: hsl(203 70% 30%);
+  color: hsl(var(--muted-foreground));
   margin-bottom: 0.35rem;
 }
 .agent-loop-intro h4,
@@ -987,14 +993,13 @@ footer {
   min-height: 310px;
   border: 1px solid hsl(var(--border));
   border-radius: calc(var(--radius) - 2px);
-  background:
-    linear-gradient(90deg, hsla(203, 74%, 94%, 0.7), transparent 26%, transparent 74%, hsla(36, 90%, 94%, 0.7)),
-    hsl(var(--background));
+  background: hsl(var(--background));
 }
 .agent-loop-agent-frame rect {
-  fill: hsl(142 28% 95%);
-  stroke: hsl(145 18% 42%);
-  stroke-width: 3;
+  fill: hsl(var(--secondary));
+  stroke: hsl(var(--muted-foreground));
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
 }
 .agent-loop-label {
   font-size: 29px;
@@ -1002,9 +1007,9 @@ footer {
   fill: hsl(var(--foreground));
 }
 .agent-loop-core rect {
-  fill: hsl(231 48% 92%);
-  stroke: hsl(230 18% 24%);
-  stroke-width: 3;
+  fill: hsl(var(--background));
+  stroke: hsl(var(--foreground));
+  stroke-width: 2;
 }
 .agent-loop-core text {
   font-size: 30px;
@@ -1018,22 +1023,22 @@ footer {
   fill: hsl(var(--muted-foreground)) !important;
 }
 .agent-loop-module rect {
-  fill: hsl(92 9% 45%);
-  stroke: hsl(92 8% 30%);
-  stroke-width: 2;
+  fill: hsl(var(--foreground));
+  stroke: hsl(var(--foreground));
+  stroke-width: 1.5;
 }
 .agent-loop-module text {
   font-size: 20px;
   font-weight: 700;
-  fill: #fff;
+  fill: hsl(var(--primary-foreground));
 }
 .agent-loop-module .agent-loop-small {
-  fill: hsla(0, 0%, 100%, 0.82) !important;
+  fill: hsla(0, 0%, 100%, 0.72) !important;
 }
 .agent-loop-svg-node rect {
-  fill: hsl(38 45% 96%);
-  stroke: hsl(var(--foreground));
-  stroke-width: 3;
+  fill: hsl(var(--background));
+  stroke: hsl(var(--muted-foreground));
+  stroke-width: 1.5;
 }
 .agent-loop-svg-node text {
   font-size: 22px;
@@ -1042,8 +1047,8 @@ footer {
 }
 .agent-loop-path {
   fill: none;
-  stroke: hsl(230 18% 24%);
-  stroke-width: 3;
+  stroke: hsl(var(--muted-foreground));
+  stroke-width: 1.5;
   stroke-linecap: round;
 }
 .agent-loop-flow-text {
@@ -1068,8 +1073,8 @@ footer {
 .agent-loop-core.is-active rect,
 .agent-loop-module.is-active rect,
 .agent-loop-svg-node.is-active rect {
-  stroke: hsl(203 85% 34%);
-  stroke-width: 4;
+  stroke: hsl(var(--foreground));
+  stroke-width: 3;
 }
 .agent-loop-svg.is-filtered .agent-loop-core:not(.is-active),
 .agent-loop-svg.is-filtered .agent-loop-module:not(.is-active),
@@ -1089,8 +1094,8 @@ footer {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: hsl(203 70% 30%);
-  background: hsl(203 80% 94%);
+  color: hsl(var(--primary-foreground));
+  background: hsl(var(--foreground));
   border-radius: 3px;
   padding: 0.2rem 0.45rem;
   margin-bottom: 0.65rem;
@@ -1136,15 +1141,19 @@ footer {
   color: hsl(var(--muted-foreground));
   font-size: 0.6875rem;
 }
-.agent-loop-control:hover,
+.agent-loop-control:hover {
+  background: hsl(var(--secondary));
+  border-color: hsl(var(--ring));
+  color: hsl(var(--foreground));
+}
 .agent-loop-control.active {
-  background: hsl(203 80% 94%);
-  border-color: hsl(203 55% 58%);
-  color: hsl(203 72% 24%);
+  background: hsl(var(--foreground));
+  border-color: hsl(var(--foreground));
+  color: hsl(var(--primary-foreground));
 }
 .agent-loop-control.active span {
-  background: hsl(203 72% 30%);
-  color: #fff;
+  background: hsl(var(--primary-foreground));
+  color: hsl(var(--foreground));
 }
 .agent-loop-takeaways {
   display: grid;
@@ -1210,8 +1219,8 @@ h2:hover .anchor-link,
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: hsl(215 90% 55%);
-  color: #fff;
+  background: hsl(var(--foreground));
+  color: hsl(var(--primary-foreground));
   padding: 0.1em 0.4em;
   border-radius: 3px;
   vertical-align: middle;
