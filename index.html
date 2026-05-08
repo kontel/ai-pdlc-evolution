@@ -9,7 +9,7 @@
 <body>
 
 
-<div class="progress-bar" id="progressBar"></div>
+<div class="progress-bar" id="progressBar" data-scroll="progress"></div>
 
 <nav aria-label="Primary">
   <div class="nav-inner">
@@ -38,22 +38,7 @@
       <span><span class="nav-freshness-dot nav-freshness-dot--weeks"></span> ~2 weeks</span>
       <span><span class="nav-freshness-dot nav-freshness-dot--stable"></span> Earlier</span>
     </div>
-    <ul class="section-nav-list" id="sectionNavList">
-      <li><a href="#summary" data-section-id="summary" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Executive summary</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#legacy" data-section-id="legacy" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Legacy process</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#capabilities" data-section-id="capabilities" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">AI capabilities</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#evolution" data-section-id="evolution" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Evolution map</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#teams" data-section-id="teams" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Teams &amp; structures</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#discipline" data-section-id="discipline" data-updated="2026-04-02" data-update-note="Harness and comprehension debt"><span class="section-nav-text">Engineering discipline</span><span class="nav-freshness nav-freshness--recent">Updated 6d ago</span></a></li>
-      <li><a href="#beyond-code" data-section-id="beyond-code" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Beyond coding</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#roadmap" data-section-id="roadmap" data-updated="2026-04-09" data-update-note="Adoption chasm, numbering fix"><span class="section-nav-text">Roadmap &amp; adoption</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#risks" data-section-id="risks" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Risks</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#future" data-section-id="future" data-updated="2026-04-26" data-update-note="9.1 three-layer future of computing added"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#product-engineer" data-section-id="product-engineer" data-updated="2026-04-08" data-update-note="JTBD shifts and recipe patterns"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#agent-architecture" data-section-id="agent-architecture" data-updated="2026-05-04" data-update-note="Interactive agent loop infographic added"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#sources" data-section-id="sources" data-updated="2026-05-04" data-update-note="Agent section sources added"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#changelog" data-section-id="changelog" data-updated="2026-05-04" data-update-note="Updated with each release"><span class="section-nav-text">Changelog</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-    </ul>
+    <ul class="section-nav-list" id="sectionNavList"><!-- rendered by js/sections.js --></ul>
   </div>
 </nav>
 
@@ -76,92 +61,7 @@
           <span class="section-map-legend-item"><span class="nav-freshness nav-freshness--stable">22+d</span><span>Muted</span></span>
         </div>
       </div>
-      <div class="section-map-grid" id="sectionMap" role="navigation" aria-label="All sections">
-      <a href="#summary" class="section-tile" data-section-id="summary" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">01</span>
-        <span class="section-tile-name">Executive summary</span>
-        <span class="section-tile-flavor">Thesis &amp; context</span>
-      </a>
-      <a href="#legacy" class="section-tile" data-section-id="legacy" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">02</span>
-        <span class="section-tile-name">Legacy PDLC</span>
-        <span class="section-tile-flavor">Pain points today</span>
-      </a>
-      <a href="#capabilities" class="section-tile" data-section-id="capabilities" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">03</span>
-        <span class="section-tile-name">AI capabilities</span>
-        <span class="section-tile-flavor">What tools unlock</span>
-      </a>
-      <a href="#evolution" class="section-tile" data-section-id="evolution" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">04</span>
-        <span class="section-tile-name">Evolution map</span>
-        <span class="section-tile-flavor">Workflows shift</span>
-      </a>
-      <a href="#teams" class="section-tile" data-section-id="teams" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">05</span>
-        <span class="section-tile-name">Teams &amp; structures</span>
-        <span class="section-tile-flavor">Roles &amp; topology</span>
-      </a>
-      <a href="#discipline" class="section-tile" data-section-id="discipline" data-updated="2026-04-02" data-update-note="Harness and comprehension debt">
-        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated 6d ago</span>
-        <span class="section-tile-num">06</span>
-        <span class="section-tile-name">Engineering discipline</span>
-        <span class="section-tile-flavor">Harness &amp; debt</span>
-      </a>
-      <a href="#beyond-code" class="section-tile" data-section-id="beyond-code" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">07</span>
-        <span class="section-tile-name">Beyond coding</span>
-        <span class="section-tile-flavor">Ops, PM, research</span>
-      </a>
-      <a href="#roadmap" class="section-tile" data-section-id="roadmap" data-updated="2026-04-08" data-update-note="Adoption mindset and belt problem">
-        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">08</span>
-        <span class="section-tile-name">Roadmap &amp; adoption</span>
-        <span class="section-tile-flavor">Phases &amp; intent</span>
-      </a>
-      <a href="#risks" class="section-tile" data-section-id="risks" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">09</span>
-        <span class="section-tile-name">Four risks</span>
-        <span class="section-tile-flavor">Product lens</span>
-      </a>
-      <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-04-26" data-update-note="9.1 three-layer future of computing added">
-        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">10</span>
-        <span class="section-tile-name">Future vision</span>
-        <span class="section-tile-flavor">Compound gains</span>
-      </a>
-      <a href="#product-engineer" class="section-tile" data-section-id="product-engineer" data-updated="2026-04-08" data-update-note="JTBD shifts and recipe patterns">
-        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">11</span>
-        <span class="section-tile-name">Product engineer</span>
-        <span class="section-tile-flavor">Human orchestrator</span>
-      </a>
-      <a href="#agent-architecture" class="section-tile" data-section-id="agent-architecture" data-updated="2026-05-04" data-update-note="Interactive agent loop infographic added">
-        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">12</span>
-        <span class="section-tile-name">Agent architecture</span>
-        <span class="section-tile-flavor">Ensemble &amp; memory</span>
-      </a>
-      <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-05-04" data-update-note="Agent section sources added">
-        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">13</span>
-        <span class="section-tile-name">Sources</span>
-        <span class="section-tile-flavor">References</span>
-      </a>
-      <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-05-04" data-update-note="Agent section update logged">
-        <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">14</span>
-        <span class="section-tile-name">Changelog</span>
-        <span class="section-tile-flavor">What changed</span>
-      </a>
-    </div>
+      <div class="section-map-grid" id="sectionMap" role="navigation" aria-label="All sections"><!-- rendered by js/sections.js --></div>
     </div>
   </div>
 </section>
@@ -205,7 +105,7 @@
       <p class="hero-below-lead">A structural evolution of enterprise delivery&mdash;full diagram opens in a lightbox.</p>
     </header>
     <div class="hero-infographic">
-      <button type="button" class="hero-infographic-trigger" id="heroInfographicTrigger" aria-labelledby="hero-infographic-heading">
+      <button type="button" class="hero-infographic-trigger" id="heroInfographicTrigger" data-infographic="trigger" aria-labelledby="hero-infographic-heading">
         <img src="assets/detailed-infographics.png" alt="The AI-Augmented PDLC: A Structural Evolution of Enterprise Delivery" class="hero-infographic-img">
         <span class="hero-infographic-hint">Click to view full screen</span>
       </button>
@@ -213,9 +113,9 @@
   </div>
 </section>
 
-<div class="infographic-fullscreen" id="infographicFullscreen" role="dialog" aria-modal="true" aria-label="Infographic full screen view" hidden>
-  <button type="button" class="infographic-fullscreen-close" id="infographicFullscreenClose" aria-label="Close">&#10005;</button>
-  <div class="infographic-fullscreen-backdrop" id="infographicFullscreenBackdrop"></div>
+<div class="infographic-fullscreen" id="infographicFullscreen" data-infographic="overlay" role="dialog" aria-modal="true" aria-label="Infographic full screen view" hidden>
+  <button type="button" class="infographic-fullscreen-close" id="infographicFullscreenClose" data-infographic="close" aria-label="Close">&#10005;</button>
+  <div class="infographic-fullscreen-backdrop" id="infographicFullscreenBackdrop" data-infographic="backdrop"></div>
   <div class="infographic-fullscreen-content">
     <img src="assets/detailed-infographics.png" alt="The AI-Augmented PDLC: A Structural Evolution of Enterprise Delivery" class="infographic-fullscreen-img">
   </div>
@@ -364,7 +264,7 @@
       <button class="tab-btn" data-tab="quarterly" role="tab">Quarterly Planning</button>
     </div>
 
-    <div class="tab-panel active" id="tab-sprint">
+    <div class="tab-panel active" id="tab-sprint" data-panel="sprint">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Phase 1 &middot; Months 1&ndash;3</div>
@@ -384,7 +284,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-estimation">
+    <div class="tab-panel" id="tab-estimation" data-panel="estimation">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Phase 1 &middot; Months 1&ndash;3</div>
@@ -417,7 +317,7 @@
       </table>
     </div>
 
-    <div class="tab-panel" id="tab-quarterly">
+    <div class="tab-panel" id="tab-quarterly" data-panel="quarterly">
       <div class="callout" style="margin-top: 0; margin-bottom: 1.5rem;">
         <div class="callout-title">Highest-Value Target</div>
         <p>The multi-day quarterly planning event consumes enormous organizational energy. AI offers the most dramatic improvements here.</p>
@@ -857,7 +757,7 @@
       <button class="tab-btn" data-tab="coordination" role="tab">Coordination & SMEs</button>
     </div>
 
-    <div class="tab-panel active" id="tab-devops">
+    <div class="tab-panel active" id="tab-devops" data-panel="devops">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Today &middot; AI-Assisted</div>
@@ -877,7 +777,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-tickets">
+    <div class="tab-panel" id="tab-tickets" data-panel="tickets">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Today &middot; AI-Assisted</div>
@@ -897,7 +797,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-research">
+    <div class="tab-panel" id="tab-research" data-panel="research">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Today &middot; AI-Assisted</div>
@@ -917,7 +817,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-coordination">
+    <div class="tab-panel" id="tab-coordination" data-panel="coordination">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Today &middot; AI-Assisted</div>
@@ -2013,7 +1913,7 @@
       <button class="tab-btn" data-tab="pr-viability" role="tab">Viability</button>
     </div>
 
-    <div class="tab-panel active" id="tab-pr-value">
+    <div class="tab-panel active" id="tab-pr-value" data-panel="pr-value">
       <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
         <div class="callout-title">Value Risk &mdash; Is this worth building?</div>
         <p>Skills that answer whether customers actually want the outcome, whether they would pay for it, and whether a measured outcome exists that would confirm success. Without these, delivery speed is irrelevant.</p>
@@ -2037,7 +1937,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pr-usability">
+    <div class="tab-panel" id="tab-pr-usability" data-panel="pr-usability">
       <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
         <div class="callout-title">Usability Risk &mdash; Can users figure out how to use it?</div>
         <p>Skills that ensure users can successfully complete the intended task without training, frustration, or support. In this model, the primary prototype artifact is working code deployed to a preview URL — not a Figma mockup. This collapses the design-to-feedback loop from days to minutes and eliminates the translation loss between design intent and implementation.</p>
@@ -2059,7 +1959,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pr-feasibility">
+    <div class="tab-panel" id="tab-pr-feasibility" data-panel="pr-feasibility">
       <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
         <div class="callout-title">Feasibility Risk &mdash; Can we actually build and operate this?</div>
         <p>Skills that surface implementation complexity, system constraints, dependency risks, and operational requirements before significant investment. Feasibility risk has a compounding property: discovering it late is exponentially more expensive than discovering it early.</p>
@@ -2083,7 +1983,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pr-viability">
+    <div class="tab-panel" id="tab-pr-viability" data-panel="pr-viability">
       <div class="callout" style="margin-top: 0; margin-bottom: 1rem;">
         <div class="callout-title">Viability Risk &mdash; Does this work for the business?</div>
         <p>Skills that ensure the solution is financially sustainable, legally permissible, and operationally supportable. In regulated enterprise contexts, viability checks are often the last to be done and the most expensive to fail. AI can accelerate this work, but also makes it more important, not less.</p>
@@ -2142,7 +2042,7 @@
       <button class="tab-btn" data-tab="pe-gtm" role="tab">GTM, Business &amp; Customer</button>
     </div>
 
-    <div class="tab-panel active" id="tab-pe-discovery">
+    <div class="tab-panel active" id="tab-pe-discovery" data-panel="pe-discovery">
       <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Continuously monitors the environment for signals, synthesizes research, and raises backlog items with structured evidence. Covers agents 1 (Sensing &amp; Discovery) and 2 (Research &amp; Validation).</p>
       <div class="card" style="overflow-x: auto;">
         <table class="cap-table">
@@ -2165,7 +2065,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pe-design">
+    <div class="tab-panel" id="tab-pe-design" data-panel="pe-design">
       <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Translates validated problems into usable, accessible interfaces. The primary design artifact is a working code prototype deployed to a preview URL — not a static mockup. This eliminates the Figma → engineering translation step and makes the feedback loop immediate. The design system lives in code (design tokens, component library, linting rules), not in a separate design tool.</p>
       <div class="card" style="overflow-x: auto;">
         <table class="cap-table">
@@ -2187,7 +2087,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pe-engineering">
+    <div class="tab-panel" id="tab-pe-engineering" data-panel="pe-engineering">
       <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Translates what to build into how to build it safely, then builds it. Covers agents 4 (Technical Design) and 5 (Implementation).</p>
       <div class="card" style="overflow-x: auto;">
         <table class="cap-table">
@@ -2212,7 +2112,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pe-quality">
+    <div class="tab-panel" id="tab-pe-quality" data-panel="pe-quality">
       <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Ensures what ships actually works and gets there safely. Covers agents 6 (Quality), 7 (Documentation), and 8 (Release &amp; Deployment).</p>
       <div class="card" style="overflow-x: auto;">
         <table class="cap-table">
@@ -2235,7 +2135,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pe-observability">
+    <div class="tab-panel" id="tab-pe-observability" data-panel="pe-observability">
       <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Watches what is happening in production and measures whether what shipped is working. Covers agents 9 (Observability) and 10 (Growth &amp; Analytics).</p>
       <div class="card" style="overflow-x: auto;">
         <table class="cap-table">
@@ -2257,7 +2157,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-pe-gtm">
+    <div class="tab-panel" id="tab-pe-gtm" data-panel="pe-gtm">
       <p style="font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Gets the right thing in front of the right people, ensures business sustainability, and closes the loop with customers. Covers agents 11 (Go-to-Market), 12 (Business &amp; Viability), and 13 (Customer Feedback Loop).</p>
       <div class="card" style="overflow-x: auto;">
         <table class="cap-table">
@@ -2609,10 +2509,10 @@
         </svg>
 
         <div class="agent-loop-sidecar" aria-live="polite">
-          <span class="agent-loop-step-label" id="agentLoopStepLabel">Step 1</span>
-          <h4 id="agentLoopStepTitle">Trigger: the user frames the outcome</h4>
-          <p id="agentLoopStepBody">The agent needs a useful starting point: the product goal, constraints, success measure, and permission boundary. A good trigger sounds like &ldquo;find the highest-risk assumption in this onboarding idea and propose the cheapest test,&rdquo; not &ldquo;think about onboarding.&rdquo;</p>
-          <div class="agent-loop-product-note" id="agentLoopProductNote">Product lens: the PM or PE owns the outcome and the decision boundary before the agent starts working.</div>
+          <span class="agent-loop-step-label" id="agentLoopStepLabel" data-loop="label">Step 1</span>
+          <h4 id="agentLoopStepTitle" data-loop="title">Trigger: the user frames the outcome</h4>
+          <p id="agentLoopStepBody" data-loop="body">The agent needs a useful starting point: the product goal, constraints, success measure, and permission boundary. A good trigger sounds like &ldquo;find the highest-risk assumption in this onboarding idea and propose the cheapest test,&rdquo; not &ldquo;think about onboarding.&rdquo;</p>
+          <div class="agent-loop-product-note" id="agentLoopProductNote" data-loop="note">Product lens: the PM or PE owns the outcome and the decision boundary before the agent starts working.</div>
         </div>
       </div>
 
@@ -2723,7 +2623,7 @@
       <button class="tab-btn" data-tab="cyc-orchestrator" role="tab">Orchestrator</button>
     </div>
 
-    <div class="tab-panel active" id="tab-cyc-discovery">
+    <div class="tab-panel active" id="tab-cyc-discovery" data-panel="cyc-discovery">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Step 1 &mdash; Sense</div>
@@ -2753,7 +2653,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-cyc-research">
+    <div class="tab-panel" id="tab-cyc-research" data-panel="cyc-research">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Step 1 &mdash; Receive &amp; Assess</div>
@@ -2783,7 +2683,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-cyc-design">
+    <div class="tab-panel" id="tab-cyc-design" data-panel="cyc-design">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Step 1 &mdash; Receive</div>
@@ -2813,7 +2713,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-cyc-engineering">
+    <div class="tab-panel" id="tab-cyc-engineering" data-panel="cyc-engineering">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Step 1 &mdash; Receive &amp; Scan</div>
@@ -2843,7 +2743,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-cyc-quality">
+    <div class="tab-panel" id="tab-cyc-quality" data-panel="cyc-quality">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Step 1 &mdash; Triggered</div>
@@ -2873,7 +2773,7 @@
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-cyc-orchestrator">
+    <div class="tab-panel" id="tab-cyc-orchestrator" data-panel="cyc-orchestrator">
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Continuous &mdash; Route &amp; Track</div>
@@ -3222,8 +3122,8 @@
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
+<button class="scroll-top" id="scrollTop" data-scroll="top" aria-label="Scroll to top">&#8593;</button>
 
-<script src="main.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

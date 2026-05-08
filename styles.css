@@ -17,6 +17,9 @@
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
   --destructive: 0 84.2% 60.2%;
+  /* Freshness state accent colors — used across dots, chips, tile/nav borders */
+  --freshness-green: 160 65% 38%;
+  --freshness-amber: 38 92% 50%;
 }
 
 html { scroll-padding-top: 72px; }
@@ -178,8 +181,8 @@ nav {
 .nav-freshness-dot {
   width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
 }
-.nav-freshness-dot--recent { background: hsl(160 65% 38%); }
-.nav-freshness-dot--weeks { background: hsl(38 92% 50%); }
+.nav-freshness-dot--recent { background: hsl(var(--freshness-green)); }
+.nav-freshness-dot--weeks { background: hsl(var(--freshness-amber)); }
 .nav-freshness-dot--stable { background: hsl(var(--border)); border: 1px solid hsl(240 4% 78%); }
 
 .nav-freshness {
@@ -216,11 +219,11 @@ nav {
   background: hsl(var(--secondary)); opacity: 1;
 }
 .section-nav-list a.freshness-strong {
-  border-left-color: hsl(160 65% 38%);
+  border-left-color: hsl(var(--freshness-green));
   background: linear-gradient(90deg, hsla(160, 60%, 45%, 0.08), transparent 44%);
 }
 .section-nav-list a.freshness-medium {
-  border-left-color: hsl(38 92% 50%);
+  border-left-color: hsl(var(--freshness-amber));
   background: linear-gradient(90deg, hsla(38, 92%, 50%, 0.08), transparent 44%);
 }
 .section-nav-list a.freshness-muted {
@@ -996,11 +999,12 @@ footer {
   stroke: hsl(145 18% 42%);
   stroke-width: 3;
 }
-.agent-loop-label {
-  font-size: 29px;
+.agent-loop-label,
+.agent-loop-flow-text {
   font-weight: 700;
   fill: hsl(var(--foreground));
 }
+.agent-loop-label { font-size: 29px; }
 .agent-loop-core rect {
   fill: hsl(231 48% 92%);
   stroke: hsl(230 18% 24%);
@@ -1046,34 +1050,20 @@ footer {
   stroke-width: 3;
   stroke-linecap: round;
 }
-.agent-loop-flow-text {
-  font-size: 20px;
-  font-weight: 700;
-  fill: hsl(var(--foreground));
-}
-.agent-loop-core,
-.agent-loop-module,
-.agent-loop-svg-node {
+.agent-loop-flow-text { font-size: 20px; }
+:is(.agent-loop-core, .agent-loop-module, .agent-loop-svg-node) {
   cursor: pointer;
   transition: opacity 0.18s;
 }
-.agent-loop-core:focus,
-.agent-loop-module:focus,
-.agent-loop-svg-node:focus {
+:is(.agent-loop-core, .agent-loop-module, .agent-loop-svg-node):focus {
   outline: none;
 }
-.agent-loop-core:focus rect,
-.agent-loop-module:focus rect,
-.agent-loop-svg-node:focus rect,
-.agent-loop-core.is-active rect,
-.agent-loop-module.is-active rect,
-.agent-loop-svg-node.is-active rect {
+:is(.agent-loop-core, .agent-loop-module, .agent-loop-svg-node):focus rect,
+:is(.agent-loop-core, .agent-loop-module, .agent-loop-svg-node).is-active rect {
   stroke: hsl(203 85% 34%);
   stroke-width: 4;
 }
-.agent-loop-svg.is-filtered .agent-loop-core:not(.is-active),
-.agent-loop-svg.is-filtered .agent-loop-module:not(.is-active),
-.agent-loop-svg.is-filtered .agent-loop-svg-node:not(.is-active) {
+.agent-loop-svg.is-filtered :is(.agent-loop-core, .agent-loop-module, .agent-loop-svg-node):not(.is-active) {
   opacity: 0.42;
 }
 .agent-loop-sidecar {

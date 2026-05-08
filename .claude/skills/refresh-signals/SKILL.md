@@ -87,7 +87,7 @@ Update the "Last refresh" line in the hero (look for the string `Last refresh`) 
 6. **Trim to 3–5 per layer.** Choose by signal strength: vendor announcement > funded launch > research paper > opinion piece > tutorial.
 7. **Write the summaries.** First-sentence = why-it-matters. Then substance. 2–5 sentences total per item. Plain English.
 8. **Edit `signals.html`.** Use a single `Edit` operation that:
-   - Inserts the new `<section class="sig-week">` right after the closing tag of the `.sig-filters` div (so newest week is on top).
+   - Inserts the new `<section class="sig-week">` immediately after the `<!-- INSERT_WEEK_ABOVE -->` marker (so newest week is on top). The marker lives between the closing `</div>` of `.sig-filters` and the first existing `.sig-week` section.
    - Updates the four chip counts.
    - Updates the hero "Last refresh" line.
 9. **Verify.** Open the preview (Python http server runs via `.claude/launch.json` as `site`), screenshot the top of `signals.html`, confirm the new week renders and the counts match.
