@@ -230,6 +230,7 @@
       <li><a href="index.html">&#8592; Writeup</a></li>
       <li><a href="workspace.html">Workspace</a></li>
       <li><a href="signals.html" class="active">Signals</a></li>
+      <li><a href="graph.html">Graph</a></li>
       <li><a href="usecases.html">Use Cases</a></li>
     </ul>
   </div>
@@ -246,7 +247,7 @@
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">19 May 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">25 May 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -254,12 +255,164 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">51</span></button>
-    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">13</span></button>
-    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">15</span></button>
-    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">14</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">9</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">63</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">16</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">18</span></button>
+    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">17</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">12</span></button>
+    <a href="graph.html" class="sig-chip" style="text-decoration:none; margin-left:auto;">Graph view &rarr;</a>
   </div>
+
+  <!-- ── Week of 19–25 May 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Week 21 &middot; 2026</div>
+        <div class="sig-week-range">19&ndash;25 May 2026</div>
+      </div>
+      <div class="sig-source">12 signals</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the week:</strong> the conference cycle collided &mdash; Google I/O&rsquo;s &ldquo;agentic Gemini era&rdquo;, Microsoft Build&rsquo;s &ldquo;AI as infrastructure&rdquo;, and Anthropic&rsquo;s Code with Claude London &mdash; all in the same five days. Three platform vendors shipped the same architectural primitive (managed agent harness + sandbox + governance) at the same time, and OpenAI&rsquo;s Codex Chronicle pushed ambient screen capture from preview to default. The agent harness is now table-stakes infrastructure, not a moat.
+    </div>
+
+    <!-- Layer 1: Ambient intent capture -->
+    <div class="sig-layer" data-layer="ambient">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">01</span> Ambient intent capture</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.google/innovation-and-ai/sundar-pichai-io-2026/" target="_blank" rel="noopener">Google I/O 2026 &mdash; Sundar Pichai opens &ldquo;the agentic Gemini era&rdquo;</a></div>
+          <div class="sig-item-summary">Pichai framed the I/O keynote around Gemini moving from &ldquo;smart chatbot&rdquo; to &ldquo;thing that acts in the background on your behalf&rdquo; &mdash; the clearest CEO-level articulation yet of <em>ambient, proactive agents as the new default interaction model</em>. The leaked Gemini Spark project from Week 20 landed as Gemini 3.5 Flash with Antigravity 2.0 wrapped around it. For PDLC, the framing matters: ambient intent is no longer one of three layers in a research deck, it is the platform vendor&rsquo;s headline product positioning.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Google</span><span class="sig-tag">OS-level</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 22</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://thenextweb.com/news/openai-codex-chronicle-screen-context-mac" target="_blank" rel="noopener">OpenAI Codex Chronicle &mdash; periodic screen capture becomes the default memory layer on Mac</a></div>
+          <div class="sig-item-summary">Codex Chronicle periodically captures the user&rsquo;s screen, runs OCR + summarisation, and writes the result to a local memory file the agent reads on every subsequent prompt &mdash; eliminating the &ldquo;explain what you&rsquo;ve been working on&rdquo; step entirely. Paired with the same week&rsquo;s &ldquo;Codex can use a locked Mac&rdquo; release, this is the most concrete consumer-grade implementation of <em>ambient intent capture</em> shipped to date. The boundary between &ldquo;the user works&rdquo; and &ldquo;the agent watches&rdquo; has been removed by default, not as an opt-in.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Screen context</span><span class="sig-tag">OpenAI</span><span class="sig-tag">Computer use</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://venturebeat.com/ai/microsoft-remakes-windows-for-an-era-of-autonomous-aiagents" target="_blank" rel="noopener">Microsoft Build &mdash; Windows formally becomes &ldquo;the AI orchestration layer&rdquo; for 1.4B devices</a></div>
+          <div class="sig-item-summary">At Build 2026, Microsoft positioned Windows itself as agent infrastructure: Copilot Runtime, Recall, and Click to Do are no longer features but <em>OS-level primitives that capture context and dispatch it to agents</em>. The reframing matters because it commits the world&rsquo;s most-used OS to ambient computing as the default mode &mdash; not an overlay. Combined with Lenovo&rsquo;s Qira and Apple&rsquo;s rumoured Personal LLM, OS-vendor consensus on ambient intent has formed inside a single quarter.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Microsoft</span><span class="sig-tag">OS-level</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://techcrunch.com/2026/05/19/google-launches-antigravity-2-0-with-an-updated-desktop-app-and-cli-tool-at-io-2026/" target="_blank" rel="noopener">Google Antigravity 2.0 &mdash; desktop app, CLI, SDK, and Managed Agents API ship together</a></div>
+          <div class="sig-item-summary">Antigravity 2.0 launched as a four-surface agent harness: desktop app, CLI, SDK, and a one-call Managed Agents API on Gemini 3.5 Flash &mdash; with cross-platform terminal sandboxing, credential masking, and hardened Git policies built in. The strategic move: Google is treating <em>the harness as the product</em>, not the model. This validates the writeup&rsquo;s &ldquo;harness, not code&rdquo; thesis at the platform layer and forces a head-to-head with Anthropic&rsquo;s Claude Code and OpenAI&rsquo;s Codex on identical primitives.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Google</span><span class="sig-tag">Toolchain</span><span class="sig-tag">Orchestration</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 20</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.mindstudio.ai/blog/code-with-claude-2026-new-agent-features" target="_blank" rel="noopener">Code with Claude London &mdash; Multi-agent Orchestration, Outcomes, Dreaming + sandboxes + MCP tunnels</a></div>
+          <div class="sig-item-summary">Anthropic shipped three Claude Managed Agents primitives at Code with Claude London: <em>Multiagent Orchestration</em> (fleets of subagents on one task), <em>Outcomes</em> (declarative success criteria the agent iterates against), and <em>Dreaming</em> (replay of past sessions as memory). Self-hosted sandboxes and MCP tunnels let those agents reach internal systems without leaving the customer&rsquo;s network. This is the most complete public spec yet of an enterprise agent harness &mdash; orchestration, evaluation, memory, and network isolation in one release.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Orchestration</span><span class="sig-tag">Long-running</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://nvidianews.nvidia.com/news/ai-agents" target="_blank" rel="noopener">NVIDIA Open Agent Development Platform + verified agent skills</a></div>
+          <div class="sig-item-summary">NVIDIA launched an open agent development platform and a verified-skills catalogue: pre-tested capability bundles agents can claim and operators can audit. The signal: the &ldquo;industrial revolution in knowledge work&rdquo; pitch is being backed with a <em>distribution model for agent capabilities</em>, not just frameworks. Combined with Blue Yonder&rsquo;s Model Training Factory the same day, the supply chain for fine-tuned vertical agents is forming around NVIDIA infrastructure.</div>
+          <div class="sig-item-tags"><span class="sig-tag">NVIDIA</span><span class="sig-tag">Standard</span><span class="sig-tag">Toolchain</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 20</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" rel="noopener">Camunda ProcessOS &mdash; business processes themselves become agentic workflows</a></div>
+          <div class="sig-item-summary">Camunda announced ProcessOS in closed beta: an intelligence layer that discovers, re-engineers, and continuously optimises business processes <em>as agentic workflows rather than BPMN diagrams</em>. For enterprises with twenty years of process maps, this is the conversion path: existing process inventories are imported, agents replace human steps where eligible, and the orchestration engine becomes the runtime. The PDLC implication is that &ldquo;process redesign&rdquo; collapses into &ldquo;deploy an agent&rdquo; for whole categories of internal software.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Orchestration</span><span class="sig-tag">Toolchain</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 3: Ephemeral verification UX -->
+    <div class="sig-layer" data-layer="ephemeral">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">03</span> Ephemeral verification UX</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 20</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.dotzlaw.com/insights/anthropic-2026-code-with-claude/" target="_blank" rel="noopener">Anthropic Compliance API &mdash; agents become governable like any other enterprise application</a></div>
+          <div class="sig-item-summary">The Compliance API lets IT and security teams treat Claude and its agents as <em>first-class objects in the same governance plane as Okta, Salesforce, and Snowflake</em> &mdash; policy, audit, retention, DLP. The verification surface for agents is now wired into existing compliance tooling rather than reinvented in-app. For regulated buyers this removes the largest remaining procurement blocker for agent platforms and turns the &ldquo;ephemeral verification UX&rdquo; layer into something IT already knows how to operate.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Governance</span><span class="sig-tag">Enterprise</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/whats-new-in-microsoft-foundry-labs-%E2%80%93-may-2026/4520310" target="_blank" rel="noopener">Microsoft SocialReasoning-Bench &mdash; benchmark for whether agents advocate well for the humans they represent</a></div>
+          <div class="sig-item-summary">Microsoft Research released SocialReasoning-Bench: an open benchmark that scores whether multi-agent systems <em>actually advocate for the principal&rsquo;s interests in adversarial multi-party negotiations</em>, rather than just completing tasks. This is a sharp definition of trust-calibration as a measurable property &mdash; not vibes &mdash; and the first major open benchmark in this dimension. The verification surface design now has an objective metric to reference, which changes how product teams justify agent-versus-human boundaries.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Microsoft</span><span class="sig-tag">Trust</span><span class="sig-tag">Paper</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.microsoft.com/en-us/security/blog/2026/05/12/defense-at-ai-speed-microsofts-new-multi-model-agentic-security-system-tops-leading-industry-benchmark/" target="_blank" rel="noopener">Microsoft Defender multi-model agentic security &mdash; ephemeral review surface for autonomous defense</a></div>
+          <div class="sig-item-summary">Microsoft&rsquo;s new multi-model agentic security system topped a leading industry benchmark by composing specialist agents for triage, investigation, and response &mdash; with <em>a SOC-analyst review surface that exists only for the duration of an incident</em>. This is ephemeral verification at machine speed: the agent acts, then a disposable evidence panel reconstructs the decision for the human, then dissolves. The pattern matches the workspace prototype&rsquo;s &ldquo;decision frame&rdquo; concept almost exactly &mdash; built for an adversarial setting where latency is existential.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Microsoft</span><span class="sig-tag">Trust</span><span class="sig-tag">Generative UI</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cross-cutting -->
+    <div class="sig-layer cross" data-layer="cross">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.anthropic.com/news/anthropic-kpmg" target="_blank" rel="noopener">KPMG &times; Anthropic &mdash; Claude deployed to a 276,000-person professional services workforce</a></div>
+          <div class="sig-item-summary">KPMG announced a strategic alliance to integrate Claude across its core business and 276,000 employees globally &mdash; one of the largest single deployments of a frontier model into a professional services firm to date. The signal is procurement: <em>Big Four firms are now making frontier-model commitments at the workforce scale they used to reserve for ERP rollouts</em>, with PwC having extended the same week. Agent rollouts at six-figure-employee scale change what enterprise readiness even means.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Role evolution</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://newsroom.accenture.com/news/2026/servicenow-and-accenture-launch-forward-deployed-engineering-program-to-scale-agentic-ai-across-the-enterprise" target="_blank" rel="noopener">ServiceNow + Accenture &mdash; joint Forward Deployed Engineering program for in-customer agent build-outs</a></div>
+          <div class="sig-item-summary">ServiceNow and Accenture launched a joint FDE program at Knowledge 2026: <em>embedded multi-discipline teams that build agentic workflows inside the customer&rsquo;s environment</em> rather than handing over a SOW. The model is borrowed directly from Palantir / OpenAI&rsquo;s forward-deployment playbook and signals a permanent change in how enterprise agent work is delivered &mdash; closer to the customer, on the customer&rsquo;s platform, with the integrator as embedded co-builder rather than vendor.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Role evolution</span><span class="sig-tag">Orchestration</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">May 21</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.technologyreview.com/2026/05/21/1137735/anthropics-code-with-claude-showed-off-codings-future-whether-you-like-it-or-not/" target="_blank" rel="noopener">MIT Technology Review &mdash; Code with Claude &ldquo;showed off coding&rsquo;s future, whether you like it or not&rdquo;</a></div>
+          <div class="sig-item-summary">An unusually direct mainstream-press read on Code with Claude: the future of software engineering is being delivered by the platform vendor rather than negotiated with the profession. The piece captures the <em>role-evolution anxiety running through the developer community</em> &mdash; not whether agents work, but who decides the new shape of the job. This is the cultural counterpart to the Antigravity / Codex / Claude Code product convergence happening the same week.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Role evolution</span><span class="sig-tag">Anthropic</span><span class="sig-tag">Trust</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ── Week of 12–18 May 2026 ── -->
   <section class="sig-week fade-in">
@@ -849,6 +1002,26 @@
         </div>
       </article>
     </div>
+  </section>
+
+  <!-- Proposed new categories -->
+  <section class="sig-method fade-in" id="proposed-categories" style="border-left:3px solid hsl(280 65% 60%);">
+    <h3>Proposed additional categories <span style="font-size:0.6875rem; font-weight:600; color:hsl(var(--muted-foreground)); text-transform:uppercase; letter-spacing:0.06em; margin-left:0.5rem;">draft &middot; for discussion</span></h3>
+    <p>
+      The three-layer rail (<em>ambient &middot; agentic &middot; ephemeral</em>) plus the cross-cutting bin has held up for five weeks &mdash; but several themes recur often enough that they probably deserve their own lens. The <a href="graph.html" style="color:hsl(var(--foreground));text-decoration:underline;text-underline-offset:2px;">Graph view</a> already toggles colour-by-vendor and colour-by-theme; these would slot in as additional <em>filter dimensions</em>, not replacements for the layer rails.
+    </p>
+    <ol style="margin: 0.5rem 0 0.75rem; padding-left:1.25rem; font-size:0.8125rem; color:hsl(var(--muted-foreground)); line-height:1.7;">
+      <li><strong>Maturity stage.</strong> <code>Research</code> &middot; <code>Preview</code> &middot; <code>GA</code> &middot; <code>Procurement</code> &middot; <code>Deployment scale</code>. Currently a paper, a launch, and a $30bn raise all collapse into one feed; separating them shows which layer is in which phase.</li>
+      <li><strong>Vertical.</strong> Healthcare, Legal, Life sciences, Finance, Supply chain, DevSecOps, Public sector. Vertical tags already exist ad-hoc &mdash; promoting them to a dimension makes &ldquo;agents are real first in regulated industries&rdquo; a measurable claim, not an anecdote.</li>
+      <li><strong>Autonomy level.</strong> Borrowed from the SAE driving taxonomy: <code>L1 assistive</code> &middot; <code>L2 supervised</code> &middot; <code>L3 conditional</code> &middot; <code>L4 high</code> &middot; <code>L5 full</code>. Lets us track where on the autonomy curve each release sits, and where trust-calibration UX is concentrating.</li>
+      <li><strong>PDLC stage.</strong> <code>Discover</code> &middot; <code>Define</code> &middot; <code>Build</code> &middot; <code>Verify</code> &middot; <code>Ship</code> &middot; <code>Operate</code>. Most current signals are Build/Verify; the under-served stages would surface immediately.</li>
+      <li><strong>Standard vs. product.</strong> Splitting <code>Standard</code> from <code>Product launch</code> from <code>Research</code> from <code>Capital event</code> from <code>Procurement</code>. A protocol release (A2UI, MCP) belongs in a different lens than a product launch (Antigravity 2.0) than an alliance (KPMG &times; Anthropic).</li>
+      <li><strong>Time-to-impact.</strong> <code>This quarter</code> &middot; <code>This year</code> &middot; <code>Multi-year</code>. Aligns the log with the three-horizon framing the writeup already uses.</li>
+      <li><strong>Workforce shape.</strong> <code>Tooling change</code> &middot; <code>Role change</code> &middot; <code>Org change</code> &middot; <code>Procurement change</code>. The most strategically interesting signals (e.g. KPMG &times; Anthropic, ServiceNow + Accenture FDE) are role/org changes; today they get filed as &ldquo;cross-cutting&rdquo; alongside funding rounds.</li>
+    </ol>
+    <p style="font-size:0.75rem;">
+      <strong>Implementation note.</strong> These would go onto each <code>&lt;article class="sig-item"&gt;</code> as <code>data-*</code> attributes (e.g. <code>data-maturity="GA" data-vertical="legal" data-autonomy="L3"</code>) so the existing tag chips stay clean and the Graph view can offer them as additional &ldquo;colour by&rdquo; / &ldquo;filter by&rdquo; axes without restructuring the page. Recommend piloting <strong>Maturity</strong> and <strong>Vertical</strong> first &mdash; both are visible in the data already and would change which signals get prioritised in any given week.
+    </p>
   </section>
 
   <!-- Methodology -->
