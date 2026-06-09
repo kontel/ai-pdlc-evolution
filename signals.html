@@ -247,7 +247,7 @@
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">25 May 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">9 Jun 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -255,13 +255,164 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">63</span></button>
-    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">16</span></button>
-    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">18</span></button>
-    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">17</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">12</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">76</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">19</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">22</span></button>
+    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">20</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">15</span></button>
     <a href="graph.html" class="sig-chip" style="text-decoration:none; margin-left:auto;">Graph view &rarr;</a>
   </div>
+
+  <!-- ── Week of 2–9 June 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Week 23 &middot; 2026</div>
+        <div class="sig-week-range">2&ndash;9 June 2026</div>
+      </div>
+      <div class="sig-source">13 signals</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the week:</strong> Apple&rsquo;s WWDC 2026 (June&nbsp;9) dominated with <em>Siri AI</em> &mdash; on-screen awareness and personal context on 1.5&nbsp;billion devices, plus the first mainstream consumer agentic app (iOS&nbsp;27 Passwords autonomously navigates websites to fix compromised credentials). Anthropic shipped Claude Code <em>dynamic workflows</em> on June&nbsp;2, enabling Claude to write its own parallel orchestration scripts without developer scaffolding. Gemini&nbsp;3.5 Pro&rsquo;s 2-million-token context window is days from GA. All three layers of the writeup moved in a single week.
+    </div>
+
+    <!-- Layer 1: Ambient intent capture -->
+    <div class="sig-layer" data-layer="ambient">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">01</span> Ambient intent capture</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.apple.com/newsroom/2026/06/apple-introduces-siri-ai-a-profoundly-more-capable-and-personal-assistant/" target="_blank" rel="noopener">Apple WWDC 2026 &mdash; Siri AI ships with on-screen awareness and persistent personal context</a></div>
+          <div class="sig-item-summary">Siri AI reads whatever is on the user&rsquo;s screen in real time and draws on personal context &mdash; calendar, messages, habits &mdash; to understand intent without being asked first. <em>The ambient intent layer has landed as a consumer default on 1.5&nbsp;billion Apple devices</em>, not as a developer preview. For PDLC, the &ldquo;how does the agent know what the user wants?&rdquo; question is answered at the platform level: the OS knows continuously, and surfaces context to whichever agent runs next. Siri AI won&rsquo;t launch in the EU due to regulatory challenges, leaving a significant market without the ambient OS layer.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">OS-level</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.apple.com/apple-intelligence/" target="_blank" rel="noopener">WWDC 2026 &mdash; Visual Intelligence extends ambient capture to iPad, Mac, and Vision Pro</a></div>
+          <div class="sig-item-summary">Visual Intelligence &mdash; Apple&rsquo;s camera and screen-understanding layer &mdash; moves beyond iPhone to iPad, Mac, and Vision Pro, letting users point at any part of their environment or screen and receive contextual responses. <em>Ambient visual capture is no longer iPhone-only</em>: on Mac, the cursor becomes a context lens for any on-screen content. Combined with Siri AI&rsquo;s text-layer awareness, the full Apple surface area for ambient intent now spans every major form factor Apple sells.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">OS-level</span><span class="sig-tag">Hardware</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.google/products-and-platforms/products/chrome/bringing-chrome-ai-to-android/" target="_blank" rel="noopener">Google Chrome &mdash; Gemini arrives on Android with article context, summaries, and Workspace integration</a></div>
+          <div class="sig-item-summary">Gemini in Chrome on Android can now summarise the active page, answer questions about its content, and push actions directly to Google Calendar, Keep, and Gmail &mdash; all without leaving the current tab. <em>The browser becomes a persistent ambient context layer</em>: Gemini reads what the user is reading and acts on it without any copy-paste step. Rolling out in late June to AI&nbsp;Pro and Ultra subscribers in the US on Android&nbsp;12+ devices with 4&nbsp;GB RAM.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Google</span><span class="sig-tag">Browser-native</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 2</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/blog/introducing-dynamic-workflows-in-claude-code" target="_blank" rel="noopener">Anthropic &mdash; Claude Code dynamic workflows: Claude writes its own orchestration scripts on the fly</a></div>
+          <div class="sig-item-summary">Dynamic workflows let Claude Code <em>generate bespoke orchestration scripts that fan out into tens or hundreds of parallel subagents</em>, verify their outputs, and converge on a final result &mdash; with no scaffolding code written by the developer. The launch demo: Jarred Sumner ported Bun from Zig to Rust in eleven days (750,000 lines, 99.8% test suite passing). Available in research preview on Max, Team, and Enterprise plans and on Bedrock, Vertex AI, and Microsoft Foundry. Anthropic notes dynamic workflows can consume substantially more tokens per session than a typical Claude Code run.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Orchestration</span><span class="sig-tag">Long-running</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.theregister.com/personal-tech/2026/06/09/apples-ios-27-goes-all-agentic-on-compromised-passwords/5252957" target="_blank" rel="noopener">Apple iOS 27 &mdash; Passwords uses agentic AI to autonomously navigate websites and fix compromised credentials</a></div>
+          <div class="sig-item-summary">With one tap, Apple Passwords uses Apple Intelligence and Safari to navigate to each affected site, sign in, generate a strong password, and update the credential &mdash; <em>the first consumer-mainstream agentic action running autonomously on a closed-platform OS</em>. Previously this required the user to visit each site manually. Powered by Apple Foundation Models (with Google Gemini for frontier tasks) and processed on-device or via Private Cloud Compute. Shipping with iOS&nbsp;27 later this year.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">Computer use</span><span class="sig-tag">OS-level</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.google/products-and-platforms/products/chrome/gemini-3-auto-browse/" target="_blank" rel="noopener">Chrome Auto Browse &mdash; Gemini navigates the web autonomously to complete multi-step errands on Android</a></div>
+          <div class="sig-item-summary">Auto Browse lets Gemini scroll, click, type, and navigate Chrome on the user&rsquo;s behalf: booking parking, updating orders, filling multi-step forms. <em>Sensitive actions require explicit confirmation before execution</em> &mdash; a trust gate baked in by default rather than bolted on. Rolling out in late June to AI&nbsp;Pro/Ultra subscribers in the US on Android&nbsp;12+. Unlike OS-level computer use, Auto Browse operates inside the browser sandbox, narrowing the attack surface to web content only.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Google</span><span class="sig-tag">Browser-native</span><span class="sig-tag">Computer use</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 6</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.techtimes.com/articles/317919/20260606/google-gemini-35-pro-nears-june-launch-2-million-token-context-deep-think-reasoning.htm" target="_blank" rel="noopener">Gemini 3.5 Pro &mdash; 2-million-token context and Deep Think reasoning confirmed for June GA</a></div>
+          <div class="sig-item-summary">Teased at I/O (May&nbsp;19), Gemini&nbsp;3.5 Pro is confirmed for June GA with a 2-million-token context window and a Deep Think reasoning mode for complex multi-step problems. <em>A 2M-token context window converts sustained long-running multi-document agentic tasks from an engineering challenge into a prompt-design problem</em>. Pricing expected at ~10&times; Flash rates; Deep Think is gated to AI Ultra initially. Most likely the model underpinning Gemini Spark&rsquo;s background-agent workloads announced at I/O.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Google</span><span class="sig-tag">Long-running</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 3: Ephemeral verification UX -->
+    <div class="sig-layer" data-layer="ephemeral">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">03</span> Ephemeral verification UX</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.macrumors.com/2026/06/08/apple-announces-macos-golden-gate/" target="_blank" rel="noopener">macOS Golden Gate &mdash; Liquid Glass becomes a system-wide adaptive UI layer</a></div>
+          <div class="sig-item-summary">macOS&nbsp;27 (&ldquo;Golden Gate&rdquo;) ships Liquid Glass as the default UI system: window chrome adapts its opacity and depth based on the content rendered behind it, and a system-wide slider lets users tune the effect from near-transparent to fully tinted. <em>The UI responds to content rather than being a static container for it</em>. For the writeup&rsquo;s ephemeral UX thesis this is the design-system-level signal: even Apple&rsquo;s most conservative desktop surface is shifting to contextual, content-reactive rendering as the new baseline.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">Generative UI</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.apple.com/apple-intelligence/" target="_blank" rel="noopener">Apple Intelligence in iOS 27 &mdash; AI-generated notification summaries as ephemeral per-context micro-UI</a></div>
+          <div class="sig-item-summary">Apple Intelligence now generates per-notification, per-thread summaries that replace raw push notification text: <em>the UI surface the user sees is synthesised by an LLM for that moment and then discarded</em>. This extends to Home app security camera alerts, which surface what the AI observed rather than firing a generic motion-detection string. The generalised pattern: every OS-level notification becomes a dynamically generated, content-specific UI element rather than a static developer-supplied string.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">Generative UI</span><span class="sig-tag">OS-level</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.cnbc.com/2026/06/08/apple-wwdc-2026-live-updates.html" target="_blank" rel="noopener">Siri AI&rsquo;s standalone chat app completes platform consensus: the conversation thread as agent verification surface</a></div>
+          <div class="sig-item-summary">Siri AI ships as a standalone persistent chat app &mdash; a thread where the user types or talks like ChatGPT &mdash; placing Apple alongside ChatGPT, Gemini, and Copilot in the same UX pattern: <em>the conversation thread is the verification and control surface for agents</em>. There is no separate &ldquo;agent review screen&rdquo;; the plan appears inline, the user can redirect inline, the result confirms inline. Four-platform convergence on this pattern is a stronger signal than any single vendor&rsquo;s design decision.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">Generative UI</span><span class="sig-tag">Trust</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cross-cutting -->
+    <div class="sig-layer cross" data-layer="cross">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 2</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://thenewstack.io/anthropic-agent-sdk-credits/" target="_blank" rel="noopener">Anthropic Agent SDK billing split &mdash; agent compute gets its own credit pool, separate from interactive use</a></div>
+          <div class="sig-item-summary">Starting June&nbsp;15, Claude Agent SDK, claude&nbsp;-p, Claude Code GitHub Actions, and all third-party agent apps move off subscription limits onto a separate monthly credit pool ($20&nbsp;Pro / $100&nbsp;Max&nbsp;5&times; / $200&nbsp;Max&nbsp;20&times;), billed at API rates with no rollover. <em>This is the first time a major vendor has explicitly priced agentic compute as a distinct billing category from interactive use</em>, exposing the real cost of autonomous work. No automatic overflow: once the pool is empty, automated requests stop entirely unless the user has enabled overflow billing &mdash; a forcing function for teams to instrument their usage.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Toolchain</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.business-standard.com/amp/technology/tech-news/wwdc-2026-apple-unveils-siri-ai-gemini-powered-apple-intelligence-more-126060900042_1.html" target="_blank" rel="noopener">WWDC 2026 &mdash; Apple Intelligence co-powered by Google Gemini, completing OS-vendor ambient AI convergence</a></div>
+          <div class="sig-item-summary">Apple confirmed that Apple Intelligence uses Google Gemini (alongside ChatGPT) for tasks that exceed on-device capability, with Private Cloud Compute handling the privacy routing. <em>Platform-scale ambient AI is now a multi-vendor integration problem, not a single-model product</em>. The routing decision lives at the OS level. This closes the three-platform picture: Windows, Android, and now iOS/macOS all route ambient tasks to foundation models via OS-managed paths &mdash; a structural lock-in for the ambient computing layer that product teams building on top of these OSes must design for.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">Google</span><span class="sig-tag">Standard</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jun 6</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.fusefy.ai/aivibes/eu-ai-act-august-2026-deadline-enterprise-compliance/" target="_blank" rel="noopener">EU AI Act: August 2 enforcement in 57 days &mdash; 78% of enterprises have not begun compliance</a></div>
+          <div class="sig-item-summary">With high-risk obligations binding from August&nbsp;2, a Cloud Security Alliance assessment found 78% of organisations have taken no meaningful compliance steps and more than half lack a systematic inventory of AI systems in production. <em>Any autonomous agent deployed in EU-accessible enterprise software may qualify as a high-risk AI system</em>, requiring technical documentation, open-loop architecture with intervention points, and stop/correct control mechanisms. Fines: up to &euro;15M or 3% of global annual turnover. For PDLC teams, August is the clearest near-term forcing function for baking governance into agent architecture at design time.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Regulation</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Governance</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ── Week of 19–25 May 2026 ── -->
   <section class="sig-week fade-in">
