@@ -247,7 +247,7 @@
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">9 Jun 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">17 Oct 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -255,13 +255,173 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">76</span></button>
-    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">19</span></button>
-    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">22</span></button>
-    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">20</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">15</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">91</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">21</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">28</span></button>
+    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">23</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">19</span></button>
     <a href="graph.html" class="sig-chip" style="text-decoration:none; margin-left:auto;">Graph view &rarr;</a>
   </div>
+
+  <!-- ── Catch-up digest: 10 June – 17 October 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Catch-up digest &middot; Week 24&ndash;42 &middot; 2026</div>
+        <div class="sig-week-range">10 June &ndash; 17 October 2026</div>
+      </div>
+      <div class="sig-source">14 signals</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the gap:</strong> No weekly scans ran between June and mid-October, so this block is one catch-up digest covering ~18 weeks, trimmed to the strongest primary-source signals. The pattern across the window: <em>all three frontier vendors shipped persistent, long-running agents with their own identities</em> (Gemini agent, OpenAI Dots, Claude Opus&nbsp;5.5 running 18&nbsp;hours unattended), MCP went stateless, the EU deferred Annex&nbsp;III high-risk obligations to December&nbsp;2027, and research on <em>approval prompts as an attack surface</em> made the verification layer a security problem, not just a UX one.
+    </div>
+
+    <!-- Layer 1: Ambient intent capture -->
+    <div class="sig-layer" data-layer="ambient">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">01</span> Ambient intent capture</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 15</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.aboutamazon.com/news/devices/amazon-personal-ai-bee-frontier-bee-eclipse" target="_blank" rel="noopener">Amazon &mdash; Bee Frontier and Bee Eclipse turn all-day conversation capture into to-dos, follow-ups and Alexa+ recall</a></div>
+          <div class="sig-item-summary">Amazon&rsquo;s first Bee hardware since the acquisition puts <em>ambient conversation capture on the wrist for $74.99</em>, feeding summaries, suggested to-dos, drafted follow-up emails and calendar invites into Gmail, Google Calendar, Outlook and Alexa+. Frontier (wrist or clip, 7-day battery) ships now; Eclipse, a magnetic phone attachment, is &ldquo;coming soon&rdquo; from $99.99. Privacy design is part of the pitch: a single on/off button with an indicator light, audio processed in real time then deleted, and transcripts encrypted with device-held keys. Most agentic features (integrations, suggested to-dos, Alexa+ recall) sit behind the $11.99/month Bee Pro tier.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Hardware</span><span class="sig-tag">Voice</span><span class="sig-tag">Amazon</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Sep 14</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here/" target="_blank" rel="noopener">Apple &mdash; Siri AI ships in iOS 27 with on-screen awareness, personal context and a Siri mode in Camera</a></div>
+          <div class="sig-item-summary">The WWDC promise logged in Week&nbsp;23 is now shipping: <em>Siri AI can answer questions or take actions about whatever is on screen</em>, drawing on personal context across messages, email and photos. It rolled out in English beta across iOS, iPadOS, macOS, watchOS and visionOS&nbsp;27, with a dedicated Siri app that syncs conversation history across devices and a Camera mode for questions about the physical world. It is not available in the EU on iOS, iPadOS and watchOS, nor in China, and some server-side features carry daily usage limits.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">OS-level</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 8</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026" target="_blank" rel="noopener">Google Cloud &mdash; Gemini agent: one prompt box, job-specific sub-agents, and coworker agents with their own Workspace accounts</a></div>
+          <div class="sig-item-summary">Google&rsquo;s universal &ldquo;Gemini agent&rdquo; makes <em>the agent a first-class identity in the enterprise directory</em>: coworker agents get their own @agents.company.com email, calendar, Drive and persistent storage, and every action is written to an audit trail attributed to the agent rather than a person. It dynamically spins up temporary sub-agents that run parallel and sequential steps &ldquo;for hours or days&rdquo;, and routes each job across Gemini and Anthropic Claude models. Controls are administrative (admin-approved permissions, Agent Gateway policies, spend caps that pause work) rather than per-action approvals. Orange Spain is deploying over 1,000 custom agents; SOMPO reports more than 10,000.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Google</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Orchestration</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Sep 29</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://openai.com/index/devday-2026-recap/" target="_blank" rel="noopener">OpenAI DevDay 2026 &mdash; Dots persistent agents, Agents API with computer use, and a Decisions API for constrained routing</a></div>
+          <div class="sig-item-summary">DevDay moved OpenAI from chat to <em>persistent agents that keep working between conversations</em>: Dots have connected apps and their own cloud computer, with &ldquo;specialist dots&rdquo; in enterprise preview and planned management through Microsoft Agent&nbsp;365. The Agents API entered public beta with hosted execution, memory, multi-agent support and computer use. The Decisions API constrains a model to predefined answers for classification, routing or an agent&rsquo;s next step &mdash; a deliberately narrow, testable primitive. Dots rollout excludes the EEA, Switzerland and the UK.</div>
+          <div class="sig-item-tags"><span class="sig-tag">OpenAI</span><span class="sig-tag">Long-running</span><span class="sig-tag">Computer use</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Sep 22</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.anthropic.com/news/claude-opus-5-5" target="_blank" rel="noopener">Anthropic &mdash; Claude Opus 5.5: 18-hour unattended runs and 40% lower cost than Opus 5</a></div>
+          <div class="sig-item-summary">Opus&nbsp;5.5 is pitched squarely at <em>long-running, unsupervised agentic work</em>: a Clio engineer ran it overnight across six repositories for over 18&nbsp;hours, and one tester completed a 680,000-line migration in under a day. Anthropic-reported scores rise sharply over Opus&nbsp;5 (Terminal-Bench&nbsp;4.0 66.4% vs 52.3%; OSWorld&nbsp;2.1 81.8% vs 74.0%). Pricing drops to $4/$20 per million input/output tokens, which Anthropic says is about 40% cheaper than Opus&nbsp;5 on typical workloads.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Long-running</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Aug 19</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/blog/computer-use-skills-api-files-api" target="_blank" rel="noopener">Anthropic &mdash; Computer use leaves beta and a new browser use toolset ships for agents in web apps</a></div>
+          <div class="sig-item-summary">Computer use reaching general availability marks <em>GUI operation becoming a supported production primitive</em> rather than an experiment. The new computer toolset adds batched actions (several per turn) and zoom on by default; a separate browser use toolset targets agents that work inside web applications. Skills API and Files API also went GA the same day. Availability is uneven: Claude API and Google Cloud get the new toolsets, other platforms keep the older beta versions.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Computer use</span><span class="sig-tag">Browser-native</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jul 24</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.anthropic.com/news/claude-opus-5" target="_blank" rel="noopener">Anthropic &mdash; Claude Opus 5: near-frontier agentic coding at half the price, and &ldquo;much stronger at verifying its work&rdquo;</a></div>
+          <div class="sig-item-summary">Opus&nbsp;5 matters for the writeup because Anthropic leads with <em>self-verification as a model capability</em>, not just raw benchmark gains. It comes close to Claude Fable&nbsp;5 at half the price, more than doubles Opus&nbsp;4.8 on Frontier-Bench, and beats Fable&nbsp;5&rsquo;s best OSWorld&nbsp;2.0 result at just over a third of the cost. Pricing stays at $5/$25 per million tokens. Beta API features shipped alongside: mid-conversation tool changes that keep the prompt cache, and automatic fallbacks to another model when safety classifiers flag a request.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Toolchain</span><span class="sig-tag">Trust</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 3: Ephemeral verification UX -->
+    <div class="sig-layer" data-layer="ephemeral">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">03</span> Ephemeral verification UX</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Sep 17</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://arxiv.org/abs/2609.21081" target="_blank" rel="noopener">Loopjacking: Hijacking Human-in-the-Loop Approval (arXiv)</a></div>
+          <div class="sig-item-summary">The paper names a failure the verification layer has to design for: <em>the human approves operation A, but the system executes a materially different operation B</em>. It reproduces post-approval state substitution in seven Agno AgentOS releases and twelve LangGraph Agent Server versions, and an approval-rendering mismatch in one OpenClaw release; the OpenAI Agents SDK, which binds approval to the exact call, rejected the mutated operation. Rendering the complete canonical action and comparing it at execution time blocked the tested attacks. The author notes the results do not estimate ecosystem-wide prevalence.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Paper</span><span class="sig-tag">Trust</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Sep 16</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://arxiv.org/abs/2609.18411v1" target="_blank" rel="noopener">The Verifiable Action Card: Trustworthy Human-in-the-Loop Control for Secure Autonomous Agents (arXiv)</a></div>
+          <div class="sig-item-summary">A concrete design pattern for the ephemeral verification surface: <em>rebuild the approval card from the ground-truth pending action and show it in trusted browser chrome</em>, out of reach of page content or model-generated text. The Verifiable Action Card combines provenance fencing, default-deny confirmation and re-verification at dispatch. On a 24-scenario agentic-browser benchmark, attack success fell from 68&ndash;100% to 0% on every model tested, while 78% of legitimate tasks still completed with no false blocks.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Paper</span><span class="sig-tag">Trust</span><span class="sig-tag">Browser-native</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Sep 10</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank" rel="noopener">Claude Managed Agents &mdash; &ldquo;auto&rdquo; permission policy lets the server run, deny or pause each tool call for approval</a></div>
+          <div class="sig-item-summary">This is <em>trust calibration moved from a static allow-list to a per-call judgement</em>: under the new <code>auto</code> policy the server evaluates every agent or MCP tool call and either runs it, denies it, or pauses for a human. Each tool-use event now reports how the call was evaluated, which gives teams an audit record of when and why a human was pulled in. It is the managed-platform counterpart to the approval-gate research logged in this digest.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Trust</span><span class="sig-tag">Governance</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cross-cutting -->
+    <div class="sig-layer cross" data-layer="cross">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 6</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/" target="_blank" rel="noopener">Stack Overflow 2026 Developer Survey &mdash; Claude Code and GitHub Copilot lead agent use; 73% of AI users use them daily</a></div>
+          <div class="sig-item-summary">The largest annual developer survey (30,000+ respondents) shows <em>coding agents are now routine daily tooling</em>: 66% of AI users use coding agents, and 73% of those using assistants or agents use them every day. Claude Code (66%) and GitHub Copilot (59%) are the agents of choice. Trust stays conditional: 93% say trusting AI output requires source attribution.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Role evolution</span><span class="sig-tag">Trust</span><span class="sig-tag">Toolchain</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jul 28</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/" target="_blank" rel="noopener">MCP &mdash; The 2026-07-28 specification makes the protocol core stateless</a></div>
+          <div class="sig-item-summary">The biggest MCP revision since launch <em>removes sessions from the protocol core</em>, so any request can hit any server instance behind a load balancer &mdash; the change enterprises needed to run MCP like ordinary web infrastructure. The initialize handshake and Mcp-Session-Id header are retired; Multi Round-Trip Requests replace held-open streams for elicitation and sampling; required Mcp-Method/Mcp-Name headers let gateways route and meter without parsing bodies. Tasks, MCP Apps and Enterprise Managed Authorization now live under a formal extensions framework, and Roots, Sampling, Logging and HTTP+SSE are deprecated with a 12-month minimum window.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Open source</span><span class="sig-tag">Enterprise</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jul 27</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://eur-lex.europa.eu/eli/reg/2026/1744/oj" target="_blank" rel="noopener">EU Digital Omnibus on AI (Regulation 2026/1744) in force &mdash; Annex III high-risk obligations move to 2 December 2027</a></div>
+          <div class="sig-item-summary">The 2&nbsp;August 2026 forcing function flagged in Week&nbsp;23 is gone: <em>standalone Annex III high-risk obligations now apply from 2&nbsp;December 2027</em>, and AI embedded in Annex&nbsp;I products from 2&nbsp;August 2028. The regulation was published in the Official Journal on 24&nbsp;July and entered into force on 27&nbsp;July, with fixed dates rather than the earlier standards-linked trigger. It also adds bans on AI-generated non-consensual intimate imagery and CSAM from 2&nbsp;December 2026, a &ldquo;small mid-cap&rdquo; relief tier, and exclusive AI Office supervision of some GPAI-based systems (per <a href="https://www.orrick.com/en/Insights/2026/07/EU-AI-Act-Update-Digital-Omnibus-Finalizes-8-Compliance-Changes" target="_blank" rel="noopener">Orrick&rsquo;s summary</a>). Deferred is not cancelled: the obligations are unchanged in substance.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Regulation</span><span class="sig-tag">Governance</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Jul 1</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://arxiv.org/abs/2607.01418" target="_blank" rel="noopener">Adoption and Impact of Command-Line AI Coding Agents: Microsoft&rsquo;s early-2026 rollout of Claude Code and GitHub Copilot CLI (arXiv)</a></div>
+          <div class="sig-item-summary">One of the first large-scale field studies of CLI coding agents, covering <em>tens of thousands of Microsoft engineers</em>. Adopters merged roughly 24% more pull requests than they otherwise would have, and the lift held across the four-month window; the authors caution that merged PRs are a proxy for output, not value. First use spread mainly through social networks, and retention tracked coding activity more than demographics &mdash; so the paper recommends treating visible peer use as central to rollout strategy.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Paper</span><span class="sig-tag">Microsoft</span><span class="sig-tag">Role evolution</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ── Week of 2–9 June 2026 ── -->
   <section class="sig-week fade-in">
