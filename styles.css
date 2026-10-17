@@ -1277,3 +1277,31 @@ h2:hover .anchor-link,
     min-height: 205px;
   }
 }
+
+/* Evidence-grade tags — how strong is the evidence behind a claim?
+   Three-dot meter: ●●● experiment / field data, ●●○ survey,
+   ●○○ practitioner report / vendor claim, ○○○ model / estimate. */
+.ev {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.625rem; font-weight: 600; font-style: normal;
+  letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.4;
+  color: hsl(var(--muted-foreground));
+  border: 1px solid hsl(var(--border)); border-radius: 999px;
+  padding: 0.05rem 0.45rem; margin-left: 0.35rem; vertical-align: 1px;
+  white-space: nowrap; cursor: help;
+}
+.ev::before { font-size: 0.5rem; letter-spacing: 0.08em; color: hsl(var(--foreground)); }
+.ev--experiment::before, .ev--field::before { content: "\25CF\25CF\25CF"; }
+.ev--survey::before { content: "\25CF\25CF\25CB"; }
+.ev--practitioner::before, .ev--vendor::before { content: "\25CF\25CB\25CB"; }
+.ev--model::before { content: "\25CB\25CB\25CB"; }
+.ev--vendor { border-style: dashed; }
+.ev--model { border-style: dotted; }
+.hero-stat .ev { margin: 0.35rem 0 0; }
+.ev-legend {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.25rem;
+  font-size: 0.6875rem; color: hsl(var(--muted-foreground));
+  margin-top: 1rem;
+}
+.ev-legend .ev { margin-left: 0; }
+.ev-legend-label { font-weight: 600; margin-right: 0.25rem; }

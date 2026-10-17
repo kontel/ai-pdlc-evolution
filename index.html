@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDLC Futures Sketchpad — Incrementally Exploring How AI Transforms Product Delivery</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2026-10-17">
 </head>
 <body>
 
@@ -39,14 +39,14 @@
       <span><span class="nav-freshness-dot nav-freshness-dot--stable"></span> Earlier</span>
     </div>
     <ul class="section-nav-list" id="sectionNavList">
-      <li><a href="#summary" data-section-id="summary" data-updated="2026-10-17" data-update-note="Oct 2026 update: the bottleneck moved"><span class="section-nav-text">Executive summary</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#legacy" data-section-id="legacy" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Legacy process</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#capabilities" data-section-id="capabilities" data-updated="2026-10-17" data-update-note="Stack Overflow 2026 agent adoption"><span class="section-nav-text">AI capabilities</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#evolution" data-section-id="evolution" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Evolution map</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
+      <li><a href="#summary" data-section-id="summary" data-updated="2026-10-17" data-update-note="Oct 2026 update; evidence legend"><span class="section-nav-text">Executive summary</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
+      <li><a href="#legacy" data-section-id="legacy" data-updated="2026-10-17" data-update-note="Rewritten for 2026: review queue, old process"><span class="section-nav-text">Legacy process</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
+      <li><a href="#capabilities" data-section-id="capabilities" data-updated="2026-10-17" data-update-note="Rewritten: maturity + evidence grades"><span class="section-nav-text">AI capabilities</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
+      <li><a href="#evolution" data-section-id="evolution" data-updated="2026-10-17" data-update-note="Rewritten + Review & Release track"><span class="section-nav-text">Evolution map</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
       <li><a href="#teams" data-section-id="teams" data-updated="2026-10-17" data-update-note="4.3 citizens/agents/experts, 4.4 apprenticeship gap"><span class="section-nav-text">Teams &amp; structures</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
       <li><a href="#discipline" data-section-id="discipline" data-updated="2026-10-17" data-update-note="5.6 verification bottleneck; harness cost evidence"><span class="section-nav-text">Engineering discipline</span><span class="nav-freshness nav-freshness--recent">Updated 6d ago</span></a></li>
       <li><a href="#beyond-code" data-section-id="beyond-code" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Beyond coding</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#roadmap" data-section-id="roadmap" data-updated="2026-10-17" data-update-note="7.6 budgeting for the J-curve"><span class="section-nav-text">Roadmap &amp; adoption</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li><a href="#roadmap" data-section-id="roadmap" data-updated="2026-10-17" data-update-note="7.1 phases rewritten; 7.6 J-curve"><span class="section-nav-text">Roadmap &amp; adoption</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#risks" data-section-id="risks" data-updated="2026-10-17" data-update-note="8.3 agent supply chain + EU AI Act timeline"><span class="section-nav-text">Risks</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
       <li><a href="#future" data-section-id="future" data-updated="2026-10-17" data-update-note="Quality card: review by exception"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#product-engineer" data-section-id="product-engineer" data-updated="2026-10-17" data-update-note="10.8 attention as the review budget"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
@@ -69,7 +69,7 @@
       <div class="section-map-intro">
         <span class="section-map-kicker">Sketchpad map</span>
         <h2 class="section-map-title">Fourteen lenses in one page</h2>
-        <p class="section-map-lead">Each block is a section below&mdash;title, two-word flavor, click to jump. Read in order or hop by interest.</p>
+        <p class="section-map-lead">Each block is a section below&mdash;numbers match the section headings. Click to jump; read in order or hop by interest.</p>
         <div class="section-map-legend" aria-label="Section freshness legend">
           <span class="section-map-legend-item"><span class="nav-freshness nav-freshness--recent">0-7d</span><span>Strong</span></span>
           <span class="section-map-legend-item"><span class="nav-freshness nav-freshness--weeks">8-21d</span><span>Medium</span></span>
@@ -77,87 +77,87 @@
         </div>
       </div>
       <div class="section-map-grid" id="sectionMap" role="navigation" aria-label="All sections">
-      <a href="#summary" class="section-tile" data-section-id="summary" data-updated="2026-10-17" data-update-note="Oct 2026 update: the bottleneck moved">
+      <a href="#summary" class="section-tile" data-section-id="summary" data-updated="2026-10-17" data-update-note="Oct 2026 update; evidence legend">
+        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
+        <span class="section-tile-num">ES</span>
+        <span class="section-tile-name">Executive summary</span>
+        <span class="section-tile-flavor">Thesis &amp; Oct 2026 update</span>
+      </a>
+      <a href="#legacy" class="section-tile" data-section-id="legacy" data-updated="2026-10-17" data-update-note="Rewritten for 2026: review queue, old process">
         <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
         <span class="section-tile-num">01</span>
-        <span class="section-tile-name">Executive summary</span>
-        <span class="section-tile-flavor">Thesis &amp; context</span>
+        <span class="section-tile-name">Legacy PDLC</span>
+        <span class="section-tile-flavor">Where you are now</span>
       </a>
-      <a href="#legacy" class="section-tile" data-section-id="legacy" data-updated="2026-03-15" data-update-note="Baseline synthesis">
+      <a href="#capabilities" class="section-tile" data-section-id="capabilities" data-updated="2026-10-17" data-update-note="Rewritten: maturity + evidence grades">
         <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
         <span class="section-tile-num">02</span>
-        <span class="section-tile-name">Legacy PDLC</span>
-        <span class="section-tile-flavor">Pain points today</span>
+        <span class="section-tile-name">AI capabilities</span>
+        <span class="section-tile-flavor">Maturity &amp; evidence</span>
       </a>
-      <a href="#capabilities" class="section-tile" data-section-id="capabilities" data-updated="2026-10-17" data-update-note="Stack Overflow 2026 agent adoption">
+      <a href="#evolution" class="section-tile" data-section-id="evolution" data-updated="2026-10-17" data-update-note="Rewritten + Review & Release track">
         <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
         <span class="section-tile-num">03</span>
-        <span class="section-tile-name">AI capabilities</span>
-        <span class="section-tile-flavor">What tools unlock</span>
-      </a>
-      <a href="#evolution" class="section-tile" data-section-id="evolution" data-updated="2026-03-15" data-update-note="Baseline synthesis">
-        <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">04</span>
         <span class="section-tile-name">Evolution map</span>
         <span class="section-tile-flavor">Workflows shift</span>
       </a>
       <a href="#teams" class="section-tile" data-section-id="teams" data-updated="2026-10-17" data-update-note="4.3 citizens/agents/experts, 4.4 apprenticeship gap">
         <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">05</span>
+        <span class="section-tile-num">04</span>
         <span class="section-tile-name">Teams &amp; structures</span>
-        <span class="section-tile-flavor">Roles &amp; topology</span>
+        <span class="section-tile-flavor">Roles, topology, talent</span>
       </a>
       <a href="#discipline" class="section-tile" data-section-id="discipline" data-updated="2026-10-17" data-update-note="5.6 verification bottleneck; harness cost evidence">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated 6d ago</span>
-        <span class="section-tile-num">06</span>
+        <span class="section-tile-num">05</span>
         <span class="section-tile-name">Engineering discipline</span>
-        <span class="section-tile-flavor">Harness &amp; debt</span>
+        <span class="section-tile-flavor">Harness &amp; verification</span>
       </a>
       <a href="#beyond-code" class="section-tile" data-section-id="beyond-code" data-updated="2026-03-15" data-update-note="Baseline synthesis">
         <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">07</span>
+        <span class="section-tile-num">06</span>
         <span class="section-tile-name">Beyond coding</span>
         <span class="section-tile-flavor">Ops, PM, research</span>
       </a>
-      <a href="#roadmap" class="section-tile" data-section-id="roadmap" data-updated="2026-10-17" data-update-note="7.6 budgeting for the J-curve">
+      <a href="#roadmap" class="section-tile" data-section-id="roadmap" data-updated="2026-10-17" data-update-note="7.1 phases rewritten; 7.6 J-curve">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">08</span>
+        <span class="section-tile-num">07</span>
         <span class="section-tile-name">Roadmap &amp; adoption</span>
-        <span class="section-tile-flavor">Phases &amp; intent</span>
+        <span class="section-tile-flavor">Phases &amp; J-curve</span>
       </a>
       <a href="#risks" class="section-tile" data-section-id="risks" data-updated="2026-10-17" data-update-note="8.3 agent supply chain + EU AI Act timeline">
         <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
-        <span class="section-tile-num">09</span>
-        <span class="section-tile-name">Four risks</span>
-        <span class="section-tile-flavor">Product lens</span>
+        <span class="section-tile-num">08</span>
+        <span class="section-tile-name">Risks</span>
+        <span class="section-tile-flavor">Anti-patterns &amp; supply chain</span>
       </a>
       <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-10-17" data-update-note="Quality card: review by exception">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">10</span>
+        <span class="section-tile-num">09</span>
         <span class="section-tile-name">Future vision</span>
         <span class="section-tile-flavor">Compound gains</span>
       </a>
       <a href="#product-engineer" class="section-tile" data-section-id="product-engineer" data-updated="2026-10-17" data-update-note="10.8 attention as the review budget">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">11</span>
+        <span class="section-tile-num">10</span>
         <span class="section-tile-name">Product engineer</span>
         <span class="section-tile-flavor">Human orchestrator</span>
       </a>
       <a href="#agent-architecture" class="section-tile" data-section-id="agent-architecture" data-updated="2026-10-17" data-update-note="11.5 coordination patterns from the field">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">12</span>
+        <span class="section-tile-num">11</span>
         <span class="section-tile-name">Agent architecture</span>
         <span class="section-tile-flavor">Ensemble &amp; memory</span>
       </a>
       <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-10-17" data-update-note="Jun–Oct 2026 sources added">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">13</span>
+        <span class="section-tile-num">12</span>
         <span class="section-tile-name">Sources</span>
         <span class="section-tile-flavor">References</span>
       </a>
       <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-10-17" data-update-note="October 2026 refresh logged">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
-        <span class="section-tile-num">14</span>
+        <span class="section-tile-num">CL</span>
         <span class="section-tile-name">Changelog</span>
         <span class="section-tile-flavor">What changed</span>
       </a>
@@ -179,22 +179,35 @@
         <div class="num">73%</div>
         <div class="label">Of AI-tool users run coding assistants or agents daily</div>
         <div class="cite"><a href="https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/" target="_blank">Stack Overflow Survey, Oct 2026</a></div>
+        <span class="ev ev--survey" title="Self-reported survey, 30K+ respondents">Survey</span>
       </div>
       <div class="hero-stat">
         <div class="num">+24%</div>
         <div class="label">More merged PRs after Microsoft&rsquo;s CLI-agent rollout</div>
         <div class="cite"><a href="https://arxiv.org/abs/2607.01418" target="_blank">Murphy-Hill et al., Jul 2026</a></div>
+        <span class="ev ev--field" title="Telemetry across tens of thousands of engineers; merged PRs are an output proxy">Field data</span>
       </div>
       <div class="hero-stat">
         <div class="num">1.62&times;</div>
         <div class="label">Odds a merged agent PR later needs a fix (vs. human PR)</div>
         <div class="cite"><a href="https://arxiv.org/abs/2609.26847" target="_blank">Takerngsaksiri et al., Sep 2026</a></div>
+        <span class="ev ev--field" title="Repository mining: 6,774 agent PRs vs 5,044 human PRs">Field data</span>
       </div>
       <div class="hero-stat">
         <div class="num">32%</div>
         <div class="label">Skipped buying software because agents could build it</div>
         <div class="cite"><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank">McKinsey State of AI, 2026</a></div>
+        <span class="ev ev--survey" title="Executive survey, 1,719 respondents">Survey</span>
       </div>
+    </div>
+    <div class="ev-legend" id="evidence-legend" aria-label="Evidence grade legend">
+      <span class="ev-legend-label">Evidence tags used across the page:</span>
+      <span class="ev ev--experiment" title="Controlled or randomized study">Experiment</span>
+      <span class="ev ev--field" title="Large-scale telemetry, repository or payroll data">Field data</span>
+      <span class="ev ev--survey" title="Self-reported survey">Survey</span>
+      <span class="ev ev--practitioner" title="Case study, essay or small-n informal experiment">Practitioner</span>
+      <span class="ev ev--vendor" title="Vendor or vendor-funded claim, not independently audited">Vendor</span>
+      <span class="ev ev--model" title="Illustrative model, projection or qualitative estimate">Model / estimate</span>
     </div>
 
     <div class="hero-below-sep" aria-hidden="true"></div>
@@ -231,7 +244,7 @@
     </div>
     <div class="callout">
       <div class="callout-title">Key Finding &mdash; <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work" target="_blank" style="text-decoration: underline; color: inherit;">McKinsey, Nov 2025</a></div>
-      <p>Top-performing organizations see shorter sprint cycles, smaller team sizes, and higher customer satisfaction&mdash;but only when they rethink team structures and processes around AI, not just bolt tools onto existing workflows. Individual productivity gains average 20&ndash;50%, yet company-wide improvements only reach 5&ndash;15% without structural change.</p>
+      <p>Top-performing organizations see shorter sprint cycles, smaller team sizes, and higher customer satisfaction&mdash;but only when they rethink team structures and processes around AI, not just bolt tools onto existing workflows. Individual productivity gains average 20&ndash;50%, yet company-wide improvements only reach 5&ndash;15% without structural change.<span class="ev ev--survey" title="Consultancy survey and client data">Survey</span></p>
     </div>
     <div class="callout" style="margin-top: 1rem;">
       <div class="callout-title">October 2026 Update &mdash; The Bottleneck Moved</div>
@@ -246,38 +259,52 @@
     <div class="section-header fade-in">
       <div class="section-number">Section 1</div>
       <h2>The Legacy Process: Where You Are Now</h2>
-      <p>The specific pain points in the current enterprise PDLC that AI can address.</p>
+      <p>The pain points in today&rsquo;s enterprise PDLC, including the newer ones that appear when AI tools are added to an unchanged process. Rewritten October 2026: most enterprises now sit <em>between</em> the old process and the new tools, and that in-between state has its own costs.</p>
     </div>
     <div class="pain-grid fade-in">
       <div class="pain-card">
         <div class="pain-number">1.1</div>
         <h3>Two-Week Sprint Ceremonies</h3>
-        <p>Planning, standups, refinement, review, and retrospective. Research suggests teams lose approximately 10% of sprint capacity to administrative overhead alone&mdash;estimation meetings, ticket grooming, status reporting.</p>
-        <span class="metric">~10% capacity lost &mdash; <a href="https://www.zenhub.com/blog-posts/the-7-best-ai-assisted-sprint-planning-tools-for-agile-teams-in-2025" target="_blank" style="text-decoration:underline">Zenhub</a></span>
+        <p>Planning, standups, refinement, review, and retrospective. Teams lose roughly 10% of sprint capacity to administrative overhead: estimation meetings, ticket grooming, status reporting. Agents don&rsquo;t remove this overhead on their own, because the ceremonies were designed around human typing speed, not agent throughput.</p>
+        <span class="metric">~10% capacity lost &mdash; <a href="https://www.zenhub.com/blog-posts/the-7-best-ai-assisted-sprint-planning-tools-for-agile-teams-in-2025" target="_blank" style="text-decoration:underline">Zenhub</a></span><span class="ev ev--vendor" title="Vendor blog estimate">Vendor</span>
       </div>
       <div class="pain-card">
         <div class="pain-number">1.2</div>
-        <h3>Traditional Estimation</h3>
-        <p>Planning poker consumes 2&ndash;4 hours per sprint. Teams underestimate complexity. AI tools have made historical velocity data unreliable&mdash;one Scrum.org practitioner reported their team went from typical velocity to over 150 points/sprint after adopting AI tools.</p>
-        <span class="metric">2&ndash;4 hrs/sprint &mdash; <a href="https://www.scrum.org/forum/scrum-forum/119270/how-approach-story-point-estimation-ai-dev-acceleration-tools" target="_blank" style="text-decoration:underline">Scrum.org</a></span>
+        <h3>Estimation Has Lost Its Anchor</h3>
+        <p>Planning poker consumes 2&ndash;4 hours per sprint, and AI has made historical velocity unreliable: one Scrum.org practitioner reported velocity jumping past 150 points per sprint. Self-assessment is no fix. In METR&rsquo;s randomized trial, experienced developers were <strong>19% slower</strong> with AI on real issues yet believed they had been <strong>20% faster</strong>. Teams can no longer estimate from how fast work <em>feels</em>.</p>
+        <span class="metric">2&ndash;4 hrs/sprint &mdash; <a href="https://www.scrum.org/forum/scrum-forum/119270/how-approach-story-point-estimation-ai-dev-acceleration-tools" target="_blank" style="text-decoration:underline">Scrum.org</a></span><span class="ev ev--practitioner" title="Practitioner forum report">Practitioner</span>
+        <span class="metric">&minus;19% actual vs. +20% perceived &mdash; <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" style="text-decoration:underline">METR, Jul 2025</a></span><span class="ev ev--experiment" title="RCT: 16 developers, 246 issues; METR notes later tools may differ">Experiment</span>
       </div>
       <div class="pain-card">
         <div class="pain-number">1.3</div>
         <h3>Quarterly Planning (PI Planning)</h3>
-        <p>SAFe PI Planning: 2-day events every 8&ndash;12 weeks, 50&ndash;125+ participants. Weeks of preparation. Manual dependency mapping, gut-feel forecasting, plans outdated before finalized.</p>
+        <p>SAFe PI Planning: 2-day events every 8&ndash;12 weeks with 50&ndash;125+ participants, after weeks of preparation. Dependency mapping is manual, forecasting is gut feel, and plans are outdated before they are finalised. When a prototype can be built in an afternoon, a 12-week commitment cycle is the slowest loop in the system.</p>
         <span class="metric">2-day event, weeks of prep</span>
       </div>
       <div class="pain-card">
         <div class="pain-number">1.4</div>
         <h3>The Compounding Cost</h3>
-        <p>Organizations still in rigid quarterly cycles are growing slower than those with continuous planning. Nearly half of top-performing companies now integrate technology planning with business planning continuously&mdash;up from just 18% previously.</p>
-        <span class="metric">18% &rarr; ~50% continuous &mdash; <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/tech-forward/the-new-cio-mandate-strategy-speed-and-scaled-intelligence" target="_blank" style="text-decoration:underline">McKinsey Global Tech Agenda 2026</a></span>
+        <p>Organisations still in rigid quarterly cycles grow more slowly than those with continuous planning. Nearly half of top-performing companies now integrate technology planning with business planning continuously, up from 18% previously.</p>
+        <span class="metric">18% &rarr; ~50% continuous &mdash; <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/tech-forward/the-new-cio-mandate-strategy-speed-and-scaled-intelligence" target="_blank" style="text-decoration:underline">McKinsey Global Tech Agenda 2026</a></span><span class="ev ev--survey" title="Executive survey">Survey</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">1.5</div>
+        <h3>The Review Queue Is the New Waiting Room</h3>
+        <p>Agent output piles up where the legacy process still expects a human: PR review, manual change approval, CI. DORA found higher AI adoption associated with <em>both</em> higher delivery throughput and higher delivery instability. Merged agent PRs draw follow-up fixes at 1.62&times; the odds of human PRs. The queue moved; it did not disappear.</p>
+        <span class="metric">Throughput &uarr; and instability &uarr; &mdash; <a href="https://services.google.com/fh/files/misc/2025_state_of_ai_assisted_software_development.pdf" target="_blank" style="text-decoration:underline">DORA 2025</a></span><span class="ev ev--survey" title="Large practitioner survey">Survey</span>
+        <span class="metric">1.62&times; fix odds &mdash; <a href="https://arxiv.org/abs/2609.26847" target="_blank" style="text-decoration:underline">Takerngsaksiri et al., 2026</a></span><span class="ev ev--field" title="Repository mining, 6,774 agent PRs">Field data</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">1.6</div>
+        <h3>New Tools, Old Process</h3>
+        <p>Most organisations now license agents but run them through 2023-era workflows: the <a href="#belt-problem" style="text-decoration:underline">belt problem</a> (7.4). McKinsey finds only about a quarter of companies using agentic development tools have achieved meaningful acceleration of their product development life cycle. Tools are rarely the binding constraint any more; process is.</p>
+        <span class="metric">~1 in 4 accelerate &mdash; <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-top-trends-in-tech" target="_blank" style="text-decoration:underline">McKinsey Tech Trends, Sep 2026</a></span><span class="ev ev--survey" title="Executive survey">Survey</span>
       </div>
     </div>
 
     <div class="diagram-wrapper fade-in" style="margin-top: 2rem;">
       <div style="padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: hsl(var(--muted-foreground)); border-bottom: 1px solid hsl(var(--border));">
-        Typical 2-Week Sprint Capacity Breakdown
+        Typical 2-Week Sprint Capacity Breakdown &mdash; Pre-Agent Baseline
       </div>
       <div class="diagram-bar">
         <div class="diagram-segment" style="width: 3%; background: hsl(240 4.8% 88%);"><span class="tooltip">Sprint Planning: ~3%</span></div>
@@ -295,6 +322,7 @@
         <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(var(--secondary));"></div>Development capacity (~90%)</div>
       </div>
     </div>
+    <p class="fade-in" style="font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-top: 0.5rem; max-width: 760px;">The bar shows the pre-agent picture. In agent-augmented teams the large hidden line item is no longer ceremonies but <strong>review and rework</strong> inside the &ldquo;development&rdquo; 90%. Most teams don&rsquo;t measure it yet; see <a href="#verification-bottleneck" style="text-decoration:underline">5.6</a> and the baselining step in <a href="#roadmap" style="text-decoration:underline">7.1</a>.</p>
   </div>
 </section>
 
@@ -304,55 +332,84 @@
     <div class="section-header fade-in">
       <div class="section-number">Section 2</div>
       <h2>AI Capabilities Driving the Transformation</h2>
-      <p>The specific capabilities available and which legacy processes each one can improve.</p>
+      <p>The capabilities available in October 2026, how mature each is, and how strong the evidence is. The frontier moved from <em>assistants that suggest</em> to <em>agents that run</em>: long-running, parallel, in the background. Models such as <a href="https://www.anthropic.com/news/claude-opus-5" target="_blank" style="text-decoration:underline">Claude Opus 5</a> (Jul 2026) are now positioned around agents that work for hours, not autocomplete.</p>
     </div>
     <div class="card fade-in" style="overflow-x: auto;">
       <table class="cap-table">
         <thead>
-          <tr><th style="width: 22%;">Capability</th><th style="width: 38%;">What It Does</th><th style="width: 40%;">Impact on PDLC</th></tr>
+          <tr><th style="width: 18%;">Capability</th><th style="width: 30%;">What It Does</th><th style="width: 38%;">Impact on PDLC</th><th style="width: 14%;">Maturity (Oct 2026)</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td class="cap-name">AI Coding Assistants</td>
-            <td class="cap-desc">Generate code, tests, documentation; scaffold features; explain unfamiliar codebases</td>
-            <td>20&ndash;50% developer productivity gain on routine tasks; 41% of code now AI-generated <span style="font-size:0.7rem;color:hsl(var(--muted-foreground))">(McKinsey; Menlo Ventures)</span></td>
+            <td class="cap-name">Coding Agents</td>
+            <td class="cap-desc">Plan, edit across a repo, run tests and open PRs; run in the background or cloud, several in parallel</td>
+            <td>+24% merged PRs at Microsoft <span class="ev ev--field" title="Telemetry, tens of thousands of engineers">Field data</span>; 73% of AI-tool users run assistants or agents daily <span class="ev ev--survey" title="Stack Overflow 2026">Survey</span>; but agent PRs need more follow-up fixes (5.6)</td>
+            <td><strong>Mainstream</strong></td>
           </tr>
           <tr>
-            <td class="cap-name">Predictive Estimation</td>
-            <td class="cap-desc">Analyze historical Git data, task logs, and architectural diagrams to suggest estimates</td>
-            <td>Surfaces dependency risks proactively; reduces estimation meeting overhead</td>
+            <td class="cap-name">Inline Assistants &amp; Chat</td>
+            <td class="cap-desc">Completion, explanation, scaffolding, test and doc generation inside the editor</td>
+            <td>Large gains on simple greenfield tasks, often &le;10% on complex legacy code (Stanford research, cited by <a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/" target="_blank" style="text-decoration:underline">DORA</a>) <span class="ev ev--field" title="Large-scale repository analysis">Field data</span></td>
+            <td><strong>Mainstream</strong></td>
           </tr>
           <tr>
-            <td class="cap-name">AI Backlog Management</td>
-            <td class="cap-desc">Auto-generate user stories from requirements; detect duplicates; prioritize by value</td>
-            <td>NLP-based quality improvement; reduces refinement overhead</td>
+            <td class="cap-name">Spec-Driven Development</td>
+            <td class="cap-desc">Turn a prompt into requirements, design and an ordered task list before code (<a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank" style="text-decoration:underline">Spec Kit</a>, <a href="https://kiro.dev/" target="_blank" style="text-decoration:underline">Kiro</a>)</td>
+            <td>Moves effort from code to intent and catches design errors early; overhead not worth it for small fixes <span class="ev ev--practitioner" title="Practitioner reviews; no independent enterprise study yet">Practitioner</span></td>
+            <td>Maturing</td>
           </tr>
           <tr>
-            <td class="cap-name">Agentic AI Workflows</td>
-            <td class="cap-desc">Autonomous task completion&mdash;bug fixes, test generation, CI/CD management</td>
-            <td>Routine dev tasks increasingly completable by agents <span style="font-size:0.7rem;color:hsl(var(--muted-foreground))">(NextAgile)</span></td>
+            <td class="cap-name">Harnesses &amp; Feedback Sensors</td>
+            <td class="cap-desc">Guides (specs, rules, skills) plus deterministic sensors (types, linters, architecture tests) wired into the agent loop</td>
+            <td>Took a cheaper model from 3/10 to 10/10 accepted runs (5.2) <span class="ev ev--practitioner" title="Small-n experiment, 10 runs per condition">Practitioner</span>; Thoughtworks Radar: <em>Trial</em></td>
+            <td>Maturing</td>
           </tr>
           <tr>
-            <td class="cap-name">AI-Powered Planning</td>
-            <td class="cap-desc">Continuous capacity forecasting, rolling scenario planning, real-time risk flagging</td>
-            <td>Replaces static quarterly forecasts with weekly/monthly recalibration</td>
+            <td class="cap-name">Agent Skills &amp; Tool Protocols</td>
+            <td class="cap-desc">Packaged know-how loaded on demand; MCP connects agents to systems, now stateless and load-balancer friendly</td>
+            <td>Reuse of team knowledge across agents and teams; also a new supply-chain risk: 76 malicious public skills found (8.3) <span class="ev ev--vendor" title="Vendor security research">Vendor</span></td>
+            <td>Maturing</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Agentic Review &amp; Security Scanning</td>
+            <td class="cap-desc">Automated review, static analysis and security scanning at the agent-to-production boundary</td>
+            <td>Absorbs the deterministic part of review, which is what makes <em>review by exception</em> (5.6) safe <span class="ev ev--practitioner" title="Practitioner reports">Practitioner</span></td>
+            <td>Maturing</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Citizen Development</td>
+            <td class="cap-desc">Non-engineers build working applications with agents</td>
+            <td>32% of organisations skipped a software purchase to build in-house <span class="ev ev--survey" title="McKinsey State of AI 2026">Survey</span>; governance becomes the bottleneck (4.3)</td>
+            <td>Maturing</td>
+          </tr>
+          <tr>
+            <td class="cap-name">AI Planning &amp; Forecasting</td>
+            <td class="cap-desc">Continuous capacity forecasting, Monte Carlo delivery forecasts, real-time risk flagging</td>
+            <td>Replaces static quarterly forecasts with weekly recalibration; evidence is mostly vendor-reported <span class="ev ev--vendor" title="Vendor claims">Vendor</span></td>
+            <td>Emerging</td>
+          </tr>
+          <tr>
+            <td class="cap-name">Backlog &amp; Estimation Assist</td>
+            <td class="cap-desc">Draft stories from requirements, detect duplicates, suggest estimates from history</td>
+            <td>Reduces refinement overhead, but estimates anchored on pre-agent velocity no longer hold (1.2) <span class="ev ev--vendor" title="Vendor claims">Vendor</span></td>
+            <td>Emerging</td>
           </tr>
           <tr>
             <td class="cap-name">Intelligent Retrospectives</td>
-            <td class="cap-desc">Analyze collaboration patterns, bottleneck detection, sentiment analysis across sprints</td>
-            <td>Shifts retros from subjective feelings to evidence-based improvement</td>
+            <td class="cap-desc">Analyse collaboration patterns, bottlenecks and sentiment across sprints</td>
+            <td>Could shift retros from feelings to evidence; little independent evidence so far <span class="ev ev--model" title="Expectation, not measured">Model / estimate</span></td>
+            <td>Emerging</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="market-badges fade-in">
-      <span class="market-badge">$7.3B enterprise AI coding spend &mdash; Menlo Ventures</span>
-      <span class="market-badge">82% developers use AI weekly &mdash; Menlo Ventures</span>
-      <span class="market-badge">59% use 3+ tools in parallel &mdash; Menlo Ventures</span>
-      <span class="market-badge">66% of AI users run coding agents; Claude Code 66%, Copilot 59% of agent users &mdash; Stack Overflow 2026</span>
-      <span class="market-badge">Only 20% use AI to deploy or operate production systems &mdash; Stack Overflow 2026</span>
+      <span class="market-badge">66% of AI users run coding agents &mdash; Stack Overflow 2026</span>
+      <span class="market-badge">Agent users: Claude Code 66%, GitHub Copilot 59% &mdash; Stack Overflow 2026</span>
+      <span class="market-badge">Only 20% use AI to deploy or operate production &mdash; Stack Overflow 2026</span>
+      <span class="market-badge">27% of orgs route different work to different models &mdash; Stack Overflow 2026</span>
     </div>
-    <p class="fade-in" style="font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-top: 0.75rem; max-width: 760px;"><strong>Oct 2026 note:</strong> the frontier moved from assistants to long-running agents. Anthropic&rsquo;s <a href="https://www.anthropic.com/news/claude-opus-5" target="_blank" style="text-decoration:underline">Claude Opus 5</a> (Jul 2026) was positioned around agents that run for a long time, and the <a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/" target="_blank" style="text-decoration:underline">MCP 2026-07-28 spec</a> went stateless so agent tooling can sit behind ordinary load balancers. The capability table above still describes the work; who does it, and how it is checked, is what changed.</p>
+    <p class="fade-in" style="font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-top: 0.75rem; max-width: 760px;"><strong>Reading the table:</strong> &ldquo;Mainstream&rdquo; means daily use by most developers who use AI at all. &ldquo;Maturing&rdquo; means production use with practices still settling. &ldquo;Emerging&rdquo; means available, but impact claims rest mainly on vendor reports. Evidence tags follow the <a href="#evidence-legend" style="text-decoration:underline">legend</a> at the top of the page. The pattern is that capabilities which <em>generate</em> are well evidenced, while capabilities which <em>plan</em> and <em>govern</em> lag behind, and that is where the PDLC still has to change.</p>
   </div>
 </section>
 
@@ -362,13 +419,14 @@
     <div class="section-header fade-in">
       <div class="section-number">Section 3</div>
       <h2>The Evolution Map: Legacy &rarr; AI-Augmented</h2>
-      <p>Phase-by-phase outline of how each major PDLC component can evolve. Designed for incremental adoption.</p>
+      <p>Phase-by-phase outline of how each major PDLC component can evolve, designed for incremental adoption. Revised October 2026 with a fourth track, <strong>Review &amp; Release</strong>, because that is where agent-era delivery now stalls.</p>
     </div>
 
     <div class="tabs fade-in" role="tablist">
       <button class="tab-btn active" data-tab="sprint" role="tab">Sprint Planning</button>
       <button class="tab-btn" data-tab="estimation" role="tab">Estimation</button>
       <button class="tab-btn" data-tab="quarterly" role="tab">Quarterly Planning</button>
+      <button class="tab-btn" data-tab="review" role="tab">Review &amp; Release</button>
     </div>
 
     <div class="tab-panel active" id="tab-sprint">
@@ -376,17 +434,17 @@
         <div class="phase-item">
           <div class="phase-label">Phase 1 &middot; Months 1&ndash;3</div>
           <h4>AI-Assisted Planning</h4>
-          <p>AI pre-populates sprint plans based on historical velocity, team capacity (accounting for PTO), and backlog priorities. The European Scrum AI Guide documents teams implementing systems that analyze the last 30 sprints to generate alerts on blocking potential and parallel clusters. Planning poker shrinks from hours to minutes with AI-provided baseline estimates.</p>
+          <p>AI pre-populates sprint plans from historical throughput, team capacity (including PTO) and backlog priorities, and flags blocking risks and parallelisable clusters. Planning poker shrinks from hours to minutes, with AI baselines as the starting point for discussion.</p>
         </div>
         <div class="phase-item">
           <div class="phase-label">Phase 2 &middot; Months 3&ndash;6</div>
-          <h4>Hybrid Sprint/Kanban</h4>
-          <p>Maintain sprint cadence for human-led strategic work while running AI-suitable tasks (boilerplate, standard integrations, test generation) in a continuous Kanban flow. Real-time adaptive workflows let AI continuously monitor progress, flag bottlenecks, and recommend reallocation.</p>
+          <h4>Sprint Cadence + Agent Lane</h4>
+          <p>Keep the sprint cadence for human-led, judgment-heavy work. Run agent-suitable work (boilerplate, integrations, test generation, routine fixes) in a continuous Kanban lane. Set the lane&rsquo;s WIP limit by <strong>review capacity, not backlog size</strong>. Practitioners report a ceiling of about 8&ndash;12 parallel agents per person before the human becomes the bottleneck (<a href="https://martinfowler.com/rachels-ramblings/conductor-developer.html" target="_blank" style="text-decoration:underline">Laycock, 2026</a> <span class="ev ev--practitioner" title="Practitioner observation">Practitioner</span>).</p>
         </div>
         <div class="phase-item">
           <div class="phase-label">Phase 3 &middot; Months 6&ndash;12</div>
           <h4>Continuous Planning</h4>
-          <p>Sprint planning as a distinct ceremony largely dissolves. AI maintains real-time capacity, priority, and risk views. Planning meetings become short alignment checks (15&ndash;30 minutes). Team energy shifts from process mechanics to value-creation decisions.</p>
+          <p>Sprint planning as a distinct ceremony largely dissolves. AI maintains real-time capacity, priority and risk views, and planning meetings become 15&ndash;30 minute alignment checks. Team energy shifts from process mechanics to value decisions: what is worth building, and what is safe to ship.</p>
         </div>
       </div>
     </div>
@@ -395,18 +453,18 @@
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Phase 1 &middot; Months 1&ndash;3</div>
-          <h4>AI-Augmented Story Points</h4>
-          <p>AI analyzes past commits, pull requests, and issue resolution times to suggest story-point estimates. Teams validate, anchoring on data rather than guesswork. Teams begin separating "AI-suitable" from "AI-resistant" tasks&mdash;a project might see major time reduction on CRUD but none on UX design.</p>
+          <h4>Measure, Don&rsquo;t Feel</h4>
+          <p>Before changing the estimation method, measure. METR&rsquo;s trial showed developers misjudging AI&rsquo;s effect on their own speed by almost 40 points, so estimates calibrated on perceived speed-ups will drift. Baseline throughput, cycle time and <em>rework</em> from repository data. Start separating agent-suitable from agent-resistant work: a project might see a large reduction on CRUD and none on UX design.</p>
         </div>
         <div class="phase-item">
           <div class="phase-label">Phase 2 &middot; Months 3&ndash;6</div>
           <h4>Recalibrate or Abandon Points</h4>
-          <p>As AI shifts team velocity dramatically (some Scrum.org practitioners report 3&ndash;5x increases), historical baselines become meaningless. Two paths: recalibrate or shift to throughput-based metrics&mdash;items delivered per sprint and cycle time. The community increasingly recommends the latter.</p>
+          <p>As agents shift velocity dramatically (some Scrum.org practitioners report 3&ndash;5&times;), historical baselines become meaningless. There are two paths: recalibrate, or move to throughput-based metrics such as items delivered and cycle time. The community increasingly recommends the latter, and for agent-lane work, points add almost nothing.</p>
         </div>
         <div class="phase-item">
           <div class="phase-label">Phase 3 &middot; Months 6&ndash;12</div>
-          <h4>Outcome-Based Metrics</h4>
-          <p>Shift from output metrics (velocity, points) to outcome metrics (cycle time, lead time, deployment frequency, customer satisfaction). A three-tiered framework emerges: "Zero-Point" for fully AI-automated tasks, "Standard" for human-led work, and "Review &amp; Integration" for validating AI output.</p>
+          <h4>Outcome Metrics + Verification Tax</h4>
+          <p>Move from output metrics (velocity, points) to outcome metrics (lead time, deployment frequency, customer outcomes). Report the <em>verification tax</em> explicitly: review hours, follow-up fixes and change-failure rate. That makes the hidden cost of agent output visible, as DORA&rsquo;s ROI model recommends.</p>
         </div>
       </div>
 
@@ -417,9 +475,10 @@
         <tbody>
           <tr><td>Planning Time</td><td class="legacy">2&ndash;4 hours planning poker per sprint</td><td class="augmented">15&ndash;30 min validation of AI-suggested plan</td></tr>
           <tr><td>Estimation Unit</td><td class="legacy">Story points (relative)</td><td class="augmented">Throughput + cycle time (empirical)</td></tr>
-          <tr><td>Velocity Baseline</td><td class="legacy">Average of last 3&ndash;4 sprints</td><td class="augmented">Continuously recalibrated by AI; split by task type</td></tr>
+          <tr><td>Velocity Baseline</td><td class="legacy">Average of last 3&ndash;4 sprints</td><td class="augmented">Continuously recalibrated; split into human-led and agent-lane work</td></tr>
           <tr><td>Forecasting</td><td class="legacy">Velocity &times; remaining points</td><td class="augmented">Monte Carlo simulation on throughput distribution</td></tr>
-          <tr><td>Success Measure</td><td class="legacy">Points completed</td><td class="augmented">Lead time, deployment frequency, customer outcomes</td></tr>
+          <tr><td>Hidden Cost</td><td class="legacy">Meeting time</td><td class="augmented">Verification tax: review hours, follow-up fixes, change-failure rate</td></tr>
+          <tr><td>Success Measure</td><td class="legacy">Points completed</td><td class="augmented">Lead time, deployment frequency, rework rate, customer outcomes</td></tr>
         </tbody>
       </table>
     </div>
@@ -427,29 +486,53 @@
     <div class="tab-panel" id="tab-quarterly">
       <div class="callout" style="margin-top: 0; margin-bottom: 1.5rem;">
         <div class="callout-title">Highest-Value Target</div>
-        <p>The multi-day quarterly planning event consumes enormous organizational energy. AI offers the most dramatic improvements here.</p>
+        <p>The multi-day quarterly planning event consumes enormous organisational energy, and it is the slowest loop left when ideas can be prototyped in a day. AI offers its most dramatic improvements here.</p>
       </div>
       <div class="phase-timeline">
         <div class="phase-item">
           <div class="phase-label">Phase 1 &middot; Quarter 1</div>
           <h4>AI-Augmented PI Planning</h4>
-          <p>AI pre-builds dependency maps from source code, task histories, and architectural diagrams. Backlog items arrive pre-estimated, pre-prioritized, with AI-generated stories. The 2-day event compresses to 1 day. AI-powered capacity forecasting eliminates "confidence vote" guesswork.</p>
+          <p>AI pre-builds dependency maps from source code, task histories and architecture diagrams. Backlog items arrive pre-estimated and pre-prioritised, with drafted stories. The 2-day event compresses to 1 day, and capacity forecasting replaces &ldquo;confidence vote&rdquo; guesswork.</p>
         </div>
         <div class="phase-item">
           <div class="phase-label">Phase 2 &middot; Quarters 2&ndash;3</div>
-          <h4>Monthly Strategy Syncs</h4>
-          <p>Replace the quarterly big-room event with monthly lightweight strategy syncs plus always-on AI monitoring. Rolling forecasts recalibrate weekly based on real delivery data. As McKinsey's research emphasizes: organizations developing strategies iteratively are growing faster than those planning in rigid quarterly cycles.</p>
+          <h4>Monthly Strategy Syncs + Build-vs-Buy Review</h4>
+          <p>Replace the quarterly big-room event with monthly lightweight strategy syncs plus always-on AI monitoring, and recalibrate rolling forecasts weekly from real delivery data. Add a standing agenda item: <em>buy, build with agents, or skip?</em> 32% of organisations have already skipped a software purchase because agents made an in-house build feasible (<a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" style="text-decoration:underline">McKinsey, 2026</a> <span class="ev ev--survey" title="Executive survey">Survey</span>). Price in the long-term ownership cost too.</p>
         </div>
         <div class="phase-item">
           <div class="phase-label">Phase 3 &middot; Quarters 3&ndash;4</div>
           <h4>Continuous Strategic Alignment</h4>
-          <p>The quarterly ceremony dissolves into continuous practice. AI dashboards show real-time feature-to-objective alignment. Risk assessment and cross-team dependency resolution are proactive. The formal event becomes an optional half-day "check and adjust."</p>
+          <p>The quarterly ceremony dissolves into continuous practice. AI dashboards show real-time feature-to-objective alignment, and risk assessment and cross-team dependency resolution happen proactively. The formal event becomes an optional half-day &ldquo;check and adjust&rdquo;.</p>
         </div>
       </div>
 
       <div class="quote-block fade-in">
         <p>Traditional quarterly planning doesn't make sense when you can test and validate an idea in a week. The teams succeeding are the ones with the best decision-making velocity.</p>
-        <div class="quote-source">&mdash; <a href="https://dev.to/" target="_blank">DEV Community</a>, Feb 2026</div>
+        <div class="quote-source">&mdash; <a href="https://dev.to/" target="_blank">DEV Community</a>, Feb 2026 <span class="ev ev--practitioner" title="Practitioner opinion">Practitioner</span></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-review">
+      <div class="callout" style="margin-top: 0; margin-bottom: 1.5rem;">
+        <div class="callout-title">Why a Fourth Track</div>
+        <p>The first three tracks speed up deciding <em>what</em> to build. This one decides <em>what is safe to ship</em>, and it is where agent output now queues (1.5). It mirrors 5.6: automate the deterministic, review the exceptional, and keep humans for intent and blast radius.</p>
+      </div>
+      <div class="phase-timeline">
+        <div class="phase-item">
+          <div class="phase-label">Phase 1 &middot; Months 1&ndash;3</div>
+          <h4>Automate the Deterministic</h4>
+          <p>Make type checks, linters, architecture tests and security scanning required gates for every agent PR, the same bar as for humans. Add mutation testing on critical paths: in Thoughtworks&rsquo; experiments it was a better quality signal than asking agents to follow TDD. Start tracking follow-up fixes on merged PRs.</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 2 &middot; Months 3&ndash;6</div>
+          <h4>Review by Exception</h4>
+          <p>Tier review by risk. Humans review high-blast-radius, security-sensitive and unfamiliar critical changes; everything else passes on automated gates plus an <em>outer-loop acceptance suite</em> the agent never sees. Move knowledge sharing out of PR comments into design sessions and pairing, and require explain-before-merge for juniors (4.4).</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-label">Phase 3 &middot; Months 6&ndash;12</div>
+          <h4>Continuous Verification &amp; Provenance</h4>
+          <p>Release metadata records which agents, models and skills touched a change. Production sentinels watch canaries and roll back on threshold breaches (10.4). Human review shifts from diffs to intent: does this change still match why we built it? User-facing agents carry EU AI Act Article 50 transparency, which has been in force since August 2026 (8.3).</p>
+        </div>
       </div>
     </div>
   </div>
@@ -590,17 +673,17 @@
       <div class="card">
         <h3>~65% fewer new-grad hires</h3>
         <p>At the 12 largest tech companies vs. 2019, and roughly 76% fewer at early-stage startups. Engineering hiring overall fell only ~11%, so the squeeze is concentrated at entry level.</p>
-        <span class="metric"><a href="https://signalfire.com/blog/signalfire-state-of-talent-report-2026" target="_blank" style="text-decoration:underline">SignalFire State of Talent, Jun 2026</a></span>
+        <span class="metric"><a href="https://signalfire.com/blog/signalfire-state-of-talent-report-2026" target="_blank" style="text-decoration:underline">SignalFire State of Talent, Jun 2026</a></span><span class="ev ev--field" title="Hiring dataset across tech companies and startups">Field data</span>
       </div>
       <div class="card">
         <h3>Speed without understanding</h3>
         <p>In a controlled study of 54 developers, coding agents sped up task completion but reduced code comprehension. Low-effort interaction (copy-paste prompts, auto-accepted edits) tracked with the lowest understanding, and users still preferred the agent.</p>
-        <span class="metric"><a href="https://arxiv.org/abs/2607.26375" target="_blank" style="text-decoration:underline">Balepur et al., Jul 2026</a></span>
+        <span class="metric"><a href="https://arxiv.org/abs/2607.26375" target="_blank" style="text-decoration:underline">Balepur et al., Jul 2026</a></span><span class="ev ev--experiment" title="Controlled study, 54 participants">Experiment</span>
       </div>
       <div class="card">
         <h3>The pathway erodes</h3>
         <p>Researchers argue that the work being absorbed (minor fixes, routine implementation, debugging) is how judgment is built, not just low-value labour. Cutting it saves cost now and creates a senior shortage later.</p>
-        <span class="metric"><a href="https://arxiv.org/abs/2607.17067" target="_blank" style="text-decoration:underline">&ldquo;Who Will Become the Next Senior?&rdquo;, 2026</a></span>
+        <span class="metric"><a href="https://arxiv.org/abs/2607.17067" target="_blank" style="text-decoration:underline">&ldquo;Who Will Become the Next Senior?&rdquo;, 2026</a></span><span class="ev ev--practitioner" title="Qualitative interview study">Practitioner</span>
       </div>
     </div>
     <div class="callout fade-in" style="margin-top: 1.25rem;">
@@ -695,12 +778,12 @@
       <div class="card">
         <h3>Harness as a cost lever, not just a quality lever</h3>
         <p>With model choice now a per-task decision (Stack Overflow 2026: 27% of organisations already route different work to different models), a good harness lets teams run cheaper models on more of the backlog. That turns harness engineering into a <em>unit-economics</em> conversation finance can follow.</p>
-        <span class="metric">3/10 &rarr; 10/10 with harness &mdash; <a href="https://martinfowler.com/articles/are-harnesses-worth-the-cost.html" target="_blank" style="text-decoration:underline">Jain, Oct 2026</a></span>
+        <span class="metric">3/10 &rarr; 10/10 with harness &mdash; <a href="https://martinfowler.com/articles/are-harnesses-worth-the-cost.html" target="_blank" style="text-decoration:underline">Jain, Oct 2026</a></span><span class="ev ev--practitioner" title="Small-n experiment, 10 runs per condition">Practitioner</span>
       </div>
       <div class="card">
         <h3>Internal quality now has a token price</h3>
         <p>Thoughtworks refactored a 17K-line agent-written module in 15 steps and re-ran the same feature change after each. Input tokens per change fell from ~160K to ~27K (&minus;83%). The code got easier for agents to <em>find</em>, not shorter. Agents were poor at choosing the refactorings, so a human had to plan them.</p>
-        <span class="metric">&minus;83% input tokens per change &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/refactoring-economic-benefit.html" target="_blank" style="text-decoration:underline">Edwards-Alexander, Jul 2026</a></span>
+        <span class="metric">&minus;83% input tokens per change &mdash; <a href="https://martinfowler.com/articles/exploring-gen-ai/refactoring-economic-benefit.html" target="_blank" style="text-decoration:underline">Edwards-Alexander, Jul 2026</a></span><span class="ev ev--practitioner" title="Single-codebase experiment; tokens estimated from characters">Practitioner</span>
       </div>
     </div>
 
@@ -764,12 +847,12 @@
       <div class="card">
         <h3>The Speed Asymmetry Problem</h3>
         <p>AI generates code faster than humans can evaluate it, breaking historical review dynamics. An Anthropic study of 52 engineers found the AI-assisted group scored 17% lower on comprehension quizzes (50% vs. 67%), with the largest declines in debugging performance.</p>
-        <span class="metric">17% lower comprehension &mdash; <a href="https://addyosmani.com/blog/comprehension-debt/" target="_blank" style="text-decoration:underline">Anthropic study</a></span>
+        <span class="metric">17% lower comprehension &mdash; <a href="https://addyosmani.com/blog/comprehension-debt/" target="_blank" style="text-decoration:underline">Anthropic study</a></span><span class="ev ev--experiment" title="Controlled study, 52 engineers">Experiment</span>
       </div>
       <div class="card">
         <h3>The Measurement Gap</h3>
         <p>Velocity metrics, DORA metrics, and code coverage all remain &ldquo;immaculate&rdquo; while comprehension deficits accumulate invisibly. Teams feel productive but are building on foundations they cannot reason about. Developers using passive delegation (&ldquo;just make it work&rdquo;) scored below 40% on comprehension tests.</p>
-        <span class="metric">Below 40% for passive delegation</span>
+        <span class="metric">Below 40% for passive delegation</span><span class="ev ev--experiment" title="Same controlled study">Experiment</span>
       </div>
       <div class="card">
         <h3>Why Common Defences Fall Short</h3>
@@ -803,22 +886,22 @@
       <div class="card">
         <h3>484,606 issues found</h3>
         <p>Affecting 61.2% of the repositories studied. Cumulative surviving issues grew from hundreds in early 2025 to over 110,000 by February 2026. AI fixes more code smells than it introduces (449K fixed vs. 431K introduced)&mdash;but introduces nearly <strong>twice as many security issues</strong> as it fixes.</p>
-        <span class="metric">37.25 surviving issues per 100 AI commits &mdash; <a href="https://arxiv.org/html/2603.28592v1" target="_blank" style="text-decoration:underline">Liu et al.</a></span>
+        <span class="metric">37.25 surviving issues per 100 AI commits &mdash; <a href="https://arxiv.org/html/2603.28592v1" target="_blank" style="text-decoration:underline">Liu et al.</a></span><span class="ev ev--field" title="304K AI-authored commits across 6,275 repositories">Field data</span>
       </div>
       <div class="card">
         <h3>The 90-Day Degradation Curve</h3>
         <p>Research from <a href="https://blog.exceeds.ai/comparative-ai-code-quality-governance/" target="_blank" style="text-decoration:underline">Exceeds AI (Feb 2026)</a> tracking AI-augmented teams over 90 days found rework rates rising 30&ndash;41%, incident rates per PR climbing to 35%, and code complexity growing 4.9&times;. AI-generated code shows 1.7&times; more issues than human-authored code overall.</p>
-        <span class="metric">4.9&times; complexity growth at 90 days</span>
+        <span class="metric">4.9&times; complexity growth at 90 days</span><span class="ev ev--vendor" title="Vendor analysis, methodology not published">Vendor</span>
       </div>
     </div>
 
     <div class="callout fade-in" style="margin-top: 1.25rem;">
-      <div class="callout-title">The &ldquo;Vibe, Then Verify&rdquo; Response &mdash; <a href="https://www.sonarsource.com/blog/how-ai-is-redefining-technical-debt" target="_blank" style="text-decoration: underline; color: inherit;">Sonar, Feb 2026</a></div>
+      <div class="callout-title">The &ldquo;Vibe, Then Verify&rdquo; Response &mdash; <a href="https://www.sonarsource.com/blog/how-ai-is-redefining-technical-debt" target="_blank" style="text-decoration: underline; color: inherit;">Sonar, Feb 2026</a> <span class="ev ev--survey" title="Vendor-run developer survey">Survey</span></div>
       <p>Sonar's developer survey (88% of developers report at least one negative AI impact on tech debt) proposes a dual-mode discipline: <strong>Vibe</strong>&mdash;grant developers freedom to experiment boldly with AI; <strong>Verify</strong>&mdash;enforce accountability through deterministic, rules-based validation (static analysis, architectural linters, security scanners). The shift is not less AI, but better harnesses around it. Notably, developers spend 23&ndash;25% of their work week on toil regardless of AI usage&mdash;the toil simply changes shape, from writing boilerplate to reviewing and correcting AI output.</p>
     </div>
 
     <div class="callout fade-in" style="margin-top: 1rem;">
-      <div class="callout-title">The 18-Month Collapse Pattern &mdash; <a href="https://www.codebridge.tech/articles/the-hidden-costs-of-ai-generated-software-why-it-works-isnt-enough" target="_blank" style="text-decoration: underline; color: inherit;">Codebridge, Feb 2026</a></div>
+      <div class="callout-title">The 18-Month Collapse Pattern &mdash; <a href="https://www.codebridge.tech/articles/the-hidden-costs-of-ai-generated-software-why-it-works-isnt-enough" target="_blank" style="text-decoration: underline; color: inherit;">Codebridge, Feb 2026</a> <span class="ev ev--vendor" title="Vendor article; Gartner figure is a projection">Vendor</span></div>
       <p>Without governance, AI-augmented projects follow a predictable arc: <strong>Months 1&ndash;3</strong>, visible feature acceleration; <strong>Months 4&ndash;9</strong>, velocity plateaus, integration delays emerge; <strong>Months 10&ndash;15</strong>, review and debug time becomes the bottleneck; <strong>Months 16&ndash;18</strong>, delivery cycles stall entirely. By year two, maintenance costs reach 4&times; traditional levels. Gartner projects 40% of AI-augmented coding projects will face cancellation by 2027.</p>
     </div>
 
@@ -837,17 +920,17 @@
       <div class="card">
         <h3>Output really is up</h3>
         <p>Across tens of thousands of Microsoft engineers in the early-2026 rollout of Claude Code and Copilot CLI, adopters merged ~24% more PRs than they otherwise would have, and the lift held for four months. Adoption spread mainly through social networks, not mandates.</p>
-        <span class="metric">+24% merged PRs &mdash; <a href="https://arxiv.org/abs/2607.01418" target="_blank" style="text-decoration:underline">Murphy-Hill et al., Jul 2026</a></span>
+        <span class="metric">+24% merged PRs &mdash; <a href="https://arxiv.org/abs/2607.01418" target="_blank" style="text-decoration:underline">Murphy-Hill et al., Jul 2026</a></span><span class="ev ev--field" title="Telemetry, tens of thousands of engineers">Field data</span>
       </div>
       <div class="card">
         <h3>&hellip;and so is rework</h3>
         <p>Across 6,774 merged agent PRs (Codex, Copilot, Devin, Cursor, Claude Code) vs. 5,044 human PRs in the same repos, agent merges drew verified follow-up fixes at 1.62&times; the odds. 70% of those fixes came from the same agent. Agents clean up their own work, but merging is not the same as being done.</p>
-        <span class="metric">1.62&times; fix odds &mdash; <a href="https://arxiv.org/abs/2609.26847" target="_blank" style="text-decoration:underline">Takerngsaksiri et al., Sep 2026</a></span>
+        <span class="metric">1.62&times; fix odds &mdash; <a href="https://arxiv.org/abs/2609.26847" target="_blank" style="text-decoration:underline">Takerngsaksiri et al., Sep 2026</a></span><span class="ev ev--field" title="Repository mining, 6,774 agent PRs">Field data</span>
       </div>
       <div class="card">
         <h3>Instability is a real cost line</h3>
         <p>DORA&rsquo;s ROI report models a temporary productivity dip, a &ldquo;verification tax&rdquo;, and a rising change-failure rate as more code moves faster. It recommends automated testing, CI and small batches to absorb the extra volume, not more manual review gates.</p>
-        <span class="metric">J-curve + verification tax &mdash; <a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/" target="_blank" style="text-decoration:underline">DORA via InfoQ, May 2026</a></span>
+        <span class="metric">J-curve + verification tax &mdash; <a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/" target="_blank" style="text-decoration:underline">DORA via InfoQ, May 2026</a></span><span class="ev ev--model" title="Illustrative ROI model">Model / estimate</span>
       </div>
     </div>
 
@@ -1127,9 +1210,12 @@
     <div class="section-header fade-in">
       <div class="section-number">Section 7</div>
       <h2>Phased Implementation Roadmap</h2>
-      <p>A practical 12-month roadmap. Iterate, learn, expand&mdash;with measurable wins early to justify broader adoption.</p>
+      <p>A practical 12-month roadmap, revised October 2026 around agents and verification capacity. Iterate, learn, expand, and budget for a dip before the gains arrive.</p>
     </div>
-    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem;">7.1 The Five-Phase Roadmap</h3>
+    <h3 id="five-phase-roadmap" class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem;">7.1 The Five-Phase Roadmap <span class="nav-new">updated</span> <a href="#five-phase-roadmap" class="anchor-link" title="Copy link to this section">&#128279;</a></h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 760px;">
+      Revised October 2026. The original roadmap began with &ldquo;deploy assistants&rdquo; and treated quality as a Phase 4 concern. The 2026 evidence reverses that order. <strong>Build verification capacity before you scale generation</strong>, expect a <a href="#j-curve" style="text-decoration:underline">J-curve</a> dip across Phases 1&ndash;2, and size agent work to review capacity rather than backlog.
+    </p>
     <div class="roadmap fade-in">
       <div class="roadmap-item" >
         <div class="roadmap-left">
@@ -1137,24 +1223,24 @@
           <div class="phase-time">Months 1&ndash;2</div>
         </div>
         <div class="roadmap-right">
-          <h4>Instrument &amp; Baseline <span class="chevron">&#9662;</span></h4>
-          <div class="summary">Deploy AI coding assistants; baseline current overhead.</div>
+          <h4>Foundations &amp; Baseline <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Sandboxed agents, an approved registry, and a baseline that includes rework.</div>
           <div class="roadmap-details">
             <div class="detail-section">
               <div class="detail-label">Key Actions</div>
               <ul>
-                <li>Deploy AI coding assistants and sandboxed coding agents to all developers, with an approved skills/MCP registry (8.3)</li>
-                <li>Agree the J-curve dip and scenario ranges with finance up front (7.6)</li>
-                <li>Begin tracking AI-suitable vs AI-resistant task categories</li>
-                <li>Measure current ceremony overhead across coding and non-coding tasks</li>
-                <li>Map current initiatives against value, usability, feasibility, and viability risk</li>
+                <li>Roll out assistants and <strong>sandboxed</strong> coding agents with scoped, short-lived credentials; serve skills and MCP servers from an approved internal registry (8.3)</li>
+                <li>Baseline four numbers before rollout: throughput, cycle time, change-failure rate, and <em>rework</em> (follow-up fixes on merged PRs) (5.6)</li>
+                <li>Agree the J-curve dip and conservative / realistic / optimistic scenarios with finance (7.6)</li>
+                <li>Map agent-suitable vs. agent-resistant work, coding and non-coding (6.1)</li>
+                <li>Map current initiatives against value, usability, feasibility and viability risk (8.2)</li>
               </ul>
             </div>
             <div class="detail-section">
               <div class="detail-label">Expected Outcomes</div>
               <ul>
-                <li>Baseline data for transformation</li>
-                <li>Individual productivity gains on routine coding tasks</li>
+                <li>A baseline that makes the verification tax visible</li>
+                <li>First individual gains, with the temporary dip expected and agreed in advance</li>
               </ul>
             </div>
           </div>
@@ -1166,25 +1252,25 @@
           <div class="phase-time">Months 2&ndash;4</div>
         </div>
         <div class="roadmap-right">
-          <h4>Augment Ceremonies <span class="chevron">&#9662;</span></h4>
-          <div class="summary">AI-assisted estimation, backlog grooming, harness foundations.</div>
+          <h4>Harness Before Scale <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Deterministic checks become the agents&rsquo; feedback; adoption spreads through people.</div>
           <div class="roadmap-details">
             <div class="detail-section">
               <div class="detail-label">Key Actions</div>
               <ul>
-                <li>Introduce AI-assisted estimation and backlog grooming</li>
-                <li>AI-generated sprint analytics for retros</li>
-                <li>Begin building agent harness: CLAUDE.md/rules files, basic linters, architectural constraints</li>
-                <li>Pilot AI-assisted DevOps and ticket triage</li>
-                <li>Run small discovery probes: prototypes, feasibility spikes, and business viability checks on priority bets</li>
+                <li>Build the first harness: <em>guides</em> (spec templates, rules files, skills) and <em>sensors</em> (types, linters, architecture tests, security scanning) (5.2)</li>
+                <li>Make deterministic checks required gates for agent PRs; add mutation testing on critical paths (3, Review &amp; Release)</li>
+                <li>Expand CI capacity, because agent volume saturates pipelines (11.5)</li>
+                <li>Seed adoption through champions and live demos. At Microsoft, first use spread mainly through social networks, not mandates (7.3)</li>
+                <li>Introduce AI-assisted backlog grooming and sprint analytics; run discovery probes on priority bets</li>
               </ul>
             </div>
             <div class="detail-section">
               <div class="detail-label">Expected Outcomes</div>
               <ul>
-                <li>Reduced estimation time</li>
-                <li>Initial harness in version control</li>
-                <li>Data-driven retrospectives</li>
+                <li>Harness in version control, reviewed like code</li>
+                <li>Agent PRs held to the same gates as human PRs</li>
+                <li>Throughput rising while rework holds steady or falls</li>
               </ul>
             </div>
           </div>
@@ -1196,25 +1282,26 @@
           <div class="phase-time">Months 4&ndash;6</div>
         </div>
         <div class="roadmap-right">
-          <h4>Hybrid Workflow <span class="chevron">&#9662;</span></h4>
-          <div class="summary">Split sprint/Kanban streams; mature harness; shift metrics.</div>
+          <h4>Hybrid Flow &amp; Review by Exception <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Agent lane sized to review capacity; risk-tiered review; outer-loop gates.</div>
           <div class="roadmap-details">
             <div class="detail-section">
               <div class="detail-label">Key Actions</div>
               <ul>
-                <li>Split work into sprint-cadenced (human-led) and Kanban-flow (AI-suitable) streams</li>
-                <li>Shift to throughput + cycle time metrics</li>
-                <li>Compress PI planning to 1 day</li>
-                <li>Mature harness with structural tests and context engineering</li>
-                <li>Extend AI to non-coding tasks: automated ticket lifecycle, infra provisioning</li>
+                <li>Split work into sprint-cadenced (human-led) and continuous agent-lane streams, with WIP limits set by review capacity (10.8)</li>
+                <li>Introduce risk-tiered review: humans for high-blast-radius, security-sensitive and unfamiliar critical changes; automated gates for the rest (5.6)</li>
+                <li>Stand up outer-loop acceptance suites that agents never see</li>
+                <li>Shift to throughput and cycle-time metrics; drop story points for agent-lane work (3)</li>
+                <li>Move knowledge sharing earlier (design sessions, pairing on specs) and require explain-before-merge for juniors (4.4)</li>
+                <li>Extend agents to non-coding work: ticket lifecycle, infra provisioning (6.2)</li>
               </ul>
             </div>
             <div class="detail-section">
               <div class="detail-label">Expected Outcomes</div>
               <ul>
-                <li>Faster delivery of routine work (coding and non-coding)</li>
-                <li>Engineers shifting "on the loop"</li>
-                <li>Reduction in planning overhead</li>
+                <li>Review load per engineer measured and bounded</li>
+                <li>Faster delivery of routine work, coding and non-coding</li>
+                <li>Engineers working &ldquo;on the loop&rdquo;</li>
               </ul>
             </div>
           </div>
@@ -1226,25 +1313,26 @@
           <div class="phase-time">Months 6&ndash;9</div>
         </div>
         <div class="roadmap-right">
-          <h4>Restructure Teams <span class="chevron">&#9662;</span></h4>
-          <div class="summary">Pilot pod model; AI-specific quality gates; spec-driven dev.</div>
+          <h4>Restructure: Citizens, Agents, Experts <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Smaller hybrid pods, a governed citizen-build path, and deliberate apprenticeship.</div>
           <div class="roadmap-details">
             <div class="detail-section">
               <div class="detail-label">Key Actions</div>
               <ul>
-                <li>Pilot pod model (3&ndash;5 person pods)</li>
-                <li>Introduce Team Topologies patterns: stream-aligned teams supported by platform and enabling teams</li>
-                <li>Create Code Architect and AI Integration Lead roles</li>
-                <li>Invest in spec-driven development practices</li>
-                <li>Establish AI-specific quality gates in Definition of Done</li>
+                <li>Pilot smaller hybrid pods with agent support (McKinsey reports 8&ndash;10 &rarr; 4&ndash;6 people) and publish an <em>orchestration chart</em> of what moved to agents and who is accountable (4.3)</li>
+                <li>Platform team ships the &ldquo;experts govern&rdquo; layer: golden-path harnesses, policy-as-code, production gates (4.2)</li>
+                <li>Open a governed citizen-build path, where prototypes are evidence for decisions rather than hand-offs to engineering</li>
+                <li>Use spec-driven development for features above an agreed size threshold</li>
+                <li>Design apprenticeship deliberately: juniors on harness, spec and incident work (4.4)</li>
+                <li>Re-run build-vs-buy at SaaS renewals, with long-term ownership cost priced in (7.6)</li>
               </ul>
             </div>
             <div class="detail-section">
               <div class="detail-label">Expected Outcomes</div>
               <ul>
-                <li>Smaller, faster teams with clearer ownership</li>
-                <li>Reduced AI-generated technical debt</li>
-                <li>Engineers shifting to orchestration and product thinking</li>
+                <li>Smaller teams with clear human accountability</li>
+                <li>Citizen builds feeding discovery instead of the backlog</li>
+                <li>Junior-to-senior pipeline protected</li>
               </ul>
             </div>
           </div>
@@ -1256,25 +1344,25 @@
           <div class="phase-time">Months 9&ndash;12</div>
         </div>
         <div class="roadmap-right">
-          <h4>Continuous Operations <span class="chevron">&#9662;</span></h4>
-          <div class="summary">Agentic flywheel; garbage collection agents; outcome metrics.</div>
+          <h4>Continuous Operations &amp; Compounding <span class="chevron">&#9662;</span></h4>
+          <div class="summary">Continuous planning, a self-improving harness, provenance, and outcome metrics.</div>
           <div class="roadmap-details">
             <div class="detail-section">
               <div class="detail-label">Key Actions</div>
               <ul>
-                <li>Replace quarterly planning with monthly strategy syncs + continuous AI monitoring</li>
-                <li>Rolling forecasts; real-time dependency management</li>
-                <li>Agentic flywheel for harness self-improvement</li>
-                <li>"Garbage collection" agents for ongoing codebase quality</li>
-                <li>Outcome-based metrics (lead time, deployment frequency, customer satisfaction)</li>
+                <li>Replace quarterly planning with monthly strategy syncs and continuous AI monitoring</li>
+                <li>Run an agentic flywheel for harness self-improvement, plus garbage-collection agents; treat refactoring as a token-cost lever (5.2)</li>
+                <li>Separate the durable knowledge base from the coordination blackboard, with a reviewable promotion step (11.5)</li>
+                <li>Record agent provenance in release metadata; apply Article 50 transparency to user-facing agents (8.3)</li>
+                <li>Report outcome metrics: lead time, change-failure rate, rework, customer outcomes</li>
               </ul>
             </div>
             <div class="detail-section">
               <div class="detail-label">Expected Outcomes</div>
               <ul>
-                <li>Quarterly ceremony eliminated or reduced to half-day</li>
-                <li>Continuous strategic alignment</li>
-                <li>Self-improving development system</li>
+                <li>On the up-slope of the J-curve, with gains compounding in year two</li>
+                <li>Quarterly ceremony eliminated or reduced to a half-day</li>
+                <li>A self-improving delivery system with auditable provenance</li>
               </ul>
             </div>
           </div>
@@ -1348,7 +1436,7 @@
       <div class="card">
         <h3>The Training Paradox</h3>
         <p>85% of leaders invest in AI tools, but only 2% invest in talent development (<a href="https://www.productboard.com/blog/training-product-managers-in-the-ai-era/" target="_blank" style="text-decoration:underline">Productboard</a>). 61% of employees have spent fewer than 5 hours learning about AI (<a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank" style="text-decoration:underline">HBR/Slack survey</a>). The gap is not tool availability&mdash;it is fluency.</p>
-        <span class="metric">85% tool investment vs. 2% talent investment</span>
+        <span class="metric">85% tool investment vs. 2% talent investment</span><span class="ev ev--vendor" title="Vendor-reported figure">Vendor</span>
       </div>
       <div class="card">
         <h3>Literacy vs. Fluency</h3>
@@ -1358,7 +1446,7 @@
       <div class="card">
         <h3>The Messy Middle</h3>
         <p>69% of product teams are stuck between early experimentation and embedded adoption. Only 6.1% have made AI a core strategic capability. The top blocker: 47% cite limited integration into existing tools; 43% cite lack of enablement (<a href="https://www.productledalliance.com/the-ai-adoption-curve-in-product-teams/" target="_blank" style="text-decoration:underline">Product-Led Alliance</a>).</p>
-        <span class="metric">69% stuck in the &ldquo;messy middle&rdquo;</span>
+        <span class="metric">69% stuck in the &ldquo;messy middle&rdquo;</span><span class="ev ev--survey" title="Community survey of product teams">Survey</span>
       </div>
     </div>
 
@@ -1530,19 +1618,19 @@
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>80%</h3>
-        <p>of white-collar workers are avoiding or rejecting enterprise AI mandates (<a href="https://fortune.com/2026/04/09/ai-backlash-quiet-quitting-fobo-obsolete-white-collar-rebellion/" target="_blank" style="text-decoration:underline">Fortune, Apr 2026</a>).</p>
+        <p>of white-collar workers are avoiding or rejecting enterprise AI mandates (<a href="https://fortune.com/2026/04/09/ai-backlash-quiet-quitting-fobo-obsolete-white-collar-rebellion/" target="_blank" style="text-decoration:underline">Fortune, Apr 2026</a>).<span class="ev ev--survey" title="Survey data reported by press">Survey</span></p>
       </div>
       <div class="card">
         <h3>52-pt gap</h3>
-        <p>61% of executives trust AI for complex decisions vs. only 9% of workers&mdash;a 52-point trust chasm (<a href="https://fortune.com/2026/04/09/ai-backlash-quiet-quitting-fobo-obsolete-white-collar-rebellion/" target="_blank" style="text-decoration:underline">Fortune</a>).</p>
+        <p>61% of executives trust AI for complex decisions vs. only 9% of workers&mdash;a 52-point trust chasm (<a href="https://fortune.com/2026/04/09/ai-backlash-quiet-quitting-fobo-obsolete-white-collar-rebellion/" target="_blank" style="text-decoration:underline">Fortune</a>).<span class="ev ev--survey" title="Survey data reported by press">Survey</span></p>
       </div>
       <div class="card">
         <h3>88% vs. 21%</h3>
-        <p>88% of executives believe employees have adequate AI tools; only 21% of workers agree (<a href="https://fortune.com/2026/04/09/ai-backlash-quiet-quitting-fobo-obsolete-white-collar-rebellion/" target="_blank" style="text-decoration:underline">Fortune</a>).</p>
+        <p>88% of executives believe employees have adequate AI tools; only 21% of workers agree (<a href="https://fortune.com/2026/04/09/ai-backlash-quiet-quitting-fobo-obsolete-white-collar-rebellion/" target="_blank" style="text-decoration:underline">Fortune</a>).<span class="ev ev--survey" title="Survey data reported by press">Survey</span></p>
       </div>
       <div class="card">
         <h3>97% &rarr; 1%</h3>
-        <p>97% of organisations &ldquo;use AI,&rdquo; but only ~1% have mature deployments delivering real value (<a href="https://www.easy8.com/blog/ai-adoption" target="_blank" style="text-decoration:underline">Easy8, 2026</a>).</p>
+        <p>97% of organisations &ldquo;use AI,&rdquo; but only ~1% have mature deployments delivering real value (<a href="https://www.easy8.com/blog/ai-adoption" target="_blank" style="text-decoration:underline">Easy8, 2026</a>).<span class="ev ev--vendor" title="Vendor blog">Vendor</span></p>
       </div>
     </div>
 
@@ -1593,22 +1681,22 @@
       <div class="card">
         <h3>~8-month payback</h3>
         <p>DORA&rsquo;s illustrative 500-engineer model: ~$11.6M first-year return on ~$8.4M investment (39% ROI), even after an initial 15% dip for three months and a change-failure rate rising from 5% to 6%. DORA presents it as a conversation starter with high uncertainty, not a forecast.</p>
-        <span class="metric">39% Y1 ROI (illustrative) &mdash; DORA</span>
+        <span class="metric">39% Y1 ROI (illustrative) &mdash; DORA</span><span class="ev ev--model" title="Illustrative ROI model">Model / estimate</span>
       </div>
       <div class="card">
         <h3>Only ~1 in 4 accelerate</h3>
         <p>McKinsey&rsquo;s 2026 Tech Trends Outlook finds only about a quarter of companies using agentic software development tools have achieved meaningful PDLC acceleration. The rest are still in the dip, or have bolted agents onto an unchanged process (see 7.4, the belt problem).</p>
-        <span class="metric">~25% &mdash; <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-top-trends-in-tech" target="_blank" style="text-decoration:underline">McKinsey, Sep 2026</a></span>
+        <span class="metric">~25% &mdash; <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-top-trends-in-tech" target="_blank" style="text-decoration:underline">McKinsey, Sep 2026</a></span><span class="ev ev--survey" title="Executive survey">Survey</span>
       </div>
       <div class="card">
         <h3>EBIT impact flat</h3>
         <p>In McKinsey&rsquo;s 2026 State of AI survey, 37% attribute any EBIT impact to AI, roughly unchanged year over year, and about one in five say AI operating costs already limit how much they use it. Spend is rising faster than measurable return.</p>
-        <span class="metric">37% any EBIT impact &mdash; <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" style="text-decoration:underline">McKinsey, 2026</a></span>
+        <span class="metric">37% any EBIT impact &mdash; <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" style="text-decoration:underline">McKinsey, 2026</a></span><span class="ev ev--survey" title="Executive survey, 1,719 respondents">Survey</span>
       </div>
       <div class="card">
         <h3>Build-vs-buy is moving</h3>
         <p>32% of respondents say their organisation skipped buying at least one software product or feature because agentic coding made an in-house version feasible. That is a new PDLC input: every &ldquo;buy&rdquo; decision now has a credible &ldquo;build with agents&rdquo; alternative, with its own long-term ownership cost.</p>
-        <span class="metric">32% skipped a purchase &mdash; McKinsey, 2026</span>
+        <span class="metric">32% skipped a purchase &mdash; McKinsey, 2026</span><span class="ev ev--survey" title="Executive survey, 1,719 respondents">Survey</span>
       </div>
     </div>
 
@@ -1622,16 +1710,17 @@
         12-Month Transformation Timeline
       </div>
       <div class="diagram-bar" style="height: 56px;">
-        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 92%);"><span style="font-size: 0.625rem;">Baseline</span><span class="tooltip">Months 1&ndash;2: Instrument &amp; Baseline</span></div>
-        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 88%);"><span style="font-size: 0.625rem;">Augment</span><span class="tooltip">Months 2&ndash;4: Augment Ceremonies</span></div>
-        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 84%);"><span style="font-size: 0.625rem;">Hybrid</span><span class="tooltip">Months 4&ndash;6: Hybrid Workflow</span></div>
-        <div class="diagram-segment" style="width: 25%; background: hsl(240 4.8% 80%);"><span style="font-size: 0.625rem;">Restructure</span><span class="tooltip">Months 6&ndash;9: Restructure Teams</span></div>
-        <div class="diagram-segment" style="width: 25%; background: hsl(240 4.8% 76%);"><span style="font-size: 0.625rem;">Continuous</span><span class="tooltip">Months 9&ndash;12: Continuous Operations</span></div>
+        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 92%);"><span style="font-size: 0.625rem;">Foundations</span><span class="tooltip">Months 1&ndash;2: Foundations &amp; Baseline</span></div>
+        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 88%);"><span style="font-size: 0.625rem;">Harness</span><span class="tooltip">Months 2&ndash;4: Harness Before Scale</span></div>
+        <div class="diagram-segment" style="width: 16.6%; background: hsl(240 4.8% 84%);"><span style="font-size: 0.625rem;">Hybrid</span><span class="tooltip">Months 4&ndash;6: Hybrid Flow &amp; Review by Exception</span></div>
+        <div class="diagram-segment" style="width: 25%; background: hsl(240 4.8% 80%);"><span style="font-size: 0.625rem;">Restructure</span><span class="tooltip">Months 6&ndash;9: Restructure &mdash; Citizens, Agents, Experts</span></div>
+        <div class="diagram-segment" style="width: 25%; background: hsl(240 4.8% 76%);"><span style="font-size: 0.625rem;">Continuous</span><span class="tooltip">Months 9&ndash;12: Continuous Operations &amp; Compounding</span></div>
       </div>
       <div class="diagram-legend">
-        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 92%);"></div>Foundation</div>
+        <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 92%);"></div>Foundation &amp; verification</div>
         <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 84%);"></div>Process Change</div>
         <div class="diagram-legend-item"><div class="diagram-legend-dot" style="background: hsl(240 4.8% 76%);"></div>Structural Change</div>
+        <div class="diagram-legend-item" style="margin-left: auto;">Expected J-curve dip: months 1&ndash;4 (7.6)</div>
       </div>
     </div>
   </div>
@@ -1716,12 +1805,12 @@
       <div class="card">
         <h3>Skills are packages</h3>
         <p>Snyk scanned 3,984 public agent skills: 36.8% had at least one security flaw, 13.4% a critical issue, and 76 contained confirmed malicious payloads. 91% of those combined malware with prompt injection. Some rewrote the agent&rsquo;s memory files to persist.</p>
-        <span class="metric">76 malicious skills &mdash; <a href="https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/" target="_blank" style="text-decoration:underline">Snyk ToxicSkills, Feb 2026</a></span>
+        <span class="metric">76 malicious skills &mdash; <a href="https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/" target="_blank" style="text-decoration:underline">Snyk ToxicSkills, Feb 2026</a></span><span class="ev ev--vendor" title="Vendor security research, 3,984 skills scanned">Vendor</span>
       </div>
       <div class="card">
         <h3>Sandboxing is table stakes</h3>
         <p>Thoughtworks&rsquo; Technology Radar Vol. 34 calls zero trust, sandboxed execution and defence in depth non-negotiable for permission-hungry agents. It placed <em>Agent Skills</em> in Trial with an explicit warning against unreviewed third-party reuse.</p>
-        <span class="metric"><a href="https://www.thoughtworks.com/radar/techniques/agent-skills" target="_blank" style="text-decoration:underline">Thoughtworks Radar Vol. 34, Apr 2026</a></span>
+        <span class="metric"><a href="https://www.thoughtworks.com/radar/techniques/agent-skills" target="_blank" style="text-decoration:underline">Thoughtworks Radar Vol. 34, Apr 2026</a></span><span class="ev ev--practitioner" title="Consultancy practice report">Practitioner</span>
       </div>
       <div class="card">
         <h3>Protocols are hardening</h3>
@@ -2747,17 +2836,17 @@
           <div class="agent-loop-metric">
             <span class="metric">62%</span>
             <p>of surveyed organizations are at least experimenting with AI agents.</p>
-            <a href="https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf" target="_blank">McKinsey, 2025</a>
+            <a href="https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf" target="_blank">McKinsey, 2025</a><span class="ev ev--survey" title="Executive survey">Survey</span>
           </div>
           <div class="agent-loop-metric">
             <span class="metric">14%</span>
             <p>of Global 2000 enterprises in an Infosys-HFS study had reached scaling.</p>
-            <a href="https://www.infosys.com/newsroom/features/2026/enterprises-scaled-agentic-ai.html" target="_blank">Infosys-HFS, 2026</a>
+            <a href="https://www.infosys.com/newsroom/features/2026/enterprises-scaled-agentic-ai.html" target="_blank">Infosys-HFS, 2026</a><span class="ev ev--survey" title="Enterprise study">Survey</span>
           </div>
           <div class="agent-loop-metric">
             <span class="metric">21%</span>
             <p>of companies planning agentic AI report mature agent governance.</p>
-            <a href="https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html?icid=mosaic-grid_2026-state-of-ai-in-the-enterprise-report" target="_blank">Deloitte, 2026</a>
+            <a href="https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html?icid=mosaic-grid_2026-state-of-ai-in-the-enterprise-report" target="_blank">Deloitte, 2026</a><span class="ev ev--survey" title="Executive survey">Survey</span>
           </div>
         </div>
       </div>
@@ -3281,12 +3370,12 @@
       <div class="card">
         <h3>The accidental blackboard</h3>
         <p>Ten Thoughtworks engineers ran many agents in one monorepo for four days. Agents wrote plans keyed to numbered spec sections and logged progress in the repo, and other agents read those notes to avoid duplicate work and wait on dependencies. The repo had become a <em>blackboard</em> (the Hearsay-II pattern). Then frequent commits overloaded CI, the team batched pushes, and coordination degraded. The lesson: make the blackboard intentional and separate from source control.</p>
-        <span class="metric"><a href="https://martinfowler.com/articles/exploring-gen-ai/an-accidental-blackboard.html" target="_blank" style="text-decoration:underline">Edwards-Alexander, Sep 2026</a></span>
+        <span class="metric"><a href="https://martinfowler.com/articles/exploring-gen-ai/an-accidental-blackboard.html" target="_blank" style="text-decoration:underline">Edwards-Alexander, Sep 2026</a></span><span class="ev ev--practitioner" title="Field report, one team, four days">Practitioner</span>
       </div>
       <div class="card">
         <h3>The orchestrator&rsquo;s tax</h3>
         <p>Subagents are usually justified by parallelism. In long-running work, their real value is what they keep <em>out</em> of the orchestrator&rsquo;s context. Garg traced the largest cost in one session to status polling that dumped full transcripts into the main thread. Proposed rules: 2&ndash;4 agents per wave (treat 5+ as a signal to merge tasks), no transcript polling, no repo-wide git operations from concurrent agents, and keep work that shares a mental model together (&ldquo;cognitive locality&rdquo;).</p>
-        <span class="metric"><a href="https://martinfowler.com/articles/orchestrator-tax.html" target="_blank" style="text-decoration:underline">Rahul Garg, Jul 2026</a></span>
+        <span class="metric"><a href="https://martinfowler.com/articles/orchestrator-tax.html" target="_blank" style="text-decoration:underline">Rahul Garg, Jul 2026</a></span><span class="ev ev--practitioner" title="Single-session field report">Practitioner</span>
       </div>
       <div class="card">
         <h3>Protocols catch up</h3>
@@ -3408,6 +3497,9 @@
       <li><span class="source-org">Thoughtworks</span> &mdash; <a href="https://www.thoughtworks.com/radar/techniques/agent-skills" target="_blank">Technology Radar Vol. 34 &mdash; Agent Skills</a> (Apr 2026)</li>
       <li><span class="source-org">Gibson Dunn</span> &mdash; <a href="https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/" target="_blank">EU AI Act Omnibus Agreement &mdash; Postponed High-Risk Deadlines</a> (May 2026)</li>
       <li><span class="source-org">Orrick</span> &mdash; <a href="https://www.orrick.com/en/Insights/2026/07/EU-AI-Act-Update-Digital-Omnibus-Finalizes-8-Compliance-Changes" target="_blank">EU AI Act Update: Digital Omnibus Finalizes 8 Compliance Changes</a> (Jul 2026)</li>
+      <li><span class="source-org">METR</span> &mdash; <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank">Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity</a> (Jul 2025) &mdash; RCT: 19% slower in practice, 20% faster as perceived</li>
+      <li><span class="source-org">DORA / Google Cloud</span> &mdash; <a href="https://services.google.com/fh/files/misc/2025_state_of_ai_assisted_software_development.pdf" target="_blank">State of AI-Assisted Software Development 2025</a> &mdash; AI adoption associated with higher throughput and higher instability</li>
+      <li><span class="source-org">AWS</span> &mdash; <a href="https://kiro.dev/" target="_blank">Kiro</a> &mdash; Spec-driven agentic IDE: requirements, design and task list before code</li>
     </ul>
   </div>
 </section>
@@ -3436,7 +3528,14 @@
         <li><strong>Section 9</strong> &mdash; <em>Future-State Vision</em> (updated) &mdash; Quality card now reflects review by exception.</li>
         <li><strong>Section 10.8</strong> &mdash; <em>The Product Engineer&rsquo;s Review Practice</em> (updated) &mdash; Attention as the review budget (&ldquo;The Conductor Developer&rdquo;).</li>
         <li><strong>Section 11.5</strong> &mdash; <em>Coordination Patterns from the Field</em> (new) &mdash; The accidental blackboard, the orchestrator&rsquo;s tax, MCP 2026-07-28, and a proposed split of the shared KB into a durable store and a coordination blackboard.</li>
-        <li><strong>Section 12</strong> &mdash; <em>Sources</em> (updated) &mdash; Added 24 sources from June&ndash;October 2026.</li>
+        <li><strong>Section 12</strong> &mdash; <em>Sources</em> (updated) &mdash; Added 24 sources from June&ndash;October 2026, plus METR (2025 RCT), DORA 2025 and Kiro for the Section 1&ndash;3 rewrite.</li>
+        <li><strong>Section 1</strong> &mdash; <em>The Legacy Process</em> (updated) &mdash; Rewritten for 2026. Estimation card now includes METR&rsquo;s perception gap; new cards 1.5 <em>The Review Queue Is the New Waiting Room</em> and 1.6 <em>New Tools, Old Process</em>; the sprint-capacity bar is relabelled as the pre-agent baseline.</li>
+        <li><strong>Section 2</strong> &mdash; <em>AI Capabilities</em> (updated) &mdash; Capability table rewritten for October 2026 (coding agents, spec-driven development, harnesses, skills and MCP, agentic review, citizen development) with a maturity column and evidence tags.</li>
+        <li><strong>Section 3</strong> &mdash; <em>The Evolution Map</em> (updated) &mdash; Phases revised (agent lane sized to review capacity, verification tax, build-vs-buy review) and a new fourth track, <em>Review &amp; Release</em>.</li>
+        <li><strong>Section 7.1</strong> &mdash; <em>The Five-Phase Roadmap</em> (updated) &mdash; Phases rewritten around agents and verification capacity: Foundations &amp; Baseline &rarr; Harness Before Scale &rarr; Hybrid Flow &amp; Review by Exception &rarr; Restructure (Citizens, Agents, Experts) &rarr; Continuous Operations &amp; Compounding. Timeline diagram updated with the expected J-curve window.</li>
+        <li><strong>Evidence grades</strong> &mdash; New tags on data-bearing claims (Experiment, Field data, Survey, Practitioner, Vendor, Model / estimate), with a legend under <em>Signals from the field</em>. Applied to the hero stats and to Sections 1&ndash;3, 4.4, 5.2, 5.5, 5.6, 7.3, 7.5, 7.6, 8.3, 11.1 and 11.5.</li>
+        <li><strong>Section map</strong> &mdash; Tile numbers now match section headings (ES, 01&ndash;12, CL); several tile flavours refreshed.</li>
+        <li><strong>Hero stats</strong> &mdash; Dropped the Menlo &ldquo;$7.3B coding spend&rdquo; figure, which could not be reconciled with Menlo&rsquo;s published $4.0B coding estimate.</li>
       </ul>
 
       <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">9 Jun 2026</h4>

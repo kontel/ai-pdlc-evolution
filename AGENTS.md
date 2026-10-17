@@ -31,6 +31,8 @@ Every section uses a consistent `X.Y` numbering scheme:
 
 When adding new subsections, increment sequentially and renumber anything that follows. Never use letter suffixes (e.g. 10.2A) — always use integers.
 
+The hero section-map tiles (`#sectionMap .section-tile-num`) must match the section headings: `ES` for the executive summary, `01`–`12` for Sections 1–12, `CL` for the changelog.
+
 ## Navigation metadata
 
 The nav uses `data-updated` and `data-update-note` attributes on each `<li>` in `#sectionNavList`. When you update a section:
@@ -73,6 +75,14 @@ New sources go in Section 12 (`#sources`) as `<li>` items:
 
 - Research-backed: every claim should cite a source with a link.
 - Statistics use the `<span class="metric">` pattern inside cards.
+- Every data-bearing claim gets an evidence-grade tag placed right after its metric or citation, e.g. `<span class="ev ev--field" title="Repository mining, 6,774 PRs">Field data</span>`. Grades (styled in `styles.css`, legend in the hero `#evidence-legend`):
+  - `ev--experiment` — controlled or randomized study
+  - `ev--field` — large-scale telemetry, repository or payroll data
+  - `ev--survey` — self-reported survey (including vendor-run surveys)
+  - `ev--practitioner` — case study, essay, or small-n informal experiment
+  - `ev--vendor` — vendor or vendor-funded claim, not independently audited
+  - `ev--model` — illustrative model, projection, or qualitative estimate
+  Use the `title` attribute for a one-line note on sample size or method.
 - Quotes use `.quote-block` with `.quote-source` for attribution.
 - Callouts use `.callout` with `.callout-title` for the header.
 - Comparison data uses `.compare-table` inside `.diagram-wrapper`.
