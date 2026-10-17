@@ -18,14 +18,14 @@ This is an evolving research synthesis site exploring how AI transforms the ente
 Every section uses a consistent `X.Y` numbering scheme:
 
 - **Section 1–3**: No subsections (flat content).
-- **Section 4**: 4.1, 4.2
-- **Section 5**: 5.1 through 5.6
+- **Section 4**: 4.1 through 4.4
+- **Section 5**: 5.1 through 5.7
 - **Section 6**: 6.1 through 6.3
-- **Section 7**: 7.1 through 7.5
-- **Section 8**: 8.1, 8.2
-- **Section 9**: No subsections.
+- **Section 7**: 7.1 through 7.6
+- **Section 8**: 8.1 through 8.3
+- **Section 9**: 9.1 (three-layer future).
 - **Section 10**: 10.1 through 10.11
-- **Section 11**: 11.1 through 11.4
+- **Section 11**: 11.1 through 11.5
 - **Section 12**: Sources (flat list).
 - **Changelog**: Reverse-chronological entries by date.
 
