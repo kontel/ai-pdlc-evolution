@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDLC Futures Sketchpad — Incrementally Exploring How AI Transforms Product Delivery</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-17">
+  <link rel="stylesheet" href="styles.css?v=2026-10-17d">
 </head>
 <body>
 
@@ -213,15 +213,98 @@
     <div class="hero-below-sep" aria-hidden="true"></div>
 
     <header class="hero-below-block hero-below-block--infographic">
-      <span class="section-map-kicker">Structural view</span>
-      <h2 class="hero-below-title" id="hero-infographic-heading">The AI-Augmented PDLC</h2>
-      <p class="hero-below-lead">A structural evolution of enterprise delivery&mdash;full diagram opens in a lightbox.</p>
+      <span class="section-map-kicker">Structural view &middot; interactive</span>
+      <h2 class="hero-below-title" id="hero-infographic-heading">The AI-Augmented PDLC, October 2026</h2>
+      <p class="hero-below-lead">Three views of the same shift: where delivery effort goes, how value arrives over two years, and who does the work. Click, drag, or tab through them.</p>
     </header>
-    <div class="hero-infographic">
-      <button type="button" class="hero-infographic-trigger" id="heroInfographicTrigger" aria-labelledby="hero-infographic-heading">
-        <img src="assets/detailed-infographics.png" alt="The AI-Augmented PDLC: A Structural Evolution of Enterprise Delivery" class="hero-infographic-img">
-        <span class="hero-infographic-hint">Click to view full screen</span>
-      </button>
+
+    <div class="pdx" id="pdlcExplorer" aria-labelledby="hero-infographic-heading">
+      <div class="pdx-views" role="tablist" aria-label="Choose a view">
+        <button type="button" role="tab" id="pdx-tab-flow" data-view="flow" aria-controls="pdx-panel-flow" aria-selected="true"><span class="pdx-view-num">1</span> Where the effort goes</button>
+        <button type="button" role="tab" id="pdx-tab-curve" data-view="curve" aria-controls="pdx-panel-curve" aria-selected="false" tabindex="-1"><span class="pdx-view-num">2</span> The J-curve</button>
+        <button type="button" role="tab" id="pdx-tab-model" data-view="model" aria-controls="pdx-panel-model" aria-selected="false" tabindex="-1"><span class="pdx-view-num">3</span> Who does the work</button>
+      </div>
+
+      <!-- View 1: lifecycle effort by era -->
+      <div class="pdx-panel" id="pdx-panel-flow" data-view="flow" role="tabpanel" aria-labelledby="pdx-tab-flow">
+        <div class="pdx-panel-head">
+          <div>
+            <h3 class="pdx-title">The bottleneck moved</h3>
+            <p class="pdx-sub">Share of one story&rsquo;s delivery effort by lifecycle stage, split into human and agent work. Switch eras or press play.</p>
+          </div>
+          <div class="pdx-eras" role="group" aria-label="Era">
+            <button type="button" data-era="legacy" aria-pressed="false">Pre-AI</button>
+            <button type="button" data-era="assist" aria-pressed="false">Assistants &middot; 2025</button>
+            <button type="button" data-era="agents" aria-pressed="true">Agents &middot; 2026</button>
+            <button type="button" class="pdx-play" id="pdxPlay" aria-pressed="false">&#9654; Play</button>
+          </div>
+        </div>
+        <div class="pdx-legend" aria-hidden="true">
+          <span><i class="pdx-key pdx-key--human"></i>Human work</span>
+          <span><i class="pdx-key pdx-key--agent"></i>Agent work</span>
+          <span class="pdx-legend-flag">&#9888; Bottleneck</span>
+        </div>
+        <div class="pdx-stages" id="pdxStages"></div>
+        <div class="pdx-era-summary" id="pdxEraSummary" aria-live="polite"></div>
+        <div class="pdx-detail" id="pdxStageDetail" aria-live="polite"></div>
+        <details class="pdx-table"><summary>Show as table</summary><div id="pdxFlowTable"></div></details>
+        <p class="pdx-note">Effort shares are an illustrative model synthesised from Sections 1, 5, 6.3 and 7, not survey data. <span class="ev ev--model" title="Illustrative model; the stats in the detail panel are sourced">Model / estimate</span></p>
+      </div>
+
+      <!-- View 2: the J-curve -->
+      <div class="pdx-panel" id="pdx-panel-curve" data-view="curve" role="tabpanel" aria-labelledby="pdx-tab-curve" hidden>
+        <div class="pdx-panel-head">
+          <div>
+            <h3 class="pdx-title">Budgeting for the dip</h3>
+            <p class="pdx-sub">Delivery productivity index (100 = before rollout) over the first 24 months. Hover the chart or drag the slider.</p>
+          </div>
+        </div>
+        <div class="pdx-legend" aria-hidden="true">
+          <span><i class="pdx-key pdx-key--found"></i>Foundations first (the 7.1 roadmap)</span>
+          <span><i class="pdx-key pdx-key--bolt"></i>Tools bolted on (the belt problem)</span>
+        </div>
+        <div class="pdx-curve-wrap">
+          <svg class="pdx-curve" id="pdxCurve" viewBox="0 0 720 300" role="img" aria-labelledby="pdxCurveTitle">
+            <title id="pdxCurveTitle">J-curve: productivity index over 24 months. Foundations first dips to 86 at month 3, then climbs to 150 by month 24. Tools bolted on peaks at 113 at month 6, then declines to 82 by month 24.</title>
+          </svg>
+          <div class="pdx-tip" id="pdxCurveTip" hidden></div>
+        </div>
+        <label class="pdx-scrub">Month <input type="range" id="pdxMonth" min="0" max="24" step="1" value="3" aria-label="Month"> <output id="pdxMonthOut" for="pdxMonth">3</output></label>
+        <div class="pdx-detail" id="pdxCurveDetail" aria-live="polite"></div>
+        <details class="pdx-table"><summary>Show as table</summary><div id="pdxCurveTable"></div></details>
+        <p class="pdx-note">The curve shapes are illustrative, based on DORA&rsquo;s J-curve (an initial dip, then compounding gains in years two and three) and Codebridge&rsquo;s 18-month collapse pattern for ungoverned rollouts. They are not measured data. <span class="ev ev--model" title="Illustrative shape, not measured">Model / estimate</span></p>
+      </div>
+
+      <!-- View 3: operating model -->
+      <div class="pdx-panel" id="pdx-panel-model" data-view="model" role="tabpanel" aria-labelledby="pdx-tab-model" hidden>
+        <div class="pdx-panel-head">
+          <div>
+            <h3 class="pdx-title">Citizens build &middot; Agents execute &middot; Experts govern</h3>
+            <p class="pdx-sub">Three populations, one harness. Click a layer to see who it is, what it owns, and where it breaks.</p>
+          </div>
+        </div>
+        <div class="pdx-model-wrap">
+          <div class="pdx-model">
+            <button type="button" class="pdx-harness" data-layer-id="harness" aria-pressed="false">Harness &amp; platform &middot; guides, sensors, gates, approved skills</button>
+            <button type="button" class="pdx-layer pdx-layer--human" data-layer-id="citizens" aria-pressed="false">
+              <span class="pdx-layer-title">Citizens build</span><span class="pdx-layer-sub">prototypes as evidence</span>
+            </button>
+            <div class="pdx-flow" aria-hidden="true">&darr; intent &amp; specs</div>
+            <button type="button" class="pdx-layer pdx-layer--agent" data-layer-id="agents" aria-pressed="false">
+              <span class="pdx-layer-title">Agents execute</span><span class="pdx-layer-sub">code, tests, triage &middot; in parallel</span>
+            </button>
+            <div class="pdx-flow" aria-hidden="true">&darr; PRs through automated gates &nbsp;&middot;&nbsp; &uarr; harness &amp; policy</div>
+            <button type="button" class="pdx-layer pdx-layer--human" data-layer-id="experts" aria-pressed="false">
+              <span class="pdx-layer-title">Experts govern</span><span class="pdx-layer-sub">review by exception &middot; what runs in production</span>
+            </button>
+          </div>
+          <div class="pdx-detail" id="pdxModelDetail" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="pdx-foot">
+        <button type="button" class="pdx-poster-link" id="heroInfographicTrigger">View the original March 2026 poster</button>
+      </div>
     </div>
   </div>
 </section>
@@ -3535,6 +3618,7 @@
         <li><strong>Section 7.1</strong> &mdash; <em>The Five-Phase Roadmap</em> (updated) &mdash; Phases rewritten around agents and verification capacity: Foundations &amp; Baseline &rarr; Harness Before Scale &rarr; Hybrid Flow &amp; Review by Exception &rarr; Restructure (Citizens, Agents, Experts) &rarr; Continuous Operations &amp; Compounding. Timeline diagram updated with the expected J-curve window.</li>
         <li><strong>Evidence grades</strong> &mdash; New tags on data-bearing claims (Experiment, Field data, Survey, Practitioner, Vendor, Model / estimate), with a legend under <em>Signals from the field</em>. Applied to the hero stats and to Sections 1&ndash;3, 4.4, 5.2, 5.5, 5.6, 7.3, 7.5, 7.6, 8.3, 11.1 and 11.5.</li>
         <li><strong>Section map</strong> &mdash; Tile numbers now match section headings (ES, 01&ndash;12, CL); several tile flavours refreshed.</li>
+        <li><strong>Structural view</strong> &mdash; <em>The AI-Augmented PDLC</em> (new) &mdash; Replaced the static March poster with an interactive three-view explorer: <strong>1. Where the effort goes</strong> (six lifecycle stages, human vs. agent work, Pre-AI &rarr; 2025 &rarr; 2026 eras with a play mode and a moving bottleneck marker); <strong>2. The J-curve</strong> (foundations-first vs. tools-bolted-on over 24 months, roadmap phase bands, hover and slider readout); <strong>3. Who does the work</strong> (citizens, agents and experts inside the harness). Each view has a detail panel linked to its section, a table view, and evidence tags. The original poster remains one click away.</li>
         <li><strong>Hero stats</strong> &mdash; Dropped the Menlo &ldquo;$7.3B coding spend&rdquo; figure, which could not be reconciled with Menlo&rsquo;s published $4.0B coding estimate.</li>
         <li><strong>Signals</strong> &mdash; Added a catch-up digest for Weeks 24&ndash;42 (10 Jun&ndash;17 Oct 2026): 14 items across ambient (2) &middot; agentic (5) &middot; ephemeral (3) &middot; cross-cutting (4).</li>
       </ul>
@@ -3637,5 +3721,6 @@
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
 
 <script src="main.js"></script>
+<script src="explorer.js?v=2026-10-17d"></script>
 </body>
 </html>

@@ -11,6 +11,8 @@ This is an evolving research synthesis site exploring how AI transforms the ente
 - `document.html` — Full-document prose view of the same material.
 - `styles.css` — Shared stylesheet for `index.html` and `workspace.html`.
 - `main.js` — Shared JS for nav, scroll, roadmap toggles, anchor copy-links, and animations.
+- `explorer.js` — The interactive "PDLC Explorer" in the hero (`#pdlcExplorer`): (1) lifecycle effort by era with the bottleneck marker, (2) the J-curve, (3) the Citizens / Agents / Experts operating model. All its data lives in the constants at the top of each view (`ERAS`, `DETAIL`, `SERIES`, `PHASES`, `LAYERS`); edit those, not the markup. Human vs. agent work always uses blue `#2a78d6` / orange `#eb6834` (validated categorical pair); don't reuse those colours for other meanings. Effort shares and curve shapes are an illustrative model and must keep their `ev--model` tag.
+- Static assets are cache-busted with `?v=` query strings on `styles.css` and `explorer.js` in `index.html`; bump them when you change either file.
 - `assets/` — Static images (infographic).
 
 ## Section numbering convention
