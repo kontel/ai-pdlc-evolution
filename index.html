@@ -48,10 +48,10 @@
       <li><a href="#beyond-code" data-section-id="beyond-code" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Beyond coding</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
       <li><a href="#roadmap" data-section-id="roadmap" data-updated="2026-10-17" data-update-note="7.1 phases rewritten; 7.6 J-curve"><span class="section-nav-text">Roadmap &amp; adoption</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#risks" data-section-id="risks" data-updated="2026-10-17" data-update-note="8.3 agent supply chain + EU AI Act timeline"><span class="section-nav-text">Risks</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#future" data-section-id="future" data-updated="2026-10-17" data-update-note="Quality card: review by exception"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li><a href="#future" data-section-id="future" data-updated="2026-10-26" data-update-note="9.2 always-on agents and proactive swarms"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#product-engineer" data-section-id="product-engineer" data-updated="2026-10-17" data-update-note="10.8 attention as the review budget"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#agent-architecture" data-section-id="agent-architecture" data-updated="2026-10-17" data-update-note="11.5 coordination patterns from the field"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#sources" data-section-id="sources" data-updated="2026-10-17" data-update-note="Jun–Oct 2026 sources added"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li><a href="#sources" data-section-id="sources" data-updated="2026-10-26" data-update-note="Always-on agents and swarm sources"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#changelog" data-section-id="changelog" data-updated="2026-10-26" data-update-note="October 2026 refresh logged"><span class="section-nav-text">Changelog</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
     </ul>
   </div>
@@ -131,7 +131,7 @@
         <span class="section-tile-name">Risks</span>
         <span class="section-tile-flavor">Anti-patterns &amp; supply chain</span>
       </a>
-      <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-10-17" data-update-note="Quality card: review by exception">
+      <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-10-26" data-update-note="9.2 always-on agents and proactive swarms">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">09</span>
         <span class="section-tile-name">Future vision</span>
@@ -149,7 +149,7 @@
         <span class="section-tile-name">Agent architecture</span>
         <span class="section-tile-flavor">Ensemble &amp; memory</span>
       </a>
-      <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-10-17" data-update-note="Jun–Oct 2026 sources added">
+      <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-10-26" data-update-note="Always-on agents and swarm sources">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">12</span>
         <span class="section-tile-name">Sources</span>
@@ -2179,6 +2179,108 @@
         The <a href="workspace.html" style="text-decoration:underline;">workspace prototype</a> is deliberately a Layer&nbsp;3 surface &mdash; not an app, not a dashboard. It exists so a Product Engineer can <em>inspect, compare, approve, edit or reject</em> the artifacts that ten specialised agents produce in Layer&nbsp;2. The Layer&nbsp;1 input (calendar, repo state, telemetry, customer signals) feeds the agents directly &mdash; the PE never types it in. The three modes &mdash; <em>Focus</em>, <em>Flow</em>, <em>Map</em> &mdash; are three shapes the same Layer&nbsp;3 surface can take depending on whether the PE is deciding, tuning in, or steering. Each is generated for the moment; none is a durable screen the way a Jira board is. For week-by-week tracking of these three layers, see <a href="signals.html" style="text-decoration:underline;">Signals &rarr;</a>.
       </div>
     </div>
+
+    <!-- 9.2 Always-on agents and proactive swarms -->
+    <h3 id="always-on-agents" class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 3rem;">9.2 Always-On Agents: From Prompted Copilots to Proactive Swarms <span class="nav-new">new</span> <a href="#always-on-agents" class="anchor-link" title="Copy link to this section">&#128279;</a></h3>
+    <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 760px;">
+      Between late September and late October 2026, every major vendor shipped agents that keep running when the chat window closes. They <em>watch</em> connected sources (Layer&nbsp;1 in 9.1), <em>act</em> in their own cloud computers (Layer&nbsp;2), and come back only for approval (Layer&nbsp;3). This turns the copilot from something you prompt into something that prompts you. It also raises the question product leaders now ask: if one agent helps, does a fleet of always-on agents multiply what a product team can ship? The evidence says yes, but only for some kinds of work, and only up to the team&rsquo;s capacity to verify.
+    </p>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.5rem 0 0.75rem;">What shipped: four always-on patterns in five weeks</h4>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Agent as coworker (OpenAI Dots)</h3>
+        <p>Persistent agents, each with its own cloud computer and browser, reachable in ChatGPT, Slack and Teams. By default they do read-only background research, and sensitive actions need explicit approval or a custom rule. At launch OpenAI published no customer results or reliability measures.</p>
+        <span class="metric"><a href="https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/" target="_blank" style="text-decoration:underline">TechCrunch, 29 Sep 2026</a></span><span class="ev ev--vendor" title="Vendor launch; no independent reliability data">Vendor claim</span>
+      </div>
+      <div class="card">
+        <h3>Agent with an identity (Google, Microsoft)</h3>
+        <p>Google&rsquo;s Gemini agent spawns temporary sub-agents for long, multi-step jobs. Its &ldquo;coworker&rdquo; version gets a mailbox, a calendar and a directory seat. Copilot Studio agent accounts get their own Entra identity, plus triggers that start work from an email or a schedule without a prompt. Their <em>business-process memory</em> is shared across everyone the agent works with, and in preview users cannot opt out of it.</p>
+        <span class="metric"><a href="https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/" target="_blank" style="text-decoration:underline">Google, 8 Oct</a> &middot; <a href="https://www.microsoft.com/en-us/copilot/blog/copilot-studio/delegate-shared-business-processes-to-agents-that-are-more-persistent-and-proactive-with-microsoft-copilot-studio/" target="_blank" style="text-decoration:underline">Microsoft, 15 Oct 2026</a></span><span class="ev ev--vendor" title="Vendor announcements; preview features">Vendor claim</span>
+      </div>
+      <div class="card">
+        <h3>Agent that interrupts sparingly (Claude Duet)</h3>
+        <p>Sends a morning summary across connected apps, then checks them every few hours and messages the user only when something needs attention. It works in its own virtual machine. Before any message, payment or deletion it shows the action, destination and content. A classifier that runs <em>outside</em> the working model decides whether each action matches the user&rsquo;s intent.</p>
+        <span class="metric"><a href="https://claude.com/resources/articles/claude-duet" target="_blank" style="text-decoration:underline">Anthropic, 21 Oct</a> &middot; <a href="https://claude.com/resources/articles/claude-duet-safety-privacy-and-security" target="_blank" style="text-decoration:underline">safety design, 23 Oct 2026</a></span><span class="ev ev--vendor" title="Vendor research preview">Vendor claim</span>
+      </div>
+      <div class="card">
+        <h3>Consumer demand is real (Meta Muse)</h3>
+        <p>On its Q3 earnings call Meta said Muse, its transacting agent, has passed 10&nbsp;million users. A quarter use it daily, and shopping is the top activity. This is the first scale number for an agent that acts rather than answers.</p>
+        <span class="metric">10M+ users &mdash; <a href="https://techcrunch.com/2026/10/21/meta-says-muse-has-over-10m-users-with-shopping-a-top-activity/" target="_blank" style="text-decoration:underline">TechCrunch, 21 Oct 2026</a></span><span class="ev ev--vendor" title="Company-reported on earnings call">Vendor claim</span>
+      </div>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.75rem 0 0.75rem;">Does a swarm multiply output? What the evidence says</h4>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>More agents help only on parallel work</h3>
+        <p>In a controlled study of agent architectures, centralised multi-agent coordination improved a parallelisable financial-analysis task by about 81%. Every multi-agent variant <em>degraded</em> sequential planning, by 39&ndash;70%. Independent agents amplified errors 17.2&times;, against 4.4&times; for agents with a central coordinator. Task shape, not agent count, predicts the gain.</p>
+        <span class="metric">+81% parallel / &minus;39&ndash;70% sequential &mdash; <a href="https://arxiv.org/abs/2512.08296" target="_blank" style="text-decoration:underline">Google Research &amp; MIT, Dec 2025</a></span><span class="ev ev--experiment" title="Controlled benchmark study across agent architectures">Experiment</span>
+      </div>
+      <div class="card">
+        <h3>More code is not more finished work</h3>
+        <p>Engineering-analytics data from 718 firms shows that after coding-agent adoption, code per worker rose about 30% and pull requests about 23%, but completed issues and epics did not rise significantly. PR time-to-merge grew 49% and change requests nearly doubled. The bottleneck moved to review (5.6).</p>
+        <span class="metric">+30% code, flat delivery &mdash; <a href="https://www.itbrew.com/stories/ai-coding-tools-help-write-more-lines-of-code-but-not-ship-more-software-study" target="_blank" style="text-decoration:underline">Chen &amp; Stratton (Harvard), via IT Brew, Oct 2026</a></span><span class="ev ev--field" title="Jellyfish telemetry, 725,938 workers, 718 firms; job-market paper, not peer reviewed">Field data</span>
+      </div>
+      <div class="card">
+        <h3>Vendors are folding swarms back in</h3>
+        <p>Anthropic&rsquo;s guidance warns that enterprise multi-agent harnesses tend to mirror the org chart and lose context at every handoff. One customer&rsquo;s single agent loop ran about twice as fast as its multi-agent harness. Its rules: use subagents for measurable context bloat or truly parallel work, and call kept subagents as tools rather than handing them the conversation (compare the orchestrator&rsquo;s tax in 11.5).</p>
+        <span class="metric">~2&times; faster single loop &mdash; <a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop" target="_blank" style="text-decoration:underline">Anthropic, 22 Oct 2026</a></span><span class="ev ev--vendor" title="Vendor guidance, single customer example">Vendor claim</span>
+      </div>
+      <div class="card">
+        <h3>At real scale, the plumbing breaks first</h3>
+        <p>Anthropic reports that merges to its monorepo went from about 2,500 a day in May 2026 to over 30,000 a day by September, and almost all its source-control clients are now agents and jobs rather than people. To absorb that, it replaced git with an in-house, always-online version-control system and dropped its merge-lock queue in favour of post-merge testing. A real multiplier needs new infrastructure, not just more agents.</p>
+        <span class="metric">2.5k &rarr; 30k merges/day &mdash; <a href="https://www.anthropic.com/engineering/redesigning-source-control" target="_blank" style="text-decoration:underline">Anthropic Engineering, Oct 2026</a></span><span class="ev ev--vendor" title="Self-reported internal metrics">Vendor claim</span>
+      </div>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.75rem 0 0.75rem;">Proactivity is a timing problem, not a capability problem</h4>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;" class="fade-in">
+      <div class="card">
+        <h3>Interrupt at boundaries</h3>
+        <p>In a five-day field study of a proactive IDE assistant, interventions at workflow boundaries (for example, after a commit) drew 52% engagement. Mid-task interventions were dismissed 62% of the time. Well-timed suggestions also took less than half as long to interpret (45&nbsp;s vs 101&nbsp;s).</p>
+        <span class="metric">52% vs 62% dismissed &mdash; <a href="https://arxiv.org/abs/2601.10253" target="_blank" style="text-decoration:underline">Kuo et al., IUI 2026</a></span><span class="ev ev--field" title="Five-day field deployment, 15 developers, 229 interventions">Field data</span>
+      </div>
+      <div class="card">
+        <h3>Trust breaks on misfires, even correct ones</h3>
+        <p>In a 30-participant study, trust dropped sharply after a badly timed or unwanted intervention, <em>even when the outcome was correct</em>. Participants preferred &ldquo;sleep-time&rdquo; help: work done overnight and reviewed in the morning, even if imperfect.</p>
+        <span class="metric"><a href="https://arxiv.org/abs/2609.37267" target="_blank" style="text-decoration:underline">Foundations of Proactive Agents, Sep 2026</a></span><span class="ev ev--experiment" title="Scenario-based user study, n=30, plus simulated benchmark">Experiment</span>
+      </div>
+      <div class="card">
+        <h3>Approval prompts stop working at volume</h3>
+        <p>Claude Code users approve 93% of manual permission prompts, so per-action approval becomes a reflex rather than a check. Anthropic&rsquo;s classifier-based replacement still misses 17% of real overeager actions. A swarm that asks a human about everything gets rubber-stamped. One that asks about nothing ships its mistakes.</p>
+        <span class="metric">93% approved &mdash; <a href="https://www.anthropic.com/engineering/claude-code-auto-mode" target="_blank" style="text-decoration:underline">Anthropic Engineering, Mar 2026</a></span><span class="ev ev--vendor" title="Vendor telemetry and internal eval sets">Vendor claim</span>
+      </div>
+    </div>
+
+    <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.75rem 0 0.75rem;">Where a proactive swarm multiplies a product team, and where it doesn&rsquo;t</h4>
+    <div class="diagram-wrapper fade-in">
+      <table class="compare-table">
+        <thead>
+          <tr><th>PDLC activity</th><th>Swarm fit</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Signal watching (feedback, telemetry, competitors, incidents)</td><td class="augmented">High</td><td>Many independent, read-only sources; always-on watchers are cheap, and only their summaries need human attention.</td></tr>
+          <tr><td>Discovery research and prototype variants</td><td class="augmented">High</td><td>Parallel by nature; the outputs are disposable and are compared side by side in a Layer&nbsp;3 surface.</td></tr>
+          <tr><td>Sharded migrations, test generation, dependency upkeep</td><td class="augmented">High</td><td>Independent units with mechanical acceptance criteria; outer-loop gates (5.6) make review by exception safe.</td></tr>
+          <tr><td>Independent feature tickets</td><td>Medium</td><td>Parallel to build, but each one lands in the same review queue; the 49% PR-time rise is the ceiling.</td></tr>
+          <tr><td>Code review</td><td>Medium</td><td>Agents take the first pass and continuous security scanning; humans review high-blast-radius changes (10.8).</td></tr>
+          <tr><td>Specs, prioritisation, architecture</td><td class="legacy">Low</td><td>Sequential judgment, where multi-agent setups lost 39&ndash;70%. Keep a single loop plus the product engineer.</td></tr>
+          <tr><td>Release and go/no-go decisions</td><td class="legacy">Low</td><td>Accountability cannot be delegated; agents prepare the evidence pack, people decide.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout fade-in" style="margin-top: 1.25rem;">
+      <div class="callout-title">Design pattern: the proactive product-team swarm</div>
+      <p><strong>1. Watchers, not doers, by default.</strong> Run one cheap, read-only, always-on agent per signal source. Watchers write to the coordination blackboard (11.5), not to people. <strong>2. Batch to boundaries.</strong> Deliver one morning brief and end-of-task digests instead of a stream of pings. The evidence favours sleep-time work and boundary timing. <strong>3. Fan out only where work is parallel.</strong> Research, variants, shards and tests go wide. Specs and trade-offs stay in one loop with the product engineer. <strong>4. Give every agent an identity, a budget and a memory boundary.</strong> Make agent actions auditable as the agent&rsquo;s own, and keep shared memory from leaking across permission lines (the Copilot Studio preview shows the risk). <strong>5. Gate on intent, outside the model.</strong> Use risk-tiered approvals where irreversible actions always ask and everything else is checked by an independent classifier and outer-loop tests. <strong>6. Size the swarm to review capacity, not compute.</strong></p>
+    </div>
+
+    <div class="bottom-line fade-in" style="margin-top: 1.5rem;">
+      <h3>The Honest Multiplier</h3>
+      <p>A product team&rsquo;s effective throughput with a swarm is roughly <em>the smaller of</em> what its agents can produce in parallel and what its humans and gates can verify. Today the second number is the binding one. Large gains are realistic for watching, researching, prototyping and mechanical change, where work is parallel and checks are cheap. For shipped, accountable product, the multiplier is set by verification capacity (5.6), attention (10.8) and how much of the review a team can safely hand to independent gates. The <a href="workspace.html" style="text-decoration:underline;">workspace prototype</a>&rsquo;s Smart Alerts are a first sketch of the watcher-plus-boundary pattern.</p>
+      <span class="ev ev--model" title="Illustrative throughput model, not measured">Model / estimate</span>
+    </div>
   </div>
 </section>
 
@@ -3584,6 +3686,23 @@
       <li><span class="source-org">DORA / Google Cloud</span> &mdash; <a href="https://services.google.com/fh/files/misc/2025_state_of_ai_assisted_software_development.pdf" target="_blank">State of AI-Assisted Software Development 2025</a> &mdash; AI adoption associated with higher throughput and higher instability</li>
       <li><span class="source-org">AWS</span> &mdash; <a href="https://kiro.dev/" target="_blank">Kiro</a> &mdash; Spec-driven agentic IDE: requirements, design and task list before code</li>
     </ul>
+
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2rem;">Always-On Agents &amp; Proactive Swarms (Sep&ndash;Oct 2026)</h3>
+    <ul class="sources-list fade-in">
+      <li><span class="source-org">OpenAI</span> &mdash; <a href="https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/" target="_blank">Dots: always-on agents with their own cloud computer (TechCrunch coverage)</a> (Sep 2026)</li>
+      <li><span class="source-org">Google</span> &mdash; <a href="https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/" target="_blank">Gemini agent for businesses: sub-agents and agent identities (TechCrunch coverage)</a> (Oct 2026)</li>
+      <li><span class="source-org">Microsoft</span> &mdash; <a href="https://www.microsoft.com/en-us/copilot/blog/copilot-studio/delegate-shared-business-processes-to-agents-that-are-more-persistent-and-proactive-with-microsoft-copilot-studio/" target="_blank">Delegate Shared Business Processes to Agents That Are More Persistent and Proactive</a> (Oct 2026)</li>
+      <li><span class="source-org">Anthropic</span> &mdash; <a href="https://claude.com/resources/articles/claude-duet" target="_blank">Introducing Claude Duet</a> (Oct 2026)</li>
+      <li><span class="source-org">Anthropic</span> &mdash; <a href="https://claude.com/resources/articles/claude-duet-safety-privacy-and-security" target="_blank">Claude Duet Safety, Privacy, and Security</a> (Oct 2026)</li>
+      <li><span class="source-org">Anthropic</span> &mdash; <a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop" target="_blank">Building Agents: When to Fold Subagents into Your Main Agent Loop</a> (Oct 2026)</li>
+      <li><span class="source-org">Anthropic</span> &mdash; <a href="https://www.anthropic.com/engineering/redesigning-source-control" target="_blank">Redesigning Source Control at Anthropic</a> (Oct 2026)</li>
+      <li><span class="source-org">Anthropic</span> &mdash; <a href="https://www.anthropic.com/engineering/claude-code-auto-mode" target="_blank">How We Built Claude Code Auto Mode</a> (Mar 2026) &mdash; 93% of permission prompts approved</li>
+      <li><span class="source-org">Meta</span> &mdash; <a href="https://techcrunch.com/2026/10/21/meta-says-muse-has-over-10m-users-with-shopping-a-top-activity/" target="_blank">Meta Says Muse Has Over 10M Users, with Shopping a Top Activity (TechCrunch)</a> (Oct 2026)</li>
+      <li><span class="source-org">Google Research &amp; MIT</span> &mdash; <a href="https://arxiv.org/abs/2512.08296" target="_blank">Towards a Science of Scaling Agent Systems</a> (Dec 2025)</li>
+      <li><span class="source-org">Harvard</span> &mdash; <a href="https://www.itbrew.com/stories/ai-coding-tools-help-write-more-lines-of-code-but-not-ship-more-software-study" target="_blank">Chen &amp; Stratton, Artificial Intelligence in the Firm: Bottlenecks in Software Production (IT Brew coverage)</a> (Aug 2026 working paper)</li>
+      <li><span class="source-org">TU Delft / JetBrains</span> &mdash; <a href="https://arxiv.org/abs/2601.10253" target="_blank">Developer Interaction Patterns with Proactive AI: A Five-Day Field Study</a> (IUI 2026)</li>
+      <li><span class="source-org">KAIST / U. Minnesota</span> &mdash; <a href="https://arxiv.org/abs/2609.37267" target="_blank">Foundations of Proactive Agents: Principles, Technical Layers, and Proactivity-Gym</a> (Sep 2026)</li>
+    </ul>
   </div>
 </section>
 
@@ -3599,6 +3718,7 @@
 
       <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">26 October 2026</h4>
       <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Section 9.2</strong> &mdash; <em>Always-On Agents: From Prompted Copilots to Proactive Swarms</em> (new) &mdash; Four always-on patterns shipped Sep&ndash;Oct 2026 (Dots, Gemini agent, Copilot Studio agent accounts, Claude Duet, Muse at 10M users); evidence on when swarms multiply output (Google/MIT scaling study, Harvard 718-firm study, Anthropic&rsquo;s subagent-folding guidance and 30k merges/day); proactivity timing research; a swarm-fit table by PDLC activity; and a six-rule design pattern. Thirteen sources added to Section 12.</li>
         <li><strong>Signals</strong> &mdash; Added Week 44 (18&ndash;26 October 2026): 8 items across ambient (1) &middot; agentic (3) &middot; ephemeral (1) &middot; cross-cutting (3). Top story: Anthropic opened Claude Duet, a proactive agent that monitors connected apps and asks for approval before sensitive actions, in the same week Meta reported 10&nbsp;million Muse users.</li>
       </ul>
 

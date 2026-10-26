@@ -25,7 +25,7 @@ Every section uses a consistent `X.Y` numbering scheme:
 - **Section 6**: 6.1 through 6.3
 - **Section 7**: 7.1 through 7.6
 - **Section 8**: 8.1 through 8.3
-- **Section 9**: 9.1 (three-layer future).
+- **Section 9**: 9.1 (three-layer future), 9.2 (always-on agents and proactive swarms).
 - **Section 10**: 10.1 through 10.11
 - **Section 11**: 11.1 through 11.5
 - **Section 12**: Sources (flat list).
