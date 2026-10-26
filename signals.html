@@ -247,7 +247,7 @@
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">17 Oct 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">26 Oct 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -255,13 +255,119 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">91</span></button>
-    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">21</span></button>
-    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">28</span></button>
-    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">23</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">19</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">99</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">22</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">31</span></button>
+    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">24</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">22</span></button>
     <a href="graph.html" class="sig-chip" style="text-decoration:none; margin-left:auto;">Graph view &rarr;</a>
   </div>
+
+  <!-- ── Week of 18–26 October 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Week 44 &middot; 2026</div>
+        <div class="sig-week-range">18&ndash;26 October 2026</div>
+      </div>
+      <div class="sig-source">8 signals</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the week:</strong> Proactive personal agents moved from announcement to scale. Meta said Muse has passed 10&nbsp;million users with shopping as the top use, and Anthropic opened Claude Duet, an agent that <em>watches connected accounts and reaches out only when something needs you</em>. Duet&rsquo;s safety write-up puts the approval check <em>outside the working model</em> and names approval fatigue as an open calibration problem. Agent Skills joined MCP at the Agentic AI Foundation, and Anthropic argued that many enterprise multi-agent harnesses should be <em>folded back into a single loop</em>.
+    </div>
+
+    <!-- Layer 1: Ambient intent capture -->
+    <div class="sig-layer" data-layer="ambient">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">01</span> Ambient intent capture</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 21</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/resources/articles/claude-duet" target="_blank" rel="noopener">Anthropic &mdash; Claude Duet, a proactive agent that monitors connected apps and messages you only when something needs attention</a></div>
+          <div class="sig-item-summary">Duet makes intent capture <em>continuous rather than prompted</em>: it sends a morning summary of the most important items across connected apps, then checks those accounts every few hours and messages the user only when something needs attention. Users set what they want to hear about and how often. It runs on its own virtual machine and browser, so delegated tasks such as scheduling, dashboards or prototypes continue with the user&rsquo;s device off. It is a waitlisted research preview for US Pro and Max subscribers on web, iOS and Android, built around Claude Opus&nbsp;5.5, and Anthropic says it &ldquo;still might misread a thread or miscalibrate what&rsquo;s urgent.&rdquo;</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Long-running</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 21</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://techcrunch.com/2026/10/21/meta-says-muse-has-over-10m-users-with-shopping-a-top-activity/" target="_blank" rel="noopener">Meta &mdash; Muse passes 10 million users, with shopping as the top activity</a></div>
+          <div class="sig-item-summary">This is the first scale number for a consumer agent that <em>completes transactions</em> rather than answering questions. On its Q3 earnings call Meta said Muse has passed 10&nbsp;million users, a quarter of them daily, with shopping the most common use. Zuckerberg said Meta plans to charge businesses a fee when Muse helps complete a sale. He later said volume was high enough that Meta asked Stripe to raise its credit limits.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Meta</span><span class="sig-tag">Browser-native</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 23</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/resources/articles/unified-claude-enterprise" target="_blank" rel="noopener">Anthropic &mdash; Claude chat and Cowork merge into one surface for Enterprise, with cloud tasks that outlive the laptop</a></div>
+          <div class="sig-item-summary">Enterprise users <em>no longer pick between a chat tool and an agent tool</em> before starting work. A conversation starts as chat and moves into an isolated cloud VM when a task needs code or files. That work keeps running after the laptop closes and can be resumed on any device. Network access is off by default for Enterprise, connector credentials stay outside the sandbox, and admins get per-role model entitlements, spend limits and pooled group budgets. The unified experience reached Pro and Max in September.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Long-running</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 21</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/resources/articles/claude-security-now-scans-continuously-and-tracks-fixes" target="_blank" rel="noopener">Anthropic &mdash; Claude Security now scans repositories continuously and tracks findings until fixed</a></div>
+          <div class="sig-item-summary">Security review turns from a periodic gate into a <em>standing agent attached to the repository</em>. After a baseline scan, Claude rescans changes based on risk and complexity. It marks a finding fixed wherever the fix lands and reopens it if the issue returns. Each project carries an editable, auto-generated threat model that drives severity ratings and attack-path explanations. A public API, webhooks and an MCP connector let findings flow into other agents. It is in public beta for Claude Enterprise.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Anthropic</span><span class="sig-tag">Long-running</span><span class="sig-tag">Toolchain</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 3: Ephemeral verification UX -->
+    <div class="sig-layer" data-layer="ephemeral">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">03</span> Ephemeral verification UX</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 23</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/resources/articles/claude-duet-safety-privacy-and-security" target="_blank" rel="noopener">Anthropic &mdash; Claude Duet safety, privacy and security: approval cards, an out-of-model intent check, and approval fatigue as an open problem</a></div>
+          <div class="sig-item-summary">This is a detailed vendor spec for <em>what a consumer agent&rsquo;s approval moment must show</em>. Before a sensitive message, payment or deletion, Duet displays the action, the destination and the content, including every recipient. Payments, deletions and account creation can never fall under &ldquo;don&rsquo;t ask me again&rdquo; rules, and some actions are blocked even with approval. A classifier derived from Claude Code&rsquo;s auto mode checks each action against user intent and <em>runs outside the model doing the work</em>, so injected page text cannot argue it past the gate. Anthropic says it is still calibrating how often to ask, because approval fatigue leads people to approve without reading.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cross-cutting -->
+    <div class="sig-layer cross" data-layer="cross">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 22</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation" target="_blank" rel="noopener">Anthropic &mdash; Agent Skills donated to the Agentic AI Foundation</a></div>
+          <div class="sig-item-summary">The <em>SKILL.md packaging format now sits under neutral governance next to MCP</em>, which makes skills a safer bet for enterprise harness investment. Anthropic says more than 70 agent platforms have integrated Agent Skills, including ChatGPT, Cursor, GitHub Copilot and VS Code, with about 1&nbsp;million skills published and nearly 280&nbsp;million installs. It is transferring the name, the GitHub organisation and agentskills.io. Maintainers from Anthropic, Google, OpenAI and other companies serve as individuals, and the roadmap adds versioned releases, a formal proposal process and security guidance for skill installers. The announcement came at AGNTCon + MCPCon North America, where OpenAI, Hugging Face and Alibaba also contributed projects.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Open source</span><span class="sig-tag">Governance</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 22</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop" target="_blank" rel="noopener">Anthropic &mdash; Building agents: when to fold subagents into your main agent loop</a></div>
+          <div class="sig-item-summary">A frontier vendor is pushing back on the multi-agent default: <em>enterprise harnesses often grow into copies of the org chart</em> and lose context at every handoff. The guidance favours one loop with progressive disclosure, where skills and tools load only when needed. It cites a customer whose single loop ran about twice as fast as its multi-agent harness, and notes that tool selection degrades beyond 30&ndash;50 tool definitions. Subagents remain the right call for measurable context bloat or parallel work with throwaway context. Kept subagents should be called as tools rather than handed the conversation.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Orchestration</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Oct 22</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://claude.com/resources/articles/claude-models-on-google-cloud-anthropic-managed" target="_blank" rel="noopener">Anthropic &mdash; The full Claude Platform, Anthropic-managed, generally available on Google Cloud</a></div>
+          <div class="sig-item-summary">This removes a <em>procurement blocker</em>: Google Cloud customers get same-day access to the full agent platform on their existing Google Cloud contract. That includes Managed Agents, code execution, computer use, agent skills and the MCP connector. Usage is billed on the Google Cloud invoice and draws down existing commitments under Google Cloud IAM. The offering makes Anthropic the data processor. Customers needing strict regional residency or Google as processor are pointed to the separate Google-managed offering.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Anthropic</span><span class="sig-tag">Google</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ── Catch-up digest: 10 June – 17 October 2026 ── -->
   <section class="sig-week fade-in">
