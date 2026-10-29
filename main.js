@@ -53,11 +53,11 @@
     requestAnimationFrame(() => {
       backdrop.classList.add('is-visible');
       panel.classList.add('is-open');
+      closeBtn?.focus();
     });
-    closeBtn?.focus();
   }
 
-  function closePanel() {
+  function closePanel(restoreFocus = true) {
     toggle.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('section-nav-open');
     backdrop.classList.remove('is-visible');
@@ -80,6 +80,7 @@
       { once: true }
     );
     closeTimer = window.setTimeout(done, 320);
+    if (restoreFocus) toggle.focus();
   }
 
   function togglePanel() {
@@ -95,6 +96,21 @@
   backdrop.addEventListener('click', () => closePanel());
 
   document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab' && panel.classList.contains('is-open')) {
+      const focusable = [...panel.querySelectorAll('a[href], button')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!panel.contains(document.activeElement)) {
+        e.preventDefault();
+        first?.focus();
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    }
     if (e.key === 'Escape' && panel.classList.contains('is-open')) {
       e.preventDefault();
       closePanel();
@@ -103,7 +119,12 @@
   });
 
   document.querySelectorAll('#sectionNavList a[href^="#"]').forEach((link) => {
-    link.addEventListener('click', () => closePanel());
+    link.addEventListener('click', () => {
+      closePanel(false);
+      const target = document.getElementById(link.dataset.sectionId);
+      target?.setAttribute('tabindex', '-1');
+      target?.focus({ preventScroll: true });
+    });
   });
 })();
 
@@ -217,15 +238,174 @@ document.querySelectorAll('.tabs').forEach(tabGroup => {
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  document.getElementById('progressBar').style.width = (scrollTop / docHeight) * 100 + '%';
-  document.getElementById('scrollTop').classList.toggle('visible', scrollTop > 400);
+  const progress = document.getElementById('progressBar');
+  if (progress) progress.style.width = (docHeight > 0 ? scrollTop / docHeight : 0) * 100 + '%';
+  document.getElementById('scrollTop')?.classList.toggle('visible', scrollTop > 400);
 });
 
 // Fade-in animations
+document.documentElement.classList.add('atlas-js');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Research atlas: progressively enhance the complete, always-readable document.
+(function () {
+  const map = document.getElementById('sectionMap');
+  const search = document.getElementById('atlasSearch');
+  if (!map || !search) return;
+
+  const topics = {
+    summary: 'delivery', legacy: 'delivery', capabilities: 'systems',
+    evolution: 'delivery', teams: 'people', discipline: 'systems',
+    'beyond-code': 'delivery', roadmap: 'delivery', risks: 'systems',
+    future: 'systems', 'product-engineer': 'people',
+    'agent-architecture': 'systems', sources: 'reference', changelog: 'reference'
+  };
+  const filters = [...document.querySelectorAll('.atlas-filters button')];
+  const count = document.getElementById('atlasResultCount');
+  const empty = document.getElementById('atlasEmpty');
+  const normalize = text => text.replace(/\s+/g, ' ').trim().toLowerCase();
+  const cleanHeading = heading => {
+    const clone = heading.cloneNode(true);
+    clone.querySelectorAll('.anchor-link, .nav-new, .ev').forEach(el => el.remove());
+    return clone.textContent.replace(/\s+/g, ' ').trim();
+  };
+
+  const entries = [...map.querySelectorAll('.section-tile')].map(tile => {
+    const section = document.getElementById(tile.dataset.sectionId);
+    const headings = [...(section?.querySelectorAll('h3[id]') || [])];
+    const blocks = [...(section?.querySelectorAll('h3[id], p, td, li') || [])].map(el => {
+      const text = el.matches('h3') ? cleanHeading(el) : el.textContent.replace(/\s+/g, ' ').trim();
+      return { el, text, normalized: normalize(text) };
+    });
+    const match = document.createElement('span');
+    match.className = 'section-tile-match';
+    match.hidden = true;
+    tile.append(match);
+
+    // An outline exposes the shape of a long lens before the reader dives in.
+    const header = section?.querySelector('.section-header');
+    if (header && headings.length) {
+      const outline = document.createElement('div');
+      outline.className = 'section-outline';
+      outline.setAttribute('role', 'navigation');
+      outline.setAttribute('aria-label', `Topics in ${tile.querySelector('.section-tile-name').textContent}`);
+      const label = document.createElement('span');
+      label.textContent = `In this lens / ${headings.length} topics`;
+      const list = document.createElement('ol');
+      headings.forEach(heading => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${heading.id}`;
+        link.textContent = cleanHeading(heading);
+        item.append(link);
+        list.append(item);
+      });
+      outline.append(label, list);
+      header.append(outline);
+    }
+    return {
+      tile, section, headings, blocks, match,
+      href: tile.getAttribute('href'),
+      topic: topics[tile.dataset.sectionId],
+      title: normalize(tile.querySelector('.section-tile-name').textContent),
+      text: normalize(section?.textContent || '')
+    };
+  });
+  let activeTopic = 'all';
+
+  function filterIndex() {
+    const query = normalize(search.value);
+    let visible = 0;
+    entries.forEach(entry => {
+      const matches = (!query || entry.text.includes(query) || entry.title.includes(query)) &&
+        (activeTopic === 'all' || entry.topic === activeTopic);
+      entry.tile.hidden = !matches;
+      entry.tile.setAttribute('href', entry.href);
+      entry.match.hidden = true;
+      if (!matches) return;
+      visible++;
+      if (!query || entry.title.includes(query)) return;
+
+      const block = entry.blocks.find(block => block.el.matches('h3') && block.normalized.includes(query)) ||
+        entry.blocks.find(block => block.normalized.includes(query));
+      if (!block) return;
+      const index = block.normalized.indexOf(query);
+      const start = Math.max(0, index - 35);
+      const snippet = block.text.slice(start, start + 150);
+      entry.match.textContent = `${start ? '\u2026' : ''}${snippet}${start + 150 < block.text.length ? '\u2026' : ''}`;
+      entry.match.hidden = false;
+      // Link directly to the matching subsection when its heading is available.
+      const heading = entry.headings.filter(heading => heading === block.el ||
+        (heading.compareDocumentPosition(block.el) & Node.DOCUMENT_POSITION_FOLLOWING)).pop();
+      if (heading) entry.tile.setAttribute('href', `#${heading.id}`);
+    });
+    count.textContent = query || activeTopic !== 'all' ? `${visible} of ${entries.length} lenses` : `${entries.length} lenses`;
+    empty.hidden = visible !== 0;
+    map.classList.toggle('is-filtered', Boolean(query) || activeTopic !== 'all');
+  }
+  search.addEventListener('input', filterIndex);
+  filters.forEach(button => button.addEventListener('click', () => {
+    activeTopic = button.dataset.topic;
+    filters.forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+    filterIndex();
+  }));
+  document.getElementById('atlasReset')?.addEventListener('click', () => {
+    search.value = '';
+    activeTopic = 'all';
+    filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.topic === 'all')));
+    filterIndex();
+    search.focus();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey ||
+        event.target.closest('input, textarea, select, [contenteditable="true"]') ||
+        document.body.classList.contains('section-nav-open') ||
+        document.getElementById('infographicFullscreen')?.classList.contains('is-open')) return;
+    event.preventDefault();
+    search.scrollIntoView({ block: 'center' });
+    search.focus({ preventScroll: true });
+  });
+  document.querySelector('.atlas-search').hidden = false;
+  document.querySelector('.atlas-index-tools').hidden = false;
+  filterIndex();
+
+  const guide = document.getElementById('readingGuide');
+  const next = document.getElementById('readingNext');
+  const progress = document.getElementById('readingProgress');
+  if (!guide || !next || !progress) return;
+  let scheduled = false;
+  function updateGuide() {
+    scheduled = false;
+    let currentIndex = -1;
+    entries.forEach((entry, index) => {
+      if (entry.section && entry.section.getBoundingClientRect().top <= 145) currentIndex = index;
+    });
+    guide.hidden = currentIndex < 0;
+    if (currentIndex < 0) return;
+    const current = entries[currentIndex];
+    document.getElementById('readingNumber').textContent = `Lens ${current.tile.querySelector('.section-tile-num').textContent} / ${entries.length}`;
+    document.getElementById('readingTitle').textContent = current.tile.querySelector('.section-tile-name').textContent;
+    const following = entries[currentIndex + 1];
+    next.href = following ? following.href : '#sectionMap';
+    next.setAttribute('aria-label', following ? `Next: ${following.tile.querySelector('.section-tile-name').textContent}` : 'Return to research index');
+    next.firstChild.textContent = following ? 'Next ' : 'Index ';
+    const bounds = current.section.getBoundingClientRect();
+    const fraction = Math.min(1, Math.max(0, (145 - bounds.top) / bounds.height));
+    progress.style.width = `${fraction * 100}%`;
+  }
+  function scheduleGuide() {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(updateGuide);
+    }
+  }
+  window.addEventListener('scroll', scheduleGuide, { passive: true });
+  window.addEventListener('resize', scheduleGuide);
+  updateGuide();
+})();
 
 // Dynamic freshness chips for section nav + hero map
 (function () {

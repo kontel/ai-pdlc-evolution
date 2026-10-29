@@ -4,24 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDLC Futures Sketchpad — Incrementally Exploring How AI Transforms Product Delivery</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-17d">
+  <meta name="description" content="A research atlas for AI and product delivery. Explore the evidence, changing roles, agent systems, and possible futures of the PDLC.">
+  <link rel="stylesheet" href="styles.css?v=2026-10-29a">
 </head>
-<body>
+<body class="sketchpad">
 
+<a class="skip-link" href="#sectionMap">Skip to the research index</a>
 
 <div class="progress-bar" id="progressBar"></div>
 
 <nav aria-label="Primary">
   <div class="nav-inner">
-    <a href="#top" class="nav-logo">PDLC Futures Sketchpad</a>
+    <a href="#top" class="nav-logo" aria-label="PDLC Futures Sketchpad home"><span class="brand-mark" aria-hidden="true">p/</span> <span class="brand-name">PDLC</span> <span class="brand-suffix">Futures Sketchpad</span></a>
     <div class="nav-actions">
+      <a href="#top" class="nav-workspace-link nav-current" aria-current="page">Sketchpad</a>
       <button type="button" class="nav-sections-btn" id="sectionNavToggle" aria-expanded="false" aria-controls="sectionNavPanel" aria-haspopup="true">
         <span class="nav-sections-btn-label">Sections</span>
         <span class="nav-sections-btn-chevron" aria-hidden="true"></span>
       </button>
-      <a href="workspace.html" class="nav-workspace-link">Workspace <span class="nav-freshness nav-freshness--recent" title="Updated 26 April 2026">today</span></a>
-      <a href="signals.html" class="nav-workspace-link">Signals <span class="nav-freshness nav-freshness--recent" title="New page added 26 April 2026">new</span></a>
-      <a href="usecases.html" class="nav-workspace-link">Use Cases <span class="nav-freshness nav-freshness--recent" title="Added April 2026">new</span></a>
+      <a href="signals.html" class="nav-workspace-link">Signals</a>
+      <a href="usecases.html" class="nav-workspace-link">Use cases</a>
+      <a href="workspace.html" class="nav-workspace-link">Workspace <span aria-hidden="true">&#8599;</span></a>
     </div>
   </div>
   <div class="section-nav-backdrop" id="sectionNavBackdrop" hidden aria-hidden="true"></div>
@@ -52,31 +55,65 @@
       <li><a href="#product-engineer" data-section-id="product-engineer" data-updated="2026-10-17" data-update-note="10.8 attention as the review budget"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#agent-architecture" data-section-id="agent-architecture" data-updated="2026-10-17" data-update-note="11.5 coordination patterns from the field"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#sources" data-section-id="sources" data-updated="2026-10-26" data-update-note="Always-on agents and swarm sources"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#changelog" data-section-id="changelog" data-updated="2026-10-26" data-update-note="October 2026 refresh logged"><span class="section-nav-text">Changelog</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li data-updated="2026-10-29" data-update-note="Research atlas design and scanning tools"><a href="#changelog" data-section-id="changelog" data-updated="2026-10-29" data-update-note="Research atlas design and scanning tools"><span class="section-nav-text">Changelog</span><span class="nav-freshness"></span></a></li>
     </ul>
   </div>
 </nav>
 
+<main>
 <!-- Hero: title, subtitles, section map (first screen) -->
 <section class="hero" id="top">
   <div class="container">
-    <span class="hero-badge">Ideas Sketchpad &middot; Continuously Evolving &middot; October 2026</span>
-    <h1>PDLC Futures Sketchpad</h1>
-    <p class="subtitle">An evolving collection of perspectives on how AI transforms enterprise product delivery &mdash; from research synthesis to speculative ideas.</p>
-    <p class="hero-subline">Each section is a lens, not a blueprint.</p>
+    <div class="atlas-masthead"><span>Independent thinking / evolving research</span><span class="hero-badge">Updated October 2026</span></div>
+    <div class="atlas-opening">
+      <div class="atlas-opening-copy">
+        <p class="atlas-eyebrow">The product delivery field guide</p>
+        <h1>Product delivery.<br><em>Rewritten by AI.</em></h1>
+        <p class="subtitle">A working atlas of how AI changes the way we build products. Follow the evidence, question the operating model, and explore what comes next.</p>
+        <div class="atlas-start-links">
+          <a href="#summary" class="atlas-primary-link">Start with the thesis <span aria-hidden="true">&#8599;</span></a>
+          <a href="#hero-infographic-heading" class="atlas-text-link">Explore the interactive model <span aria-hidden="true">&#8595;</span></a>
+        </div>
+        <p class="hero-subline">Research synthesis &middot; Working ideas &middot; Speculative futures</p>
+      </div>
+      <aside class="atlas-fieldnote" aria-label="Suggested reading path">
+        <div class="fieldnote-top"><span class="fieldnote-dot" aria-hidden="true"></span> The open question <span class="fieldnote-index">FIELD NOTE / 01</span></div>
+        <p class="fieldnote-question">What changes when<br><em>building gets easier?</em></p>
+        <div class="fieldnote-path">
+          <a href="#verification-bottleneck"><span>01</span><div><strong>Follow the bottleneck</strong><small>Engineering &amp; verification</small></div><span aria-hidden="true">&#8599;</span></a>
+          <a href="#citizens-agents-experts"><span>02</span><div><strong>Rethink who does the work</strong><small>People &amp; operating models</small></div><span aria-hidden="true">&#8599;</span></a>
+          <a href="#j-curve"><span>03</span><div><strong>Plan for the transition</strong><small>Adoption &amp; the J-curve</small></div><span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <p class="fieldnote-footer">Each section is a lens, not a blueprint.</p>
+      </aside>
+    </div>
+
+    <div class="atlas-formats" aria-label="Explore other formats">
+      <a href="signals.html"><span class="format-glyph" aria-hidden="true">&#8767;</span><div><span class="format-type">Observe</span><strong>Signals</strong><small>Short reads on emerging shifts</small></div><span class="format-arrow" aria-hidden="true">&#8599;</span></a>
+      <a href="usecases.html"><span class="format-glyph" aria-hidden="true">&#8862;</span><div><span class="format-type">Discover</span><strong>Use cases</strong><small>Patterns across the lifecycle</small></div><span class="format-arrow" aria-hidden="true">&#8599;</span></a>
+      <a href="workspace.html"><span class="format-glyph" aria-hidden="true">&#8984;</span><div><span class="format-type">Try</span><strong>The workspace</strong><small>An agentic interface prototype</small></div><span class="format-arrow" aria-hidden="true">&#8599;</span></a>
+      <a href="document.html"><span class="format-glyph" aria-hidden="true">&#8801;</span><div><span class="format-type">Read</span><strong>The full document</strong><small>A continuous prose view</small></div><span class="format-arrow" aria-hidden="true">&#8599;</span></a>
+    </div>
+    <p class="atlas-format-note">Prefer to follow connections? <a href="graph.html">Explore the signal graph <span aria-hidden="true">&#8599;</span></a></p>
 
     <div class="hero-section-map fade-in">
       <div class="section-map-intro">
-        <span class="section-map-kicker">Sketchpad map</span>
-        <h2 class="section-map-title">Fourteen lenses in one page</h2>
-        <p class="section-map-lead">Each block is a section below&mdash;numbers match the section headings. Click to jump; read in order or hop by interest.</p>
-        <div class="section-map-legend" aria-label="Section freshness legend">
-          <span class="section-map-legend-item"><span class="nav-freshness nav-freshness--recent">0-7d</span><span>Strong</span></span>
-          <span class="section-map-legend-item"><span class="nav-freshness nav-freshness--weeks">8-21d</span><span>Medium</span></span>
-          <span class="section-map-legend-item"><span class="nav-freshness nav-freshness--stable">22+d</span><span>Muted</span></span>
-        </div>
+        <div><span class="section-map-kicker">The research index</span>
+          <h2 class="section-map-title">Find your next question.</h2>
+          <p class="section-map-lead">Fourteen lenses. Read in sequence, or follow a thread.</p></div>
+        <div class="atlas-search" hidden><label for="atlasSearch">Search the research</label><div class="atlas-search-field"><span aria-hidden="true">&#9906;</span><input id="atlasSearch" type="search" placeholder="Try &ldquo;verification&rdquo; or &ldquo;teams&rdquo;" autocomplete="off" aria-controls="sectionMap"><kbd>/</kbd></div></div>
       </div>
-      <div class="section-map-grid" id="sectionMap" role="navigation" aria-label="All sections">
+      <div class="atlas-index-tools" hidden>
+        <div class="atlas-filters" role="group" aria-label="Filter research by topic">
+          <button type="button" data-topic="all" aria-pressed="true">All lenses</button>
+          <button type="button" data-topic="delivery" aria-pressed="false">Delivery &amp; adoption</button>
+          <button type="button" data-topic="people" aria-pressed="false">People &amp; roles</button>
+          <button type="button" data-topic="systems" aria-pressed="false">Systems &amp; futures</button>
+          <button type="button" data-topic="reference" aria-pressed="false">Reference</button>
+        </div>
+        <p class="atlas-result-count" id="atlasResultCount" role="status" aria-live="polite" aria-atomic="true">14 lenses</p>
+      </div>
+      <div class="section-map-grid" id="sectionMap" role="navigation" aria-label="Research sections" tabindex="-1">
       <a href="#summary" class="section-tile" data-section-id="summary" data-updated="2026-10-17" data-update-note="Oct 2026 update; evidence legend">
         <span class="nav-freshness nav-freshness--stable section-tile-freshness">Updated 24d ago</span>
         <span class="section-tile-num">ES</span>
@@ -155,13 +192,14 @@
         <span class="section-tile-name">Sources</span>
         <span class="section-tile-flavor">References</span>
       </a>
-      <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-10-26" data-update-note="October 2026 refresh logged">
+      <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-10-29" data-update-note="Research atlas design and scanning tools">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">CL</span>
         <span class="section-tile-name">Changelog</span>
         <span class="section-tile-flavor">What changed</span>
       </a>
     </div>
+      <div class="atlas-empty" id="atlasEmpty" hidden><strong>No matching lenses.</strong><p>Try another phrase or explore all the research.</p><button type="button" id="atlasReset">Clear search &amp; filters</button></div>
     </div>
   </div>
 </section>
@@ -680,7 +718,7 @@
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-top: 2rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1rem; margin-top: 2rem;" class="fade-in">
       <div class="card">
         <h3>Spec-Driven Development</h3>
         <p>Investment shifts from writing code to writing precise specifications. <a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank" style="text-decoration:underline">GitHub released Spec Kit (Sep 2025)</a> for this approach. Product managers iterate specs with AI agents, engineers become architects and orchestrators. If AI output isn't right, you refine the spec and regenerate&mdash;iteration is low-cost.</p>
@@ -857,7 +895,7 @@
       <p>The first controlled cost test of the idea. Jain had agents build the same API ten times per condition, with and without a harness of <em>guides</em> (specs, examples, skills that steer before acting) and <em>sensors</em> (deterministic tests that give feedback after acting). A frontier model passed 10/10 either way, so the harness only added cost (~$0.41 &rarr; ~$2.68 per run). A cheaper model went from <strong>3/10 to 10/10</strong> with the harness, and still cost about a third less than the unharnessed frontier model. His revised hypothesis: the question is not <em>whether</em> you need sensors but <em>when they run</em>. Cheaper models need continuous sensing in the inner loop; frontier models may need only an independent acceptance gate in the outer loop.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; margin-top: 1rem;" class="fade-in">
       <div class="card">
         <h3>Harness as a cost lever, not just a quality lever</h3>
         <p>With model choice now a per-task decision (Stack Overflow 2026: 27% of organisations already route different work to different models), a good harness lets teams run cheaper models on more of the backlog. That turns harness engineering into a <em>unit-economics</em> conversation finance can follow.</p>
@@ -875,7 +913,7 @@
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
       In a <a href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-for-agents.html" target="_blank" style="text-decoration:underline">companion piece (Feb 2026)</a>, B&ouml;ckeler maps how we configure what a coding agent sees. Her practical insights:
     </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>Build context iteratively</h3>
         <p>Don't front-load massive rules files. Models are powerful enough that what you needed to specify six months ago may no longer be necessary. Add guidance gradually and validate that each addition actually improves results.</p>
@@ -895,7 +933,7 @@
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 720px;">
       <a href="https://martinfowler.com/articles/exploring-gen-ai/assessing-quality-when-coding-with-agent.html" target="_blank" style="text-decoration:underline">Erik Doernenburg (Thoughtworks, Jan 2026)</a> documents a case study implementing a GitLab integration using AI agents. His findings are a direct caution against over-trusting AI output:
     </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>Subtle type-system degradation</h3>
         <p>The agent declared all function parameters as non-optional when they should have been optional. When this caused errors, the agent's fix was inserting empty-string defaults everywhere&mdash;bypassing Swift's type safety. The correct fix was a single character change.</p>
@@ -926,7 +964,7 @@
       <div class="quote-source">&mdash; <a href="https://addyosmani.com/blog/comprehension-debt/" target="_blank">Addy Osmani</a>, Mar 2026</div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
       <div class="card">
         <h3>The Speed Asymmetry Problem</h3>
         <p>AI generates code faster than humans can evaluate it, breaking historical review dynamics. An Anthropic study of 52 engineers found the AI-assisted group scored 17% lower on comprehension quizzes (50% vs. 67%), with the largest declines in debugging performance.</p>
@@ -965,7 +1003,7 @@
       </table>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
       <div class="card">
         <h3>484,606 issues found</h3>
         <p>Affecting 61.2% of the repositories studied. Cumulative surviving issues grew from hundreds in early 2025 to over 110,000 by February 2026. AI fixes more code smells than it introduces (449K fixed vs. 431K introduced)&mdash;but introduces nearly <strong>twice as many security issues</strong> as it fixes.</p>
@@ -1515,7 +1553,7 @@
       </table>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; margin-top: 1.25rem;" class="fade-in">
       <div class="card">
         <h3>The Training Paradox</h3>
         <p>85% of leaders invest in AI tools, but only 2% invest in talent development (<a href="https://www.productboard.com/blog/training-product-managers-in-the-ai-era/" target="_blank" style="text-decoration:underline">Productboard</a>). 61% of employees have spent fewer than 5 hours learning about AI (<a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank" style="text-decoration:underline">HBR/Slack survey</a>). The gap is not tool availability&mdash;it is fluency.</p>
@@ -1538,7 +1576,7 @@
       Synthesised from <a href="https://hbr.org/2026/02/to-drive-ai-adoption-build-your-teams-product-management-skills" target="_blank" style="text-decoration:underline">HBR/Google (Feb 2026)</a>, <a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank" style="text-decoration:underline">HBR (Nov 2025)</a>, and <a href="https://airfocus.com/blog/ai-product-management-marty-cagan/" target="_blank" style="text-decoration:underline">Cagan&rsquo;s four-risk lens</a>:
     </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>1 &mdash; Start with the Risk, Not the Tool</h3>
         <p>Ask: &ldquo;Which product risk is killing us right now?&rdquo; If value is uncertain, invest in chat-based research and rapid prototyping. If feasibility is the bottleneck, bring in code agents. If usability is weak, use AI design tools. The tool follows the risk, not the other way around.</p>
@@ -1619,7 +1657,7 @@
     </div>
 
     <h4 class="fade-in" style="font-size: 0.9375rem; font-weight: 600; margin: 1.75rem 0 0.75rem;">Three Implications for the Sketchpad</h4>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>1 &mdash; The unit of redesign is the workflow</h3>
         <p>Do not ask only, &ldquo;where can AI help this person?&rdquo; Ask, &ldquo;what would this workflow look like if machine-speed synthesis, generation, and monitoring were native from the start?&rdquo; This is the difference between adding copilots and redesigning the factory floor.</p>
@@ -1655,7 +1693,7 @@
       Karpathy identifies a split that matters for every product team trying to adopt AI. The gap is not about enthusiasm or scepticism&mdash;it is about <strong>which version of AI you have actually experienced</strong>:
     </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card" style="border-left: 3px solid hsl(240 4.8% 75%);">
         <h3>Group A: The Casual Tier</h3>
         <p>Tried the free tier of ChatGPT or a basic assistant sometime last year. Encountered hallucinations, fumbled queries, and quirky failures. Concluded that AI is a novelty&mdash;useful for drafts, unreliable for real work. This view is <em>correct for the tool they used, at the time they used it</em>, but dangerously stale as a model of what AI can do today.</p>
@@ -1722,7 +1760,7 @@
       As AI adoption champions inside product teams, our job is not to push tools&mdash;it is to help the people around us bridge a gap that has never opened this fast. The adoption cycle that took a decade for mobile is playing out in months. Some practical approaches from recent research:
     </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>1 &mdash; Close the Recency Gap First</h3>
         <p>The single highest-leverage act is showing someone what AI can do <em>today</em>, not what it did when they last tried it. A 10-minute live demo of a frontier tool solving a real problem from their domain demolishes months of stale assumptions. <a href="https://hbr.org/sponsored/2026/03/four-trends-in-ai-experimentation-adoption-and-transformation" target="_blank" style="text-decoration:underline">HBR (Mar 2026)</a> confirms: &ldquo;AI isn&rsquo;t overpromised, it&rsquo;s underutilised.&rdquo;</p>
@@ -2311,7 +2349,7 @@
       <p>The old world required a tribe of specialists: PM, UX researcher, designer, frontend engineer, backend engineer, QA, DevOps, data analyst, growth marketer, legal reviewer, technical writer. Each owned a slice. Hand-offs were the main source of waste and lost context. The new world: one person, with an agent ensemble, covers the entire lifecycle. Not because they are expert in all of it — but because the agents carry the specialist depth, and the human carries the judgment, direction, and context that threads it all together.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; margin-top: 2rem;" class="fade-in">
       <div class="card">
         <h3>Direction</h3>
         <p>Setting strategic context that all 13 agent clusters use as a compass. What matters, what doesn&rsquo;t, and why. The human defines intent; agents execute across the lifecycle.</p>
@@ -2339,7 +2377,7 @@
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
       The traditional PRD is a long document written for humans, handed off to a design team, then handed off again to engineering. In this model it is replaced by an <strong>Agent-Ready Spec</strong> &mdash; a structured, living artifact primarily consumed by agents, with a working code prototype as its centerpiece. The spec and the prototype evolve together in the same feedback loop.
     </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>1 &mdash; Problem Brief</h3>
         <p>One paragraph, written by the PE. What problem are we solving, for whom, at what severity, and why now. This is the strategic anchor everything else derives from. Agents use it to weight their confidence scoring and surface relevant signals.</p>
@@ -2455,7 +2493,7 @@
       The most interesting implementations are not &ldquo;AI does task X faster.&rdquo; They are workflows where the artifact itself becomes secondary and the system is designed around <strong>decision quality, speed of learning, and compounding policy capture</strong>. These recipes show how that looks across the PDLC.
     </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>1 &mdash; Signal to JTBD Brief</h3>
         <p><strong>Trigger:</strong> Tickets, call transcripts, NPS comments, and session replays begin clustering around the same friction.<br><strong>Agent move:</strong> Research agents extract the struggling moment, draft the JTBD, identify competing workarounds, and score signal strength.<br><strong>Rethink:</strong> Discovery becomes continuous sensing, not a periodic research project.<br><strong>Human value:</strong> Confirm whether this is strategically important enough to start a new learning loop.</p>
@@ -2857,7 +2895,7 @@
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 760px;">
       Feedback is the primary interface between the PE and the agent ensemble. Vague feedback produces vague iteration. Structured feedback becomes knowledge base entries that improve future agent decisions on similar artifacts.
     </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>Prototype feedback</h3>
         <p>Walk through the preview URL as a user. For each issue: note the specific step, what felt wrong, and the <em>why</em> behind it (mental model mismatch, missing context, too many steps, etc.). Avoid prescribing the solution &mdash; diagnose the problem. The agent proposes the fix and iterates. Good: <em>&ldquo;Step 3 assumes the user already knows what a workflow template is. First-time users have no context.&rdquo;</em> Not useful: <em>&ldquo;Make this clearer.&rdquo;</em></p>
@@ -2886,7 +2924,7 @@
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; max-width: 760px;">
       When prototypes are generated in minutes and deployed instantly, and when agents can monitor production behaviour continuously, the episodic &ldquo;run a usability test&rdquo; or &ldquo;launch an A/B test&rdquo; model gives way to something more continuous and more granular.
     </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>From Periodic Usability Tests to Continuous Usability Monitoring</h3>
         <p>Session replay analysis, accessibility audits, and cognitive load scoring run on every prototype revision and every production deploy &mdash; not as one-off research events. Issues are surfaced continuously. The usability test becomes a targeted tool for confirming a hypothesis about a specific interaction, not a general health check.</p>
@@ -3515,7 +3553,7 @@
       The shared KB is the mechanism by which the system gets smarter over time, not just faster. Each agent interaction either reads from the KB (starting from accumulated intelligence) or writes to it (contributing new intelligence). The density and quality of the KB directly determines agent autonomy &mdash; a richer KB means more situations are covered by existing policies, patterns, and evidence, leaving fewer gaps that require escalation.
     </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>Every Experiment Is Preserved</h3>
         <p>Not just the outcome (&ldquo;we shipped it&rdquo;) but the full learning: hypothesis, methodology, result, and what it tells us about this customer segment or problem area. Future items in the same area begin with this evidence rather than starting from zero. Over time, the KB accumulates a rich map of what has been tried, what worked, and at what confidence level.</p>
@@ -3551,7 +3589,7 @@
     <p class="fade-in" style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; max-width: 760px;">
       Sections 11.1&ndash;11.4 were written largely as design intent. By mid-2026, practitioners had published field reports from real multi-agent work, and these test the shared-memory idea in 11.3 against practice. Two lessons stand out. Shared memory emerges whether or not you design it. And the orchestrator&rsquo;s context window, not worker compute, is the resource that runs out first.
     </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;" class="fade-in">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem;" class="fade-in">
       <div class="card">
         <h3>The accidental blackboard</h3>
         <p>Ten Thoughtworks engineers ran many agents in one monorepo for four days. Agents wrote plans keyed to numbered spec sections and logged progress in the repo, and other agents read those notes to avoid duplicate work and wait on dependencies. The repo had become a <em>blackboard</em> (the Hearsay-II pattern). Then frequent commits overloaded CI, the team batched pushes, and coordination degraded. The lesson: make the blackboard intentional and separate from source control.</p>
@@ -3716,6 +3754,11 @@
     </div>
     <div class="fade-in" style="font-size: 0.875rem; line-height: 1.8;">
 
+      <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">29 October 2026</h4>
+      <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Sections 1&ndash;12</strong> &mdash; <em>Research atlas &amp; reading experience</em> (updated) &mdash; Added an editorial opening, suggested reading path, and direct routes to the Signals, Use Cases, Workspace, and full-document views. The research index now supports topic filters and full-content search with matching excerpts. Added in-section outlines and a reading guide, with clearer typography, mobile layouts, and keyboard navigation. Research content and evidence dates are unchanged.</li>
+      </ul>
+
       <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">26 October 2026</h4>
       <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
         <li><strong>Section 9.2</strong> &mdash; <em>Always-On Agents: From Prompted Copilots to Proactive Swarms</em> (new) &mdash; Four always-on patterns shipped Sep&ndash;Oct 2026 (Dots, Gemini agent, Copilot Studio agent accounts, Claude Duet, Muse at 10M users); evidence on when swarms multiply output (Google/MIT scaling study, Harvard 718-firm study, Anthropic&rsquo;s subagent-folding guidance and 30k merges/day); proactivity timing research; a swarm-fit table by PDLC activity; and a six-rule design pattern. Thirteen sources added to Section 12.</li>
@@ -3832,6 +3875,7 @@
   </div>
 </section>
 
+</main>
 <footer>
   <div class="container">
     Research Synthesis &amp; Transformation Outline &middot; March&ndash;October 2026 &middot;
@@ -3843,9 +3887,15 @@
   </div>
 </footer>
 
+<div class="reading-guide" id="readingGuide" aria-label="Reading guide" hidden>
+  <a href="#sectionMap" class="reading-index" aria-label="Back to research index"><span aria-hidden="true">&#8862;</span> <span>Index</span></a>
+  <div class="reading-current"><span id="readingNumber"></span><strong id="readingTitle"></strong></div>
+  <a href="#summary" id="readingNext" class="reading-next">Next <span aria-hidden="true">&#8594;</span></a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+</div>
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
 
-<script src="main.js"></script>
+<script src="main.js?v=2026-10-29a"></script>
 <script src="explorer.js?v=2026-10-17d"></script>
 </body>
 </html>

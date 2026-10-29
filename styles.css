@@ -134,7 +134,7 @@ nav {
   box-shadow: 0 16px 48px hsla(var(--foreground), 0.12);
   opacity: 0; transform: translateY(-6px) scale(0.98);
   pointer-events: none; visibility: hidden;
-  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 .section-nav-panel.is-open {
   opacity: 1; transform: translateY(0) scale(1);
@@ -1530,3 +1530,229 @@ circle.pdx-line--bolt { fill: var(--pdx-gray); }
 .pdx-stage.no-agent .pdx-seg--agent { display: none; }
 .pdx-detail-compare .pdx-link:first-of-type { margin-left: auto; }
 .pdx-tip[hidden], .pdx-panel[hidden] { display: none; }
+
+/* Research atlas. Scoped to the sketchpad so companion prototypes keep their own UI. */
+.sketchpad {
+  --background: 45 25% 97%;
+  --foreground: 240 10% 15%;
+  --card: 45 33% 99%;
+  --muted: 45 14% 92%;
+  --muted-foreground: 240 4% 41%;
+  --border: 45 13% 83%;
+  --secondary: 45 18% 94%;
+  --accent: 263 28% 93%;
+  --atlas-ink: #655086;
+  --atlas-lime: #d6e89a;
+  --radius: 0.375rem;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.sketchpad ::selection { background: #d6e89a; color: #24242a; }
+.sketchpad :is(a, button, input, summary):focus-visible { outline: 2px solid var(--atlas-ink); outline-offset: 4px; }
+.skip-link { position: fixed; top: -100px; left: 1rem; z-index: 200; padding: 0.75rem 1rem; background: #24242a; color: white; }
+.skip-link:focus { top: 0.5rem; }
+.sketchpad .container { max-width: 1240px; }
+.sketchpad .container.narrow { max-width: 820px; }
+.sketchpad nav[aria-label="Primary"] { background: hsl(var(--background) / 0.96); }
+.sketchpad .nav-inner { max-width: 1288px; height: 64px; }
+.brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-right: 0.5rem; border: 1px solid currentColor; font: italic 22px Georgia, serif; }
+.sketchpad .nav-logo { display: flex; align-items: center; gap: 0.25rem; }
+.sketchpad .brand-suffix { font-weight: 400; color: hsl(var(--muted-foreground)); }
+.sketchpad .nav-workspace-link { font-size: 0.8125rem; min-height: 40px; }
+.sketchpad .nav-current { color: hsl(var(--foreground)); text-decoration: underline; text-underline-offset: 7px; text-decoration-color: var(--atlas-ink); }
+.sketchpad .nav-sections-btn { background: transparent; min-height: 38px; }
+.sketchpad .section-nav-panel { top: 64px; }
+.sketchpad .section-nav-backdrop { top: 64px; }
+.sketchpad .progress-bar { background: var(--atlas-ink); }
+.sketchpad .hero { padding: 6.25rem 2rem 3.5rem; text-align: left; }
+.atlas-masthead { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid hsl(var(--border)); font: 10px/1.4 Consolas, monospace; text-transform: uppercase; letter-spacing: 0.12em; color: hsl(var(--muted-foreground)); }
+.sketchpad .hero-badge { border: 0; padding: 0; margin: 0; font: inherit; color: inherit; }
+.atlas-opening { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding: 3rem 0; }
+.atlas-eyebrow { font: 11px/1.5 Consolas, monospace; text-transform: uppercase; letter-spacing: 0.13em; color: var(--atlas-ink); margin-bottom: 1.25rem; }
+.sketchpad .hero h1 { font-size: clamp(2.8rem, 4.9vw, 4.5rem); font-weight: 600; letter-spacing: -0.055em; line-height: 1.08; margin-bottom: 1.4rem; }
+.sketchpad .hero h1 em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; color: var(--atlas-ink); letter-spacing: -0.06em; }
+.sketchpad .hero .subtitle { font-size: 1.0625rem; line-height: 1.75; max-width: 32rem; margin: 0; }
+.atlas-start-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin: 1.75rem 0 1.4rem; font-size: 0.8125rem; }
+.atlas-primary-link { display: inline-flex; align-items: center; gap: 1.5rem; padding: 0.8rem 1rem; background: hsl(var(--foreground)); color: #fff; text-decoration: none; border-radius: 3px; }
+.atlas-primary-link:hover { background: var(--atlas-ink); opacity: 1; }
+.atlas-text-link { text-underline-offset: 5px; text-decoration-color: hsl(var(--border)); }
+.atlas-text-link span { margin-left: 0.4rem; }
+.sketchpad .hero-subline { font-size: 0.6875rem; font-weight: 400; max-width: none; margin: 0; color: hsl(var(--muted-foreground)); }
+.atlas-fieldnote { padding: 1.5rem 1.65rem 1rem; color: #f5f3ed; background: #29282e; border-radius: 4px; position: relative; overflow: hidden; }
+.fieldnote-top { display: flex; align-items: center; gap: 0.45rem; font: 10px/1.5 Consolas, monospace; text-transform: uppercase; letter-spacing: 0.055em; color: #d8d5de; }
+.fieldnote-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--atlas-lime); }
+.fieldnote-index { margin-left: auto; color: #aaa6b3; font-size: 9px; }
+.fieldnote-question { margin: 1.5rem 0; font-size: clamp(1.4rem, 2.1vw, 1.85rem); line-height: 1.3; letter-spacing: -0.03em; }
+.fieldnote-question em { font: italic 1.13em Georgia, serif; color: var(--atlas-lime); }
+.fieldnote-path a { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 0; border-top: 1px solid #4c4854; color: inherit; text-decoration: none; }
+.fieldnote-path a:hover { color: var(--atlas-lime); opacity: 1; }
+.fieldnote-path a > span { font: 11px Consolas, monospace; color: #b5b0be; }
+.fieldnote-path a > span:last-child { margin-left: auto; color: var(--atlas-lime); font-size: 16px; }
+.fieldnote-path strong { display: block; font-size: 0.8125rem; font-weight: 500; }
+.fieldnote-path small { display: block; font-size: 0.6875rem; margin-top: 0.2rem; color: #b5b0be; }
+.fieldnote-footer { border-top: 1px solid #4c4854; padding-top: 0.8rem; margin-top: 0.3rem; font: italic 0.75rem Georgia, serif; color: #bbb7c2; }
+.atlas-formats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid hsl(var(--border)); }
+.atlas-formats > a { display: flex; align-items: center; gap: 0.85rem; padding: 1.35rem 1rem; text-decoration: none; min-width: 0; }
+.atlas-formats > a:first-child { padding-left: 0; }
+.atlas-formats > a + a { border-left: 1px solid hsl(var(--border)); }
+.atlas-formats > a:hover { opacity: 1; background: hsl(var(--accent)); }
+.format-glyph { font-size: 1.75rem; line-height: 1; color: var(--atlas-ink); }
+.format-type { display: block; font: 9px/1.5 Consolas, monospace; text-transform: uppercase; letter-spacing: 0.1em; color: hsl(var(--muted-foreground)); }
+.atlas-formats strong { display: block; font-size: 0.875rem; font-weight: 600; }
+.atlas-formats small { display: block; font-size: 0.6875rem; color: hsl(var(--muted-foreground)); margin-top: 0.15rem; }
+.format-arrow { margin-left: auto; align-self: flex-start; color: var(--atlas-ink); }
+.atlas-format-note { margin-top: 0.75rem; text-align: right; font-size: 0.6875rem; color: hsl(var(--muted-foreground)); }
+.atlas-format-note a { color: var(--atlas-ink); margin-left: 0.25rem; text-underline-offset: 3px; }
+.sketchpad .hero-section-map { margin-top: 3rem; padding-top: 0; border: 0; }
+.sketchpad .section-map-intro { display: flex; justify-content: space-between; align-items: end; gap: 2rem; text-align: left; max-width: none; margin: 0 0 1.5rem; }
+.sketchpad .section-map-kicker { font: 10px/1.6 Consolas, monospace; letter-spacing: 0.12em; }
+.sketchpad .section-map-title { font: 400 clamp(1.75rem, 2.5vw, 2.25rem)/1.2 Georgia, serif; letter-spacing: -0.04em; margin: 0.4rem 0; }
+.sketchpad .section-map-lead { font-size: 0.8125rem; }
+.atlas-search { width: 21rem; max-width: 100%; }
+.atlas-search label { display: block; font-size: 0.6875rem; margin-bottom: 0.35rem; color: hsl(var(--muted-foreground)); }
+.atlas-search-field { display: flex; align-items: center; border: 1px solid hsl(var(--border)); border-radius: 4px; background: hsl(var(--card)); padding: 0 0.65rem; gap: 0.6rem; }
+.atlas-search-field:focus-within { border-color: var(--atlas-ink); box-shadow: 0 0 0 2px hsl(var(--accent)); }
+.atlas-search-field > span { color: var(--atlas-ink); font-size: 22px; transform: rotate(-30deg); }
+.atlas-search input { width: 100%; min-width: 0; font: inherit; font-size: 0.8125rem; padding: 0.75rem 0; background: transparent; color: inherit; border: 0; }
+.atlas-search input:focus-visible { outline: none; }
+.atlas-search input::placeholder { color: hsl(var(--muted-foreground)); opacity: 1; }
+.atlas-search kbd { font: 10px Consolas, monospace; border: 1px solid hsl(var(--border)); padding: 1px 5px; border-radius: 2px; color: hsl(var(--muted-foreground)); }
+.atlas-index-tools { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.atlas-filters { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.atlas-filters button { font: inherit; font-size: 0.75rem; border: 1px solid transparent; border-radius: 4px; padding: 0.5rem 0.75rem; background: transparent; color: hsl(var(--muted-foreground)); cursor: pointer; min-height: 36px; }
+.atlas-filters button:hover { background: hsl(var(--muted)); color: hsl(var(--foreground)); }
+.atlas-filters button[aria-pressed="true"] { background: hsl(var(--foreground)); color: #fff; }
+.atlas-result-count { font: 10px/1.5 Consolas, monospace; white-space: nowrap; color: hsl(var(--muted-foreground)); }
+.sketchpad .section-map-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.65rem; max-width: none; }
+.sketchpad .section-tile { display: grid; grid-template-columns: 2rem 1fr; grid-template-rows: auto auto 1fr; column-gap: 0.6rem; row-gap: 0.15rem; min-height: 8.35rem; padding: 1rem; border-color: hsl(var(--border)); background: hsl(var(--card)); box-shadow: none; border-radius: 4px; transition: border-color 0.18s, background 0.18s, transform 0.18s; }
+.sketchpad .section-tile::after { content: '\2197'; position: absolute; bottom: 0.75rem; right: 0.85rem; color: var(--atlas-ink); font-size: 14px; }
+.sketchpad .section-tile:hover { border-color: var(--atlas-ink); background: hsl(var(--accent)); transform: translateY(-2px); }
+.sketchpad .section-tile.active { border-color: var(--atlas-ink); box-shadow: inset 3px 0 var(--atlas-ink); }
+.sketchpad .section-tile-num { grid-column: 1; grid-row: 1 / 3; font: 400 1.35rem/1.3 Georgia, serif; letter-spacing: -0.04em; color: var(--atlas-ink); }
+.sketchpad .section-tile-name { grid-column: 2; grid-row: 1; font-size: 0.875rem; margin: 0.15rem 0 0; line-height: 1.35; font-weight: 600; }
+.sketchpad .section-tile-flavor { grid-column: 2; grid-row: 2; text-transform: none; letter-spacing: 0; font-size: 0.75rem; font-weight: 400; margin: 0.2rem 0 0; padding: 0; line-height: 1.5; }
+.sketchpad .section-tile-freshness { grid-column: 2; grid-row: 3; align-self: end; justify-self: start; position: static; padding: 0; margin-top: 0.75rem; max-width: none; font: 9px/1.4 Consolas, monospace; letter-spacing: 0; text-transform: none; background: transparent; color: hsl(var(--muted-foreground)); transform: none; }
+.sketchpad .section-tile-freshness.nav-freshness--recent::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 0.3rem; border-radius: 50%; background: #36775d; }
+.section-tile-match { grid-column: 1 / -1; font-size: 0.75rem; line-height: 1.55; margin-top: 0.5rem; color: hsl(var(--muted-foreground)); padding-right: 0.75rem; overflow-wrap: anywhere; }
+.atlas-empty { text-align: center; padding: 3rem 1rem; border: 1px dashed hsl(var(--border)); }
+.atlas-empty p { color: hsl(var(--muted-foreground)); font-size: 0.875rem; margin: 0.5rem 0 1rem; }
+.atlas-empty button { cursor: pointer; font: inherit; font-size: 0.8125rem; padding: 0.6rem 1rem; background: hsl(var(--foreground)); color: white; border: 0; border-radius: 3px; }
+.sketchpad [hidden] { display: none !important; }
+.sketchpad section[id], .sketchpad h3[id], #sectionMap, #hero-infographic-heading { scroll-margin-top: 20px; }
+.sketchpad .fade-in { opacity: 1; transform: none; }
+.atlas-js .sketchpad .fade-in:not(.visible) { opacity: 0; transform: translateY(12px); }
+.sketchpad section:not(.hero):not(.hero-below) { padding: 4rem 2rem; border-top: 1px solid hsl(var(--border)); }
+.sketchpad .section-alt { background: hsl(var(--secondary)); }
+.sketchpad .section-header { padding-bottom: 1.5rem; border-bottom: 1px solid hsl(var(--border)); margin-bottom: 2rem; }
+.sketchpad .section-header .section-number { font: 11px/1.5 Consolas, monospace; letter-spacing: 0.1em; color: var(--atlas-ink); }
+.sketchpad .section-header h2 { font: 400 clamp(2rem, 3.3vw, 2.8rem)/1.18 Georgia, serif; letter-spacing: -0.035em; max-width: 900px; }
+.sketchpad .section-header > p { max-width: 760px; font-size: 1rem; line-height: 1.75; }
+.section-outline { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed hsl(var(--border)); }
+.section-outline > span { display: block; font: 10px/1.6 Consolas, monospace; text-transform: uppercase; letter-spacing: 0.1em; color: hsl(var(--muted-foreground)); margin-bottom: 0.6rem; }
+.section-outline ol { display: flex; flex-wrap: wrap; list-style: none; gap: 0.5rem 1.25rem; }
+.section-outline a { display: inline-block; font-size: 0.75rem; text-decoration: none; border-bottom: 1px solid hsl(var(--border)); padding: 0.2rem 0; line-height: 1.5; }
+.section-outline a:hover { opacity: 1; color: var(--atlas-ink); border-color: currentColor; }
+.sketchpad :is(.card, .pain-card, .callout, .role-card, .diagram-wrapper) { box-shadow: none; }
+.sketchpad :is(.card p, .pain-card p, .callout p, .phase-item p) { font-size: 0.9375rem; line-height: 1.75; }
+.sketchpad .card h3 { font-size: 1.0625rem; line-height: 1.45; }
+.sketchpad .callout { background: hsl(var(--accent)); border-left-color: var(--atlas-ink); }
+.sketchpad :is(.cap-table, .compare-table) { line-height: 1.65; }
+.sketchpad :is(.cap-table, .compare-table) th { background: hsl(var(--muted)); color: hsl(var(--foreground)); }
+.sketchpad .hero-below { background: hsl(var(--background)); padding: 3.5rem 2rem; }
+.sketchpad .hero-below-block { text-align: left; max-width: none; }
+.sketchpad .hero-below-title { font: 400 clamp(1.65rem, 2.5vw, 2rem)/1.3 Georgia, serif; letter-spacing: -0.03em; }
+.sketchpad .hero-below-lead { max-width: 750px; line-height: 1.7; }
+.sketchpad .hero-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid hsl(var(--border)); border-radius: 4px; margin-top: 1.5rem; background: hsl(var(--card)); }
+.sketchpad .hero-stat { text-align: left; padding: 1.5rem; }
+.sketchpad .hero-stat + .hero-stat { border-left: 1px solid hsl(var(--border)); }
+.sketchpad .hero-stat .num { font: 400 2.75rem/1.1 Georgia, serif; color: var(--atlas-ink); letter-spacing: -0.05em; }
+.sketchpad .hero-stat .label { font-size: 0.8125rem; margin: 0.75rem 0; max-width: 240px; }
+.sketchpad .hero-stat .cite { font-size: 0.6875rem; }
+.sketchpad .hero-below-sep { max-width: none; margin: 3rem 0; }
+.sketchpad .pdx { background: hsl(var(--card)); border-radius: 4px; }
+.reading-guide { position: fixed; z-index: 39; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 1rem; width: min(650px, calc(100% - 2rem)); padding: 0.75rem 1rem; border: 1px solid hsl(var(--border)); border-radius: 6px; background: hsl(var(--card) / 0.97); backdrop-filter: blur(12px); box-shadow: 0 5px 24px #24242a14; }
+.reading-index { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; text-decoration: none; padding-right: 1rem; border-right: 1px solid hsl(var(--border)); }
+.reading-index > span:first-child { font-size: 1.25rem; color: var(--atlas-ink); }
+.reading-current { flex: 1; min-width: 0; }
+.reading-current > span { display: block; font: 9px/1.4 Consolas, monospace; text-transform: uppercase; letter-spacing: 0.07em; color: var(--atlas-ink); }
+.reading-current strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8125rem; font-weight: 500; }
+.reading-next { font-size: 0.75rem; white-space: nowrap; text-decoration: none; padding: 0.4rem; }
+.reading-progress { position: absolute; bottom: 0; left: 5px; right: 5px; height: 2px; overflow: hidden; }
+.reading-progress > span { display: block; width: 0; height: 100%; background: var(--atlas-ink); }
+.sketchpad footer { padding-bottom: 7rem; }
+@media (min-width: 961px) { .sketchpad .section-map-grid:not(.is-filtered) .section-tile:first-child { grid-column: span 2; background: #eeebf2; } }
+@media (max-width: 1100px) {
+  .atlas-opening { gap: 2.5rem; }
+  .atlas-formats > a { gap: 0.6rem; padding-inline: 0.75rem; }
+  .format-glyph { display: none; }
+  .fieldnote-index { display: none; }
+}
+@media (max-width: 960px) {
+  .sketchpad .section-map-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .atlas-opening { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.75rem; }
+  .atlas-fieldnote { padding: 1.25rem; }
+  .sketchpad .hero h1 { font-size: clamp(2.6rem, 5.3vw, 3.7rem); }
+  .sketchpad .brand-suffix { display: none; }
+  .atlas-index-tools { align-items: start; }
+  .atlas-result-count { padding-top: 0.6rem; }
+}
+@media (max-width: 720px) {
+  .sketchpad .nav-inner { padding-inline: 1rem; }
+  .sketchpad .nav-current { display: none; }
+  .sketchpad .nav-actions { gap: 0.1rem; }
+  .sketchpad .nav-workspace-link { padding-inline: 0.5rem; font-size: 0.75rem; }
+  .sketchpad .hero { padding: 5.5rem 1.25rem 2.5rem; }
+  .atlas-masthead { font-size: 9px; letter-spacing: 0.04em; }
+  .atlas-opening { grid-template-columns: 1fr; gap: 2rem; padding-block: 2rem; }
+  .sketchpad .hero h1 { font-size: clamp(2.35rem, 11.5vw, 4rem); }
+  .sketchpad .hero .subtitle { font-size: 1rem; }
+  .atlas-fieldnote { padding: 1.4rem; }
+  .fieldnote-index { display: inline; }
+  .fieldnote-question { font-size: 1.65rem; margin-block: 1.25rem; }
+  .atlas-formats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .atlas-formats > a { padding: 1rem 0.75rem; }
+  .atlas-formats > a:first-child { padding-left: 0.75rem; }
+  .atlas-formats > a:nth-child(3) { border-left: 0; }
+  .atlas-formats > a:nth-child(n+3) { border-top: 1px solid hsl(var(--border)); }
+  .atlas-formats small { font-size: 0.6875rem; line-height: 1.5; }
+  .sketchpad .section-map-intro { flex-direction: column; align-items: stretch; gap: 1.25rem; }
+  .atlas-search { width: 100%; }
+  .atlas-index-tools { flex-direction: column; gap: 0.5rem; }
+  .atlas-filters { gap: 0.25rem; }
+  .atlas-filters button { min-height: 40px; padding-inline: 0.65rem; }
+  .atlas-result-count { padding: 0; }
+  .sketchpad .section-map-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sketchpad .section-tile { min-height: 9rem; padding: 0.85rem 0.7rem; grid-template-columns: 1.5rem 1fr; column-gap: 0.4rem; }
+  .sketchpad .section-tile-num { font-size: 1.1rem; }
+  .sketchpad .section-tile-name { font-size: 0.8125rem; }
+  .sketchpad .section-tile-flavor { font-size: 0.6875rem; }
+  .sketchpad section:not(.hero):not(.hero-below), .sketchpad .hero-below { padding: 3rem 1.25rem; }
+  .sketchpad .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sketchpad .hero-stat { padding: 1rem; }
+  .sketchpad .hero-stat:nth-child(3) { border-left: 0; }
+  .sketchpad .hero-stat:nth-child(n+3) { border-top: 1px solid hsl(var(--border)); }
+  .section-outline ol { display: grid; grid-template-columns: 1fr; gap: 0.4rem; }
+  .section-outline a { padding-block: 0.35rem; }
+  .sketchpad .pain-grid, .sketchpad .role-grid, .sketchpad .risk-grid { grid-template-columns: 1fr; }
+  .sketchpad .task-row { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 60px; gap: 0.5rem; }
+  .sketchpad :is(.compare-table, .cap-table) { display: block; max-width: 100%; overflow-x: auto; }
+  .sketchpad .scroll-top { bottom: 6rem; right: 1rem; }
+}
+@media (max-width: 390px) {
+  .sketchpad .nav-inner { padding-inline: 10px; gap: 8px; }
+  .sketchpad .nav-actions { gap: 0; }
+  .sketchpad .brand-name { display: none; }
+  .sketchpad .brand-mark { width: 25px; height: 25px; margin-right: 0.1rem; }
+  .sketchpad .nav-logo { font-size: 0.75rem; }
+  .sketchpad .nav-workspace-link { padding-inline: 0.3rem; font-size: 0.6875rem; }
+  .sketchpad .nav-sections-btn { padding-inline: 0.5rem; font-size: 0.75rem; }
+  .atlas-masthead > span:first-child { max-width: 10rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sketchpad *, .sketchpad *::before, .sketchpad *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .atlas-js .sketchpad .fade-in:not(.visible) { opacity: 1; transform: none; }
+}
+@media print {
+  .sketchpad .reading-guide, .sketchpad .atlas-index-tools, .sketchpad .atlas-search, .sketchpad .skip-link { display: none !important; }
+  .atlas-js .sketchpad .fade-in:not(.visible) { opacity: 1; transform: none; }
+  .sketchpad .section-tile[hidden] { display: grid !important; }
+}
