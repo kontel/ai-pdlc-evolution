@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDLC Futures Sketchpad — Incrementally Exploring How AI Transforms Product Delivery</title>
   <meta name="description" content="A research atlas for AI and product delivery. Explore the evidence, changing roles, agent systems, and possible futures of the PDLC.">
-  <link rel="stylesheet" href="styles.css?v=2026-10-29a">
+  <link rel="stylesheet" href="styles.css?v=2026-10-31a">
 </head>
 <body class="sketchpad">
 
@@ -51,11 +51,11 @@
       <li><a href="#beyond-code" data-section-id="beyond-code" data-updated="2026-03-15" data-update-note="Baseline synthesis"><span class="section-nav-text">Beyond coding</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
       <li><a href="#roadmap" data-section-id="roadmap" data-updated="2026-10-17" data-update-note="7.1 phases rewritten; 7.6 J-curve"><span class="section-nav-text">Roadmap &amp; adoption</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#risks" data-section-id="risks" data-updated="2026-10-17" data-update-note="8.3 agent supply chain + EU AI Act timeline"><span class="section-nav-text">Risks</span><span class="nav-freshness nav-freshness--stable">Updated 24d ago</span></a></li>
-      <li><a href="#future" data-section-id="future" data-updated="2026-10-26" data-update-note="9.2 always-on agents and proactive swarms"><span class="section-nav-text">Future vision</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
+      <li data-updated="2026-10-31" data-update-note="9.3 continuous value loops and product-risk pods"><a href="#future" data-section-id="future" data-updated="2026-10-31" data-update-note="9.3 continuous value loops and product-risk pods"><span class="section-nav-text">Future vision</span><span class="nav-freshness"></span></a></li>
       <li><a href="#product-engineer" data-section-id="product-engineer" data-updated="2026-10-17" data-update-note="10.8 attention as the review budget"><span class="section-nav-text">Product engineer role</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
       <li><a href="#agent-architecture" data-section-id="agent-architecture" data-updated="2026-10-17" data-update-note="11.5 coordination patterns from the field"><span class="section-nav-text">Agent architecture</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li><a href="#sources" data-section-id="sources" data-updated="2026-10-26" data-update-note="Always-on agents and swarm sources"><span class="section-nav-text">Sources</span><span class="nav-freshness nav-freshness--recent">Updated today</span></a></li>
-      <li data-updated="2026-10-29" data-update-note="Research atlas design and scanning tools"><a href="#changelog" data-section-id="changelog" data-updated="2026-10-29" data-update-note="Research atlas design and scanning tools"><span class="section-nav-text">Changelog</span><span class="nav-freshness"></span></a></li>
+      <li data-updated="2026-10-31" data-update-note="Continuous value-loop research, June–October 2026"><a href="#sources" data-section-id="sources" data-updated="2026-10-31" data-update-note="Continuous value-loop research, June–October 2026"><span class="section-nav-text">Sources</span><span class="nav-freshness"></span></a></li>
+      <li data-updated="2026-10-31" data-update-note="Value-loop research and three infographics"><a href="#changelog" data-section-id="changelog" data-updated="2026-10-31" data-update-note="Value-loop research and three infographics"><span class="section-nav-text">Changelog</span><span class="nav-freshness"></span></a></li>
     </ul>
   </div>
 </nav>
@@ -168,11 +168,11 @@
         <span class="section-tile-name">Risks</span>
         <span class="section-tile-flavor">Anti-patterns &amp; supply chain</span>
       </a>
-      <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-10-26" data-update-note="9.2 always-on agents and proactive swarms">
+      <a href="#future" class="section-tile" data-section-id="future" data-updated="2026-10-31" data-update-note="9.3 continuous value loops and product-risk pods">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">09</span>
         <span class="section-tile-name">Future vision</span>
-        <span class="section-tile-flavor">Compound gains</span>
+        <span class="section-tile-flavor">Continuous value loops</span>
       </a>
       <a href="#product-engineer" class="section-tile" data-section-id="product-engineer" data-updated="2026-10-17" data-update-note="10.8 attention as the review budget">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
@@ -186,13 +186,13 @@
         <span class="section-tile-name">Agent architecture</span>
         <span class="section-tile-flavor">Ensemble &amp; memory</span>
       </a>
-      <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-10-26" data-update-note="Always-on agents and swarm sources">
+      <a href="#sources" class="section-tile" data-section-id="sources" data-updated="2026-10-31" data-update-note="Continuous value-loop research, June–October 2026">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">12</span>
         <span class="section-tile-name">Sources</span>
         <span class="section-tile-flavor">References</span>
       </a>
-      <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-10-29" data-update-note="Research atlas design and scanning tools">
+      <a href="#changelog" class="section-tile" data-section-id="changelog" data-updated="2026-10-31" data-update-note="Value-loop research and three infographics">
         <span class="nav-freshness nav-freshness--recent section-tile-freshness">Updated today</span>
         <span class="section-tile-num">CL</span>
         <span class="section-tile-name">Changelog</span>
@@ -2319,6 +2319,82 @@
       <p>A product team&rsquo;s effective throughput with a swarm is roughly <em>the smaller of</em> what its agents can produce in parallel and what its humans and gates can verify. Today the second number is the binding one. Large gains are realistic for watching, researching, prototyping and mechanical change, where work is parallel and checks are cheap. For shipped, accountable product, the multiplier is set by verification capacity (5.6), attention (10.8) and how much of the review a team can safely hand to independent gates. The <a href="workspace.html" style="text-decoration:underline;">workspace prototype</a>&rsquo;s Smart Alerts are a first sketch of the watcher-plus-boundary pattern.</p>
       <span class="ev ev--model" title="Illustrative throughput model, not measured">Model / estimate</span>
     </div>
+
+    <!-- 9.3 Continuous value loops -->
+    <h3 id="continuous-value-loops" class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin: 3rem 0 0.75rem;">9.3 Continuous Value Loops: The Agentic Product Operating Model <span class="nav-new">new</span> <a href="#continuous-value-loops" class="anchor-link" title="Copy link to this section">&#128279;</a></h3>
+    <p class="fade-in" style="max-width: 800px; margin-bottom: 1rem;">What if the product had a standing human-and-agent team that continually compared <strong>intended value with value actually delivered</strong>, then proposed the next capability, experiment, simplification, or retirement? Agents would help frame <em>what</em> to build and <em>why</em>, as well as execute the <em>how</em>. We call this a <strong>continuous value loop</strong>: a proposed operating model connecting the always-on agents in <a href="#always-on-agents">9.2</a>, the product-risk lens in <a href="#risks">8.2</a>, and the workflow recipes in <a href="#agentic-recipes">10.4</a>. <span class="ev ev--model" title="Author synthesis and proposed operating model; not an established industry standard">Proposed model</span></p>
+
+    <h4 class="fade-in vl-subheading">Industry convergence &middot; June&ndash;October 2026</h4>
+    <div class="vl-research fade-in">
+      <p><strong>10 June &mdash; a close product-level match.</strong> Amplitude describes <a href="https://amplitude.com/blog/wave" target="_blank" rel="noopener">Wave</a> as an agent that combines product signals and code context, proposes opportunities and specifications, routes execution, and learns from outcomes. Its <a href="https://amplitude.com/wave" target="_blank" rel="noopener">product page</a> still describes a closed beta and design-partner rollout. This is a vendor account of capability, not independent proof of sustained customer value. <span class="ev ev--vendor" title="Amplitude's architecture account and current closed-beta product page; no independent outcome evaluation">Vendor</span></p>
+      <p><strong>21 August &mdash; an enterprise operating-model match.</strong> <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/beyond-the-copilot-scaling-the-agentic-product-development-life-cycle" target="_blank" rel="noopener">McKinsey</a> describes blended human-and-agent roles, definer&ndash;builder pods, telemetry-linked requirements, and scoped agent mandates with permissions and escalation paths. Its research uses a May survey of product and engineering leaders; it supports organisational convergence, not a causal claim that autonomous roadmaps improve product value. <span class="ev ev--survey" title="May 2026 survey of 334 product and engineering respondents, plus consulting examples; published 21 August">Survey</span></p>
+      <p><strong>19 October &mdash; a concrete learning-loop example.</strong> <a href="https://amplitude.com/blog/amplitude-github-learning-loop" target="_blank" rel="noopener">Amplitude&rsquo;s GitHub + Statsig walkthrough</a> connects an observed onboarding problem to a proposed requirement, a Copilot pull request, human review, and a randomized experiment. It is a vendor walkthrough with Wave in closed beta, rather than a published controlled evaluation of the whole system. <span class="ev ev--vendor" title="Vendor integration walkthrough; illustrative onboarding scenario, not measured customer results">Vendor</span></p>
+    </div>
+    <p class="fade-in vl-prose">The foundations are older: <a href="https://www.svpg.com/four-big-risks/" target="_blank" rel="noopener">SVPG&rsquo;s four product risks (2017)</a> assign value and viability to product, usability to design, and feasibility to engineering. <span class="ev ev--practitioner" title="Marty Cagan's product-discovery framework, December 2017">Practitioner</span> <a href="https://www.producttalk.org/tools-optimal-workshop/" target="_blank" rel="noopener">Product Talk (2021)</a> emphasises a product trio, weekly customer contact, a clear outcome, and a shared opportunity space. <span class="ev ev--practitioner" title="Practitioner account of continuous-discovery habits and a team's tools, October 2021">Practitioner</span> Our synthesis adds a persistent agent layer and explicit authority boundaries. The three representatives below cover four risks; they are not four sequential approval departments.</p>
+
+    <div id="value-loop-atlas" class="value-loop-atlas fade-in">
+      <figure class="vl-figure" id="value-loop-infographic" aria-labelledby="vl-loop-title">
+        <div class="vl-kicker"><span>01 / The value loop</span><span>Continuous discovery + delivery + learning</span></div>
+        <h4 id="vl-loop-title">The product ships.<br><em>The learning comes back.</em></h4>
+        <div class="vl-intent"><span class="vl-human-label">Human-owned intent</span><p>A customer problem, a desired outcome, and constraints.<br><strong>Agents may challenge the brief; people authorise a change of direction.</strong></p></div>
+        <div class="vl-orbit">
+        <div class="vl-orbit-center" aria-hidden="true"><span>Intended value</span><strong>&#8597;</strong><span>Actual value</span><small>Close the gap. Keep the intent.</small></div>
+        <ol class="vl-cycle">
+          <li><span class="vl-step">01</span><strong>Sense</strong><p>Usage, customer conversations, support, costs, incidents, and market change.</p></li>
+          <li><span class="vl-step">02</span><strong>Propose</strong><p>An opportunity, why it matters, alternatives, and the evidence that could disprove it.</p></li>
+          <li><span class="vl-step">03</span><strong>Challenge</strong><p>Product, design, and engineering examine all four risks together.</p></li>
+          <li><span class="vl-step">04</span><strong>Test &amp; deliver</strong><p>Within granted authority: prototype, run an experiment, or release a bounded change.</p></li>
+          <li><span class="vl-step">05</span><strong>Measure</strong><p>Compare actual outcomes with the hypothesis, baseline, costs, and guardrails.</p></li>
+          <li><span class="vl-step">06</span><strong>Learn &amp; decide</strong><p>Expand, revise, stop, or collect more evidence. Keep the result for the next proposal.</p></li>
+        </ol>
+        </div>
+        <div class="vl-return"><span aria-hidden="true">&#8634;</span><strong>Feed evidence back into the next opportunity</strong><span>Shipping is an intervention. Value is a finding.</span></div>
+        <div class="vl-loop-levels"><p><strong>Delivery loop</strong><span>Does the change work?</span></p><p><strong>Value loop</strong><span>Did it improve the intended outcome?</span></p><p><strong>Operating-model loop</strong><span>Should we change the agents, checks, or mandate?</span></p></div>
+        <figcaption>Proposed model &middot; The loops run at different cadences. Delivery checks cannot establish customer value. <span class="ev ev--model" title="Conceptual synthesis; no measured cadence or performance claim">Model / estimate</span></figcaption>
+      </figure>
+
+      <figure class="vl-figure" id="risk-pod-infographic" aria-labelledby="vl-pod-title">
+        <div class="vl-kicker"><span>02 / The product-risk pod</span><span>Three representatives &middot; four risks</span></div>
+        <h4 id="vl-pod-title">One product.<br><em>Shared intent. Different powers.</em></h4>
+        <div class="vl-trio">
+          <div class="vl-representative"><div class="vl-person-mark" aria-hidden="true">P</div><h5>Product</h5><div class="vl-risk-tags"><span>Value</span><span>Viability</span></div><p>Will customers benefit?<br>Will it work for the business?</p><dl><dt>Human authority</dt><dd>Prioritise opportunities, commit investment, accept business trade-offs.</dd><dt>Agent support</dt><dd>Combine evidence, propose capabilities, model costs and alternative bets.</dd></dl></div>
+          <div class="vl-representative"><div class="vl-person-mark" aria-hidden="true">D</div><h5>Design</h5><div class="vl-risk-tags"><span>Usability</span></div><p>Can people understand it<br>and complete their task?</p><dl><dt>Human authority</dt><dd>Judge the experience, validate research, accept usability trade-offs.</dd><dt>Agent support</dt><dd>Explore prototypes, find friction, prepare accessibility and research checks.</dd></dl></div>
+          <div class="vl-representative"><div class="vl-person-mark" aria-hidden="true">E</div><h5>Engineering</h5><div class="vl-risk-tags"><span>Feasibility</span></div><p>Can we build, run, secure,<br>and maintain it?</p><dl><dt>Human authority</dt><dd>Set technical constraints, accept operational risk, control release and rollback.</dd><dt>Agent support</dt><dd>Run spikes, implement changes, test, observe, and prepare release evidence.</dd></dl></div>
+        </div>
+        <div class="vl-agent-rail"><span class="vl-agent-label">Persistent agent layer</span><strong>Sense &rarr; investigate &rarr; propose &rarr; execute within scope &rarr; evaluate</strong><p>One shared workspace: intent &middot; evidence &middot; hypotheses &middot; decisions &middot; outcomes</p></div>
+        <div class="vl-specialists"><strong>Enterprise expertise joins when needed</strong><span>Finance &middot; legal &middot; security &middot; compliance &middot; operations &middot; domain experts</span></div>
+        <figcaption>Proposed enterprise configuration based on <a href="https://www.svpg.com/four-big-risks/" target="_blank" rel="noopener">SVPG&rsquo;s risk responsibilities</a>. Representatives can be roles held by teams; this does not imply only three staff. <span class="ev ev--model" title="Author adaptation; specialist approval rights depend on the organisation">Model / estimate</span><span class="vl-legend"><i class="vl-human-dot"></i>Human responsibility <i class="vl-agent-dot"></i>Agent work</span></figcaption>
+      </figure>
+
+      <figure class="vl-figure" id="value-decisions-infographic" aria-labelledby="vl-decisions-title">
+        <div class="vl-kicker"><span>03 / Closing the loop</span><span>Evidence changes the next move</span></div>
+        <h4 id="vl-decisions-title">Every result<br><em>needs a next decision.</em></h4>
+        <div class="vl-outcome-head"><span>Observed value + guardrails + confidence</span><strong>What did we actually learn?</strong></div>
+        <div class="vl-outcomes">
+          <div><span class="vl-outcome-symbol" aria-hidden="true">&#8599;</span><h5>Improves</h5><p>Outcome improves, evidence is credible, and guardrails hold.</p><strong>Expand within scope</strong><small>Track durability, cost, and effects on other groups.</small></div>
+          <div><span class="vl-outcome-symbol" aria-hidden="true">&#8594;</span><h5>No useful change</h5><p>Adequate evidence shows no meaningful benefit.</p><strong>Revise or stop</strong><small>Try a different hypothesis, simplify, or retire the change.</small></div>
+          <div><span class="vl-outcome-symbol" aria-hidden="true">&#8617;</span><h5>Harm or breach</h5><p>A guardrail fails, even if the target metric rises.</p><strong>Pause or roll back</strong><small>Use the incident policy; escalate trade-offs to the owner.</small></div>
+          <div><span class="vl-outcome-symbol" aria-hidden="true">?</span><h5>Uncertain or mixed</h5><p>Low traffic, lagging value, conflicting signals, or uneven effects.</p><strong>Investigate before scaling</strong><small>Check data and segments; combine research with longer observation.</small></div>
+        </div>
+        <div class="vl-authority"><div><span>Read-only</span><strong>Observe</strong></div><span aria-hidden="true">&rarr;</span><div><span>Decision support</span><strong>Recommend</strong></div><span aria-hidden="true">&rarr;</span><div><span>Isolated scope</span><strong>Experiment</strong></div><span aria-hidden="true">&rarr;</span><div><span>Explicit mandate</span><strong>Act within limits</strong></div></div>
+        <p class="vl-authority-note">Authority is granted per action by the accountable owner. Strong results alone never unlock more permissions. Missing intent or unreliable data sends the loop back to clarification.</p>
+        <figcaption>Proposed decision map &middot; “No useful change” requires enough evidence; an inconclusive test belongs in “uncertain.” <span class="ev ev--model" title="Illustrative decision and authority model; not observed outcome frequencies">Model / estimate</span></figcaption>
+      </figure>
+    </div>
+
+    <h4 class="fade-in vl-subheading">What makes the loop credible in an enterprise?</h4>
+    <div class="vl-principles fade-in">
+      <p><strong>Make intended value explicit.</strong> Give each opportunity a customer problem, target group, outcome, baseline, expected direction, observation window, and cost or harm constraints. Store the observed result separately from the agent&rsquo;s forecast. A release, accepted recommendation, or passing test is not evidence of value.</p>
+      <p><strong>Keep discovery connected to people.</strong> Telemetry reveals behaviour; interviews and research help explain intent and unmet needs. For low-volume enterprise workflows or delayed financial outcomes, combine task success, time-to-value, support burden, and qualitative evidence. Mark proxies as proxies and uncertainty as uncertainty. Use controlled comparisons where feasible; a before/after improvement alone does not establish causation.</p>
+      <p><strong>Grant agency deliberately.</strong> An agent needs a goal, permission to choose steps, feedback, and stop conditions. A useful mandate names allowed actions, data scope, spend and exposure limits, expiry, rollback, and the human escalation owner. Drafting a proposal, testing in a sandbox, and changing a live product require different permissions. Agents can suggest new goals; accountable humans approve them.</p>
+      <p><strong>Keep all four risks active.</strong> The three representatives work alongside the product throughout its life. Revisit affected risks when the audience, economics, implementation, or evidence changes. Share one evidence record, record disagreements, and route unresolved decisions to named owners. Continuous work does not require every specialist to watch every agent step.</p>
+      <p><strong>Improve the improvement system.</strong> Track rejected proposals, rework, guardrail breaches, recommendation quality, and the cost of learning. The meta-loop may propose better instrumentation, prompts, evaluations, or team practices; it must not silently rewrite success criteria or its own permissions. These are design recommendations for the model above, not claims of validated enterprise effectiveness. <span class="ev ev--model" title="Author recommendations for implementing and evaluating the proposed model">Proposed model</span></p>
+    </div>
+    <div class="callout fade-in" style="margin-top: 1.5rem;">
+      <div class="callout-title">An enterprise workspace example &middot; illustrative</div>
+      <p>An agent notices that employees abandon an approval workflow. It proposes a guided request with a simpler explanation. Product checks whether completion creates useful business value and whether support costs remain viable; design tests comprehension with actual users; engineering checks permission boundaries, auditability, and operational impact. The team authorises a bounded test. Faster completion paired with more incorrect approvals is a guardrail failure. Too few completed cases leaves value uncertain. A process change, clearer policy, or removing the step may be a better intervention than another feature. <span class="ev ev--model" title="Hypothetical enterprise workflow; no measured results">Illustrative model</span></p>
+      <p style="margin-top: 0.75rem;"><strong>Research proposition:</strong> the promising unit is an enduring product-risk pod with a shared value loop. The recent sources demonstrate pieces of this direction; this review does not establish that the complete configuration is a standard operating model or that it consistently improves enterprise outcomes.</p>
+    </div>
   </div>
 </section>
 
@@ -3725,6 +3801,15 @@
       <li><span class="source-org">AWS</span> &mdash; <a href="https://kiro.dev/" target="_blank">Kiro</a> &mdash; Spec-driven agentic IDE: requirements, design and task list before code</li>
     </ul>
 
+    <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2rem;">Continuous Value Loops &amp; Product-Risk Pods (Jun&ndash;Oct 2026; earlier foundations)</h3>
+    <ul class="sources-list fade-in">
+      <li><span class="source-org">Amplitude</span> &mdash; <a href="https://amplitude.com/blog/wave" target="_blank" rel="noopener">How we built a product that tells us what to build next: Inside Amplitude Wave</a> (10 June 2026)</li>
+      <li><span class="source-org">Amplitude</span> &mdash; <a href="https://amplitude.com/wave" target="_blank" rel="noopener">Amplitude Wave: Enabling self-improving products</a> (Undated; closed-beta status checked 31 October 2026)</li>
+      <li><span class="source-org">McKinsey</span> &mdash; <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/beyond-the-copilot-scaling-the-agentic-product-development-life-cycle" target="_blank" rel="noopener">Beyond the copilot: Scaling the agentic product development life cycle</a> (21 August 2026; May 2026 survey)</li>
+      <li><span class="source-org">Amplitude</span> &mdash; <a href="https://amplitude.com/blog/amplitude-github-learning-loop" target="_blank" rel="noopener">Amplitude + GitHub Agents: Closing the Product Learning Loop</a> (19 October 2026)</li>
+      <li><span class="source-org">Product Talk</span> &mdash; <a href="https://www.producttalk.org/tools-optimal-workshop/" target="_blank" rel="noopener">Tools of the Trade: A Look at Optimal Workshop&rsquo;s Discovery Tech Stack</a> (20 October 2021; continuous-discovery foundation)</li>
+    </ul>
+
     <h3 class="fade-in" style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.75rem; margin-top: 2rem;">Always-On Agents &amp; Proactive Swarms (Sep&ndash;Oct 2026)</h3>
     <ul class="sources-list fade-in">
       <li><span class="source-org">OpenAI</span> &mdash; <a href="https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/" target="_blank">Dots: always-on agents with their own cloud computer (TechCrunch coverage)</a> (Sep 2026)</li>
@@ -3753,6 +3838,12 @@
       <p>A reverse-chronological record of substantive additions and updates.</p>
     </div>
     <div class="fade-in" style="font-size: 0.875rem; line-height: 1.8;">
+
+      <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">31 October 2026</h4>
+      <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
+        <li><strong>Section 9.3</strong> &mdash; <em>Continuous Value Loops: The Agentic Product Operating Model</em> (new) &mdash; June&ndash;October research on product agents, enterprise pods, and measured learning loops. Three infographics show the intent-to-value cycle, three representatives covering four product risks, and outcome-dependent decisions with bounded agent authority. Distinguishes vendor capabilities and survey evidence from the proposed operating model, including uncertain results, guardrail failures, and alternatives to building features.</li>
+        <li><strong>Section 12</strong> &mdash; <em>Sources</em> (updated) &mdash; Added five primary sources for value-loop capabilities, beta status, enterprise operating models, and continuous-discovery foundations.</li>
+      </ul>
 
       <h4 style="font-size: 0.9375rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">29 October 2026</h4>
       <ul style="margin-left: 1.25rem; color: hsl(var(--muted-foreground));">
