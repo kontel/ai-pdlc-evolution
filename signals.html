@@ -247,7 +247,7 @@
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">1 Nov 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">8 Nov 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -255,13 +255,73 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">103</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">107</span></button>
     <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">22</span></button>
-    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">31</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">32</span></button>
     <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">25</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">25</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">28</span></button>
     <a href="graph.html" class="sig-chip" style="text-decoration:none; margin-left:auto;">Graph view &rarr;</a>
   </div>
+
+  <!-- ── Week of 2–8 November 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Week 45 &middot; 2026</div>
+        <div class="sig-week-range">2&ndash;8 November 2026</div>
+      </div>
+      <div class="sig-source">4 signals</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the week:</strong> The signal is <em>control-plane hardening for background agents</em>. Claude Code made MCP calls and subagents run in the background and reopenable, while a new setting denies any action that would wait on a permission prompt. Claude Enterprise added a security center, inference hooks and project cost tags. Ambient and ephemeral rails are empty: nothing in the window met the bar, and several primary-source sites were unreachable from this run.
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 6</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.319: background MCP tasks and reopenable subagents</a></div>
+          <div class="sig-item-summary">Long-running agent work is being treated as <em>a managed pool of background jobs</em> rather than a blocking chat turn. MCP tasks now start in the background and Claude is notified when they finish. A new &ldquo;Earlier in this session&rdquo; row in <code>/tasks</code> lists finished subagents so they can be reopened and messaged after a restart. Subagents stop and report when safeguards halt them instead of doing the work themselves. Release 2.1.318 (Nov 4) also moves a background subagent&rsquo;s shell command to the background after 3 minutes so the prompt cache does not expire.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Long-running</span><span class="sig-tag">Orchestration</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cross-cutting -->
+    <div class="sig-layer cross" data-layer="cross">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 6</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.319: deny instead of prompting, and server-checked auto mode</a></div>
+          <div class="sig-item-summary">Unattended agents need a permission mode that <em>fails closed rather than waiting for a human who is not there</em>. The new <code>permissions.denyInsteadOfPrompting</code> setting denies any tool call that would wait on a prompt and lets the turn continue, in terminal sessions, subagents and teammates. Behind a gateway, calls the server-side auto mode check cannot assess are now asked about or denied, and a project&rsquo;s settings or a plugin can no longer re-enable a server check the user turned off. Monitor&rsquo;s WebSocket watch now applies deny and ask rules to every Bash command.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">Governance</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 5</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://support.claude.com/en/articles/12138966-release-notes" target="_blank" rel="noopener">Anthropic &mdash; New security and admin controls for Claude Enterprise</a></div>
+          <div class="sig-item-summary">Enterprise buyers now get <em>a security center and inference hooks</em> for governing agent use centrally. The release notes list a security center, inference hooks, centralized management and additional access controls, several of them in beta. The notes give no detail on what the inference hooks can inspect or block.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Governance</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 6</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://support.claude.com/en/articles/12138966-release-notes" target="_blank" rel="noopener">Anthropic &mdash; Track spend by cost code with project tags (beta)</a></div>
+          <div class="sig-item-summary">Agent spend can now be charged back <em>to the cost codes finance already uses</em>. Eligible Enterprise organizations can tag projects with existing codes, such as charge codes or client-matter numbers, and see most project spend by tag. It follows last week&rsquo;s workstream reports and pooled budgets.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Governance</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ── Week of 27 October – 1 November 2026 ── -->
   <section class="sig-week fade-in">
