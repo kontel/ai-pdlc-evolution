@@ -247,7 +247,7 @@
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">8 Nov 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">15 Nov 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -255,13 +255,96 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">107</span></button>
-    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">22</span></button>
-    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">32</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">113</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">23</span></button>
+    <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">34</span></button>
     <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">25</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">28</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">31</span></button>
     <a href="graph.html" class="sig-chip" style="text-decoration:none; margin-left:auto;">Graph view &rarr;</a>
   </div>
+
+  <!-- ── Week of 9–15 November 2026 ── -->
+  <section class="sig-week fade-in">
+    <header class="sig-week-hdr">
+      <div>
+        <div class="sig-week-num">Week 46 &middot; 2026</div>
+        <div class="sig-week-range">9&ndash;15 November 2026</div>
+      </div>
+      <div class="sig-source">6 signals</div>
+    </header>
+    <div class="sig-week-tldr">
+      <strong>Headline of the week:</strong> The signal is <em>agents becoming a managed, permissioned workforce</em>. Claude Code tightened approvals for scheduled tasks, MCP sign-in and sandboxed Bash while giving subagents safer retry behaviour. MCP moved to a fixed six-month release cadence and drafted a file-transfer extension that keeps bytes out of the model context. Claude also joined Google Meet calls as a participant. The ephemeral rail is empty: the A2UI 1.0 announcement could not be reached from this run, so it is not logged.
+    </div>
+
+    <!-- Layer 1: Ambient intent capture -->
+    <div class="sig-layer" data-layer="ambient">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">01</span> Ambient intent capture</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 12</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://support.claude.com/en/articles/12138966-release-notes" target="_blank" rel="noopener">Anthropic &mdash; Claude Meetings (beta) joins Google Meet as a participant</a></div>
+          <div class="sig-item-summary">Meetings are where a lot of product intent is spoken but never captured, and this puts an agent <em>in the room as a visible participant</em>. Claude Meetings is rolling out in beta on Team and Enterprise plans in Claude and Claude Desktop. Claude can take notes, answer questions during the call, and build artifacts such as docs, whiteboards and slides.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Voice</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Layer 2: Agentic execution -->
+    <div class="sig-layer" data-layer="agentic">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 12</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.323: Code Mode and a 100,000-message inter-session limit</a></div>
+          <div class="sig-item-summary">Agent-to-agent messaging is being sized for <em>far larger multi-session swarms</em>. The inter-session message limit rises from about 20 to 100,000, and split-pane teammates now check that requests come from their team lead. Code Mode is an experimental opt-in where Claude writes JavaScript to call its tools. When safeguards stop a subagent or forked skill, Claude is now told to retry with a narrower prompt or tell the user instead of doing the work itself.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Orchestration</span><span class="sig-tag">Parallelism</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 13</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.325: background MCP tasks can wait for an answer</a></div>
+          <div class="sig-item-summary">Background agents need a way to ask a human a question <em>without blocking or being lost</em>. Pressing Esc on a background MCP task&rsquo;s question now means &ldquo;answer later&rdquo;: nothing is sent and the question stays in <code>/tasks</code>, and Claude is told when a task is waiting. Subagents cut off at the output token limit are asked to resend a shorter full answer, and worktree-isolated agents are refused <code>git bisect run</code>.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Long-running</span><span class="sig-tag">Orchestration</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cross-cutting -->
+    <div class="sig-layer cross" data-layer="cross">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 13</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.325: scheduled tasks and sandboxed Bash ask before running</a></div>
+          <div class="sig-item-summary">Defaults are shifting from <em>implicit trust to explicit allow-listing</em> for unattended work. Scheduled tasks and <code>/loop</code> now ask before running a skill that declares <code>allowed-tools</code> or hooks, unless <code>Skill(name)</code> is in <code>permissions.allow</code>. Sandboxed Bash follows the normal permission flow unless <code>sandbox.autoAllowBashIfSandboxed</code> is set, and read-only git commands ask first in untrusted repositories. Release 2.1.323 also asks for confirmation on MCP sign-in even in bypass and auto modes.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">Governance</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 11</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.modelcontextprotocol.io/posts/mcp-release-cycle/" target="_blank" rel="noopener">MCP &mdash; A More Predictable Release Cycle for MCP</a></div>
+          <div class="sig-item-summary">Enterprises planning around MCP now get <em>a fixed six-month spec cadence</em>. Releases are generally published on the last Tuesday of March and September, and the next is targeted for 30 March 2027 as <code>2027-03-30</code>. Planning starts eight months ahead with soft and hard freezes and Tier 1 SDK betas, and unready proposals slip to a later release. Luca Chang joins as a release manager, and no client or server changes are required.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Open source</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 10</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/" target="_blank" rel="noopener">MCP &mdash; Exploring File Uploads and Downloads in MCP</a></div>
+          <div class="sig-item-summary">Agents handling real artifacts need file transfer that <em>keeps bytes out of the model&rsquo;s context</em>. A draft extension, <code>io.modelcontextprotocol/files</code>, has the server mark file arguments, the client get approval and send only metadata, and the upload go directly to a target the server supplies. Downloads return a URL in <code>_meta</code> that the client fetches over HTTPS. It is experimental with no reference implementation yet, and the authors expect a stable optional extension before year end.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Toolchain</span><span class="sig-tag">Open source</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ── Week of 2–8 November 2026 ── -->
   <section class="sig-week fade-in">
