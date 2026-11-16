@@ -291,7 +291,7 @@
     </p>
     <ul>
       <li><strong>X (time)</strong> &mdash; chronological week of publication. Newest weeks land on the right, older weeks accumulate to the left as the log grows.</li>
-      <li><strong>Y (layer)</strong> &mdash; the three-layer future (ambient · agentic · ephemeral) plus the cross-cutting rail. In Timeline view this is a swimlane; in Constellation view it becomes node colour with force-driven clustering.</li>
+      <li><strong>Y (layer)</strong> &mdash; the SDLC · engineering lane (from Week 46), the three-layer future (ambient · agentic · ephemeral) and the cross-cutting rail. In Timeline view this is a swimlane; in Constellation view it becomes node colour with force-driven clustering.</li>
       <li><strong>Edges</strong> &mdash; two signals are linked if they share at least two tags. Vendor mass (Anthropic, Google, Microsoft, OpenAI) and theme mass (Trust, Toolchain, Orchestration) emerge as visual clusters without any manual grouping.</li>
       <li><strong>Node size</strong> &mdash; degree (number of tag-shared neighbours). Hub signals &mdash; the ones that anchor a theme &mdash; render larger.</li>
     </ul>
@@ -315,18 +315,20 @@
 //  1.  Parse signals.html and build the graph dataset.
 // ─────────────────────────────────────────────────────────────
 const LAYER_COLORS = {
+  sdlc:      'hsl(40  85% 50%)',
   ambient:   'hsl(210 75% 55%)',
   agentic:   'hsl(280 65% 60%)',
   ephemeral: 'hsl(15  80% 58%)',
   cross:     'hsl(150 50% 45%)'
 };
 const LAYER_LABEL = {
+  sdlc:      'SDLC · Engineering',
   ambient:   'Ambient intent',
   agentic:   'Agentic execution',
   ephemeral: 'Ephemeral UX',
   cross:     'Cross-cutting'
 };
-const LAYER_ORDER = ['ambient','agentic','ephemeral','cross'];
+const LAYER_ORDER = ['sdlc','ambient','agentic','ephemeral','cross'];
 
 const VENDOR_TAGS = ['Anthropic','Google','OpenAI','Microsoft','NVIDIA','Apple','Meta'];
 const VENDOR_COLORS = {

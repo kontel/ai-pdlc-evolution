@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ── Page chrome ─────────────────────────────────────── */
-    .sig-page { background: hsl(var(--secondary)); min-height: 100vh; }
+    .sig-page { background: hsl(var(--secondary)); min-height: 100vh; --sig-sdlc: hsl(40 85% 50%); }
     .sig-shell {
       max-width: 1080px; margin: 0 auto;
       padding: 5rem 1.5rem 4rem;
@@ -135,6 +135,22 @@
       background: hsl(var(--background)); color: hsl(var(--foreground));
       border: 1px solid hsl(var(--border));
     }
+    /* SDLC lens — the lead rail of each week */
+    .sig-layer.sdlc { border-left: 3px solid var(--sig-sdlc); }
+    .sig-layer.sdlc .sig-layer-hdr { color: hsl(var(--foreground)); }
+    .sig-layer.sdlc .sig-layer-num { background: var(--sig-sdlc); color: hsl(30 45% 10%); }
+    .sig-week-sdlc {
+      font-size: 0.8125rem; color: hsl(var(--muted-foreground));
+      line-height: 1.5; padding: 0.625rem 1.25rem 0.625rem calc(1.25rem - 3px);
+      border-left: 3px solid var(--sig-sdlc);
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .sig-week-sdlc strong { color: hsl(var(--foreground)); font-weight: 600; }
+    .sig-week-sdlc em { color: hsl(var(--foreground)); font-style: normal; font-weight: 600; }
+    .sig-chip[data-filter="sdlc"]::before {
+      content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sig-sdlc); margin-right: 0.375rem; vertical-align: 1px;
+    }
 
     /* ── Item ────────────────────────────────────────────── */
     .sig-item {
@@ -243,11 +259,11 @@
     <div class="sig-eyebrow">Third surface &middot; weekly cadence</div>
     <h1 class="sig-title">Signals</h1>
     <p class="sig-lead">
-      A short, dated log of <strong>industry signals from the last 1&ndash;2 weeks</strong> &mdash; news, papers, posts and product moves on the topics this writeup tracks: agentic PDLC, the three-layer future of computing (<em>ambient intent &middot; agentic execution &middot; ephemeral verification</em>), product engineer role, harness engineering, trust calibration. Each item is 2&ndash;5 sentences, with a source link. New entries land here weekly &mdash; older weeks accumulate at the bottom rather than getting overwritten.
+      A short, dated log of <strong>industry signals from the last 1&ndash;2 weeks</strong> &mdash; news, papers, posts and product moves on the topics this writeup tracks. Each week leads with the <strong>SDLC lens</strong>: how engineering process, practice and roles are changing as agents write, review, test and ship code. After that come agentic PDLC, the three-layer future of computing (<em>ambient intent &middot; agentic execution &middot; ephemeral verification</em>), product engineer role, harness engineering, trust calibration. Each item is 2&ndash;5 sentences, with a source link. New entries land here weekly &mdash; older weeks accumulate at the bottom rather than getting overwritten.
     </p>
     <div class="sig-meta-row">
       <span class="sig-meta-pill pulse">Updated weekly</span>
-      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">15 Nov 2026</strong></span>
+      <span>Last refresh &middot; <strong style="color:hsl(var(--foreground));">16 Nov 2026</strong></span>
       <span>&middot; Refresh cadence: every Sunday evening</span>
       <span>&middot; <a href="#methodology" style="color:hsl(var(--foreground));">How this is produced &rarr;</a></span>
     </div>
@@ -255,25 +271,88 @@
 
   <!-- Filters (visual / progressive enhancement) -->
   <div class="sig-filters" id="sigFilters">
-    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">113</span></button>
-    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">23</span></button>
+    <button class="sig-chip active" data-filter="all">All <span class="sig-chip-count">123</span></button>
+    <button class="sig-chip" data-filter="sdlc">SDLC &middot; Engineering <span class="sig-chip-count">6</span></button>
+    <button class="sig-chip" data-filter="ambient">Ambient intent <span class="sig-chip-count">24</span></button>
     <button class="sig-chip" data-filter="agentic">Agentic execution <span class="sig-chip-count">34</span></button>
-    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">25</span></button>
-    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">31</span></button>
+    <button class="sig-chip" data-filter="ephemeral">Ephemeral UX <span class="sig-chip-count">26</span></button>
+    <button class="sig-chip" data-filter="cross">Cross-cutting <span class="sig-chip-count">33</span></button>
     <a href="graph.html" class="sig-chip" style="text-decoration:none; margin-left:auto;">Graph view &rarr;</a>
   </div>
 
-  <!-- ── Week of 9–15 November 2026 ── -->
+  <!-- ── Week of 9–16 November 2026 ── -->
   <section class="sig-week fade-in">
     <header class="sig-week-hdr">
       <div>
         <div class="sig-week-num">Week 46 &middot; 2026</div>
-        <div class="sig-week-range">9&ndash;15 November 2026</div>
+        <div class="sig-week-range">9&ndash;16 November 2026</div>
       </div>
-      <div class="sig-source">6 signals</div>
+      <div class="sig-source">16 signals</div>
     </header>
     <div class="sig-week-tldr">
-      <strong>Headline of the week:</strong> The signal is <em>agents becoming a managed, permissioned workforce</em>. Claude Code tightened approvals for scheduled tasks, MCP sign-in and sandboxed Bash while giving subagents safer retry behaviour. MCP moved to a fixed six-month release cadence and drafted a file-transfer extension that keeps bytes out of the model context. Claude also joined Google Meet calls as a participant. The ephemeral rail is empty: the A2UI 1.0 announcement could not be reached from this run, so it is not logged.
+      <strong>Headline of the week:</strong> Coding agents moved from single assistants to <em>coordinated teams</em>. Google shipped /swarm in Antigravity, Cursor made Projects multiplayer so teammates&rsquo; agents can message each other, Anthropic said Fable&nbsp;5.2 has led runs of more than 1,000 subagents, and Claude Code raised its limit on messages between sessions to 100,000. Controls tightened around them: Claude Code now asks before unattended scheduled tasks run skills with their own tools, MCP fixed a six-month release cadence, and OpenAI put a biometric approval step in front of agent purchases with ChatGPT Wallet. Apple shipped HomeView with screen-aware Siri AI, and Claude joined Google Meet calls as a participant.
+    </div>
+    <div class="sig-week-sdlc">
+      <strong>SDLC shift:</strong> The unit of work is becoming <em>a coordinated group of agents with its own verifier</em>, not one developer and one assistant. Antigravity, Cursor and Claude Code all shipped ways for agents to coordinate with each other this week. Checking the work is moving away from the agent that wrote it. AWS released an emulator whose code no human wrote or reviewed, gated by agent-run build, review, security and fidelity checks, and a Stack Overflow essay argued that verification needs a separate agent with fresh context.
+    </div>
+
+    <!-- SDLC: Software engineering -->
+    <div class="sig-layer sdlc" data-layer="sdlc">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">SE</span> Software engineering &middot; SDLC</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2" target="_blank" rel="noopener">Anthropic &mdash; Claude Fable 5.2 launch: over 90% of merged changes in Anthropic&rsquo;s core codebase are now written by Claude</a></div>
+          <div class="sig-item-summary">A frontier lab is reporting that <em>authorship of its own production code has largely moved to the model</em>, with humans guiding rather than writing. The launch post says over 90% of changes merged into Anthropic&rsquo;s core codebase are written by Claude &ldquo;with human guidance.&rdquo; It also describes a team of agents migrating a production service from Python to Rust, and one engineer running more than 1,000 subagents for eight days to build a prototype operating system from an empty folder. Fable&nbsp;5.2 can act as an orchestrator that hands simpler tasks to smaller models. These are vendor-reported figures with no external audit.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Agentic coding</span><span class="sig-tag">Anthropic</span><span class="sig-tag">Stage &middot; Code</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 9</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://antigravity.google/docs/changelog/" target="_blank" rel="noopener">Google &mdash; Antigravity adds /swarm, then Orchestrator and Dynamic Workflows, in one week</a></div>
+          <div class="sig-item-summary">Google&rsquo;s agent IDE now treats <em>one developer&rsquo;s task as work for a group of agents</em> by default. Version 2.31.0 (Nov&nbsp;9) added /swarm, which coordinates multiple subagents over a message board for long-horizon tasks. Gemini 4 Hydrogen (Nov&nbsp;12) arrived with Orchestrator, which plans and executes across Hydrogen and Gemini 4 Carbon in one session. Version 2.32.0 (Nov&nbsp;13) lets agents script parallel subagents in Python. Third-party testers report that /swarm assigns verifier agents to check workers&rsquo; diffs; Google&rsquo;s changelog does not describe that.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Parallelism</span><span class="sig-tag">Google</span><span class="sig-tag">Stage &middot; Code</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 10</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://cursor.com/blog/projects-multiplayer" target="_blank" rel="noopener">Cursor &mdash; Projects is now multiplayer: teammates&rsquo; agents share context and message each other</a></div>
+          <div class="sig-item-summary">Coordination between engineers is starting to happen <em>between their agents</em>, not only in standups and PR comments. Each teammate keeps a personal coordinator and worker agents, while a shared context layer holds specs, diagrams and decisions. Cursor says &ldquo;a decision made in one chat is accessible to every agent in the Project.&rdquo; A task board shows who and which agent owns each task and the PR behind it. Agents can agree on the order of schema and feature changes to avoid merge conflicts, and an on-call coordinator can take over in-flight work from the previous owner. It is in beta for all users.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Team shape</span><span class="sig-tag">Cursor</span><span class="sig-tag">Orchestration</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 11</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator" target="_blank" rel="noopener">AWS &mdash; AWS Emulator, a local copy of the AWS APIs written entirely by autonomous agents</a></div>
+          <div class="sig-item-summary">This is a public, shipped product where <em>no human wrote or reviewed the code</em>; trust comes from the merge gate instead. Three agent teams run a loop: one writes fidelity tests from AWS API models and checks them against real AWS, one replays them against the emulator and files failures, and one fixes issues. Each fix passes an agent-run gate for build, code review, security and fidelity. Humans designed the guardrails and the gate. AWS says that without the gate &ldquo;we wouldn&rsquo;t trust what our agents are building,&rdquo; and warns against using the emulator for production or security validation. It is released under CC0.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Testing</span><span class="sig-tag">Engineering practice</span><span class="sig-tag">Stage &middot; Test</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 12</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.323: Code Mode and a 100,000-message inter-session limit</a></div>
+          <div class="sig-item-summary">Agent-to-agent messaging is being sized for <em>far larger multi-session swarms</em>. The inter-session message limit rises from about 20 to 100,000, and split-pane teammates now check that requests come from their team lead. Code Mode is an experimental opt-in where Claude writes JavaScript to call its tools. When safeguards stop a subagent or forked skill, Claude is now told to retry with a narrower prompt or tell the user instead of doing the work itself.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Orchestration</span><span class="sig-tag">Parallelism</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 13</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://stackoverflow.blog/2026/11/13/your-coding-agent-shouldn-t-grade-its-own-homework" target="_blank" rel="noopener">Stack Overflow blog &mdash; Your coding agent shouldn&rsquo;t grade its own homework</a></div>
+          <div class="sig-item-summary">The essay names a practice shift: <em>verification should come from a separate agent</em> that has the requirements and the running app, but not the coder&rsquo;s history. It describes three failure modes: shallow checks, shared blind spots, and pressure to declare completion in long sessions. In an audit of 1,000 AI-written unit tests, the author&rsquo;s company rated 9.6% as useful verification. The author recommends keeping acceptance criteria out of the coding agent&rsquo;s reach and measuring defects caught per unit of spend instead of test counts. The author is CTO of Momentic, which sells verification tooling, and the audit is that company&rsquo;s own.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Testing</span><span class="sig-tag">Code review</span><span class="sig-tag">Stage &middot; Test</span></div>
+        </div>
+      </article>
     </div>
 
     <!-- Layer 1: Ambient intent capture -->
@@ -288,6 +367,15 @@
           <div class="sig-item-tags"><span class="sig-tag">Voice</span><span class="sig-tag">Enterprise</span><span class="sig-tag">Anthropic</span></div>
         </div>
       </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 13</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://www.apple.com/newsroom/2026/11/apple-homeview-available-today/" target="_blank" rel="noopener">Apple &mdash; HomeView ships with Siri AI, face recognition and on-screen awareness</a></div>
+          <div class="sig-item-summary">Apple now sells a home device built to <em>recognise who is in the room and what is on the screen</em>. HomeView recognises up to six people by face and shows each person their own messages, calendar and reminders. With a paired iPhone or iPad, Siri AI can use personal context and act across apps, and it can answer or act on what is on screen. Personal content appears only when the paired device is present and recently unlocked. Siri AI is a beta, English-only at launch, and not available in the EU.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Apple</span><span class="sig-tag">Hardware</span><span class="sig-tag">Screen context</span></div>
+        </div>
+      </article>
     </div>
 
     <!-- Layer 2: Agentic execution -->
@@ -295,11 +383,11 @@
       <div class="sig-layer-hdr"><span class="sig-layer-num">02</span> Agentic execution</div>
 
       <article class="sig-item">
-        <div class="sig-item-date">Nov 12</div>
+        <div class="sig-item-date">Nov 10</div>
         <div class="sig-item-body">
-          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.323: Code Mode and a 100,000-message inter-session limit</a></div>
-          <div class="sig-item-summary">Agent-to-agent messaging is being sized for <em>far larger multi-session swarms</em>. The inter-session message limit rises from about 20 to 100,000, and split-pane teammates now check that requests come from their team lead. Code Mode is an experimental opt-in where Claude writes JavaScript to call its tools. When safeguards stop a subagent or forked skill, Claude is now told to retry with a narrower prompt or tell the user instead of doing the work itself.</div>
-          <div class="sig-item-tags"><span class="sig-tag">Orchestration</span><span class="sig-tag">Parallelism</span><span class="sig-tag">Anthropic</span></div>
+          <div class="sig-item-title"><a href="https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/" target="_blank" rel="noopener">OpenAI &mdash; Business Hub lets verified companies publish profiles and launch their own agents inside ChatGPT</a></div>
+          <div class="sig-item-summary">Businesses can now place <em>their own agent inside the assistant</em> where customers already ask questions, instead of waiting to be found through a website. Verified companies can create profiles, similar to Google business profiles, and see views, mentions and website clicks. Eligible companies can launch a specialised agent that answers questions about their products. Profiles are in beta and business agents are limited to eligible companies. OpenAI has not described its verification process in detail.</div>
+          <div class="sig-item-tags"><span class="sig-tag">OpenAI</span><span class="sig-tag">Enterprise</span></div>
         </div>
       </article>
 
@@ -313,16 +401,39 @@
       </article>
     </div>
 
+    <!-- Layer 3: Ephemeral verification UX -->
+    <div class="sig-layer" data-layer="ephemeral">
+      <div class="sig-layer-hdr"><span class="sig-layer-num">03</span> Ephemeral verification UX</div>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 13</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://openai.com/index/introducing-chatgpt-wallet/" target="_blank" rel="noopener">OpenAI &mdash; ChatGPT Wallet: agents check out on your behalf after a biometric approval</a></div>
+          <div class="sig-item-summary">This sets out <em>what a payment approval looks like when an agent does the shopping</em>. Before each purchase the user reviews the items, total and card, then confirms with Face ID or a fingerprint. Each approval leaves a record of what was authorised. The network issues a token so neither the agent nor the merchant sees the card number. It was built with American Express, Chase, Mastercard and Visa. It is rolling out to US ChatGPT Pro subscribers. OpenAI says spending limits and pre-approved categories may come later.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">OpenAI</span></div>
+        </div>
+      </article>
+    </div>
+
     <!-- Cross-cutting -->
     <div class="sig-layer cross" data-layer="cross">
       <div class="sig-layer-hdr"><span class="sig-layer-num">&#8853;</span> Cross-cutting</div>
 
       <article class="sig-item">
-        <div class="sig-item-date">Nov 13</div>
+        <div class="sig-item-date">Nov 10</div>
         <div class="sig-item-body">
-          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.325: scheduled tasks and sandboxed Bash ask before running</a></div>
-          <div class="sig-item-summary">Defaults are shifting from <em>implicit trust to explicit allow-listing</em> for unattended work. Scheduled tasks and <code>/loop</code> now ask before running a skill that declares <code>allowed-tools</code> or hooks, unless <code>Skill(name)</code> is in <code>permissions.allow</code>. Sandboxed Bash follows the normal permission flow unless <code>sandbox.autoAllowBashIfSandboxed</code> is set, and read-only git commands ask first in untrusted repositories. Release 2.1.323 also asks for confirmation on MCP sign-in even in bypass and auto modes.</div>
-          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">Governance</span><span class="sig-tag">Anthropic</span></div>
+          <div class="sig-item-title"><a href="https://newsroom.ibm.com/2026-11-10-ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation" target="_blank" rel="noopener">IBM and Microsoft &mdash; Imagine Enterprise, a joint platform for industry agents with forward-deployed engineers</a></div>
+          <div class="sig-item-summary">Consulting firms and platform vendors are packaging agents as <em>delivered engagements</em>, not tools. Imagine Enterprise combines IBM Consulting&rsquo;s library of more than 6,000 agents and assets with Microsoft Foundry, GitHub Copilot, Copilot Studio, Entra, Purview and Defender. Initial industries are financial services, insurance and retail. Clients can have IBM deploy and run it, co-develop it, or manage it themselves. Qualifying engagements include forward-deployed engineering support.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Microsoft</span><span class="sig-tag">Vertical &middot; Finance</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 10</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/" target="_blank" rel="noopener">MCP &mdash; Exploring File Uploads and Downloads in MCP</a></div>
+          <div class="sig-item-summary">Agents handling real artifacts need file transfer that <em>keeps bytes out of the model&rsquo;s context</em>. A draft extension, <code>io.modelcontextprotocol/files</code>, has the server mark file arguments, the client get approval and send only metadata, and the upload go directly to a target the server supplies. Downloads return a URL in <code>_meta</code> that the client fetches over HTTPS. It is experimental with no reference implementation yet, and the authors expect a stable optional extension before year end.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Toolchain</span><span class="sig-tag">Open source</span></div>
         </div>
       </article>
 
@@ -336,11 +447,20 @@
       </article>
 
       <article class="sig-item">
-        <div class="sig-item-date">Nov 10</div>
+        <div class="sig-item-date">Nov 12</div>
         <div class="sig-item-body">
-          <div class="sig-item-title"><a href="https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/" target="_blank" rel="noopener">MCP &mdash; Exploring File Uploads and Downloads in MCP</a></div>
-          <div class="sig-item-summary">Agents handling real artifacts need file transfer that <em>keeps bytes out of the model&rsquo;s context</em>. A draft extension, <code>io.modelcontextprotocol/files</code>, has the server mark file arguments, the client get approval and send only metadata, and the upload go directly to a target the server supplies. Downloads return a URL in <code>_meta</code> that the client fetches over HTTPS. It is experimental with no reference implementation yet, and the authors expect a stable optional extension before year end.</div>
-          <div class="sig-item-tags"><span class="sig-tag">Standard</span><span class="sig-tag">Toolchain</span><span class="sig-tag">Open source</span></div>
+          <div class="sig-item-title"><a href="https://claude.com/resources/articles/self-hosted-claude-managed-agents" target="_blank" rel="noopener">Anthropic &mdash; Self-hosted Claude Managed Agents: the full agent service inside the customer&rsquo;s perimeter</a></div>
+          <div class="sig-item-summary">This removes a <em>data-residency blocker</em> for regulated enterprises adopting managed agents. Customers run the server, database and workers, including the harness, sandboxes, credentials and session history, in their own cloud or on premises. Model requests go where the customer chooses: Anthropic, Amazon Bedrock, Google&rsquo;s Agent Platform, Microsoft Foundry, or their own gateway. It is in private beta through Anthropic account teams.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Enterprise</span><span class="sig-tag">Governance</span><span class="sig-tag">Anthropic</span></div>
+        </div>
+      </article>
+
+      <article class="sig-item">
+        <div class="sig-item-date">Nov 13</div>
+        <div class="sig-item-body">
+          <div class="sig-item-title"><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Anthropic &mdash; Claude Code 2.1.325: scheduled tasks and sandboxed Bash ask before running</a></div>
+          <div class="sig-item-summary">Defaults are shifting from <em>implicit trust to explicit allow-listing</em> for unattended work. Scheduled tasks and <code>/loop</code> now ask before running a skill that declares <code>allowed-tools</code> or hooks, unless <code>Skill(name)</code> is in <code>permissions.allow</code>. Sandboxed Bash follows the normal permission flow unless <code>sandbox.autoAllowBashIfSandboxed</code> is set, and read-only git commands ask first in untrusted repositories. Release 2.1.323 also asks for confirmation on MCP sign-in even in bypass and auto modes.</div>
+          <div class="sig-item-tags"><span class="sig-tag">Trust</span><span class="sig-tag">Governance</span><span class="sig-tag">Anthropic</span></div>
         </div>
       </article>
     </div>
@@ -1652,9 +1772,10 @@
     </p>
     <ol>
       <li><strong>Scope.</strong> Last 7&ndash;14 days only. Strictly enforced &mdash; older items belong in the writeup, not here.</li>
-      <li><strong>Topics.</strong> Agentic PDLC, the three layers (ambient / agentic / ephemeral), product engineer role, harness engineering, trust calibration, multi-agent orchestration, generative UI standards.</li>
+      <li><strong>Lead lens: the SDLC.</strong> Searched first every week: process shape (spec-driven work, background and parallel agents), practices (agent code review, verification, repo context files), delivery and operations, productivity and quality evidence, and engineering roles and team shape. Coding-tool releases count only when they change how the work is done.</li>
+      <li><strong>Other topics.</strong> Agentic PDLC beyond engineering, the three layers (ambient / agentic / ephemeral), product engineer role, harness engineering, trust calibration, multi-agent orchestration, generative UI standards.</li>
       <li><strong>Per signal.</strong> 2&ndash;5 sentences. One source link in the title. Plain English. Why-it-matters first, what-it-is second.</li>
-      <li><strong>Layering.</strong> Each item is filed under one of three layers, or the cross-cutting rail (orchestration patterns, role evolution, regulation). Five items per layer per week is plenty &mdash; signal beats volume.</li>
+      <li><strong>Layering.</strong> Each week opens with an <em>SDLC shift</em> line and the SDLC rail (3&ndash;6 items, from Week&nbsp;46 onward). Everything else is filed under one of three layers, or the cross-cutting rail (regulation, procurement, non-engineering role evolution). Five items per layer per week is plenty &mdash; signal beats volume.</li>
       <li><strong>Append, don&rsquo;t overwrite.</strong> Each new week is added as a new <code>&lt;section class="sig-week"&gt;</code> at the top; older weeks stay below for longitudinal reading.</li>
     </ol>
     <p>
